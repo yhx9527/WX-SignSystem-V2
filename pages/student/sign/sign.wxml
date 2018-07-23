@@ -1,0 +1,92 @@
+<!--底部栏-->
+<i-tab-bar current="{{ current }}" color="#55efc4" bindchange="handleChange" fixed="true">
+    <i-tab-bar-item key="sign" icon="brush" current-icon="brush_fill" title="签到课程"></i-tab-bar-item>
+    <i-tab-bar-item key="courseTable" icon="activity" current-icon="activity_fill" title="课程表"></i-tab-bar-item>
+    <i-tab-bar-item key="monitor" icon="browse" current-icon="browse_fill" title="督导"></i-tab-bar-item>
+    <i-tab-bar-item key="self" icon="mine" current-icon="mine_fill" title="个人中心"></i-tab-bar-item>
+</i-tab-bar>
+
+<!--scroll-view class="scroll-view_H"  scroll-with-animation style="width: 100%;height:{{systemInfo.height*0.8}}px;"bindscroll="getSelectItem" scroll-x>
+  <block wx:for="{{signList}}" wx:key="unique" wx:for-index="id" wx:for-item="item">
+    <view class="scroll_item {{item.selected ? 'selected' : ''}}" data-index='{{item.index}}' bindtap='selectProItem'>
+    <view class='infoImg'><image src="" class="slide-image" mode="widthFix"/></view>
+    <view class='signDetail'>
+      <view class='infoText'>{{item.title}}</view>
+      <navigator class='moreDetail' url="../detail/detail?id={{item.id}}">查看详情 ></navigator>
+    </view>
+    <view class='signIcon'>
+      <i-icon type="camera" size="28" color="#80848f"/>
+      <i-icon type="brush" size="28" color="#80848f"/>
+    </view>
+    </view>
+  </block>
+</scroll-view-->
+<view wx:if="{{current == 'sign'}}">
+
+<i-notice-bar icon="systemprompt" closable>
+    请注意，某节课本周停课
+</i-notice-bar>
+<swiper current='{{signCurrent}}'indicator-dots="true" circular='true' previous-margin='{{systemInfo.width*0.1}}px' next-margin='{{systemInfo.width*0.1}}px' bindchange='changSign'  class='swiper-view_H'style="width: 100%;height:{{systemInfo.height*0.85}}px;">
+  <block wx:for="{{signList}}" wx:key="unique" wx:for-index="id" wx:for-item="item">
+    <swiper-item style="display:flex;justify-content:center;">
+      <view class="swiper_item {{item.selected ? 'selected' : ''}}" data-index='{{item.index}}' bindtap='selectProItem'>
+        <view class="middle" style='height:25%;'>
+          <image src="../../images/1.jpg" class='signImage'></image>
+        </view>
+        <view style='height:5%;color:#586c94;font-size:14px;width:90%;margin:auto;'>
+         第xx周
+        </view>
+        <view class='signDetail'style="height:55%;">
+          <view class='panel_hd title'>{{item.title}}</view>
+          <view class='panel_bd'>
+           <view style='margin-left:10px;height:60%;'>
+            <view class='infoText row'>
+             <view class='infoText1'>老师</view>
+             <view class='infoText2'>xxx</view>
+            </view>
+            <view class='infoText row'>
+             <view class='infoText1'>时间</view>
+             <view class='infoText2'>xxx</view>
+            </view>
+            <view class='infoText row'>
+             <view class='infoText1'>地点</view>
+             <view class='infoText2'>xxx</view>
+            </view>
+           </view>
+           <view class='title'style="height:40%;">通知 :</view>
+          </view>
+          <view class='panel_ft'>
+            <navigator class='moreDetail' url="../detail/detail?id={{item.id}}">
+              <view class="weui-cell__bd">查看更多</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+          </view>
+        </view>
+          <i-row i-class="row-class">
+            <i-col span="12">
+              <view class='middle'>
+                <i-icon type="camera" size="30" color="#80848f"/>
+              </view>
+              <view class='text-middle'>扫码补签</view>
+            </i-col>
+            <i-col span="12" i-class="">
+              <view class='middle'>
+                <i-icon type="brush" size="30" color="#80848f"/>
+              </view>
+              <view class='text-middle'>一键签到</view>
+            </i-col>
+          </i-row>
+        
+      </view>  
+    </swiper-item>
+  </block>
+</swiper>
+</view>
+<!--个人中心-->
+<view wx:if="{{current == 'self'}}">
+  <include src="../self/self.wxml"/>
+</view>
+<!--督导-->
+<view wx:if="{{current == 'monitor'}}">
+  <include src="../monitor/index/index.wxml"/>
+</view>

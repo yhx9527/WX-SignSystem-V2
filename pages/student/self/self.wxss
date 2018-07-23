@@ -1,0 +1,31 @@
+.selfCard{
+  border-bottom: 2px solid #f8f8f9;
+  padding-top:10px;
+padding-bottom:10px;
+background-color: white;
+
+}
+.bt_border{
+  border-top: 2px solid #f8f8f9;
+  border-bottom: 2px solid #f8f8f9;
+  padding-top:10px;
+  font-size: 20px;
+
+}
+.avatar{
+  width:60px;
+height:60px;
+line-height:60px;
+border-radius:50%;
+}
+.introFont{
+  color: #80848f;
+  font-size: 16px;
+}
+.funFont{
+  font-size: 20px;
+}
+page{
+  background-color:#f8f8f9;
+
+}

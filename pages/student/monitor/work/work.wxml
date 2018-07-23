@@ -1,0 +1,89 @@
+<i-tabs current="{{ current }}" bindchange="handleChange" color="#25CCF7">
+    <i-tab key="tab1" title="督导ing" ></i-tab>
+    <i-tab key="tab2" title="历史记录"></i-tab>
+    <i-tab key="tab3" title="审核请假" dot="true"></i-tab>
+</i-tabs>
+<!--督导课程tab-->
+<scroll-view  wx:if="{{current == 'tab1' }}"scroll-y="true" >
+  <block wx:for="{{monitorList}}"wx:key="unique" wx:for-index="id" wx:for-item="item">
+   <view class='item-view column'>
+    <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB'>
+        <view class="fa fa-balance-scale fa-2x"style='vertical-align:middle;color:#FFFFFF'></view>
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title"style='color:#1c2438;'>{{item.courseName}}</view>
+        <view class="weui-media-box__desc">老师：{{item.courseTeacher}}</view>
+        <view class="weui-media-box__desc">时间：{{item.courseTime}}</view>
+        <view class="weui-media-box__desc">地点：{{item.coursePlace}}</view>
+      </view>
+    </view>
+    <view class='row addition1'>
+      <i-tag 
+    class="i-tags" 
+    name="标签一" 
+    color="green">
+    正在上课
+      </i-tag>
+      <i-tag 
+    class="i-tags" 
+    name="标签一" 
+    color="red">
+    停课
+    </i-tag>
+    <view class='more'>
+       <view>
+        more
+        <i-icon type="more" size='22'/>
+    </view>
+    </view>
+    </view>
+   </view>
+  </block>
+</scroll-view>
+<!--历史记录-->
+<scroll-view  wx:if="{{current == 'tab2' }}"scroll-y="true" >
+  <block wx:for="{{historyList}}"wx:key="unique" wx:for-index="id" wx:for-item="item">
+   <view class='item-view column'>
+    <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB'>
+        <view class="fa fa-balance-scale fa-2x"style='vertical-align:middle;color:#FFFFFF'></view>
+      </view>
+      <view class="weui-media-box__bd ">
+        <view class="weui-media-box__title"style='color:#1c2438;'>{{item.courseName}}</view>
+        <view class="weui-media-box__desc">老师：{{item.courseTeacher}}</view>
+        <view class="weui-media-box__desc">时间：{{item.courseTime}}</view>
+        <view class="weui-media-box__desc">地点：{{item.coursePlace}}</view>
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="historyInfo">完成督导</view>
+        <!--view class='historyInfo' style=" color:#ff9900;">请假</view-->
+      </view>
+    </view>
+   </view>
+  </block>
+</scroll-view>
+
+<!--审核请假-->
+<scroll-view  wx:if="{{current == 'tab3' }}"scroll-y="true" >
+  <block wx:for="{{checkLeaveList}}"wx:key="unique" wx:for-index="id" wx:for-item="item">
+   <view class='item-view column'>
+    <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB'>
+        <view class="fa fa-balance-scale fa-2x"style='vertical-align:middle;color:#FFFFFF'></view>
+      </view>
+      <view class="weui-media-box__bd ">
+        <view class="weui-media-box__title" style='color:#1c2438;'>{{item.courseName}}</view>
+        <view class="weui-media-box__desc">请假学生姓名：{{item.courseStudent}}</view>
+        <view class="weui-media-box__desc">请假学生学号：{{item.studentId}}</view>
+        <view class="weui-media-box__desc">时间：{{item.courseTime}}</view>
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="checkLeaveInfo" color="#2d8cf0">未审核</view>
+        <!--view class="checkLeaveInfo"style="color:#19be6b;">已通过</view>
+        <view class="checkLeaveInfo" color="#ff9900;">已驳回</view-->
+      </view>
+    </view>
+   </view>
+  </block>
+</scroll-view>

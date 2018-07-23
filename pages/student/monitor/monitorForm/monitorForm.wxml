@@ -1,0 +1,123 @@
+<view class="item-view-wrap">
+ <view class='item-view item-view1 column'>
+    <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB'>
+        <view class="fa fa-balance-scale fa-2x"style='vertical-align:middle;color:#FFFFFF'></view>
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title"style='color:#1c2438;'>{{monitorClass.courseName}}</view>
+        <view class="weui-media-box__desc">老师：{{monitorClass.courseTeacher}}</view>
+        <view class="weui-media-box__desc">时间：{{monitorClass.courseTime}}</view>
+        <view class="weui-media-box__desc">地点：{{monitorClass.coursePlace}}</view>
+      </view>
+    </view>
+</view>
+</view>
+<i-steps current="{{current}}">
+    <i-step  icon="remind" bindtap="form1">
+        <view slot="title">
+              发起签到
+        </view>
+        <view slot="content">
+            签到有效时长十分钟
+        </view>
+    </i-step>
+    <i-step  icon="brush" bindtap="form2">
+        <view slot="title">
+            督导表单
+        </view>
+        <view slot="content" icon="camera">
+            记录课堂情况
+        </view>
+    </i-step>
+    <i-step  icon="collection" bindtap="form3">
+        <view slot="title">
+            学生补签
+        </view>
+        <view slot="content">
+            生成时效二维码供学生即时签到
+        </view>
+    </i-step>
+</i-steps>
+<!--发起签到-->
+<view wx:if="{{current == 0}}">
+  <!--i-panel title="签到设置" i-class="bgColor">
+    <i-cell-group>
+      <i-cell title="仅限上课后十分钟有效">
+        <i-switch value="{{manSwitch}}" bind:change="onMan" slot="footer">
+            <i-icon type="right" slot="open"></i-icon>
+            <i-icon type="close" slot="close"></i-icon>
+        </i-switch>
+      </i-cell>
+    </i-cell-group>
+    <i-checkbox value="自动签到" disabled="{{disabled1}}" checked="{{autoChecked}}" bindchange="handleAutoChange"position="right">
+    </i-checkbox>
+    <i-checkbox value="人工签到" disabled="{{disabled2}}" checked="{{manChecked}}" bindchange="handleManChange" position="right">
+    </i-checkbox>
+</i-panel-->
+  <i-panel class="cell-panel-demo" title="签到设置" i-class="bgColor">
+  <i-cell-group> 
+    <i-cell title="自动签到" label="上课后10分钟有效" i-class="checked">
+      <i-switch value="{{autoSwitch}}" bind:change="onAuto" slot="footer">
+        <i-icon type="right" slot="open"></i-icon>
+        <i-icon type="close" slot="close"></i-icon>
+      </i-switch>
+    </i-cell>
+    <i-cell title="人工签到" label="自设置时间起10分钟有效" i-class="checked">
+      <i-switch value="{{manSwitch}}" bind:change="onMan" slot="footer">
+        <i-icon type="right" slot="open"></i-icon>
+        <i-icon type="close" slot="close"></i-icon>
+      </i-switch>
+    </i-cell>
+  
+      <view class="signContent {{manSwitch ? 'signContent_show' :''}}">
+        <picker mode="date"value="{{date}}"start="2018-01-01"end="2030-12-31"bindchange="bindDateChange">
+          <view class="picker">{{date}}</view>
+        </picker>
+      <view class="cutline"></view>
+        <picker mode="time"value="{{time}}"start="00:00"end="23:59"bindchange="bindTimeChange">
+          <view class="picker">{{time}}</view>
+        </picker>
+        <i-tag i-class="tag" name="" color="blue" type="border" style="flex:1;margin-top:auto;margin-bottom:auto;">
+    默认当前时刻
+    </i-tag>
+      </view>
+      <i-button bind:click="handleClick" type="primary" i-class="btn">确认</i-button>
+  </i-cell-group>
+  </i-panel>
+</view>
+<!--督导表单-->
+<view wx:if="{{current == 1}}">
+  <i-panel title="课堂情况" i-class="bgColor" >
+    <form>
+      <i-input value="{{ value6 }}" title="督导人" placeholder='yy' />
+      <i-input value="{{ value1 }}" title="应到人数"  placeholder="xx" disabled/>
+      <i-input value="{{ value2 }}" type="number" title="实到人数" placeholder="清点人数后输入" autofocus />
+      <i-input value="{{ value3 }}" type="number" title="请假人数" placeholder="清点请假条后输入" />
+      <i-input value="{{ value4 }}" type="number" title="状况人数" placeholder="玩手机或睡觉的人数" />
+      <i-input value="{{ value5 }}" type="textarea" title="备注" placeholder="请输入详细地址(最多50字)" maxlength="50" />
+      <view class='row row-add'>
+        <i-button bind:click="handleClick" type="ghost" class='btn1'>重置</i-button>
+        <i-button bind:click="handleClick" type="primary" class='btn1'>提交</i-button>
+      </view>
+    </form>
+</i-panel>
+</view>
+
+<!--学生补签-->
+<view wx:if="{{current == 2}}">
+  <view class='QR middle'>
+    <image src='../../../images/1.jpg' class='QRimg'></image>
+  </view>
+  <i-cell>
+    <view class='middle'>
+        <i-input-number value="{{ validMin }}" min="1" max="60" bindchange="changeValidMin" />
+        <i-tag i-class="" name="" color="blue" type="border" style="margin-right:-80px;padding-left:5px;align-self:flex-end;">调整有效时间
+       </i-tag>
+    </view>
+    <i-button bind:click="handleClick" type="info">生成二维码</i-button>
+  </i-cell>
+</view>
+
+
+

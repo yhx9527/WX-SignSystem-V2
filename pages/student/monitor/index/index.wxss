@@ -1,0 +1,32 @@
+
+.recCard{
+  border: 1px solid #dddee1;
+  border-radius: 6px;
+  width: 90%;
+  margin-bottom:20px;
+}
+.cardContent{
+  margin:10px;
+  flex:1;
+}
+.cardTitle{
+  color: #1c2438;
+  font-weight: bold;
+}
+.cardMes{
+  color: #80848f;
+  font-size: 14px;
+}
+.peitu{
+  width:80px;
+height:80px;
+margin:10px;
+}
+.warn{
+  color: #ff9900;
+  float:right;
+  text-align:right;
+}
+.active{
+  background-color: #dddee1;
+}

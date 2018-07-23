@@ -1,0 +1,18 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-steps": "../../../../dist/steps/index",
+    "i-step": "../../../../dist/step/index",
+    "i-panel": "../../../../dist/panel/index",
+    "i-switch": "../../../../dist/switch/index",
+      "i-cell-group": "../../../../dist/cell-group/index",
+      "i-cell": "../../../../dist/cell/index",
+      "i-icon": "../../../../dist/icon/index",
+      "i-checkbox-group": "../../../../dist/checkbox-group/index",
+      "i-checkbox": "../../../../dist/checkbox/index",
+      "i-button": "../../../../dist/button/index",
+        "i-tag": "../../../../dist/tag/index",
+          "i-input": "../../../../dist/input/index",
+          "i-input-number": "../../../../dist/input-number/index"
+  }
+}

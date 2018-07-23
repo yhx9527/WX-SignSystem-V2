@@ -1,0 +1,59 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.98",
+	"appid": "wx5899a00bc0df64a8",
+	"projectname": "signIn_V2_1.0",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "sign",
+					"pathName": "pages/student/sign/sign",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "work",
+					"pathName": "pages/student/monitor/work/work",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "monitorForm",
+					"pathName": "pages/student/monitor/monitorForm/monitorForm",
+					"query": ""
+				}
+			]
+		}
+	}
+}

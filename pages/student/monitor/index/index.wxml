@@ -1,0 +1,26 @@
+<view class='column middle ' style='margin-top:15%;'>
+  <view class="recCard row" hover-class='active'>
+    <image src="../../images/1.jpg" class='peitu'></image>
+    <view class='column cardContent'>
+      <view class="cardTitle">课堂督导</view>
+      <view class='cardMes' style='flex:1;'>功能介绍</view>
+      <view class="cardMes warn">有事件待处理</view>
+    </view>
+  </view>
+  <view class="recCard row"  hover-class='active'>
+    <image src="../../images/1.jpg"  class='peitu'></image>
+    <view class='column cardContent'>
+      <view class="cardTitle">待领督导</view>
+      <view class='cardMes'style='flex:1;'>功能介绍</view>
+      <view class="cardMes warn">有事件待处理</view>
+    </view>
+  </view>
+  <view class="recCard row"  hover-class='active'>
+    <image src="../../images/1.jpg"  class='peitu'></image>
+    <view class='column cardContent'>
+      <view class="cardTitle">我的信息</view>
+      <view class='cardMes'style='flex:1;'>功能介绍</view>
+      <view class="cardMes warn">有事件待处理</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,76 @@
+@import "../work/work.wxss";
+.item-view-wrap{
+  background-color: #dddee1;
+padding-bottom:8px;
+padding-top:8px;
+margin-bottom:8px;
+}
+.item-view1{
+width:95%;
+border:1px solid #dddee1;
+border-radius:6px;
+margin:0px auto 0px auto;
+background-color:white;
+
+}
+.bgColor{
+  background-color: #e9eaec;
+}
+.checked{
+  white-space: nowrap;
+}
+.signContent{
+  display:flex;
+  flex-direction:row;
+  border-bottom:1rpx solid #CFCFCF;
+  margin-left:12rpx;
+  margin-right:12rpx;
+  height: 0;
+  overflow: hidden;
+}
+.signContent_show{
+  height: auto;
+}
+.picker{
+  display:block;
+  margin-left:12rpx;
+  margin-top:10px;
+  margin-bottom:10px;
+  color:#12b7f4;
+
+}
+.cutline{
+  height:auto;
+  width:1px;
+  background-color:#12b7f4;
+  margin-left:10px;
+  margin-top:8px;
+  margin-bottom:8px;
+
+}
+.tag{
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+  float: right;
+}
+
+.btn{
+  width: 30%;
+  float:right;
+}
+.btn1{
+  width: 40%;
+  
+}
+.row-add{
+  justify-content: space-around;
+}
+.QR{
+  width: 100%;
+  height: 250px;
+}
+.QRimg{
+  height: 200px;
+  width: 200px;
+}

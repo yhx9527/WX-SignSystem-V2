@@ -1,0 +1,38 @@
+@import "../../sign/sign.wxss";
+.item-view{
+  width: 90%;
+   border: 1px solid #dddee1;
+  border-radius: 6px;
+  margin:5px auto 10px auto;
+
+}
+.addition1{
+  margin-left:10px;
+margin-bottom:5px;
+border-top:1px solid #e9eaec;
+
+}
+.more{
+  flex:1;
+margin-right:5px;
+color:#80848f;
+font-size:13px;
+display:flex;
+align-items:center;
+justify-content:flex-end;
+
+}
+.historyInfo{
+  color:#19be6b;
+font-size:20px;
+font-weight:bold;
+width:50px;
+float:right;
+}
+.checkLeaveInfo{
+  color:#19be6b;
+font-size:20px;
+font-weight:bold;
+width:25px;
+float:right;
+}
