@@ -1,0 +1,7 @@
+<view class="section">
+<movable-area class="area">
+<movable-view wx:for="{{content}}" wx:key="index" x="{{x}}" y="{{y}}" direction="all" bindchange="onChange" out-of-bounds="true" data-index="{{index}}" catch:touchend="tap">
+<image animation="{{animationData}}" src="{{item.value}}" class="image"></image>
+</movable-view>
+</movable-area>
+</view>
