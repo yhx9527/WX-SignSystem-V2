@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -52,6 +52,29 @@
 					"name": "monitorForm",
 					"pathName": "pages/student/monitor/monitorForm/monitorForm",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "leave",
+					"pathName": "pages/student/leave/leave",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "leave",
+					"pathName": "pages/student/monitor/checkLeave/checkLeave",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "checkLeave",
+					"pathName": "pages/student/monitor/checkLeave/checkLeave",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/test/test"
 				}
 			]
 		}

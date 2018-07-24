@@ -4,7 +4,9 @@
     "pages/student/sign/sign",
     "pages/student/monitor/work/work",
     "pages/student/monitor/monitorForm/monitorForm",
-    "pages/student/leave/leave"
+    "pages/student/leave/leave",
+    "pages/student/monitor/checkLeave/checkLeave",
+    "pages/test/test"
 
   ],
   "window":{
