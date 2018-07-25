@@ -11,3 +11,25 @@
   height: 50px !important;
   border-radius: 50% !important;
 }
+.leave1{
+  width:85vw;
+
+border:1px solid #dddee1;
+background-color:#5cadff;
+margin-left:auto;
+margin-right:auto;
+height:75vh;top:5vh;left:7.5vw;
+
+
+}
+.cardBtn{
+  bottom: 5vh;
+  position:absolute;
+  width:100vw;
+  z-index:-1;
+}
+.moveArea{
+  width:100vw;height:100vh;
+
+
+}

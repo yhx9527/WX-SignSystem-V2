@@ -1,5 +1,6 @@
-<view class='leave'style="height:75%;top:10%;">
-      <view class='leavePaper'>
+<movable-area class="moveArea">
+  <!--movable-view class='leave1'direciton="all" out-of-bounds="true" x="{{x}}" y="{{y}}" bindchange="onChange"catch:touchend="tap" >
+      <view class='leavePaper' >
       <view class='leaveTitle middle column'>
         <image src='../../../images/1.jpg' style='height:50px;width:50px;'></image>
         <view >一张请假条</view>
@@ -23,6 +24,40 @@
         </i-cell>
       </view>
     </view>
+  </movable-view-->
+  <movable-view direction="all" x="{{x}}" y="{{y}}">
+  <view class='leave1'>
+    <view class='leavePaper' >
+    <view class='leaveTitle middle column'>
+
+        <image src='../../../images/1.jpg' style='height:50px;width:50px;'></image>
+        <view >一张请假条</view>
+      </view>
+      <view class='leaveBody'style="height:70%;">
+        <i-input value="{{ value1 }}" title="请假人" autofocus placeholder="xxx" disabled='true' />
+        <i-input value="{{ value2 }}" title="请假课程" autofocus placeholder="xxx" disabled='true' />
+        <view class='row'>
+          <i-input title="请假周次" i-class="r_input"/>
+          <view class="section">
+            <picker mode="selector"value="{{nowWeek-1}}"range="{{Weeks}}"bindchange="bindWeekChange"name="nowWeek">
+              <view class="picker">第{{nowWeek}}周</view>
+            </picker>
+          </view>
+        </view>
+        
+        <i-cell title="请假凭证" >
+          <view class="weui-uploader__input-box"style="width:55px;height:55px;">
+          <view class='weui-uploader__input'></view>
+          </view>
+        </i-cell>
+      </view>
+      </view>
+      </view>
+  </movable-view>
+  <view class='cardBtn'>
+      <i-button bind:click="handleClick" type="error" i-class='btn1 middle column' style='float:left;margin-top:0.5rem;'><view class='fa fa-close fa-lg'style='font-size:1.3em;margin-top:1.3em'/><view class='littleInfo'>驳回</view></i-button>
+      <i-button bind:click="handleClick" type="primary" i-class='btn2 middle column' style='float:right;margin-top:0.5rem;'><view class='fa fa-check fa-lg'style='font-size:1.3em;margin-top:1.3em'/><view class='littleInfo'>通过</view></i-button>
+
+
   </view>
-  <i-button bind:click="handleClick" type="error" i-class='btn1 middle column' style='float:left;margin-top:0.5rem;'><view class='fa fa-close fa-lg'style='font-size:1.3em;margin-top:1.3em'/><view class='littleInfo'>驳回</view></i-button>
-  <i-button bind:click="handleClick" type="primary" i-class='btn2 middle column' style='float:right;margin-top:0.5rem;'><view class='fa fa-check fa-lg'style='font-size:1.3em;margin-top:1.3em'/><view class='littleInfo'>通过</view></i-button>
+</movable-area>

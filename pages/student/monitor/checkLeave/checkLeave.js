@@ -1,3 +1,6 @@
+var res = wx.getSystemInfoSync();
+var winWidth = res.windowWidth;
+var winHeight = res.windowHeight;
 Page({
 
   /**
@@ -6,6 +9,7 @@ Page({
   data: {
     nowWeek: 1,
     Weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    distance: "",
   },
 
   /**
@@ -15,6 +19,30 @@ Page({
     
   },
 
+  //卡片滑动
+  onChange:function(e){
+    var that = this;
+    that.setData({
+      distance: e.detail.x
+    })
+  },
+  /*
+  tap:function(e){
+    var that = this;
+    var distance = that.data.distance;
+    if ((distance > (winWidth + winWidth / 2)) || (distance < (winWidth - winWidth / 2))) {
+      that.setData({
+        x: winWidth,
+        y: winHeight,
+      });
+    } else {
+      that.setData({
+        x: winWidth,
+        y: winHeight
+      })
+    }
+  },
+  */
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
