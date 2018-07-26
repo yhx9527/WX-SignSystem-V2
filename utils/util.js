@@ -13,7 +13,15 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+function headToEnd(array){
+  if(array instanceof Array){
+    var temp = array.pop();
+    array.unshift(temp);
+  }
+
+}
 
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  hendToEnd: headToEnd
 }

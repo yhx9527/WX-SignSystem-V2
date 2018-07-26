@@ -12,24 +12,28 @@
   border-radius: 50% !important;
 }
 .leave1{
-  width:85vw;
-
+width:75vw;
 border:1px solid #dddee1;
 background-color:#5cadff;
-margin-left:auto;
-margin-right:auto;
-height:75vh;top:5vh;left:7.5vw;
+
+height:70vh;
+
 
 
 }
 .cardBtn{
-  bottom: 5vh;
   position:absolute;
   width:100vw;
-  z-index:-1;
+left:95vw;
+top: 85vh;
 }
 .moveArea{
-  width:100vw;height:100vh;
+left: -95vw;
+height: 100vh;
+width: 200vw;
 
 
+}
+page{
+  overflow:hidden;
 }
