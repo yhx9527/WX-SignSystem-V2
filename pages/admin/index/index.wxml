@@ -1,0 +1,34 @@
+<i-drawer mode="left" visible="{{showSelf}}" bind:close="toggleSelf">
+    <view class="demo-container">
+        <view class='column selfCard middle'style='padding-top:5vh;padding-bottom:5vh;'>
+          <i-avatar size="xxl">
+            <open-data type="userAvatarUrl"></open-data>
+          </i-avatar>
+          <view class="introFont" style='margin-top:1vh;'>Welcome xxx</view>
+          <view class="introFont">账号：yyy</view>
+        </view>
+
+<i-cell-group i-class="bt_border">
+  <i-cell title="授权信息" is-link i-class="funFont">
+  <i-icon type="setup_fill" slot="icon"  color="#FD7272" size="20"/>
+  </i-cell>
+  <i-cell title="使用帮助" is-link i-class="funFont">
+     <i-icon type="feedback_fill" slot="icon" color="#25CCF7" size="20"/>
+  </i-cell>
+</i-cell-group>
+<i-cell-group i-class="bt_border">
+  <i-cell title="关于软件" is-link>
+     <i-icon type="barrage_fill" slot="icon"  color="#55E6C1" size="20"/>
+  </i-cell>
+  <i-cell  title="联系我们" is-link>
+     <i-icon type="customerservice_fill" slot="icon"  color="#D6A2E8" size="20"/>
+  </i-cell>
+</i-cell-group>
+    </view>
+</i-drawer>
+
+  <i-icon type="other" size="40" color="#80848f" bindtap='toggleSelf' style='margin-left:1vw;'/>
+
+  
+
+

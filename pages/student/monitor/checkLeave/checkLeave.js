@@ -87,7 +87,7 @@ Page({
   },
   //批准请假
   yesClick (){
-    var that = this;
+    /*var that = this;
     var xArrays = that.data.xArrays;
     var yArrays = that.data.yArrays;
     var zIndexs = that.data.zIndexs;
@@ -100,11 +100,11 @@ Page({
       xArrays: xArrays,
       yArrays: yArrays,
       zIndexs: zIndexs
-    })
+    })*/
   },
   //驳回请假
   noClick (){
-    var that = this;
+    /*var that = this;
     var xArrays = that.data.xArrays;
     var yArrays = that.data.yArrays;
     var zIndexs = that.data.zIndexs;
@@ -117,7 +117,7 @@ Page({
       xArrays: xArrays,
       yArrays: yArrays,
       zIndexs: zIndexs
-    })
+    })*/
   },
   
   /**

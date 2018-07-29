@@ -1,0 +1,7 @@
+@import '../../student/self/self.wxss';
+@import '../../student/sign/sign.wxss';
+.demo-container{
+	width:50vw;
+	height: 100vh;
+	background:#fff;
+}

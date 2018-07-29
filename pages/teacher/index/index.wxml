@@ -1,0 +1,89 @@
+<i-drawer mode="left" visible="{{showSelf}}" bind:close="toggleSelf">
+    <view class="demo-container">
+        <view class='column selfCard middle'style='padding-top:5vh;padding-bottom:5vh;'>
+          <i-avatar size="xxl">
+            <open-data type="userAvatarUrl"></open-data>
+          </i-avatar>
+          <view class="introFont" style='margin-top:1vh;'>Welcome xxx</view>
+          <view class="introFont">账号：yyy</view>
+        </view>
+
+<i-cell-group i-class="bt_border">
+  <i-cell title="授权信息" is-link i-class="funFont">
+  <i-icon type="setup_fill" slot="icon"  color="#FD7272" size="20"/>
+  </i-cell>
+  <i-cell title="使用帮助" is-link i-class="funFont">
+     <i-icon type="feedback_fill" slot="icon" color="#25CCF7" size="20"/>
+  </i-cell>
+</i-cell-group>
+<i-cell-group i-class="bt_border">
+  <i-cell title="关于软件" is-link>
+     <i-icon type="barrage_fill" slot="icon"  color="#55E6C1" size="20"/>
+  </i-cell>
+  <i-cell  title="联系我们" is-link>
+     <i-icon type="customerservice_fill" slot="icon"  color="#D6A2E8" size="20"/>
+  </i-cell>
+</i-cell-group>
+    </view>
+</i-drawer>
+
+  <i-icon type="other" size="40" color="#80848f" bindtap='toggleSelf' style='margin-left:1vw;'/>
+
+<swiper current='{{signCurrent}}'indicator-dots="true" circular='true' previous-margin='{{systemInfo.width*0.1}}px' next-margin='{{systemInfo.width*0.1}}px' bindchange='changSign'  class='swiper-view_H'style="width: 100%;height:{{systemInfo.height*0.85}}px;top:55%;">
+  <block wx:for="{{teachList}}" wx:key="unique" wx:for-index="id" wx:for-item="item">
+    <swiper-item style="display:flex;justify-content:center;">
+      <view class="swiper_item {{item.selected ? 'selected' : ''}}" data-index='{{item.index}}' bindtap='selectProItem'>
+        <view class="middle" style='height:25%;'>
+          <image src="../../images/1.jpg" class='signImage'></image>
+        </view>
+        <view style='height:5%;color:#586c94;font-size:14px;width:90%;margin:auto;'>
+         第xx周
+        </view>
+        <view class='signDetail'style="height:55%;">
+          <view class='panel_hd title'>{{item.title}}</view>
+          <view class='panel_bd'>
+           <view style='margin-left:10px;height:60%;'>
+            <view class='infoText row'>
+             <view class='infoText1'>时间</view>
+             <view class='infoText2'>xxx</view>
+            </view>
+            <view class='infoText row'>
+             <view class='infoText1'>地点</view>
+             <view class='infoText2'>xxx</view>
+            </view>
+            <view class='infoText row'>
+             <view class='infoText1'>人数</view>
+             <view class='infoText2'>xxx</view>
+            </view>
+           </view>
+           <view class='title'style="height:40%;">其他 :</view>
+          </view>
+          <view class='panel_ft'>
+            <navigator class='moreDetail' url="../detail/detail?id={{item.id}}">
+              <view class="weui-cell__bd">查看更多</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+          </view>
+        </view>
+          <i-row i-class="row-class">
+            <i-col span="12">
+              <view class='middle'>
+                <i-icon type="camera" size="30" color="#80848f"/>
+              </view>
+              <view class='text-middle'>功能1</view>
+            </i-col>
+            <i-col span="12" i-class="">
+              <view class='middle'>
+                <i-icon type="brush" size="30" color="#80848f"/>
+              </view>
+              <view class='text-middle'>功能2</view>
+            </i-col>
+          </i-row>
+        
+      </view>  
+    </swiper-item>
+  </block>
+</swiper>
+  
+
+

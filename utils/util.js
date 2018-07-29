@@ -20,8 +20,19 @@ function headToEnd(array){
   }
 
 }
+const formUtil={
+  ifBlank:function(value,array){
+    for(var i=array.length-1;i>=0;i--){
+      if(value[array[i]].length==0){
+        return true;
+      }
+    }
+    return false;
+  }
+}
 
 module.exports = {
   formatTime: formatTime,
-  hendToEnd: headToEnd
+  hendToEnd: headToEnd,
+  formUtil:formUtil
 }

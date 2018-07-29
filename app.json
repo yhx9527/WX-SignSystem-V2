@@ -6,7 +6,8 @@
     "pages/student/monitor/monitorForm/monitorForm",
     "pages/student/leave/leave",
     "pages/student/monitor/checkLeave/checkLeave",
-    "pages/test/test"
+    "pages/teacher/index/index",
+    "pages/admin/index/index"
 
   ],
   "window":{

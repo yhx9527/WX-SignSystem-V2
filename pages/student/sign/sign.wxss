@@ -1,5 +1,6 @@
 @import "../self/self.wxss";
 @import "../monitor/index/index.wxss";
+@import "../courseTable/courseTable.wxss";
 .swiper-view_H{
   white-space: nowrap;
   position:absolute;

@@ -1,4 +1,4 @@
-<view bindtap="handleTap" class="i-class i-cell {{ isLastCell ? 'i-cell-last' : '' }} {{ isLink ? 'i-cell-access' : '' }}">
+<view bindtap="handleTap" class="i-class i-cell {{ isLastCell ? 'i-cell-last' : '' }} {{ isLink ? 'i-cell-access' : '' }}" hover-class="{{isHover?'cellAfter':''}}">
     <view class="i-cell-icon">
         <slot name="icon"></slot>
     </view>

@@ -38,6 +38,10 @@ Component({
             type: null,
             value: ''
         },
+        isHover:{
+            type:null,
+            value:''
+        },
         // 链接类型，可选值为 navigateTo，redirectTo，switchTab，reLaunch
         linkType: {
             type: String,

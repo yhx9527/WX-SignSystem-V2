@@ -1,0 +1,79 @@
+<view class="page" catchtap='closeChangeWeek'>
+  <view style='display:flex;flex-direction:row;height:45px;'>
+    <view style='margin:auto;padding-left:45px;'>
+      <view style='display:flex;justify-content:center;'catchtap="isChangeWeek">
+        <view style='font-size:17px;color:#F0FFF3;'>第{{week}}周</view>
+        <view class="fa fa-caret-down fa-fw"style='align-items:center;display:flex;margin-left:10px;color:#F0FFF3;'></view>
+      </view>
+      <view style='display:flex;font-size:13px;color:#F0FFF3;'>
+        <view style='margin-right:5px;'>{{year}}-{{year+1}}学年</view>
+        <view wx:if="{{term}}">下学期</view>
+        <view wx:else>上学期</view>
+      </view> 
+    </view>
+    <view class='fa fa-cog fa-lg'style='align-items:center;display:flex;padding-right:5px;color:#ECF0F1;'catchtap="isChangeYear"></view>
+  </view>
+  <view class=''>
+  <view class="weui-grids table_row"style='border-top:1rpx solid #d9d9d9;'>
+    <block wx:for="{{tableHead}}" wx:for-index="index1"wx:for-item="item1">
+      <view class="weui-grid {{index1%8==0 ? 'table_column' : 'head'}}" >
+        <view class="weui-grid__label headtext">{{item1}}</view>
+      </view>
+    </block>
+  </view>
+  </view>
+  <view class="">
+    <view class="weui-grids section">
+      <block wx:for="{{tableContent}}" wx:for-index="index2"wx:for-item="item2">
+        <view  class="weui-grid column1 {{index2==11 ? 'last12' :''}}">
+          <view class="weui-grid__label tabletext ">{{item2}}</view>
+        </view>
+      </block>
+      <block wx:for="{{tableCourse}}"wx:for-item="course"wx:for-index="idx">
+        <view wx:if="{{week<=course.schedule.schWeek}}">
+          <view wx:if="{{week%2==course.schedule.schFortnight || course.schedule.schFortnight==0}}"class="course"style="left:{{course.left+2}}px;top:{{course.top+2}}px;height:{{course.scheduleNum*44}}px;background-color:{{iconBackColor[idx%8]}};">
+            <view class="fontBlock">{{course.scheduleName}}</view>
+          </view>
+        </view>
+        <view  wx:else >
+          <view wx:if="{{week%2==course.schedule.schFortnight || course.schedule.schFortnight==0}}"class="course"style="left:{{course.left+2}}px;top:{{course.top+2}}px;height:{{course.scheduleNum*44}}px;background-color:{{end}};">
+            <view class="fontBlock">
+              {{course.scheduleName}}(结课)
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view class="CW"wx:if="{{isCW}}">
+  <view class="CWangle"></view>
+  <view class="CWcontent">
+    <picker-view value="{{[week-1]}}"style="width:100%;text-align:center;color:#283149;height:90px;"indicator-style="height:30px;"mask-style=""bindchange="changWeek">
+      <picker-view-column>
+        <view wx:for="{{WEEKS}}"wx:for-item="item">第{{item}}周</view>
+      </picker-view-column>
+    </picker-view>
+    <view class="confirmCW"catchtap="confirmCW"hover-class="AFconfirm">修改</view>
+  </view>
+</view>
+
+<view class="CY"wx:if="{{isCY}}">
+  <view class="CYangle"></view>
+  <view class="CYcontent">
+    <picker-view value="{{[year-2017,Temp1]}}"style="width:100%;text-align:center;color:#283149;height:90px;"indicator-style="height:30px;"mask-style=""bindchange="changYear">
+      <picker-view-column>
+        <view wx:for="{{YEARS}}"wx:for-item="item">{{item}}学年</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{TERMS}}"wx:for-item="item">{{item}}学期</view>
+      </picker-view-column>
+    </picker-view>
+    <view class="confirmCY"catchtap="confirmCY"hover-class="AFconfirm">修改</view>
+  </view>
+</view>
+
+<view wx:if="{{userPermit[2]==1}}" class="tab-content1" >
+  <image src='../../../image/hhh.png'class="img"mode="scaleToFill"></image>
+  <text style='color:#999;margin-top:10px;font-size:18px;'>暂不支持</text>
+</view>
