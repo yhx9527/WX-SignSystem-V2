@@ -7,7 +7,8 @@
     "pages/student/leave/leave",
     "pages/student/monitor/checkLeave/checkLeave",
     "pages/teacher/index/index",
-    "pages/admin/index/index"
+    "pages/admin/index/index",
+    "pages/student/courseMore/courseMore"
 
   ],
   "window":{

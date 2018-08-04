@@ -7,8 +7,8 @@ var height = sysInfo.height
 var winHeight = height * 0.1;
 function headToEnd(array) {
   if (array instanceof Array) {
-    var temp = array.pop();
-    array.unshift(temp);
+    var temp = array.shift();
+    array.push(temp);
   }
 
 }
