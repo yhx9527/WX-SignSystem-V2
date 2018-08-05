@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -87,6 +87,18 @@
 					"id": -1,
 					"name": "courseMore",
 					"pathName": "pages/student/courseMore/courseMore",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tM",
+					"pathName": "pages/teacher/teaModules/teaModules",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tSign",
+					"pathName": "pages/teacher/teaSign/teaSign",
 					"query": ""
 				}
 			]

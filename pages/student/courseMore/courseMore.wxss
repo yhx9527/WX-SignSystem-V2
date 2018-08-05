@@ -6,11 +6,12 @@
 .courseTitle{
   background-color:#f8f8f9;
   font-size:16px;
-color:#495060;
+color:#2d8cf0;
 padding-top:1vh;
 padding-bottom:0.2vh;
 padding-left:2vw;
 margin-bottom:1vh;
+height:4vh;
 
 }
 .result{
@@ -39,4 +40,8 @@ opacity:0.9;
 padding-left:5px;
 border-radius: 6px;
 width:11vw;
+}
+.link_hover{
+  color:#2d8cf0;
+  border-bottom: 1rpx solid #2d8cf0;
 }

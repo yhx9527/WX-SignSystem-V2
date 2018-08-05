@@ -1,0 +1,26 @@
+<view class='column middle ' style='margin-top:15%;'>
+  <view class="recCard row" hover-class='active'>
+    <image src="../../images/1.jpg" class='peitu'></image>
+    <view class='column cardContent'>
+      <view class="cardTitle">基本情况</view>
+      <view class='cardMes' style='flex:1;'>查看该课程的基本情况,如学生人数，出勤率等</view>
+      <view class="cardMes warn">有事件待处理</view>
+    </view>
+  </view>
+  <view class="recCard row"  hover-class='active'>
+    <image src="../../images/1.jpg"  class='peitu'></image>
+    <view class='column cardContent'>
+      <view class="cardTitle">发起签到</view>
+      <view class='cardMes'style='flex:1;'>可对该课程发起自动签到，手动签到，以及处理学生补签</view>
+      <view class="cardMes warn">有事件待处理</view>
+    </view>
+  </view>
+  <view class="recCard row"  hover-class='active'>
+    <image src="../../images/1.jpg"  class='peitu'></image>
+    <view class='column cardContent'>
+      <view class="cardTitle">督导记录</view>
+      <view class='cardMes'style='flex:1;'>查看该课程下督导员记录的课堂情况</view>
+      <view class="cardMes warn">有事件待处理</view>
+    </view>
+  </view>
+</view>

@@ -26,3 +26,9 @@
 .cellAfter{
   background-color: #80848f;
 }
+.link_hover{
+  color:#2d8cf0;
+}
+.link{
+  color: #495060;
+}

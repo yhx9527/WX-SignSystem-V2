@@ -64,12 +64,12 @@
           </view>
           <view class='panel_ft'>
             <navigator class='moreDetail' url="../detail/detail?id={{item.id}}">
-              <view class="weui-cell__bd">查看更多</view>
+              <view class="weui-cell__bd">更多操作</view>
               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </navigator>
           </view>
         </view>
-          <i-row i-class="row-class">
+          <!--i-row i-class="row-class">
             <i-col span="12">
               <view class='middle'>
                 <i-icon type="camera" size="30" color="#80848f"/>
@@ -82,7 +82,7 @@
               </view>
               <view class='text-middle'>功能2</view>
             </i-col>
-          </i-row>
+          </i-row-->
         
       </view>  
     </swiper-item>

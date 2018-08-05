@@ -1,0 +1,40 @@
+@import "../../student/monitor/monitorForm/monitorForm.wxss";
+.section{
+   background:white;
+    font-size:17px;
+  align-self:center;
+
+}
+.picker{
+    color:#12b7f4;
+}
+.r_input{
+  width: 60px;
+
+}
+.xuan{
+  border:1px solid #dddee1;
+font-size:14px;
+color:#2f3640;
+display:flex;
+align-items:center;
+height:3.5vh;
+margin-left:2px;
+padding-left:3px;
+padding-right:3px;
+
+}
+.btn1{
+top:-1.5vh;
+left:5vw;
+
+}
+.xuanBox{
+  height:5vh;
+margin-left:1vw;
+margin-right:2vw;
+font-size:16px;
+color:#2d3436;
+margin-top:0.5vh;
+
+}
