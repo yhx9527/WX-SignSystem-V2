@@ -20,6 +20,19 @@ Page({
       showSelf: !this.data.showSelf
     });
   },
+
+
+  //授权页
+  shouquan: function () {
+    console.log('授权');
+    wx.openSetting({
+    })
+  },
+
+  //客服
+  kefu: function () {
+    console.log('客服')
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

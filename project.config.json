@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 11,
 			"list": [
 				{
 					"id": -1,
@@ -100,6 +100,11 @@
 					"name": "tSign",
 					"pathName": "pages/teacher/teaSign/teaSign",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "adIndex",
+					"pathName": "pages/admin/index/index"
 				}
 			]
 		}

@@ -9,26 +9,47 @@
         </view>
 
 <i-cell-group i-class="bt_border">
-  <i-cell title="授权信息" is-link i-class="funFont">
-  <i-icon type="setup_fill" slot="icon"  color="#FD7272" size="20"/>
-  </i-cell>
-  <i-cell title="使用帮助" is-link i-class="funFont">
+  <button open-type='openSetting' style='text-align:left;padding:0;border-radius:0;display:inline;'bindtap="shouquan">
+    <i-cell title="授权信息" is-link i-class="funFont" isHover>   
+      <i-icon type="setup_fill" slot="icon"  color="#FD7272" size="20"/>
+    </i-cell>
+  </button>
+  <i-cell title="使用帮助" is-link i-class="funFont" isHover>
      <i-icon type="feedback_fill" slot="icon" color="#25CCF7" size="20"/>
   </i-cell>
 </i-cell-group>
 <i-cell-group i-class="bt_border">
-  <i-cell title="关于软件" is-link>
+  <i-cell title="关于软件" is-link isHover>
      <i-icon type="barrage_fill" slot="icon"  color="#55E6C1" size="20"/>
   </i-cell>
-  <i-cell  title="联系我们" is-link>
-     <i-icon type="customerservice_fill" slot="icon"  color="#D6A2E8" size="20"/>
-  </i-cell>
+  <button open-type='contact' style='text-align:left;padding:0;border-radius:0;display:inline;'>
+    <i-cell  title="联系我们" is-link isHover>
+      <i-icon type="customerservice_fill" slot="icon"  color="#D6A2E8" size="20"/>
+    </i-cell>
+  </button>
 </i-cell-group>
     </view>
 </i-drawer>
-
   <i-icon type="other" size="40" color="#80848f" bindtap='toggleSelf' style='margin-left:1vw;'/>
 
+  <view class='zhuzi'></view>
+
+  <view class='paizi' hover-class='paizi-click'>
+      <view class='paizi_title'>功能1</view>
+      <view class='paizi_info'>简介：哈哈哈哈或或或或或或或或或</view> 
+  </view>
+
+    <view class='paizi1' hover-class='paizi-click'>
+      <view class='paizi_title'>功能2</view>
+      <view class='paizi_info'>简介：哈哈哈哈或或或或或或或或或</view> 
+  </view>
+
+    <view class='paizi2' hover-class='paizi-click'>
+      <view class='paizi_title'>功能3</view>
+      <view class='paizi_info'>简介：哈哈哈哈或或或或或或或或或</view> 
+  </view>
+
+  <image src='../../images/admin.jpg' class='renwuImg'></image>
   
 
 

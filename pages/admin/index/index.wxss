@@ -4,3 +4,142 @@
 	height: 100vh;
 	background:#fff;
 }
+.zhuzi{
+  z-index: 1;
+  height: 90vh;
+  width: 8vw;
+  position: absolute;
+  bottom: 0;
+  left:12vw;
+  background-color: #4b4b4b;
+}
+.zhuzi::before{
+  z-index: 1;
+  width: 8vw;
+  height: 8vw;
+  border-radius: 50%;
+  position: absolute;
+  top:-4vw;
+  background-color: #4b4b4b;
+  content: ''
+}
+.paizi_title{
+margin-left:10vw;
+font-weight:bold;
+font-size:16px;
+color:#2f3640;
+}
+.paizi_info{
+margin-left:15vw;
+font-size:12px;
+color:#2d3436;
+
+
+}
+
+.paizi{
+width:67vw;
+height:10.6vh;
+position:absolute;
+background-color:#74b9ff;
+left:15vw;
+top:15vh;
+
+}
+
+
+.paizi::before{
+  border-width: 5.5vh;
+  border-color: #74b9ff #74b9ff #74b9ff transparent;
+  left:-9.5vh;
+  position: absolute;
+  content: '';
+border-style:solid;
+  
+}
+.paizi::after{
+  border-width: 5.5vh;
+  right:-10.7vh;
+  border-color: transparent transparent transparent #74b9ff;
+  top: -0.05vh;
+  position: absolute;
+  content: '';
+border-style:solid;
+}
+.paizi1{
+width:67vw;
+height:10.6vh;
+position:absolute;
+left:15vw;
+background-color:#81ecec;top:33vh;
+
+}
+
+
+.paizi1::before{
+  border-width: 5.5vh;
+  border-color: #81ecec #81ecec #81ecec transparent;
+  left:-9.5vh;
+  position: absolute;
+  content: '';
+border-style:solid;
+  
+}
+.paizi1::after{
+  border-width: 5.5vh;
+  border-color: transparent transparent transparent #81ecec;
+ right:-10.7vh;
+  top: -0.05vh;
+  position: absolute;
+  content: '';
+border-style:solid;
+}
+.paizi2{
+width:67vw;
+height:10.6vh;
+position:absolute;
+left:15vw;
+
+background-color:#fab1a0;top:51vh;
+}
+
+
+.paizi2::before{
+  border-width: 5.5vh;
+  border-color: #fab1a0 #fab1a0 #fab1a0 transparent;
+  left:-9.5vh;
+  position: absolute;
+  content: '';
+border-style:solid;
+  
+}
+.paizi2::after{
+  border-width: 5.5vh;
+  border-color: transparent transparent transparent #fab1a0;
+right:-10.7vh;
+  top: -0.05vh;
+  position: absolute;
+  content: '';
+border-style:solid;
+}
+
+.paizi-click{
+  transform: translateX(5.5vh);
+  transition-property: left;
+  transition-duration: 200;
+  transition-timing-function: linear;
+}
+.renwuImg{
+position:absolute;
+right:0;
+bottom:10px;
+width:30vw;
+height:35vh;
+z-index:-1;
+
+}
+page{
+  background-color:white;
+
+}
+
