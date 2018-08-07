@@ -9,7 +9,7 @@
         </view>
 
 <i-cell-group i-class="bt_border">
-  <button open-type='openSetting' style='text-align:left;padding:0;border-radius:0;display:inline;'bindtap="shouquan">
+  <button open-type='openSetting' style='text-align:left;padding:0;border-radius:0;display:inline;'>
     <i-cell title="授权信息" is-link i-class="funFont" isHover>   
       <i-icon type="setup_fill" slot="icon"  color="#FD7272" size="20"/>
     </i-cell>

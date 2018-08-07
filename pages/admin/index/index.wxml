@@ -9,7 +9,7 @@
         </view>
 
 <i-cell-group i-class="bt_border">
-  <button open-type='openSetting' style='text-align:left;padding:0;border-radius:0;display:inline;'bindtap="shouquan">
+  <button open-type='openSetting' style='text-align:left;padding:0;border-radius:0;display:inline;'>
     <i-cell title="授权信息" is-link i-class="funFont" isHover>   
       <i-icon type="setup_fill" slot="icon"  color="#FD7272" size="20"/>
     </i-cell>
@@ -33,11 +33,11 @@
   <i-icon type="other" size="40" color="#80848f" bindtap='toggleSelf' style='margin-left:1vw;'/>
 
   <view class='zhuzi'></view>
-
-  <view class='paizi' hover-class='paizi-click'>
+  
+  <navigator class='paizi' hover-class='paizi-click' url=''>
       <view class='paizi_title'>功能1</view>
       <view class='paizi_info'>简介：哈哈哈哈或或或或或或或或或</view> 
-  </view>
+  </navigator>
 
     <view class='paizi1' hover-class='paizi-click'>
       <view class='paizi_title'>功能2</view>

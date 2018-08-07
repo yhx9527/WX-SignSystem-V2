@@ -15,16 +15,27 @@ Page({
     validMin: 1,
     nowWeek: 1,
     Weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    searchWeeks:[],
     nowSchedule:0,
-    schedules:['周三5,6节','周五1,2节']
-
+    schedules:['全部','星期三5,6节','星期五1,2节','星期四1,2,3,4节','星期一1,2,3节'],
+    height1:0,
+    height2:0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var weeks = this.data.Weeks;
+    var searchWeeks = ['全部'];
+    /*weeks.forEach(function(data){
+      data.toString();
+      searchWeeks.push(data);
+    })*/
+    weeks.map(function(item){searchWeeks.push(item)})
+    this.setData({
+      searchWeeks:searchWeeks
+    })
   },
   //步骤条操作
   handleClick() {
@@ -93,6 +104,34 @@ Page({
     })
   },
 
+  //下拉菜单
+  click_show1:function(){
+    var height1 = this.data.height1;
+    var length = this.data.schedules.length
+    this.setData({
+        height1: height1 ==0 ? 4*length+1 :0
+    })
+  },
+  click_show2: function () {
+    var height2 = this.data.height2;
+    this.setData({
+      height2: height2 ==0 ? 21 : 0
+    })
+  },
+  changeWeek:function(e){
+    var id = e.target.dataset.id;
+    this.setData({
+      'id1':id,
+      height2:0
+    })
+  },
+  changeSchedule:function(e){
+    var id = e.target.dataset.id;
+    this.setData({
+      'id': id,
+      height1:0
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

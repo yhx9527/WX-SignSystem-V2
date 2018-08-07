@@ -11,7 +11,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.98",
+	"libVersion": "2.2.2",
 	"appid": "wx5899a00bc0df64a8",
 	"projectname": "signIn_V2_1.0",
 	"isGameTourist": false,
@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -104,7 +104,8 @@
 				{
 					"id": -1,
 					"name": "adIndex",
-					"pathName": "pages/admin/index/index"
+					"pathName": "pages/admin/index/index",
+					"query": ""
 				}
 			]
 		}

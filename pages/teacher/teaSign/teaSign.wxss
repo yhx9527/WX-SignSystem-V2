@@ -17,24 +17,71 @@
 font-size:14px;
 color:#2f3640;
 display:flex;
-align-items:center;
 height:3.5vh;
-margin-left:2px;
-padding-left:3px;
-padding-right:3px;
+width:17vw;
 
 }
 .btn1{
-top:-1.5vh;
-left:5vw;
-
+  width:15vw;
+background-color:#2d8cf0;
+color:white;
+line-height:5vh;
 }
 .xuanBox{
-  height:5vh;
+height:5vh;
 margin-left:1vw;
-margin-right:2vw;
-font-size:16px;
+font-size:14px;
 color:#2d3436;
 margin-top:0.5vh;
+align-items:center;
+width:8vw;
+}
+
+
+.xialaMenu{
+width:37.6vw;
+position:absolute;
+left:9vw;
+font-size:14px;
+height:0vh;
+margin-top:-0.7vh;
+
 
 }
+.add{
+  transition: height 0.3s ease-in;
+  overflow: hidden;
+}
+.xialaItem{
+background-color:#f8f8f9;
+border-bottom:0.5px solid #dddee1;
+border-left: 0.5px solid #dddee1;
+border-right: 0.5px solid #dddee1;
+height:4vh;
+display:flex;
+align-items:center;
+color:#2d3436;
+}
+.weekMenu{
+left:58.6vw;
+width:17.5vw;
+height:0vh;
+overflow-y:scroll;
+transition:height 0.3s ease-in;
+
+
+}
+.hover-menu{
+  background-color: #f8f8f9;
+}
+.roate1{
+  transform: rotate(180deg);
+  transition: transform 0.3s ease-in;
+}
+.roate2{
+   transform: rotate(0deg);
+  transition: transform 0.3s ease-in;
+}
+
+
+

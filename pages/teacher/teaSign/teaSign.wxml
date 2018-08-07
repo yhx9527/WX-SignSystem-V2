@@ -1,4 +1,4 @@
-<view class="item-view-wrap">
+<!--view class="item-view-wrap">
  <view class='item-view item-view1 column'>
     <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active">
       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB'>
@@ -12,8 +12,9 @@
       </view>
     </view>
 </view>
-</view>
-<i-steps current="{{current}}">
+</view-->
+<view style='margin-top:2vh;margin-bottom:1vh;'>
+  <i-steps current="{{current}}">
     <i-step  icon="remind" bindtap="form1" >
         <view slot="title">
               发起签到
@@ -39,6 +40,8 @@
         </view>
     </i-step>
 </i-steps>
+</view>
+
 <!--发起签到-->
 <view wx:if="{{current == 0}}">
   <!--i-panel title="签到设置" i-class="bgColor">
@@ -141,13 +144,30 @@
 <!--签到历史-->
 
   <form wx:if="{{current == 2}}">
-    <view class='row'style='margin-top:3vh;background-color:#f8f8f9;padding-top:1vh;'>
-      <view class='xuanBox row'>课时
-        <view class='xuan'>周三5,6节<i-icon type="unfold" /></view>
-      </view>
-      <view class='xuanBox row' style='margin-left:4vw;'>周次
-        <view class='xuan'>第12周<i-icon type="unfold" /></view>
-      </view>
-      <i-button bind:click="handleClick" type="primary" i-class="btn1" loading="" style='flex:1;' size='ss'><i-icon type="search" />搜索</i-button>
+    <view class='row'style='margin-top:3vh;background-color:#f8f8f9;padding-top:1vh;align-items:center;'>
+      <view class='xuanBox row'style=''>课时</view>
+        <input class='xuan' style="width:37vw" hover-class='hover-menu' catchtap='click_show1' value='{{schedules[id]}}' disabled ><view class="{{ height1 >0 ? 'roate1' : 'roate2'}}" style='width:14px;float:right;'><i-icon type="unfold"style='flex:1;text-align:right;'/></view>
+        </input>
+      <view class='xuanBox row' style='margin-left:4vw;'>周次</view>
+        <input class='xuan' hover-class='hover-menu' catchtap='click_show2' value='{{searchWeeks[id1]}}' disabled><view class="{{ height2 >0 ? 'roate1' : 'roate2'}}"><i-icon type="unfold" style='flex:1;text-align:right;'/></view></input>
+      <button class="btn1" ><i-icon type="search" /></button>
     </view>
+
+    <view class='xialaMenu add'  style='height:{{height1}}vh;' bindtap='changeSchedule'>
+      <block wx:for="{{schedules}}" wx:for-item='item' wx:for-index='index'>
+        <view class='xialaItem' hover-class='hover-menu' data-id='{{index}}'>
+        {{item}}
+        </view>
+      </block>
+    </view>
+
+    <view class="xialaMenu weekMenu" style='height:{{height2}}vh;' bindtap='changeWeek'>
+      <block wx:for="{{searchWeeks}}" wx:for-item='item' wx:for-index='index'>
+        <view class='xialaItem' hover-class='hover-menu'style='padding-left:1vw;'data-id='{{index}}'>
+        {{item}}
+        </view>
+      </block>
+    </view>
+
   </form>
+
