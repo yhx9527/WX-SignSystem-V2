@@ -80,6 +80,17 @@ height:52px;
   margin-top: 1px;
   margin: auto;
 } 
+.radio-group{
+margin-top:10px;
+justify-content:space-evenly;
+font-size:16px;
+color:#dff9fb;
+
+  
+}
+.radio1{
+
+}
 
 
 

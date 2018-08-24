@@ -1,4 +1,5 @@
 const app = getApp();
+const network = require("../../../utils/network.js");
 
 Page({
 
@@ -38,6 +39,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let authorization = app.globalData.header.Authorization
+    app.agriknow.getStuCourse(authorization)
+    .then(data=>{
+
+    })
+    .catch(res=>{
+      if(res.data.message){
+        wx.showModal({
+          title: '提示',
+          content: res.data.message,
+          showCancel: false,
+          success:function(res1){
+            if(res1.confirm){
+              if (res.statusCode >= 400 && res.statusCode <= 403) {
+                wx.reLaunch({
+                  url: '/pages/login/login',
+                })
+              }
+            }
+          }
+        })
+      }
+     
+    })
     
   },
 //切换底部栏

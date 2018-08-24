@@ -5,6 +5,9 @@
   width: 90%;
   margin-bottom:20px;
 }
+.recCard::after{
+  
+}
 .cardContent{
   margin:10px;
   flex:1;

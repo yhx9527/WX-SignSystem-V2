@@ -1,6 +1,8 @@
 {
     "component": true,
     "usingComponents": {
-      "i-avatar": "../../dist/avatar/index"
+      "i-avatar": "../../dist/avatar/index",
+        "i-radio-group": "../../dist/radio-group/index",
+        "i-radio": "../../dist/radio/index"
     }
 }

@@ -22,7 +22,7 @@
   <view class="kuang">
     <view class="yuanLeft"></view>
     <view class="inputView">
-      <input class="inputText" placeholder="请输入学号/教师工号"placeholder-style="color: white"   name="userID"></input>
+      <input class="inputText" placeholder="请输入学号/教师工号"placeholder-style="color: white"   name="suId"></input>
     </view>
     <view class="yuanRight"></view>
   </view>
@@ -32,11 +32,18 @@
   <view class="kuang">
     <view class="yuanLeft"></view>
     <view class="inputView">
-      <input class="inputText" placeholder="请输入密码"placeholder-style="color: white"   name="userCode"password="true"></input>
+      <input class="inputText" placeholder="请输入密码"placeholder-style="color: white"   name="suPassword"password="true"></input>
     </view>
     <view class="yuanRight"></view>
   </view>
-  
+  <!--身份单选框-->
+
+   <radio-group name="suType" class='row radio-group' >
+      <label><radio value="student" color='#12b7f4'/>学生</label>
+      <label><radio value="teacher" color='#12b7f4'/>老师</label>
+      <label><radio value="monitor" color='#12b7f4'/>督导员</label>
+      <label><radio value="administrator" color='#12b7f4'/>管理员</label>
+    </radio-group>
 
   <!--按钮-->
   <view class="kuang">

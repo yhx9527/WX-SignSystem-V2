@@ -1,27 +1,28 @@
 const app=getApp()
-var Promise=require("./es6-promise.js")
-function request(url,params={},method = "POST", header = {}) {
+function request(url,params={},method = "GET", header) {
   let promise=new Promise(function(resolve,reject){
     wx.request({
     url: url,
     method: method,
     data: params?params:{},
      // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-    header: header ? header : "application/json", // 设置请求的 header
+      header: header ? header : {"Content-Type":"application/json"}, // 设置请求的 header
     success: function (res) {
-      console.log("返回结果")
-      console.log(res)
-      
-      resolve(res);
+      console.log("成功返回结果: "+res)
+      if((res.statusCode >= 200 && res.statusCode <300) || res.statusCode ==304){
+        resolve(res.data)
+      }else{
+        reject('Request was unsuccessful'+res.statusCode)
+      }
     },
     fail: function (res) {
-      console.log(res.data)
+      console.log("失败返回结果: " + res)
       wx.showToast({
         title: '连接失败',
         icon: "loading",
         duration: 2000
       })
-      reject(res);
+      reject('连接失败');
     },
     complete: function () {
       // complete

@@ -12,7 +12,7 @@
   display: inline-block;
   height: 85%;
   border-radius: 6px;
-  box-shadow:1rpx 1rpx 1rpx #ccc;
+  box-shadow:0 5px 4px -4px #2d3436;
   border: 1px #dddee1 solid;
   margin-top:10%;
   width: 90%;

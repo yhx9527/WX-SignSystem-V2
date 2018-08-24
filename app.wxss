@@ -15,6 +15,12 @@
   justify-content: center;
   align-items: center;
 }
+.columnM{
+  align-items: center;
+}
+.rowM{
+justify-content: center;  
+}
 .column{
   display: flex;
   flex-direction: column;
