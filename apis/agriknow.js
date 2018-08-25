@@ -145,8 +145,8 @@ class agriknow {
 /**
  * 修改督导
  */
-putMon(schId,sisCourse){
-  return this._request.putRequest(this._baseUrl + schId+'/sc-need-monitor', { 'sisCourse': sisCourse })
+putMon(scId,sisCourse){
+  return this._request.putRequest(this._baseUrl + +'courses/'+scId+'/sc-need-monitor', { 'sisCourse': sisCourse })
 }
   /**
    * 获得签到课程
@@ -154,14 +154,50 @@ putMon(schId,sisCourse){
   getSign(ssId) {
     let week = wx.getStorageSync('week') != "" ? wx.getStorageSync('week') : '1';
     if(week){
-      return this._request.getRequest(this._baseUrl + ssId + '/signIns/week/'+week)
+      return this._request.getRequest(this._baseUrl +'schedules/'+ssId + '/signIns/week/'+week)
     }
   }
   /**
    * 签到
    */
+  signIn(ssId){
+    return this._request.postRequest(this._baseUrl +'schedules/'+ssId + '/signIns/week/' + week)
+  }
+  /**
+   * 发起签到
+   */
   postSign(ssId){
-    return this._request.getRequest(this._baseUrl + ssId + '/signIns/week/' + week)
+    return this._request.postRequest(this._baseUrl +'schedules/'+ssId + '/signIns')
+  }
+  /**
+   * 领取督导
+   */
+  getMonPond(scId){
+    return this._request.postRequest(this._baseUrl +'courses/'+scId + '/monitor')
+  }
+  /**
+   * 获取某个课程的全部督导记录
+   */
+  getMonRec(scId){
+    return this._request.getRequest(this._baseUrl + 'courses/' + scId + '/supervisions')
+  }
+  /**
+   * 接受或拒绝转接
+   */
+  doMonTrans(ssId,sisMonitorTrans){
+    return this._request.postRequest(this._baseUrl + 'schedules/' + ssId + '/monitor-trans',{'sisMonitorTrans':sisMonitorTrans})
+  }
+  /**
+   * 插入督导记录
+   */
+  insertMonRec(ssId,sisSupervision){
+    return this._request.postRequest(this._baseUrl + 'schedules/' + ssId + '/supervisions', { 'sisSupervision': sisSupervision})
+  }
+  /**
+   * 获取转接课程
+   */
+  getMonTrans(smtStatus){
+    return this._request.postRequest(this._baseUrl + 'schedules/monitor-trans', { 'smtStatus': smtStatus })
   }
 }
 

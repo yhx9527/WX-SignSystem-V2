@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    current: 'sign',
+    current: 'courseTable',
     systemInfo: app.globalData.systemInfo,
     signList: [{ unique: "unique_1", selected: false, index: 1, title: "微积分" }, 
     { unique: "unique_2", selected: false, index: 1, title: "微积分" }, 

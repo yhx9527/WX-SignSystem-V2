@@ -1,5 +1,5 @@
-<view class='column middle ' style='margin-top:15%;'>
-  <view class="recCard row" hover-class='active'>
+<view class='shadow_wrap middle' style='margin-top:11%;'>
+  <view class="recCard row floating "style='background-color: #a29bfe;' >
     <image src="../../images/1.jpg" class='peitu'></image>
     <view class='column cardContent'>
       <view class="cardTitle">课堂督导</view>
@@ -7,7 +7,9 @@
       <view class="cardMes warn">有事件待处理</view>
     </view>
   </view>
-  <view class="recCard row"  hover-class='active'>
+  </view>
+  <view class='shadow_wrap middle' style='margin-top:15%;'>
+  <view class="recCard row floating"style='background-color: #b4aefe;'>
     <image src="../../images/1.jpg"  class='peitu'></image>
     <view class='column cardContent'>
       <view class="cardTitle">待领督导</view>
@@ -15,7 +17,9 @@
       <view class="cardMes warn">有事件待处理</view>
     </view>
   </view>
-  <view class="recCard row"  hover-class='active'>
+  </view>
+<view class='shadow_wrap middle' style='margin-top:15%;'>
+  <view class="recCard row floating"style='background-color: #c6c2fe;'>
     <image src="../../images/1.jpg"  class='peitu'></image>
     <view class='column cardContent'>
       <view class="cardTitle">我的信息</view>
