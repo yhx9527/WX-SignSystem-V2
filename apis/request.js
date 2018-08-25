@@ -1,8 +1,8 @@
 class request {
   constructor() {
     this._header = {
-      'content-type': 'application/json',
-      'Authorization': null
+      'Content-Type': 'application/json',
+      'Authorization': null 
     }
   }
 
@@ -13,6 +13,13 @@ class request {
     this._errorHandler = handler;
   }
 
+
+  setHeader(header){
+    this._header=header;
+  }
+  getHeader() {
+    return this._header
+  }
   /**
    * GET类型的网络请求
    */

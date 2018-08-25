@@ -16,9 +16,13 @@ Page({
   onLoad: function (options) {
     app.agriknow.getBind().then(data=>{
       if (data.success == true) {
+        app.agriknow.header({ 'Authorization': 'Bearer ' + data['access_token']})
         wx.showLoading({
           title: '登录中...',
           success: function () {
+            wx.redirectTo({
+              url: '../student/sign/sign',
+            })
             wx.hideLoading();
           }
         })
@@ -59,22 +63,31 @@ Page({
               title: '登录中...',
               success: function () {
                 wx.setStorageSync('getType', e.detail.value.suType)
-                app.agriknow.login(e.detail.value)
-                .then(data =>{
-                  wx.hideLoading();
-                  if (data.success == true) {
-                    app.globalData.header = { 'Authorization': 'Bearer ' + data['access_token'] }
-                    wx.redirectTo({
-                      url: '../student/sign/sign',
+                wx.setStorageSync('suId', e.detail.value.suId)
+                  app.agriknow.login(e.detail.value)
+                    .then(data => {
+                      wx.hideLoading();
+                      if (data.success == true) {
+                        let authorization = 'Bearer ' + data['access_token'];
+                        app.globalData.header = { 'Authorization': 'Bearer ' + data['access_token'] };
+                        app.agriknow.header({
+                          'Authorization': 'Bearer ' + data['access_token']
+                        })
+                        wx.redirectTo({
+                          url: '../student/sign/sign',
+                        })
+                       
+                      } else {
+                        wx.showModal({
+                          title: '提示',
+                          content: data.message,
+                          showCancel: false
+                        })
+                      
+                      }
                     })
-                  } else {
-                    wx.showModal({
-                      title: '提示',
-                      content: data.message,
-                      showCancel: false
-                    })
-                  }
-                })
+                
+                
               }
             })
           }

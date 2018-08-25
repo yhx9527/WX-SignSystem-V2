@@ -39,8 +39,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let authorization = app.globalData.header.Authorization
-    app.agriknow.getStuCourse(authorization)
+    app.agriknow.after_login()
+      .then(data=>{
+        
+      })
+    /**app.agriknow.getStuCourse(authorization)
     .then(data=>{
 
     })
@@ -62,7 +65,7 @@ Page({
         })
       }
      
-    })
+    })**/
     
   },
 //切换底部栏
