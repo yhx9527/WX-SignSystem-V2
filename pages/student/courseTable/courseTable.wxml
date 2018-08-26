@@ -7,8 +7,8 @@
       </view>
       <view style='display:flex;font-size:13px;color:#F0FFF3;'>
         <view style='margin-right:5px;'>{{year}}-{{year+1}}学年</view>
-        <view wx:if="{{term}}">下学期</view>
-        <view wx:else>上学期</view>
+        <view wx:if="{{term==2}}">下学期</view>
+        <view wx:if="{{term==1}}">上学期</view>
       </view> 
     </view>
     <view class='fa fa-cog fa-lg'style='align-items:center;display:flex;padding-right:5px;color:#ECF0F1;'catchtap="isChangeYear"></view>
@@ -29,16 +29,19 @@
           <view class="weui-grid__label tabletext ">{{item2}}</view>
         </view>
       </block>
-      <block wx:for="{{tableCourse}}"wx:for-item="course"wx:for-index="idx">
-        <view wx:if="{{week<=course.schedule.schWeek}}">
-          <view wx:if="{{week%2==course.schedule.schFortnight || course.schedule.schFortnight==0}}"class="course"style="left:{{course.left+2}}px;top:{{course.top+2}}px;height:{{course.scheduleNum*44}}px;background-color:{{iconBackColor[idx%8]}};">
-            <view class="fontBlock">{{course.scheduleName}}</view>
+      <block wx:for="{{schedules}}"wx:for-item="schedule"wx:for-index="idx">
+        <view wx:if="{{week<=schedule.schEndWeek}}">
+          <view wx:if="{{schedule.ifClass}}"class="course"style="left:{{schedule.schLeft+2}}px;top:{{schedule.schTop+2}}px;height:{{schedule.schLong*44}}px;background-color:{{iconBackColor[idx%8]}};" catchtap='enterCozMore' data-schedule="{{schedule}}">
+            <view class="fontBlock">{{schedule.cozName}}</view>
+          </view>
+          <view wx:else class="course"style="left:{{schedule.schLeft+2}}px;top:{{schedule.schTop+2}}px;height:{{schedule.schLong*44}}px;background-color:#dfe6e9;"catchtap='enterCozMore' data-schedule="{{schedule}}">
+            <view class="fontBlock">{{schedule.cozName}}(无课)</view>
           </view>
         </view>
-        <view  wx:else >
-          <view wx:if="{{week%2==course.schedule.schFortnight || course.schedule.schFortnight==0}}"class="course"style="left:{{course.left+2}}px;top:{{course.top+2}}px;height:{{course.scheduleNum*44}}px;background-color:{{end}};">
+        <view  wx:else>
+          <view class="course"style="left:{{schedule.schLeft+2}}px;top:{{schedule.schTop+2}}px;height:{{schedule.schLong*44}}px;background-color:{{end}};"catchtap='enterCozMore' data-schedule="{{schedule}}">
             <view class="fontBlock">
-              {{course.scheduleName}}(结课)
+              {{schedule.cozName}}(结课)
             </view>
           </view>
         </view>
@@ -61,7 +64,7 @@
 <view class="CY"wx:if="{{isCY}}">
   <view class="CYangle"></view>
   <view class="CYcontent">
-    <picker-view value="{{[year-2017,Temp1]}}"style="width:100%;text-align:center;color:#283149;height:90px;"indicator-style="height:30px;"mask-style=""bindchange="changYear">
+    <picker-view value="{{[year-2017,term-1]}}"style="width:100%;text-align:center;color:#283149;height:90px;"indicator-style="height:30px;"mask-style=""bindchange="changYear">
       <picker-view-column>
         <view wx:for="{{YEARS}}"wx:for-item="item">{{item}}学年</view>
       </picker-view-column>
@@ -71,9 +74,4 @@
     </picker-view>
     <view class="confirmCY"catchtap="confirmCY"hover-class="AFconfirm">修改</view>
   </view>
-</view>
-
-<view wx:if="{{userPermit[2]==1}}" class="tab-content1" >
-  <image src='../../../image/hhh.png'class="img"mode="scaleToFill"></image>
-  <text style='color:#999;margin-top:10px;font-size:18px;'>暂不支持</text>
 </view>

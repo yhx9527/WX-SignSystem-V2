@@ -123,12 +123,27 @@ right:-10.7vh;
 border-style:solid;
 }
 
-.paizi-click{
+.paizi:hover{
   transform: translateX(5.5vh);
   transition-property: left;
-  transition-duration: 200;
+  transition-duration: 1000;
   transition-timing-function: linear;
 }
+
+.paizi1:hover{
+  transform: translateX(5.5vh);
+  transition-property: left;
+  transition-duration: 1000;
+  transition-timing-function: linear;
+}
+
+.paizi2:hover{
+  transform: translateX(5.5vh);
+  transition-property: left;
+  transition-duration: 1000;
+  transition-timing-function: ease;
+}
+
 .renwuImg{
 position:absolute;
 right:0;

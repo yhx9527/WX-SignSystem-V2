@@ -1,6 +1,7 @@
 const app = getApp();
 const network = require("../../../utils/network.js");
 
+
 Page({
 
   /**
@@ -15,11 +16,10 @@ Page({
     //课表相关参数
     tableHead: ['', '周一', '周二', '周三', '周四', '周五', '周六', '周日'],
     tableContent: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    tableCourse: [],//课表数组
     year: 2017,
     yearTemp: 2017,
-    term: true,
     termTemp: true,
+    term:1,
     week: 1,
     weekTemp: 1,
     Temp: 1,
@@ -31,7 +31,8 @@ Page({
     TERMS: ['上', '下'],
     isCW: false,//是否需要更改周
     isCY: false,//更改学年
-    userPermit: []
+    coz:[],
+    schedules:[]
 
   },
 
@@ -39,33 +40,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+    var that = this;
+    let schedules = [];
+    let table=app.table;
+    let width = that.data.systemInfo.width;
+    
     app.agriknow.after_login()
       .then(data=>{
-        
+        if(data.success){
+          var coz = table.docoz(data.array,width);
+          let week = wx.getStorageSync('week');
+          let term = coz[0].schTerm;
+          let termArray=term.split('-')
+          wx.setStorageSync('term',term )
+          week = week ? week : 1; 
+          var schedules = table.doschs(coz,week,term)
+          that.setData({
+            week:week,
+            year:parseInt(termArray[0]),
+            term:parseInt(termArray[2]),
+            coz:coz,
+            schedules:schedules
+          })
+        }
       })
-    /**app.agriknow.getStuCourse(authorization)
-    .then(data=>{
-
-    })
-    .catch(res=>{
-      if(res.data.message){
-        wx.showModal({
-          title: '提示',
-          content: res.data.message,
-          showCancel: false,
-          success:function(res1){
-            if(res1.confirm){
-              if (res.statusCode >= 400 && res.statusCode <= 403) {
-                wx.reLaunch({
-                  url: '/pages/login/login',
-                })
-              }
-            }
-          }
-        })
-      }
-     
-    })**/
     
   },
 //切换底部栏
@@ -137,9 +136,14 @@ Page({
   confirmCW:function(){
     console.log("更改周")
     var week=this.data.weekTemp;
+    let table = app.table;
+    let coz = this.data.coz;
+    let term = wx.getStorageSync('term')
+    let schedules = table.doschs(coz,week,term)
     this.setData({
       week:week,
-      isCW:false
+      isCW:false,
+      schedules:schedules
     })
   },
   isChangeYear:function(){
@@ -177,18 +181,26 @@ Page({
     var year=this.data.yearTemp
     var term=this.data.termTemp
     var Temp1=this.data.Temp
-    var cards = JSON.parse(JSON.stringify(wx.getStorageSync('Cards')));
-    var table = fillTable(year, term, cards);
-    console.log("year"+year);
+    let tempargs = year+'-'+parseInt(year+1)+'-'+parseInt(Temp1+1)
+    let week=wx.getStorageSync('week')
+    let table = app.table;
+    let coz = this.data.coz;
+    let schedules = table.doschs(coz, week, tempargs)
     this.setData({
+      week:week,
       year:year,
-      term:term,
-      tableCourse:table,
       isCY:false,
-      Temp1:Temp1
+      term:parseInt(Temp1+1),
+      schedules:schedules
     })
   },
-
+  //进入课程详情
+  enterCozMore:function(e){
+    let schedule = e.currentTarget.dataset.schedule;
+    wx.navigateTo({
+      url: '../courseMore/courseMore?schedule='+JSON.stringify(schedule),
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

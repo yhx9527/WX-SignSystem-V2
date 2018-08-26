@@ -7,14 +7,22 @@ Page({
     current: 'tab1',
     signDataList: [{ siId: 1, siWeek: '1', time: '2018-8-4 12:12:12' }, { siId: 2, siWeek: '2', time: '2018-8-5 12:12:12' }, { siId: 3, siWeek: '3', time: '2018-8-6 12:12:12' }],
     leaveDataList: [{ siId: 1, leaveWeek: '2', leaveDay: '三' },{ siId: 2, leaveWeek: '3', leaveDay: '四' },{ siId: 3, leaveWeek: '4', leaveDay: '三' }],
-    absDataList: [{ siId: 1, absWeek: '2', absDay: '三' }, { siId: 2, absWeek: '3', absDay: '三' }, { siId: 3, absWeek: '2', absDay: '五' }]
+    absDataList: [{ siId: 1, absWeek: '2', absDay: '三' }, { siId: 2, absWeek: '3', absDay: '三' }, { siId: 3, absWeek: '2', absDay: '五' }],
+    schedule:{},
+    cozName:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    let schedule =  JSON.parse(options.schedule);
+    console.log(schedule.cozName)
+    let cozName=schedule.cozName;
+    this.setData({
+      schedule:schedule,
+      cozName:cozName
+    })
   },
 
   //标签页改变

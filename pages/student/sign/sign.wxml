@@ -87,11 +87,11 @@
   <include src="../self/self.wxml"/>
 </view>
 <!--督导-->
-<view wx:if="{{current == 'monitor'}}">
+<view wx:if="{{current == 'monitor'}}" style='height:112vh;'>
   <include src="../monitor/index/index.wxml"/>
 </view>
 <!--课表-->
-<view wx:if="{{current == 'courseTable'}}">
+<view wx:if="{{current == 'courseTable'}}" style='height:118vh;'>
   <include src="../courseTable/courseTable.wxml"/>
 </view>
 

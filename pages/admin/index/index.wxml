@@ -34,20 +34,20 @@
 
   <view class='zhuzi'></view>
   
-  <navigator class='paizi' hover-class='paizi-click' url=''>
+  <navigator class='paizi' url=''>
       <view class='paizi_title'>功能1</view>
       <view class='paizi_info'>简介：哈哈哈哈或或或或或或或或或</view> 
   </navigator>
 
-    <view class='paizi1' hover-class='paizi-click'>
+    <navigator class='paizi1' >
       <view class='paizi_title'>功能2</view>
       <view class='paizi_info'>简介：哈哈哈哈或或或或或或或或或</view> 
-  </view>
+ </navigator>
 
-    <view class='paizi2' hover-class='paizi-click'>
+    <navigator class='paizi2' >
       <view class='paizi_title'>功能3</view>
       <view class='paizi_info'>简介：哈哈哈哈或或或或或或或或或</view> 
-  </view>
+  </navigator> 
 
   <image src='../../images/admin.jpg' class='renwuImg'></image>
   

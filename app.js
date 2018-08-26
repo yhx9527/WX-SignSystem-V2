@@ -1,5 +1,6 @@
 //app.js
-import Agriknow from './apis/agriknow.js'
+import Agriknow from './apis/agriknow.js';
+import Table from './utils/pro_coz.js' ;
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -24,7 +25,9 @@ App({
     })
   },
   agriknow:new Agriknow(),
-  
+
+  table:new Table(),
+
   globalData: {
     systemInfo:{},
     header: {},
