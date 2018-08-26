@@ -17,6 +17,10 @@ Page({
     app.agriknow.getBind().then(data=>{
       if (data.success == true) {
         app.agriknow.header({ 'Authorization': 'Bearer ' + data['access_token']})
+        wx.setStorageSync('user',data['user'])
+        if(!wx.getStorageSync('ifBind')){
+          wx.setStorageSync('ifBind', true)
+        }
         wx.showLoading({
           title: '登录中...',
           success: function () {
@@ -63,7 +67,7 @@ Page({
               title: '登录中...',
               success: function () {
                 wx.setStorageSync('getType', e.detail.value.suType)
-                wx.setStorageSync('suId', e.detail.value.suId)
+                //wx.setStorageSync('suId', e.detail.value.suId)
                   app.agriknow.login(e.detail.value)
                     .then(data => {
                       wx.hideLoading();
@@ -73,6 +77,7 @@ Page({
                         app.agriknow.header({
                           'Authorization': 'Bearer ' + data['access_token']
                         })
+                        wx.setStorageSync('user', data['user'])
                         wx.redirectTo({
                           url: '../student/sign/sign',
                         })

@@ -32,7 +32,8 @@ Page({
     isCW: false,//是否需要更改周
     isCY: false,//更改学年
     coz:[],
-    schedules:[]
+    schedules:[],
+    visible1: false,
 
   },
 
@@ -100,6 +101,23 @@ Page({
   //客服
   kefu:function(){
     console.log('客服')
+  },
+  //清除缓存并退出
+  handleOpen1:function(){
+    this.setData({
+      visible1: true
+    });
+  },
+  handleClose1() {
+    this.setData({
+      visible1: false
+    });
+  },
+  clear_cache(){
+    wx.clearStorageSync();
+    wx.reLaunch({
+      url: '/pages/login/login',
+    })
   },
 
 

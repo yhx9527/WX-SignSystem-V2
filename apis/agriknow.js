@@ -78,7 +78,7 @@ class agriknow {
    * 获取课程
    */
   getStuCourse(){
-    let getType=wx.getStorageSync('getType')
+    let getType=wx.getStorageSync('getType') || wx.getStorageSync('user').suAuthoritiesStr.toLowerCase();
     return this._request.getRequest(this._baseUrl+'courses',{'getType':getType})
   }
   /**
@@ -98,7 +98,7 @@ class agriknow {
 
             })
           let ifBind=wx.getStorageSync('ifBind');
-          let suId = wx.getStorageSync('suId');
+          let suId = wx.getStorageSync('suId') || wx.getStorageSync('user').suId;
           if(!ifBind){
             that.putWX(suId)
               .then(data=>{

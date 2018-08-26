@@ -43,12 +43,8 @@ class Table{
         schedule['cozId']= course.scId;
         schedule['cozName'] = course.scName;
         schedule['cozMaxSize'] = course.scMaxSize;
-        schedule['cozTea']=course.sisJoinCourseList.reduce(function(prev,cur){
-          if(prev instanceof Array){
-            return prev.push(cur.sisUser.suName)
-          }else{
-            return [prev.sisUser.suName].push(cur.sisUser.suName)
-          } 
+        schedule['cozTea'] = course.sisJoinCourseList.map(function(item,index,array){
+          return item.sisUser.suName;
         })
         schedule['cozIfMon'] = course.scNeedMonitor
         let schs = course.sisSchedules;

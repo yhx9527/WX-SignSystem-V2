@@ -33,6 +33,23 @@ Page({
   kefu: function () {
     console.log('客服')
   },
+  //清除缓存并退出
+  handleOpen1: function () {
+    this.setData({
+      visible1: true
+    });
+  },
+  handleClose1() {
+    this.setData({
+      visible1: false
+    });
+  },
+  clear_cache() {
+    wx.clearStorageSync();
+    wx.reLaunch({
+      url: '/pages/login/login',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -13,7 +13,7 @@
     <view class='text-middle'>扫码签到</view>
   </view>
 </view-->
-<view class='courseTitle row'> <navigator  hover-class="link_hover" open-type='navigateBack' delta='1' style='color:#2d8cf0;'>我的课程表</navigator><view style='color:#495060;margin-left:3px;margin-right:5px;'>/</view>{{cozName}}</view>
+<view class='courseTitle row'> <navigator  hover-class="link_hover" open-type='navigateBack' delta='1' style='color:#495060;'>我的课程表</navigator><view style='color:#495060;margin-left:3px;margin-right:5px;'>/</view>{{cozName}}</view>
 <i-tabs current="{{ current }}" bindchange="handleChange" color="#25CCF7">
     <i-tab key="tab1" title="历史签到" ></i-tab>
     <i-tab key="tab2" title="历史请假"></i-tab>

@@ -26,5 +26,14 @@
       <i-icon type="customerservice_fill" slot="icon"  color="#D6A2E8" size="20"/>
     </i-cell>
   </button>
- 
 </i-cell-group>
+
+<i-cell-group i-class="bt_border">
+  <i-cell title="清除缓存并重开" is-link isHover catchtap='handleOpen1'>
+     <i-icon type="flashlight_fill" slot="icon"  color="#fdcb6e" size="20"/>
+  </i-cell>
+</i-cell-group>
+
+<i-modal title="注意" visible="{{ visible1 }}" bind:ok="clear_cache" bind:cancel="handleClose1">
+    <view>这将会释放本地的存储空间，并重新启动小程序</view>
+</i-modal>

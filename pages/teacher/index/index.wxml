@@ -28,9 +28,17 @@
     </i-cell>
   </button>
 </i-cell-group>
+
+<i-cell-group i-class="bt_border">
+  <i-cell title="清除缓存并重开" is-link isHover catchtap='handleOpen1'>
+     <i-icon type="flashlight_fill" slot="icon"  color="#fdcb6e" size="20"/>
+  </i-cell>
+</i-cell-group>
     </view>
 </i-drawer>
-
+<i-modal title="注意" visible="{{ visible1 }}" bind:ok="clear_cache" bind:cancel="handleClose1">
+    <view>这将会释放本地的存储空间，并重新启动小程序</view>
+</i-modal>
   <i-icon type="other" size="40" color="#80848f" bindtap='toggleSelf' style='margin-left:1vw;'/>
 
 <swiper current='{{signCurrent}}'indicator-dots="true" circular='true' previous-margin='{{systemInfo.width*0.1}}px' next-margin='{{systemInfo.width*0.1}}px' bindchange='changSign'  class='swiper-view_H'style="width: 100%;height:{{systemInfo.height*0.85}}px;top:55%;">
