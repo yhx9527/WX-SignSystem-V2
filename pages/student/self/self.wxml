@@ -2,8 +2,8 @@
   <i-avatar size="xxl">
     <open-data type="userAvatarUrl"></open-data>
   </i-avatar>
-    <view class="introFont" style='margin-top:5px;'>Welcome xxx</view>
-    <view class="introFont">学号：yyy</view>
+    <view class="introFont" style='margin-top:5px;'>Welcome {{username}}</view>
+    <view class="introFont">学号：{{userid}}</view>
 </view>
 
 <i-cell-group i-class="bt_border">

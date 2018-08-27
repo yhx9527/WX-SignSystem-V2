@@ -1,0 +1,11 @@
+.courseTitle{
+  background-color:#f8f8f9;
+  font-size:16px;
+color:#2d8cf0;
+padding-top:1vh;
+padding-bottom:0.2vh;
+padding-left:2vw;
+margin-bottom:1vh;
+height:4vh;
+
+}

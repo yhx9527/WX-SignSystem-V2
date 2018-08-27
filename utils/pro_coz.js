@@ -43,11 +43,14 @@ class Table{
         schedule['cozId']= course.scId;
         schedule['cozName'] = course.scName;
         schedule['cozMaxSize'] = course.scMaxSize;
-        schedule['cozTea'] = course.sisJoinCourseList.map(function(item,index,array){
+        schedule['cozTea'] = course.sisJoinCourseList.filter(function (item, index, array){
+          return item.joinCourseType==='TEACHING'
+        }).map(function(item,index,array){
           return item.sisUser.suName;
         })
+  
         schedule['cozIfMon'] = course.scNeedMonitor
-        let schs = course.sisSchedules;
+        let schs = course.sisScheduleList;
         let j = schs.length;
         while(j--){
           let sch = schs[j]
@@ -67,7 +70,7 @@ class Table{
         }
       }
       catch(e){
-        console.log('生成schedule出错'+JSON.stringify(e))
+        console.log('生成课表所需的schedule出错'+JSON.stringify(e))
       }
       schedules.push(schedule);
     }
@@ -92,6 +95,62 @@ class Table{
       return item;
     })
     return result;
+  }
+
+  mancoz(courses){
+    let course;
+    let i = courses.length;
+    let cozs=[];
+    let coz={};
+    while(i--){
+      try{
+        course = courses[i]
+        coz['cozId'] = course.scId;
+        coz['cozSize'] = course.scMaxSize;
+        coz['cozName'] = course.scName;
+        coz['cozTeaAbout'] = course.sisJoinCourseList.filter(function (item, index, array) {
+          return item.joinCourseType === 'TEACHING'
+        }).map(function (item, index, array) {
+          return item.sisUser;
+        })
+        coz['cozStus'] = course.sisJoinCourseList.filter(function (item, index, array) {
+          return item.joinCourseType === 'ATTENDANCE'
+        }).map(function (item, index, array) {
+          return item.sisUser;
+        })
+        let schedules = course.sisSchedules;
+        let j = schedules.length;
+        let schs = [];
+        while(j--){
+          let sch = {};
+          let schedule = schedules[j];
+          sch['schid'] = schedule['ssId'];
+          sch['schtime'] = schedule['ssDayOfWeek']+' '+schedule['ssStartTime']+'-'+schedule['ssEndTime'];
+          schs.push(sch);
+        }
+        coz['schs']=schs;
+        if(coz['cozTeaAbout'].length>1){
+          coz['cozTea'] = coz['cozTeaAbout'].reduce(function (prev, cur, index, array) {
+            return prev.suName + ',' + cur.suName;
+          })
+        }else{
+          coz['cozTea']=coz['cozTeaAbout'][0].suName;
+        }
+       if(coz['schs'].length>1){
+         coz['cozTime'] = coz['schs'].reduce(function (prev, cur, index, array) {
+           return prev.schtime + ',' + cur.schtime;
+         })
+       }else{
+         coz['cozTime'] = coz['schs'][0].schtime;
+       }
+      
+        
+      }catch(e){
+        console.log('生成查看的课程出错')
+      }
+      cozs.push(coz);
+    }
+    return cozs;
   }
 }
 export default Table

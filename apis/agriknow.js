@@ -77,9 +77,16 @@ class agriknow {
   /**
    * 获取课程
    */
-  getStuCourse(){
-    let getType=wx.getStorageSync('getType') || wx.getStorageSync('user').suAuthoritiesStr.toLowerCase();
-    return this._request.getRequest(this._baseUrl+'courses',{'getType':getType})
+  getStuCourse(gettype,data={}){
+    let getType;
+    if(!gettype){
+      let temp = wx.getStorageSync('getType') || wx.getStorageSync('user').suAuthoritiesStr.toLowerCase();
+      getType = temp.split(',')[0];
+    }else{
+      getType = gettype;
+    }
+    data['getType']=getType;
+    return this._request.getRequest(this._baseUrl+'courses',data)
   }
   /**
    * 正确的登录之后方可绑定微信的整合，先是正确获取课程，之后异步获取当前周及绑定微信
@@ -170,6 +177,13 @@ putMon(scId,sisCourse){
     return this._request.postRequest(this._baseUrl +'schedules/'+ssId + '/signIns')
   }
   /**
+   * 获取签到记录
+   */
+  getSignRec(scId){
+    
+    return this._request.getRequest(this._baseUrl + 'courses/' + scId + '/signIns')
+  }
+  /**
    * 领取督导
    */
   getMonPond(scId){
@@ -185,7 +199,13 @@ putMon(scId,sisCourse){
    * 接受或拒绝转接
    */
   doMonTrans(ssId,sisMonitorTrans){
-    return this._request.postRequest(this._baseUrl + 'schedules/' + ssId + '/monitor-trans',{'sisMonitorTrans':sisMonitorTrans})
+    return this._request.putRequest(this._baseUrl + 'schedules/' + ssId + '/monitor-trans',{'sisMonitorTrans':sisMonitorTrans})
+  }
+  /**
+   * 申请转接
+   */
+  applyMonTrans(ssId, sisMonitorTrans) {
+    return this._request.postRequest(this._baseUrl + 'schedules/' + ssId + '/monitor-trans', { 'sisMonitorTrans': sisMonitorTrans })
   }
   /**
    * 插入督导记录
@@ -197,7 +217,7 @@ putMon(scId,sisCourse){
    * 获取转接课程
    */
   getMonTrans(smtStatus){
-    return this._request.postRequest(this._baseUrl + 'schedules/monitor-trans', { 'smtStatus': smtStatus })
+    return this._request.getRequest(this._baseUrl + 'schedules/monitor-trans', { 'smtStatus': smtStatus })
   }
 }
 

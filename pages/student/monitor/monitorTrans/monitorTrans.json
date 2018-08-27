@@ -1,0 +1,12 @@
+{
+    "component": true,
+    "usingComponents": {
+      "i-icon": "../../../../dist/icon/index",
+      "i-swipeout": "../../../../dist/swipeout/index",
+      "i-tabs": "../../../../dist/tabs/index",
+      "i-tab": "../../../../dist/tab/index",
+        "i-notice-bar": "../../../../dist/notice-bar/index",
+            "i-modal": "../../../../dist/modal/index",
+            "i-spin": "../../../../dist/spin/index"
+    }
+}

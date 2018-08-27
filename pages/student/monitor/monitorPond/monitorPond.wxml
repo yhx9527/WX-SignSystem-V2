@@ -1,0 +1,43 @@
+  <i-notice-bar icon="prompt" closable color='#ff7675' background-color='#d63031'>
+    课程督导一经领取将持续一学期
+</i-notice-bar>
+ <view class='courseTitle'>督导池塘/</view>
+ <block wx:for="{{pondlist}}" wx:for-index='index' wx:for-item='item' >
+ <view class="weui-media-box_appmsg"style="border-bottom:1px solid #e9eaec;height:60px;border-top:{{index==0 ? '1px solid #e9eaec' : '0px'}};">
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style='padding-left:15px;padding-bottom:5px;'>
+        <view class="weui-media-box__title"style='color:#1c2438;'>课程</view>
+        <view class="weui-media-box__desc">时间：{{item.cozTime}}</view>
+        <view class="weui-media-box__desc"style='color:#e67e22;margin-top:2px;' catchtap='handleOpen1'>点击查看详情<i-icon type="enterinto" size='18' /></view>
+      </view>
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB;border-radius:0px;margin-right:0px;width:80px;font-size:16px;height:60px;color:#2d3436;line-height:60px;' catchtap='handleOpen2'>
+       领取
+      </view>
+    </view>
+    </block>
+    <view style='margin-top:10px;'>
+<i-page current="{{ page }}" total="{{total}}" bind:change="pageChange">
+    <view slot="prev">
+        <i-icon type="return"></i-icon>
+        上一步
+    </view>
+    <view slot="next">
+        下一步
+        <i-icon type="enter"></i-icon>
+    </view>
+</i-page>
+</view>
+<i-modal title="课程名" visible="{{ visible1 }}" bind:ok="handleClose1" ok-text='了解' show-cancel='{{showcancel}}'>
+    <view>一些文本</view>
+    <view>一些文本</view>
+    <view>一些文本</view>
+    <view>一些文本</view>
+    <view>一些文本</view>
+    <view>一些文本</view>
+    <view>一些文本</view>
+    <view>一些文本</view>
+    <view>一些文本</view>
+</i-modal>
+
+<i-modal visible="{{ visible2 }}" bind:ok="handleCloseOk" bind:cancel="handleCloseCancel">
+    <view style='color:#d63031;'>一经领取一学期有效</view>
+</i-modal>

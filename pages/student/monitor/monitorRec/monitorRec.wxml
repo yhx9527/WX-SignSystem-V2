@@ -1,0 +1,33 @@
+<view class='courseTitle row'> <navigator  hover-class="link_hover" open-type='navigateBack' delta='1' class='link'>督导ing</navigator><view style='color:#495060;margin-left:3px;margin-right:5px;'>/</view>本课程历史督导记录</view>
+<!--历史记录-->
+<view>
+  <block wx:for="{{historyList}}"wx:key="unique" wx:for-index="id" wx:for-item="item">
+   <view class='item-view column'>
+    <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB'>
+        <view class="fa fa-balance-scale fa-2x"style='vertical-align:middle;color:#FFFFFF'></view>
+      </view>
+      <view class="weui-media-box__bd ">
+        <view class="weui-media-box__title"style='color:#1c2438;'>{{item.courseName}}</view>
+        <view class="weui-media-box__desc">老师：{{item.courseTeacher}}</view>
+        <view class="weui-media-box__desc">时间：{{item.courseTime}}</view>
+        <view class="weui-media-box__desc">地点：{{item.coursePlace}}</view>
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="historyInfo">完成督导</view>
+        <!--view class='historyInfo' style=" color:#ff9900;">请假</view-->
+      </view>
+    </view>
+   </view>
+  </block>
+  <i-page current="{{ current }}" total="5" bind:change="handleChange">
+    <view slot="prev">
+        <i-icon type="return"></i-icon>
+        上一页
+    </view>
+    <view slot="next">
+        下一页
+        <i-icon type="enter"></i-icon>
+    </view>
+</i-page>
+</view>

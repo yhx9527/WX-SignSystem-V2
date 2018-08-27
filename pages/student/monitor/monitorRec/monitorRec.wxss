@@ -1,0 +1,5 @@
+@import '../work/work.wxss';
+.link_hover{
+  color:#2d8cf0;
+  border-bottom: 1rpx solid #2d8cf0;
+}

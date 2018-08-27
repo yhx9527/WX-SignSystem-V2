@@ -34,7 +34,7 @@ Page({
     coz:[],
     schedules:[],
     visible1: false,
-
+    ismonitor:false,
   },
 
   /**
@@ -46,11 +46,26 @@ Page({
     let schedules = [];
     let table=app.table;
     let width = that.data.systemInfo.width;
-    
+    wx.getStorage({
+      key: 'user',
+      success: function(res) {
+        let ismonitor=that.data.ismonitor;
+        if (res.data.suAuthoritiesStr.split(',')[1] && res.data.suAuthoritiesStr.split(',')[1].toLowerCase() === 'monitor'){
+          ismonitor = true;
+        }
+        that.setData({
+          ismonitor:ismonitor,
+          username:res.data.suName,
+          userid:res.data.suId
+        })
+      },
+    })
+
     app.agriknow.after_login()
       .then(data=>{
         if(data.success){
           var coz = table.docoz(data.array,width);
+          //console.log('coz'+JSON.stringify(coz,undefined,'\t'))
           let week = wx.getStorageSync('week');
           let term = coz[0].schTerm;
           let termArray=term.split('-')
@@ -219,6 +234,8 @@ Page({
       url: '../courseMore/courseMore?schedule='+JSON.stringify(schedule),
     })
   },
+
+ 
 
   /**
    * 生命周期函数--监听页面初次渲染完成

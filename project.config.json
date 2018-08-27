@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 12,
 			"list": [
 				{
 					"id": -1,
@@ -106,6 +106,11 @@
 					"name": "adIndex",
 					"pathName": "pages/admin/index/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "monpond",
+					"pathName": "pages/student/monitor/monitorPond/monitorPond"
 				}
 			]
 		}
