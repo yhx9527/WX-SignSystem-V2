@@ -9,7 +9,16 @@ Page({
     { courseName: "数据库", courseTeacher: "xxx", courseTime: "xxx", coursePlace: "xxx" },
     { courseName: "java", courseTeacher: "xxx", courseTime: "xxx", coursePlace: "xxx" },
     ],
-    page:1
+    Weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    searchWeeks: [],
+    nowSchedule: 0,
+    schedules: ['全部'],
+    height1: 0,
+    height2: 0,
+    page:1,
+    records:[],
+    showcancel:false,
+    visible1:false,
   },
 
   /**
@@ -17,8 +26,19 @@ Page({
    */
   onLoad: function (options) {
     let scId=options.scid;
+    let schs=JSON.parse(options.schs);
+    let cozname = options.cozname;
+    let schedules = this.data.schedules;
+    let records = [];
+    schs.forEach(function(item){
+      schedules.push(item.schtime);
+    })
+    this.setData({
+      schedules:schedules
+    })
     app.agriknow.getMonRec(scId)
       .then(data=>{
+          records=app.table.domonrec(data.array);
 
       })
       .catch(data=>{
@@ -26,6 +46,46 @@ Page({
       })
   },
 
+  //下拉菜单
+  click_show1: function () {
+    var height1 = this.data.height1;
+    var length = this.data.schedules.length
+    this.setData({
+      height1: height1 == 0 ? 4 * length + 1 : 0
+    })
+  },
+  click_show2: function () {
+    var height2 = this.data.height2;
+    this.setData({
+      height2: height2 == 0 ? 21 : 0
+    })
+  },
+  changeWeek: function (e) {
+    var id = e.target.dataset.id;
+    this.setData({
+      'id1': id,
+      height2: 0
+    })
+  },
+  changeSchedule: function (e) {
+    var id = e.target.dataset.id;
+    this.setData({
+      'id': id,
+      height1: 0
+    })
+  },
+
+  //点击查看督导详情
+  recmore:function(){
+    this.setData({
+      visible1: true
+    });
+  },
+  handleClose1() {
+    this.setData({
+      visible1: false
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

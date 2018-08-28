@@ -12,6 +12,7 @@ Page({
     visiable1:false,
     showcancel:false,
     spanshow:false,
+    if_untreated:false   //是否有未处理的课程
 
   },
 

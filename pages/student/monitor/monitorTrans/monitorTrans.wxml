@@ -4,9 +4,9 @@
 </i-notice-bar>
  <view class='courseTitle'>督导转接/</view>
 <i-tabs current="{{ current }}" bindchange="handleChange">
-    <i-tab key="untreated" title="未处理" count="3"></i-tab>
+    <i-tab key="untreated" title="未处理" dot='{{if_untreated}}'></i-tab>
     <i-tab key="agree" title="已接受"></i-tab>
-    <i-tab key="disagree" title="已拒绝" dot></i-tab>
+    <i-tab key="disagree" title="已拒绝"></i-tab>
 </i-tabs>
 <view class='container1'>
 <view wx:if="{{current=='untreated'}}">

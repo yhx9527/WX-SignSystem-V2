@@ -4,10 +4,13 @@
  <view class='courseTitle'>督导池塘/</view>
  <block wx:for="{{pondlist}}" wx:for-index='index' wx:for-item='item' >
  <view class="weui-media-box_appmsg"style="border-bottom:1px solid #e9eaec;height:60px;border-top:{{index==0 ? '1px solid #e9eaec' : '0px'}};">
-      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style='padding-left:15px;padding-bottom:5px;'>
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#0984e3;height:50px;width:50px;line-height:50px;margin-left:5px;'>
+        <view class="fa fa-bookmark fa-lg"style='vertical-align:middle;color:#FFFFFF'></view>
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style='padding-left:15px;padding-bottom:5px;'catchtap='handleOpen1'>
         <view class="weui-media-box__title"style='color:#1c2438;'>课程</view>
         <view class="weui-media-box__desc">时间：{{item.cozTime}}</view>
-        <view class="weui-media-box__desc"style='color:#e67e22;margin-top:2px;' catchtap='handleOpen1'>点击查看详情<i-icon type="enterinto" size='18' /></view>
+        <view class="weui-media-box__desc"style='color:#e67e22;margin-top:2px;' >点击可查看详情<i-icon type="enterinto" size='18' /></view>
       </view>
       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB;border-radius:0px;margin-right:0px;width:80px;font-size:16px;height:60px;color:#2d3436;line-height:60px;' catchtap='handleOpen2'>
        领取

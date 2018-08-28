@@ -24,9 +24,20 @@ Page({
         wx.showLoading({
           title: '登录中...',
           success: function () {
+            let auth = data['user'].suAuthoritiesStr.toLowerCase().split(',')[0];
+            if(auth == 'student'){
             wx.redirectTo({
               url: '../student/sign/sign',
             })
+            } else if (auth == 'teacher') {
+              wx.redirectTo({
+                url: '/pages/teacher/index/index',
+              })
+            } else if (auth == 'administrator') {
+              wx.redirectTo({
+                url: '/pages/admin/index/index',
+              })
+            }
             wx.hideLoading();
           }
         })
@@ -78,9 +89,20 @@ Page({
                           'Authorization': 'Bearer ' + data['access_token']
                         })
                         wx.setStorageSync('user', data['user'])
+                        let auth = e.detail.value.suType.split(',')[0];
+                        if(auth == 'student'){
                         wx.redirectTo({
                           url: '../student/sign/sign',
                         })
+                        }else if(auth=='teacher'){
+                          wx.redirectTo({
+                            url: '/pages/teacher/index/index',
+                          })
+                        }else if(auth=='administrator'){
+                          wx.redirectTo({
+                            url: '/pages/admin/index/index',
+                          })
+                        }
                        
                       } else {
                         wx.showModal({

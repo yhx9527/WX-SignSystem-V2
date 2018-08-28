@@ -31,6 +31,9 @@ class Table{
     }
     return fort1;
   }
+  /**
+   * 课程表根据course提取schedule
+   */
   docoz(courses,width){
     var that = this;
     let schedules = [];
@@ -77,7 +80,9 @@ class Table{
     return schedules;
 
   }
-
+/**
+ * 筛选schedule
+ */
   doschs(schedules,week=1,term='2017-2018-2'){
     let result = [];
     result=schedules.filter(function(item,index,array){
@@ -96,7 +101,9 @@ class Table{
     })
     return result;
   }
-
+/**
+ * 处理督导课程展示列表
+ */
   mancoz(courses){
     let course;
     let i = courses.length;
@@ -151,6 +158,31 @@ class Table{
       cozs.push(coz);
     }
     return cozs;
+  }
+  /**
+   * 督导记录处理列表
+   */
+  domonrec(array){
+    let records=[];
+    let record={};
+    array.forEach(function(item,index,arra){
+      if(item.sisSupervisions.length>0){
+      try{
+      record['schtime'] = item.ssDayOfWeek+' '+item.ssStartTime+'-'+item.ssEndTime;
+      record['ssId'] = item.ssId;
+      let temps = item.sisSupervisions  
+      let i = temps.length;
+      while(i--){
+        let temp = temps[i];
+        record['note'] = temp;
+      }
+      }catch(e){
+
+      }
+      records.push(record);
+      }
+    })
+    return records;
   }
 }
 export default Table

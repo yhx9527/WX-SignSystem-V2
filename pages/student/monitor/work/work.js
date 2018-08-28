@@ -62,16 +62,28 @@ Page({
   //课程更多
   clickmore:function(e){
     let ifmore = this.data.ifmore;
-    let scId=e.currentTarget.dataset.scid;
-    let schs=e.currentTarget.dataset.schs;
+    let dataset = e.currentTarget.dataset;
+    let scId=dataset.scid;
+    let schs=dataset.schs;
+    let cozName =dataset.cozname 
     console.log('scId'+scId)
-    console.log(JSON.stringify(e,undefined,'\t'))
+    //console.log(JSON.stringify(e,undefined,'\t'))
     this.setData({
       ifmore:!ifmore,
       moretop:e.detail.y+8,
       moreleft:e.detail.x-78,
       scId:scId,
-      schs:schs
+      schs:schs,
+      cozName:cozName
+    })
+  },
+  //查看督导记录
+  monitorRec:function(e){
+    let schs = e.currentTarget.dataset.schs;
+    let scid = e.currentTarget.dataset.scid;
+    let cozname = e.currentTarget.dataset.cozname;
+    wx.navigateTo({
+      url: '../monitorRec/monitorRec?schs='+JSON.stringify(schs)+'&scid='+scid+'&cozname='+cozname,
     })
   },
   //插入督导记录
@@ -85,7 +97,7 @@ Page({
       success: function (res) {
         console.log('actinschs'+schs);
         wx.navigateTo({
-          url: '../monitorForm?ssId='+schs[res.tapIndex].schid,
+          url: '../monitorForm/monitorForm?ssId='+schs[res.tapIndex].schid,
         })
         console.log(res.tapIndex)
       },

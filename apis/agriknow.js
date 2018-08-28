@@ -106,7 +106,7 @@ class agriknow {
             })
           let ifBind=wx.getStorageSync('ifBind');
           let suId = wx.getStorageSync('suId') || wx.getStorageSync('user').suId;
-          if(!ifBind){
+          if(ifBind != true){
             that.putWX(suId)
               .then(data=>{
                 if(data.success == true){

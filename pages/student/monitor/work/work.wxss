@@ -4,6 +4,7 @@
    border: 1px solid #dddee1;
   border-radius: 6px;
   margin:5px auto 10px auto;
+  box-shadow: 3px 0px 6px -3px black,-3px 0px 6px -3px black;
 
 }
 .addition1{
@@ -45,6 +46,7 @@ width:80px;
 font-size:16px;
 text-align:center;
 border-radius: 6px;
+ box-shadow:0 0px 1px #6c5ce7, 0 0 10px #a29bfe inset;
   
 }
 .more-one{
@@ -56,4 +58,11 @@ margin-top:1px;
 }
 .more-one:hover{
   background: #fbebff;
+}
+
+/**styling shadows**/
+.shadow1{
+	position:relative;
+    border-radius:5px;
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
 }
