@@ -22,7 +22,7 @@ Page({
   onLoad: function (options) {
     app.agriknow.getMonTrans('untreated')
       .then(data=>{
-
+        
       })
       .catch(data=>{
 

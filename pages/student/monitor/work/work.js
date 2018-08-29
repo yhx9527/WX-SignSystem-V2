@@ -12,7 +12,7 @@ Page({
     ifmore:false,
     monitorlist:[],
     transmodel:false,
-    transweek:'1',
+    transweek:'2',
     transman:'2016220401007',
     transerror1:false,
     transerror2:false
@@ -81,16 +81,19 @@ Page({
       scId:scId,
       schs:schs,
       cozName:cozName,
-      item:item
+      item:item,
+      cozSize:item.cozSize
     })
   },
   //查看督导记录
   monitorRec:function(e){
-    let schs = e.currentTarget.dataset.schs;
-    let scid = e.currentTarget.dataset.scid;
-    let cozname = e.currentTarget.dataset.cozname;
+    let dataset = e.currentTarget.dataset;
+    let schs = dataset.schs;
+    let scid = dataset.scid;
+    let cozname = dataset.cozname;
+    let cozsize = dataset.cozsize
     wx.navigateTo({
-      url: '../monitorRec/monitorRec?schs='+JSON.stringify(schs)+'&scid='+scid+'&cozname='+cozname,
+      url: '../monitorRec/monitorRec?schs='+JSON.stringify(schs)+'&scid='+scid+'&cozname='+cozname+'&cozsize='+cozsize,
     })
   },
   //插入督导记录
@@ -140,6 +143,9 @@ Page({
     //console.log('trans'+JSON.stringify(e,undefined,'\t'))
     let ssId = e.currentTarget.dataset.ssid;
     if(this.data.transman != '' && this.data.transweek!=''){
+      this.setData({
+        transmodel: false
+      })
       let sisMonitorTrans = {
         "smtStatus": 0,
         "smtWeek": parseInt(this.data.transweek),
@@ -148,10 +154,27 @@ Page({
       }
       app.agriknow.applyMonTrans(ssId,sisMonitorTrans)
         .then(data=>{
-
+          if(data.success == true){
+            wx.showToast({
+              title: '已发送',
+            })
+          }else{
+            wx.showToast({
+              title: '操作失败',
+            })
+          }
         })
         .catch(data=>{
-          console.log(data,undefined,'\t');
+          if(data.statusCode == 403){
+            this.setData({
+              transmodel:false,
+            })
+            wx.showToast({
+              title: '转接待处理...',
+              icon:'none'
+            })
+          }
+          //console.log(data,undefined,'\t');
         })
     }else if(this.data.transweek == ''){
       this.setData({

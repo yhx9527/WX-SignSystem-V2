@@ -212,6 +212,7 @@ putMon(scId,sisCourse){
    */
   insertMonRec(ssId,sisSupervision){
     let header = this._request.getHeader();
+    header['Content-Type'] = "application/json"
     //header['Content-Type'] = "application/x-www-form-urlencoded";
     //console.log(JSON.stringify({ 'sisSupervision': sisSupervision }))
     return this._request.postRequest(this._baseUrl + 'schedules/' + ssId + '/supervisions',sisSupervision,header)
@@ -220,7 +221,9 @@ putMon(scId,sisCourse){
    * 获取转接课程
    */
   getMonTrans(smtStatus){
-    return this._request.getRequest(this._baseUrl + 'schedules/monitor-trans', { 'smtStatus': smtStatus })
+    let header = this._request.getHeader();
+    header['Content-Type'] = "application/json"
+    return this._request.getRequest(this._baseUrl + 'schedules/monitor-trans', { 'smtStatus': smtStatus },header)
   }
 }
 

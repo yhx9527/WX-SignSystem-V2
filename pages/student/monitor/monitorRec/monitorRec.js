@@ -9,7 +9,7 @@ Page({
     { courseName: "数据库", courseTeacher: "xxx", courseTime: "xxx", coursePlace: "xxx" },
     { courseName: "java", courseTeacher: "xxx", courseTime: "xxx", coursePlace: "xxx" },
     ],
-    Weeks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    Weeks: ['全部',1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
     searchWeeks: [],
     nowSchedule: 0,
     schedules: ['全部'],
@@ -17,6 +17,7 @@ Page({
     height2: 0,
     page:1,
     records:[],
+    searchs:[],
     showcancel:false,
     visible1:false,
   },
@@ -28,18 +29,26 @@ Page({
     let scId=options.scid;
     let schs=JSON.parse(options.schs);
     let cozname = options.cozname;
+    let cozsize = options.cozsize;
     let schedules = this.data.schedules;
     let records = [];
     schs.forEach(function(item){
       schedules.push(item.schtime);
     })
     this.setData({
-      schedules:schedules
+      schedules:schedules,
+      cozname:cozname,
+      cozsize:cozsize
     })
     app.agriknow.getMonRec(scId)
       .then(data=>{
+        if(data.success==true){
           records=app.table.domonrec(data.array);
-
+          this.setData({
+            records:records,
+            searchs:records
+          })
+        }
       })
       .catch(data=>{
         
@@ -74,11 +83,25 @@ Page({
       height1: 0
     })
   },
+  //根据条件搜索对应课程
+  formSubmit:function(e){
+    let form = e.detail.value;
+    console.log(form,undefined,'\t');
+    let records = this.data.records;
+    let searchs = app.table.myfilter(records,[form],["","全部"]);
+    this.setData({
+      searchs:searchs
+    })
+
+  },
 
   //点击查看督导详情
-  recmore:function(){
+  recmore:function(e){
+    let dataset = e.currentTarget.dataset;
     this.setData({
-      visible1: true
+      visible1: true,
+      note:dataset.note,
+      cozsize:dataset.cozsize
     });
   },
   handleClose1() {

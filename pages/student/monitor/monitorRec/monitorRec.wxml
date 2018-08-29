@@ -1,15 +1,17 @@
 <view class='courseTitle row'> <navigator  hover-class="link_hover" open-type='navigateBack' delta='1' class='link'>督导列表</navigator><view style='color:#495060;margin-left:3px;margin-right:5px;'>/</view>本课程历史督导记录</view>
 
 <!--选项框-->
+<form bindsubmit='formSubmit'>
 <view class='row'style='margin-top:3vh;background-color:#f8f8f9;padding-top:1vh;align-items:center;'>
+  
   <view class='xuanBox row'style=''>课时</view>
-    <input class='xuan' style="width:37vw" hover-class='hover-menu' catchtap='click_show1' value='{{schedules[id]}}' disabled ><view class="{{ height1 >0 ? 'roate1' : 'roate2'}}" style='width:14px;float:right;'><i-icon type="unfold"style='flex:1;text-align:right;'/></view>
+    <input class='xuan' style="width:37vw" hover-class='hover-menu' catchtap='click_show1' value='{{schedules[id]}}' disabled name='schtime'><view class="{{ height1 >0 ? 'roate1' : 'roate2'}}" style='width:14px;float:right;' ><i-icon type="unfold"style='flex:1;text-align:right;'/></view>
     </input>
     <view class='xuanBox row' style='margin-left:4vw;'>周次</view>
-      <input class='xuan' hover-class='hover-menu' catchtap='click_show2' value='{{Weeks[id1]}}' disabled><view class="{{ height2 >0 ? 'roate1' : 'roate2'}}"><i-icon type="unfold" style='flex:1;text-align:right;'/></view></input>
-    <button class="btn1" ><i-icon type="search" /></button>
+      <input class='xuan' hover-class='hover-menu' catchtap='click_show2' value='{{Weeks[id1]}}' disabled name='week'><view class="{{ height2 >0 ? 'roate1' : 'roate2'}}"><i-icon type="unfold" style='flex:1;text-align:right;'/></view></input>
+    <button class="btn1" form-type='submit'><i-icon type="search" /></button>
   </view>
-
+    </form>
   <view class='xialaMenu add'  style='height:{{height1}}vh;z-index:100;' bindtap='changeSchedule'>
     <block wx:for="{{schedules}}" wx:for-item='item' wx:for-index='index'>
       <view class='xialaItem' hover-class='hover-menu' data-id='{{index}}'>
@@ -28,16 +30,16 @@
 
 <!--历史记录-->
 <view>
-  <block wx:for="{{historyList}}"wx:key="unique" wx:for-index="id" wx:for-item="item">
+  <block wx:for="{{searchs}}"wx:key="unique" wx:for-index="id" wx:for-item="item">
    <view class='item-view column'>
-    <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active" catchtap='recmore'>
+    <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active" catchtap='recmore' data-note='{{item.note}}' data-cozsize='{{cozsize}}'>
       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB'>
         <view class="fa fa-balance-scale fa-2x"style='vertical-align:middle;color:#FFFFFF'></view>
       </view>
       <view class="weui-media-box__bd ">
-        <view class="weui-media-box__title"style='color:#1c2438;'>{{item.courseName}}</view>
-        <view class="weui-media-box__desc">时间：{{item.courseTime}}</view>
-        <view class="weui-media-box__desc">记录人：{{item.courseTeacher}}</view>
+        <view class="weui-media-box__title"style='color:#1c2438;'>{{cozname}}</view>
+        <view class="weui-media-box__desc">时间：{{item.schtime}}</view>
+        <view class="weui-media-box__desc">周次：{{item.week}}</view>
         <view class="weui-media-box__desc" style='color:#0984e3;'>点击可查看详情</view>
       </view>
       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
@@ -50,13 +52,9 @@
 </view>
 
 <i-modal title="督导表单记录" visible="{{ visible1 }}" bind:ok="handleClose1" show-cancel='{{showcancel}}' ok-text='了解了'>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
+    <view>课程人数: {{cozsize}}</view>
+    <view>实际人数: {{note.ssvActualNum}}</view>
+    <view>玩手机人数: {{note.ssvMobileNum}}</view>
+    <view>睡觉人数: {{note.ssvSleepNum}}</view>
+    <view>备注: {{note.ssvRecInfo}}</view>
 </i-modal>

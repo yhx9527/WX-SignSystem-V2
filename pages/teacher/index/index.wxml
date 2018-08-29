@@ -19,7 +19,7 @@
   </i-cell>
 </i-cell-group>
 <i-cell-group i-class="bt_border">
-  <i-cell title="关于软件" is-link isHover>
+  <i-cell title="关于软件" is-link isHover url='/pages/common/about/about'>
      <i-icon type="barrage_fill" slot="icon"  color="#55E6C1" size="20"/>
   </i-cell>
   <button open-type='contact' style='text-align:left;padding:0;border-radius:0;display:inline;'>

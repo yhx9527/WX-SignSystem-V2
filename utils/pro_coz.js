@@ -184,27 +184,65 @@ class Table{
    * 督导记录处理列表
    */
   domonrec(array){
+    var that=this;
     let records=[];
-    let record={};
     array.forEach(function(item,index,arra){
-      if(item.sisSupervisions.length>0){
+      if(item.sisSupervisionList.length>0){
       try{
+        let temps = item.sisSupervisionList
+        let i = temps.length;
+        while (i--) {
+          let record = {};
         let day = that.doDaytoString(item.ssDayOfWeek);
       record['schtime'] = day+' '+item.ssStartTime+'-'+item.ssEndTime;
       record['ssId'] = item.ssId;
-      let temps = item.sisSupervisions  
-      let i = temps.length;
-      while(i--){
         let temp = temps[i];
         record['note'] = temp;
+        record['week'] = temp.ssvWeek;
+        records.push(record);
       }
       }catch(e){
-
+        console.log('生成督导记录出错')
       }
-      records.push(record);
+     
       }
     })
     return records;
+  }
+  /**
+   * 根据json形式的筛选条件来过滤给定数组
+   * records 要筛选的数组
+   * form 筛选条件的json，注意key的值要与records元素的属性同名
+   * ignore 忽略的key值组成的数组
+   */
+  myfilter(records,form,ignore=[]){
+    let keys=form.map(item=>{
+      return Object.keys(item)
+    })
+    let values=form.map(item=>{
+      return Object.values(item)
+    })
+    ignore.forEach(i=>{
+      let j=0;
+      while(j!==-1){
+       j = values[0].indexOf(i);
+      if(j !== -1){
+        keys[0].splice(j,1);
+        values[0].splice(j,1);
+      }
+      }
+    })
+    return records.filter(item=>{
+      let ifflag=true;
+      if(keys[0].length >0){
+      ifflag = keys[0].every((item1, index, array) => {
+        //console.log(index + '   ' + values[0][index] + '    ' + item[item1] + '  ' + item1);
+        return values[0][index] == item[item1]
+      })
+      }
+      //console.log('ifflag:'+ifflag)
+      return ifflag
+    })
   }
 }
 export default Table
