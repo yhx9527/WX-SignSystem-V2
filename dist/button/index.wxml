@@ -2,6 +2,7 @@
     class="i-btn {{ long ? 'i-btn-long' : '' }} {{ 'i-btn-' + size }} {{ 'i-btn-' + type }} {{ 'i-btn-' + shape }} {{ loading ? 'i-btn-loading' : '' }} {{ disabled ? 'i-btn-disabled' : ''}} {{ inline ? 'i-btn-inline' : '' }} i-class "
     hover-class="i-btn-hover"
     bindtap="handleTap"
+    form-type="{{ formType }}"
     open-type="{{ openType }}"
     app-parameter="{{ appParameter }}"
     hover-stop-propagation="{{ hoverStopPropagation }}"

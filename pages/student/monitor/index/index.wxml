@@ -3,7 +3,7 @@
     <image src="../../images/1.jpg" class='peitu'></image>
     <view class='column cardContent'>
       <view class="cardTitle">课堂督导</view>
-      <view class='cardMes' style='flex:1;'>功能介绍</view>
+      <view class='cardMes' style='flex:1;'>本模块中督导员可进行课程督导，督导记录的查询以及督导转接他人</view>
       <view class="cardMes warn">有事件待处理</view>
     </view>
   </navigator>
@@ -13,7 +13,7 @@
     <image src="../../images/1.jpg"  class='peitu'></image>
     <view class='column cardContent'>
       <view class="cardTitle">督导池</view>
-      <view class='cardMes'style='flex:1;'>功能介绍</view>
+      <view class='cardMes'style='flex:1;'>本模块中督导员可以查看并自主领取需督导的课程</view>
       <view class="cardMes warn">有事件待处理</view>
     </view>
   </navigator>
@@ -23,7 +23,7 @@
     <image src="../../images/1.jpg"  class='peitu'></image>
     <view class='column cardContent'>
       <view class="cardTitle">督导转接</view>
-      <view class='cardMes'style='flex:1;'>功能介绍</view>
+      <view class='cardMes'style='flex:1;'>本模块中督导员可查看并操作转接给本人的督导课程</view>
       <view class="cardMes warn">有事件待处理</view>
     </view>
   </navigator>

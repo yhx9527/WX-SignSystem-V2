@@ -34,6 +34,7 @@ Component({
             value: false
         },
         openType: String,
+        formType: String,
         appParameter: String,
         hoverStopPropagation: Boolean,
         hoverStartTime: {

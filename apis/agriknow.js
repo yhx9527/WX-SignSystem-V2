@@ -2,7 +2,7 @@ import request from './request.js'
 class agriknow {
   constructor() {
     this._baseUrl = 'https://api.xsix103.cn/sign_in_system/v3/'
-    this._defaultHeader = { 'content-type': 'application/json' }
+    this._defaultHeader = { 'Content-Type': 'application/json' }
     this._request = new request()
     this._request.setErrorHandler(this.errorHander)
   }
@@ -205,13 +205,16 @@ putMon(scId,sisCourse){
    * 申请转接
    */
   applyMonTrans(ssId, sisMonitorTrans) {
-    return this._request.postRequest(this._baseUrl + 'schedules/' + ssId + '/monitor-trans', { 'sisMonitorTrans': sisMonitorTrans })
+    return this._request.postRequest(this._baseUrl + 'schedules/' + ssId + '/monitor-trans', sisMonitorTrans)
   }
   /**
    * 插入督导记录
    */
   insertMonRec(ssId,sisSupervision){
-    return this._request.postRequest(this._baseUrl + 'schedules/' + ssId + '/supervisions', { 'sisSupervision': sisSupervision})
+    let header = this._request.getHeader();
+    //header['Content-Type'] = "application/x-www-form-urlencoded";
+    //console.log(JSON.stringify({ 'sisSupervision': sisSupervision }))
+    return this._request.postRequest(this._baseUrl + 'schedules/' + ssId + '/supervisions',sisSupervision,header)
   }
   /**
    * 获取转接课程

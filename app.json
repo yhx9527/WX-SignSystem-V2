@@ -2,6 +2,7 @@
   "pages":[
     "pages/login/login",
     "pages/student/sign/sign",
+    "pages/common/about/about",
     "pages/student/monitor/work/work",
     "pages/student/monitor/monitorForm/monitorForm",
     "pages/student/leave/leave",

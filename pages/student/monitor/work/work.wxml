@@ -7,7 +7,7 @@
 <view >
   <block wx:for="{{monitorlist}}"wx:key="unique" wx:for-index="id" wx:for-item="item">
    <view class='item-view column shadow1'>
-    <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active" catchtap='insertMonitor' data-schs='{{item.schs}}'>
+    <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active" catchtap='insertMonitor' data-schs='{{item.schs}}' data-item='{{item}}'>
       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB'>
         <view class="fa fa-balance-scale fa-2x"style='vertical-align:middle;color:#FFFFFF'></view>
       </view>
@@ -32,7 +32,7 @@
     停课
     </i-tag>
     <view class='more'>
-       <view  bindtap='clickmore' data-scid='{{item.cozId}}' data-schs='{{item.schs}}' data-cozname='{{item.cozName}}'>
+       <view  bindtap='clickmore' data-scid='{{item.cozId}}' data-schs='{{item.schs}}' data-cozname='{{item.cozName}}' data-item='{{item}}'>
         more
         <i-icon type="more" size='22'/>
     </view>
@@ -41,13 +41,17 @@
    </view>
   </block>
 <view wx:if="{{ifmore}}" class='column more-group' style='top:{{moretop}}px;left:65vw;' >
-  <view class='more-one' catchtap='insertMonitor' data-schs='{{schs}}'>进行督导</view>
+  <view class='more-one' catchtap='insertMonitor' data-schs='{{schs}}' data-item='{{item}}'>进行督导</view>
   <view class='more-one'  data-schs='{{schs}}' data-scid='{{scId}}' catchtap='monitorRec' data-cozname='{{cozName}}'>督导记录</view> 
   <view class='more-one' style='border-bottom:0px;' catchtap='transMonitor' data-schs='{{schs}}'>申请转接</view>
 </view>
 </view>
 
-
+<!--转接输入框-->
+<i-modal title="转接信息" visible="{{ transmodel }}" bind:ok="transok" bind:cancel="transcancel" data-ssid="{{ssId}}">
+     <i-input value="{{ transweek }}" i-class='modal_input' type="number" right title="转接周" mode="wrapped" placeholder="输入哪一周进行转接" error='{{transerror1}}' bindblur='inputblur1'/>
+     <i-input value="{{ transman }}"  i-class='modal_input' type="number" right title="转接人学号" mode="wrapped" placeholder="接受转接的人" error='{{transerror2}}' bindblur='inputblur2'/>
+</i-modal>
 <!--审核请假-->
 <!--scroll-view  wx:if="{{current == 'tab3' }}"scroll-y="true" >
   <block wx:for="{{checkLeaveList}}"wx:key="unique" wx:for-index="id" wx:for-item="item">

@@ -4,6 +4,7 @@
         wx:if="{{ type === 'textarea' }}"
         auto-height
         disabled="{{ disabled }}"
+        name = "{{ name }}"
         focus="{{ autofocus }}"
         value="{{ value }}"
         placeholder="{{ placeholder }}"
@@ -16,6 +17,7 @@
     ></textarea>
     <input
         wx:else
+        name="{{ name }}"
         type="{{ type }}"
         disabled="{{ disabled }}"
         focus="{{ autofocus }}"

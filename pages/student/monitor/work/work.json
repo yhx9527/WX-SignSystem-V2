@@ -5,6 +5,8 @@
     "i-tab": "../../../../dist/tab/index",
     "i-icon": "../../../../dist/icon/index",
     "i-tag": "../../../../dist/tag/index",
-      "i-page": "../../../../dist/page/index"
+      "i-page": "../../../../dist/page/index",
+      "i-modal": "../../../../dist/modal/index",
+      "i-input": "../../../../dist/input/index"
   }
 }

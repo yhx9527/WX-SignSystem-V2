@@ -1,6 +1,7 @@
 @import "../work/work.wxss";
+@import "/dist/button/index.wxss";
 .item-view-wrap{
-  background-color: #dddee1;
+  background-color: #f8f8f9;
 padding-bottom:8px;
 padding-top:8px;
 margin-bottom:8px;
@@ -73,4 +74,11 @@ background-color:white;
 .QRimg{
   height: 200px;
   width: 200px;
+}
+.paneltitle{
+  background-color:#f8f8f9;
+font-size:18px;
+color:#2d3436;
+font-weight:bold;
+
 }

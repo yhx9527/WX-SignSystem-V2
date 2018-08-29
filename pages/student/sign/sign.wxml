@@ -34,7 +34,7 @@
           <image src="../../images/1.jpg" class='signImage'></image>
         </view>
         <view style='height:5%;color:#586c94;font-size:14px;width:90%;margin:auto;'>
-         第xx周
+         第{{week}}周
         </view>
         <view class='signDetail'style="height:55%;">
           <view class='panel_hd title'>{{item.title}}</view>

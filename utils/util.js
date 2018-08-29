@@ -23,7 +23,7 @@ function headToEnd(array){
 const formUtil={
   ifBlank:function(value,array){
     for(var i=array.length-1;i>=0;i--){
-      if(value[array[i]].length==0){
+      if (value[array[i]]==null || value[array[i]].length==0){
         return true;
       }
     }

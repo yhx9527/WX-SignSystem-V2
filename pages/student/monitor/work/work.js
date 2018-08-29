@@ -10,7 +10,12 @@ Page({
     checkLeaveList: [{ courseName: "数据库", courseStudent: "xxx", studentId: "xxx", courseTime: "xxx" }],
     page:1,
     ifmore:false,
-    monitorlist:[]
+    monitorlist:[],
+    transmodel:false,
+    transweek:'1',
+    transman:'2016220401007',
+    transerror1:false,
+    transerror2:false
   },
    
 
@@ -65,7 +70,8 @@ Page({
     let dataset = e.currentTarget.dataset;
     let scId=dataset.scid;
     let schs=dataset.schs;
-    let cozName =dataset.cozname 
+    let cozName =dataset.cozname ;
+    let item=dataset.item
     console.log('scId'+scId)
     //console.log(JSON.stringify(e,undefined,'\t'))
     this.setData({
@@ -74,7 +80,8 @@ Page({
       moreleft:e.detail.x-78,
       scId:scId,
       schs:schs,
-      cozName:cozName
+      cozName:cozName,
+      item:item
     })
   },
   //查看督导记录
@@ -92,12 +99,13 @@ Page({
     let schtimes=schs.map(function(item,index,array){
       return item.schtime;
     })
+    let item=e.currentTarget.dataset.item;
     wx.showActionSheet({
       itemList: schtimes,
       success: function (res) {
         console.log('actinschs'+schs);
         wx.navigateTo({
-          url: '../monitorForm/monitorForm?ssId='+schs[res.tapIndex].schid,
+          url: '../monitorForm/monitorForm?ssId=' + schs[res.tapIndex].schid + '&item=' + JSON.stringify(item) + '&schtime=' + schs[res.tapIndex].schtime,
         })
         console.log(res.tapIndex)
       },
@@ -108,6 +116,7 @@ Page({
   },
   //督导转接
   transMonitor:function(e){
+    var that = this;
     let schs = e.currentTarget.dataset.schs;
     let schtimes = schs.map(function (item, index, array) {
       return item.schtime;
@@ -116,11 +125,58 @@ Page({
       itemList: schtimes,
       success: function (res) {
         let ssId=schs[res.tapIndex].schid;
+        that.setData({
+          ssId:ssId,
+          transmodel:true,
+        })
         console.log(res.tapIndex)
       },
       fail: function (res) {
         console.log(res.errMsg)
       }
+    })
+  },
+  transok:function(e){
+    //console.log('trans'+JSON.stringify(e,undefined,'\t'))
+    let ssId = e.currentTarget.dataset.ssid;
+    if(this.data.transman != '' && this.data.transweek!=''){
+      let sisMonitorTrans = {
+        "smtStatus": 0,
+        "smtWeek": parseInt(this.data.transweek),
+        "ssId": ssId,
+        "suId": this.data.transman
+      }
+      app.agriknow.applyMonTrans(ssId,sisMonitorTrans)
+        .then(data=>{
+
+        })
+        .catch(data=>{
+          console.log(data,undefined,'\t');
+        })
+    }else if(this.data.transweek == ''){
+      this.setData({
+        transerror1: true
+      })
+    }else if(this.data.transman ==''){
+      this.setData({
+        transerror2: true
+      })
+    }
+  
+  },
+  transcancel:function(){
+    this.setData({
+      transmodel:false,
+    })
+  },
+  inputblur1:function(e){
+    this.setData({
+      transweek:e.detail.value
+    })
+  },
+  inputblur2: function (e) {
+    this.setData({
+      transman: e.detail.value
     })
   },
   /**

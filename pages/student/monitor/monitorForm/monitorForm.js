@@ -1,3 +1,5 @@
+const app=getApp();
+const util=require('../../../../utils/util.js');
 Page({
 
   /**
@@ -13,79 +15,80 @@ Page({
     date: "2018-7-23",
     time: "12:12:12",
     validMin:1,
+    ssId:0,
+    week:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-  },
-  //步骤条操作
-  handleClick() {
-    const addCurrent = this.data.current + 1;
-    const current = addCurrent > 2 ? 2 : addCurrent;
+    let user = wx.getStorageSync('user')
+    let week = wx.getStorageSync('week')
+    let item=JSON.parse(options.item);
+    let ssId = parseInt(options.ssId);
+    let schtime=options.schtime;
     this.setData({
-      'current': current
-    })
-  },
-  form1:function(){
-    this.setData({
-      'current':0
-    })
-  },
-  form2:function(){
-    this.setData({
-      'current': 1
-    })
-  },
-  form3:function(){
-    this.setData({
-      'current': 2
-    })
-  },
-  //发起自动签到
-  onMan:function(event){
-    var detail = event.detail;
-    this.setData({
-      'manSwitch':detail.value
-    })
-  },
-  onAuto: function (event) {
-    var detail = event.detail;
-    this.setData({
-      'autoSwitch': detail.value
-    })
-  },
-  handleAutoChange({ detail = {} }){
-    this.setData({
-      'autoChecked': detail.current
-    })
-  },
-  handleManChange({ detail = {} }){
-    this.setData({
-      'manChecked': detail.current
+      schtime:schtime,
+      item:item,
+      user:user,
+      ssId: ssId,
+      week:week,
+      value1:100
     })
   },
 
-  //修改人工签到时间
-  bindDateChange: function (e) {
+  //督导表单提交
+  formSubmit:function(e){
+    var that = this;
+    let form = e.detail.value;
+    if(util.formUtil.ifBlank(form, ['ssvActualNum']) == false){
+      let sisSupervision={
+        "ssId": this.data.ssId,
+        "ssvActualNum": form.ssvActualNum,
+        "ssvMobileNum": form.ssvMobileNum || 0,
+        "ssvRecInfo": form.ssvRecInfo || '无',
+        "ssvSleepNum": form.ssvSleepNum || 0,
+        "ssvWeek": this.data.week
+      }
+
+      app.agriknow.insertMonRec(this.data.ssId,sisSupervision)
+        .then(data=>{
+            if(data.success == true){
+              wx.showToast({
+                title: '提交成功',
+                success:function(){
+                  that.formReset();
+                }
+              })
+            }else{
+              wx.showModal({
+                title: '提示',
+                content: data.message,
+                showCancel: false
+              })
+            }
+        })
+        .catch(data=>{
+
+        })
+    }else{
+      wx.showToast({
+        title: '实到人数不能为空',
+        icon:'none'
+      })
+    }
+  },
+  formReset:function(){
     this.setData({
-      date: e.detail.value
+      value1:'',
+      value2:'',
+      value3:'',
+      value4:''
     })
   },
-  bindTimeChange: function (e) {
-    console.log(e.detail.value);
-    this.setData({
-      time: e.detail.value + ":00"
-    })
-  },
-  //改变二维码有效时间
-  changeValidMin({ detail }){
-    this.setData({
-      validMin: detail.value
-    })
-  },
+
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

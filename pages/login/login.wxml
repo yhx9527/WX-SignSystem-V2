@@ -39,10 +39,10 @@
   <!--身份单选框-->
 
    <radio-group name="suType" class='row radio-group' >
-      <label><radio value="student" color='#12b7f4'/>学生</label>
-      <label><radio value="teacher" color='#12b7f4'/>老师</label>
-      <label><radio value="student,monitor" color='#12b7f4'/>督导员</label>
-      <label><radio value="administrator" color='#12b7f4'/>管理员</label>
+      <label style='margin-right:5px;'><radio value="student" color='#12b7f4'/>学生</label>
+      <label style='margin-right:5px;'><radio value="teacher" color='#12b7f4'/>老师</label>
+      <label style='margin-right:5px;'><radio value="student,monitor" color='#12b7f4'/>督导员</label>
+      <label style='margin-right:5px;'><radio value="administrator" color='#12b7f4'/>管理员</label>
     </radio-group>
 
   <!--按钮-->

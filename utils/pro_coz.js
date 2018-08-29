@@ -1,5 +1,5 @@
 class Table{
-  doDay(day){
+  doDaytoInt(day){
     let day1 =1;
     switch(day){
       case 'MONDAY':day1=1;
@@ -15,6 +15,26 @@ class Table{
       case 'SATURDAY': day1 = 6;
         break;
       case 'SUNDAY': day1 = 7;
+        break;
+    }
+    return day1;
+  }
+  doDaytoString(day) {
+    let day1 = 1;
+    switch (day) {
+      case 1: day1 = 'MONDAY';
+        break;
+      case 2: day1 = 'TUESDAY';
+        break;
+      case 3: day1 = 'WEDNESDAY';
+        break;
+      case 4: day1 = 'THURSDAY';
+        break;
+      case 5: day1 = 'FRIDAY';
+        break;
+      case 6: day1 = 'SATURDAY';
+        break;
+      case 7: day1 = 'SUNDAY';
         break;
     }
     return day1;
@@ -47,7 +67,7 @@ class Table{
         schedule['cozName'] = course.scName;
         schedule['cozMaxSize'] = course.scMaxSize;
         schedule['cozTea'] = course.sisJoinCourseList.filter(function (item, index, array){
-          return item.joinCourseType==='TEACHING'
+          return item.joinCourseType=== 1
         }).map(function(item,index,array){
           return item.sisUser.suName;
         })
@@ -57,18 +77,18 @@ class Table{
         let j = schs.length;
         while(j--){
           let sch = schs[j]
-          let day = that.doDay(sch.ssDayOfWeek);
+          //let day = that.doDay(sch.ssDayOfWeek);
           let time=sch.ssStartTime;
           let long=sch.ssEndTime-sch.ssStartTime+1;
           schedule['schId'] = sch.ssId;
-          schedule['schDay'] = day;
-          schedule['schLeft'] = width * (0.07 + 0.1324 * (day - 1));
+          schedule['schTerm'] = sch.ssYearEtTerm;
+          schedule['schDay'] = sch.ssDayOfWeek;
+          schedule['schLeft'] = width * (0.07 + 0.1324 * (sch.ssDayOfWeek - 1));
           schedule['schTop'] = 35 + 45 + 45 * (time - 1);
           schedule['schLong'] = long;
           schedule['schFort'] = that.doFort(sch.ssFortnight);
           schedule['schStartWeek'] = sch.ssStartWeek;
           schedule['schEndWeek'] = sch.ssEndWeek;
-          schedule['schTerm'] = sch.ssYearEtTerm;
           schedule['ifClass'] = true; 
         }
       }
@@ -116,23 +136,24 @@ class Table{
         coz['cozSize'] = course.scMaxSize;
         coz['cozName'] = course.scName;
         coz['cozTeaAbout'] = course.sisJoinCourseList.filter(function (item, index, array) {
-          return item.joinCourseType === 'TEACHING'
+          return item.joinCourseType === 1
         }).map(function (item, index, array) {
           return item.sisUser;
         })
         coz['cozStus'] = course.sisJoinCourseList.filter(function (item, index, array) {
-          return item.joinCourseType === 'ATTENDANCE'
+          return item.joinCourseType === 0
         }).map(function (item, index, array) {
           return item.sisUser;
         })
-        let schedules = course.sisSchedules;
+        let schedules = course.sisScheduleList;
         let j = schedules.length;
         let schs = [];
         while(j--){
           let sch = {};
           let schedule = schedules[j];
           sch['schid'] = schedule['ssId'];
-          sch['schtime'] = schedule['ssDayOfWeek']+' '+schedule['ssStartTime']+'-'+schedule['ssEndTime'];
+          let day = this.doDaytoString(schedule.ssDayOfWeek);
+          sch['schtime'] = day+' '+schedule['ssStartTime']+'-'+schedule['ssEndTime'];
           schs.push(sch);
         }
         coz['schs']=schs;
@@ -168,7 +189,8 @@ class Table{
     array.forEach(function(item,index,arra){
       if(item.sisSupervisions.length>0){
       try{
-      record['schtime'] = item.ssDayOfWeek+' '+item.ssStartTime+'-'+item.ssEndTime;
+        let day = that.doDaytoString(item.ssDayOfWeek);
+      record['schtime'] = day+' '+item.ssStartTime+'-'+item.ssEndTime;
       record['ssId'] = item.ssId;
       let temps = item.sisSupervisions  
       let i = temps.length;
