@@ -1,0 +1,7 @@
+<view class='row' style='margin-top:10vh;'>
+  <image src="https://static.dongtu.com/netpic/20161213193733EA5RBST9DUG642I5.gif" class='img'></image>
+  <view class='column about'>
+    <view class='cutline'></view>
+    <view class='font'>一路工作室出品</view>
+  </view>
+</view>

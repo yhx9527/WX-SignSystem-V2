@@ -1,0 +1,29 @@
+page{
+  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+}
+
+.img{
+  clip-path: polygon(40% 0,90% 50%, 40% 100%, 0 60%,0 40%);
+  height: 150px;
+  width: 150px;
+}
+.font{
+color:#6c5ce7;
+text-shadow:0 0 .1em,0 0 .3em;
+font-size:23px;
+margin-top:10px;
+margin-left:10px;
+
+}
+.cutline{
+ height:1px;
+width:150%;
+background-color:#a29bfe;
+
+}
+.about{
+  flex:1;
+margin-top:40px;
+align-items:center;
+
+}
