@@ -9,3 +9,8 @@ margin-bottom:1vh;
 height:4vh;
 
 }
+.modeltext{
+  border-bottom:1px solid #e9eaec;
+margin:0 10px;
+
+}

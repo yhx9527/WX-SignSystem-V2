@@ -12,7 +12,10 @@ class agriknow {
    */
   errorHander(message,res) {
     console.error(message)
-    
+    wx.showToast({
+      title: '连接出错',
+      icon:'loading'
+    })
   }
 
   /**
@@ -199,7 +202,7 @@ putMon(scId,sisCourse){
    * 接受或拒绝转接
    */
   doMonTrans(ssId,sisMonitorTrans){
-    return this._request.putRequest(this._baseUrl + 'schedules/' + ssId + '/monitor-trans',{'sisMonitorTrans':sisMonitorTrans})
+    return this._request.putRequest(this._baseUrl + 'schedules/' + ssId + '/monitor-trans',sisMonitorTrans)
   }
   /**
    * 申请转接

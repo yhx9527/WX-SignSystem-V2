@@ -5,10 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    translist_do:[1,2,3,4,5,6,7,8],
+    translist_do:[],
     current:'untreated',
-    translist_agree: [1, 2],
-    translist_reject: [1, 2],
+    translist_agree: [],
+    translist_reject: [],
     visiable1:false,
     showcancel:false,
     spanshow:false,
@@ -20,13 +20,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.agriknow.getMonTrans('untreated')
-      .then(data=>{
-        
-      })
-      .catch(data=>{
-
-      })
+    let detail={key:'untreated'};
+    this.handleChange({detail});
   },
   //换标签页
   handleChange({ detail }) {
@@ -38,16 +33,38 @@ Page({
       });
       app.agriknow.getMonTrans(detail.key)
         .then(data=>{
-          resolve(data)
+          if (data.success == true) {
+            let translists = app.table.dotrans(data.array);
+            resolve({status:detail.key,translists:translists});
+          } else {
+            reject(data);
+          }
         })
         .catch(data=>{
           reject(data)
         })
     })
     .then(data=>{
-      that.setData({
-        spanshow:false
-      })
+      switch (data.status) {
+        case 'untreated':
+          that.setData({
+            spanshow: false,
+            translist_do: data.translists
+          })
+          break;
+        case 'agree': 
+          that.setData({
+          spanshow: false,
+          translist_agree: data.translists
+        })
+          break;
+        case 'disagree': 
+          that.setData({
+          spanshow: false,
+          translist_reject: data.translists
+        })
+          break;
+      }
     })
     .catch(data=>{
         that.setData({
@@ -55,15 +72,18 @@ Page({
         })
         wx.showToast({
           title: '加载失败',
+          icon:'none'
         })
     })
     
 
   },
   //转接的课程详情显示
-  handleOpen1: function () {
+  handleOpen1: function (e) {
+    let trans = e.currentTarget.dataset.item;
     this.setData({
-      visible1: true
+      visible1: true,
+      trans:trans
     });
   },
   handleClose1() {
@@ -72,13 +92,68 @@ Page({
     });
   },
   //处理转接
-  rejectTrans:function(){
+  rejectTrans:function(e){
+    let trans = e.currentTarget.dataset.item;
+    let sisMonitorTrans={
+      "smtStatus": 2,
+      "smtWeek": trans.week,
+      "ssId": trans.schId,
+      "suId": trans.userId
+    }
+    app.agriknow.doMonTrans(trans.schId,sisMonitorTrans)
+      .then(data=>{
+        if (data.success == 2) {
+          let detail = { key: 'disagree' };
+          that.handleChange({ detail });
+        } else {
+          wx.showToast({
+            title: '操作失败',
+            icon: 'none'
+          })
+        }
+      })
+      .catch(data=>{
+
+      })
+  },
+  agreeTrans:function(e){
+    let trans = e.currentTarget.dataset.item;
+    let sisMonitorTrans = {
+      "smtStatus": 1,
+      "smtWeek": trans.week,
+      "ssId": trans.schId,
+      "suId": trans.userId
+    }
+    var that = this;
+    app.agriknow.doMonTrans(trans.schId, sisMonitorTrans)
+      .then(data => {
+        if(data.success==1){
+          let detail = { key: 'agree' };
+          that.handleChange({ detail });
+        }else{
+          wx.showToast({
+            title: '操作失败',
+            icon:'none'
+          })
+        }
+      })
+      .catch(data => {
+        
+      })
+  },
+
+  //转接课程的督导
+  transToMon:function(e){
+    let trans = e.currentTarget.dataset.item;
+    let item = {
+      cozName: trans.schname,
+      cozSize: trans.schsize
+    }
+    wx.navigateTo({
+      url: '../monitorForm/monitorForm?ssId=' + trans.schId + '&item=' + JSON.stringify(item) + '&schtime=' + trans.time
+    })
 
   },
-  agreeTrans:function(){
-
-  },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

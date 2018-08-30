@@ -10,36 +10,36 @@
 </i-tabs>
 <view class='container1'>
 <view wx:if="{{current=='untreated'}}">
-<block wx:for='{{translist_do}}' wx:for-index='{{index}}' wx:for-item='{{item}}'>
+<block wx:for='{{translist_do}}' wx:for-index='index' wx:for-item='item'>
   <i-swipeout  i-class="i-swipeout-demo-item" operateWidth="{{140}}" unclosable="{{true}}" toggle="{{toggle}}">
-        <view slot="content"  catchtap='handleOpen1'>
+        <view slot="content"  catchtap='handleOpen1' data-item="{{item}}">
            <view  class="i-swipeout-image">
                 <i-icon size="20" color="#FFFFFF" type="feedback_fill"></i-icon>
            </view>
            <view class="i-swipeout-des">
-                <view class="i-swipeout-des-h2">转接人</view>
+                <view class="i-swipeout-des-h2">转接人:{{item.userId}}  {{item.username}}</view>
                 <view class="i-swipeout-des-detail">点击可查看转接课程详情</view>
            </view>
         </view>
         <view slot="button" class="i-swipeout-demo-button-group" style="background:#2db7f5;">
-            <view class="i-swipeout-demo-button" style="width:70px;background:#74b9ff;" bindtap="rejectTrans"><i-icon size="32" type="delete_fill"></i-icon>拒绝</view>
-            <view class="i-swipeout-demo-button" style="width:70px" bindtap="agreeTrans"> <i-icon size="32" type="like_fill"></i-icon>接受</view>
+            <view class="i-swipeout-demo-button" style="width:70px;background:#74b9ff;" bindtap="rejectTrans" data-item="{{item}}"><i-icon size="32" type="delete_fill"></i-icon>拒绝</view>
+            <view class="i-swipeout-demo-button" style="width:70px" bindtap="agreeTrans" data-item='{{item}}'> <i-icon size="32" type="like_fill"></i-icon>接受</view>
         </view>
     </i-swipeout>
   </block>
   </view>
 
   <view wx:if="{{current=='agree'}}">
-    <block wx:for='{{translist_agree}}' wx:for-index='{{index}}' wx:for-item='{{item}}'>
+    <block wx:for='{{translist_agree}}' wx:for-index='index' wx:for-item='item'>
   <view  class="i-swipeout-wrap i-swipeout-demo-item">
       <view class='i-swipeout-item'>
-        <view class='i-swipeout-content' catchtap='handleOpen1'>
+        <view class='i-swipeout-content' catchtap='transToMon' data-item="{{item}}">
            <view class="i-swipeout-image" style='background:#55efc4;'>
                 <i-icon size="20" color="#FFFFFF" type="success_fill"></i-icon>
            </view>
            <view class="i-swipeout-des" >
-                <view class="i-swipeout-des-h2">第七个小矮人</view>
-                <view class="i-swipeout-des-detail">点击可查看转接课程详情</view>
+                <view class="i-swipeout-des-h2">转接人:{{item.userId}}  {{item.username}}</view>
+                <view class="i-swipeout-des-detail"style='color:#00b894;'>点击可进行课程督导</view>
            </view>
         </view>
       </view>
@@ -48,32 +48,31 @@
   </view>
 
   <view wx:if="{{current=='disagree'}}">
-    <block wx:for='{{translist_reject}}' wx:for-index='{{index}}' wx:for-item='{{item}}'>
+    <block wx:for='{{translist_reject}}' wx:for-index='index' wx:for-item='item'>
   <view  class="i-swipeout-wrap i-swipeout-demo-item">
       <view class='i-swipeout-item'>
-        <view class='i-swipeout-content' catchtap='handleOpen1'>
+        <view class='i-swipeout-content' catchtap='handleOpen1' data-item="{{item}}">
            <view class="i-swipeout-image" style='background:#ff7675;'>
                 <i-icon size="20" color="#FFFFFF" type="delete_fill"></i-icon>
            </view>
            <view class="i-swipeout-des">
-                <view class="i-swipeout-des-h2">第七个小矮人</view>
-                <view class="i-swipeout-des-detail">点击可查看转接课程详情</view>
+                <view class="i-swipeout-des-h2">转接人:{{item.userId}}  {{item.username}}</view>
+                <view class="i-swipeout-des-detail" >点击可查看转接课程详情</view>
            </view>
         </view>
       </view>
     </view>
   </block>
   </view>
-  <i-spin wx:if='{{spanshow}}' size='large' i-class='spin'></i-spin>
+  <i-spin fix wx:if='{{spanshow}}' size='large' i-class='spin'></i-spin>
 </view>
-  <i-modal title="转接课程名" visible="{{ visible1 }}" bind:ok="handleClose1" ok-text='了解' show-cancel='{{showcancel}}'>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
+  <i-modal title="转接课程信息" visible="{{ visible1 }}" bind:ok="handleClose1" ok-text='了解' show-cancel='{{showcancel}}'>
+    <view>来自{{trans.username}}</view>
+    <view>课程名:{{trans.schname}}</view>
+    <view>周次:{{trans.week}}</view>
+    <view>时间:{{trans.time}}</view>
+    <view>课程人数:{{trans.schsize}}</view>
+    <view>课程周数:{{trans.weektime}}</view>
+    <view wx:if='{{trans.fort==1}}'>单周</view>
+    <view wx:if='{{trans.fort==2}}'>双周</view>
 </i-modal>

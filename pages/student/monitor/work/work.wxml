@@ -49,8 +49,8 @@
 
 <!--转接输入框-->
 <i-modal title="转接信息" visible="{{ transmodel }}" bind:ok="transok" bind:cancel="transcancel" data-ssid="{{ssId}}">
-     <i-input value="{{ transweek }}" i-class='modal_input' type="number" right title="转接周" mode="wrapped" placeholder="输入哪一周进行转接" error='{{transerror1}}' bindblur='inputblur1'/>
-     <i-input value="{{ transman }}"  i-class='modal_input' type="number" right title="转接人学号" mode="wrapped" placeholder="接受转接的人" error='{{transerror2}}' bindblur='inputblur2'/>
+     <i-input value='{{transweek}}' i-class='modal_input' type="number" right title="转接周" mode="wrapped" placeholder="输入哪一周进行转接" error='{{transerror1}}' bindblur='inputblur1'/>
+     <i-input  value='{{transman}}' i-class='modal_input' type="number" right title="转接人学号" mode="wrapped" placeholder="接受转接的人" error='{{transerror2}}' bindblur='inputblur2'/>
 </i-modal>
 <!--审核请假-->
 <!--scroll-view  wx:if="{{current == 'tab3' }}"scroll-y="true" >

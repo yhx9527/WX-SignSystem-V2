@@ -2,7 +2,7 @@
 <i-tab-bar current="{{ current }}" color="#55efc4" bindchange="handleChange" fixed="true">
     <i-tab-bar-item key="sign" icon="brush" current-icon="brush_fill" title="签到课程"></i-tab-bar-item>
     <i-tab-bar-item key="courseTable" icon="activity" current-icon="activity_fill" title="课程表"></i-tab-bar-item>
-    <i-tab-bar-item wx:if="{{ismonitor}}" key="monitor" icon="browse" current-icon="browse_fill" title="督导"></i-tab-bar-item>
+    <i-tab-bar-item wx:if="{{ismonitor}}" key="monitor" icon="browse" current-icon="browse_fill" title="督导" ></i-tab-bar-item>
     <i-tab-bar-item key="self" icon="mine" current-icon="mine_fill" title="个人中心"></i-tab-bar-item>
 </i-tab-bar>
 

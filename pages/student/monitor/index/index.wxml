@@ -3,28 +3,28 @@
     <image src="../../images/1.jpg" class='peitu'></image>
     <view class='column cardContent'>
       <view class="cardTitle">课堂督导</view>
-      <view class='cardMes' style='flex:1;'>本模块中督导员可进行课程督导，督导记录的查询以及督导转接他人</view>
-      <view class="cardMes warn">有事件待处理</view>
+      <view class='cardMes' style='flex:1;'>本模块中督导员可进行课程督导，督导记录的查询以及督导转接他人<text style='color:#ecfd13;'>(只包含长期的督导课程)</text></view>
+      <!--view class="cardMes warn">有事件待处理</view-->
     </view>
   </navigator>
   </view>
   <view class='shadow_wrap middle' style='margin-top:15%;'>
-  <navigator class="recCard row floating"style='background-color: #b4aefe;' catchtap='mon_pond' url='/pages/student/monitor/monitorPond/monitorPond'>
+  <navigator class="recCard row floating"style='background-color: #b4aefe;'  url='/pages/student/monitor/monitorPond/monitorPond'>
     <image src="../../images/1.jpg"  class='peitu'></image>
     <view class='column cardContent'>
       <view class="cardTitle">督导池</view>
       <view class='cardMes'style='flex:1;'>本模块中督导员可以查看并自主领取需督导的课程</view>
-      <view class="cardMes warn">有事件待处理</view>
+      <view class="cardMes warn" wx:if='{{newpond}}'>有课程等待领取</view>
     </view>
   </navigator>
   </view>
 <view class='shadow_wrap middle' style='margin-top:15%;'>
-  <navigator class="recCard row floating"style='background-color: #c6c2fe;'  url='/pages/student/monitor/monitorTrans/monitorTrans'>
+  <view class="recCard row floating"style='background-color: #c6c2fe;' catchtap='entertrans'>
     <image src="../../images/1.jpg"  class='peitu'></image>
     <view class='column cardContent'>
       <view class="cardTitle">督导转接</view>
       <view class='cardMes'style='flex:1;'>本模块中督导员可查看并操作转接给本人的督导课程</view>
-      <view class="cardMes warn">有事件待处理</view>
+      <view class="cardMes warn" wx:if='{{newtrans}}'>您有新的转接了</view>
     </view>
-  </navigator>
+  </view>
 </view>

@@ -12,8 +12,8 @@ Page({
     ifmore:false,
     monitorlist:[],
     transmodel:false,
-    transweek:'2',
-    transman:'2016220401007',
+    transweek:'',
+    transman:'',
     transerror1:false,
     transerror2:false
   },
@@ -150,7 +150,7 @@ Page({
         "smtStatus": 0,
         "smtWeek": parseInt(this.data.transweek),
         "ssId": ssId,
-        "suId": this.data.transman
+        "suId": this.data.transman.toString()
       }
       app.agriknow.applyMonTrans(ssId,sisMonitorTrans)
         .then(data=>{
@@ -192,14 +192,14 @@ Page({
       transmodel:false,
     })
   },
-  inputblur1:function(e){
+  inputblur1(e){
     this.setData({
-      transweek:e.detail.value
+      transweek:parseInt(e.detail.detail.value)
     })
   },
-  inputblur2: function (e) {
+  inputblur2(e) {
     this.setData({
-      transman: e.detail.value
+      transman: parseInt(e.detail.detail.value)
     })
   },
   /**

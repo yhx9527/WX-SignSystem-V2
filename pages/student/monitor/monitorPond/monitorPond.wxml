@@ -7,12 +7,12 @@
       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#0984e3;height:50px;width:50px;line-height:50px;margin-left:5px;'>
         <view class="fa fa-bookmark fa-lg"style='vertical-align:middle;color:#FFFFFF'></view>
       </view>
-      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style='padding-left:15px;padding-bottom:5px;'catchtap='handleOpen1'>
-        <view class="weui-media-box__title"style='color:#1c2438;'>课程</view>
-        <view class="weui-media-box__desc">时间：{{item.cozTime}}</view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style='padding-left:15px;padding-bottom:5px;'catchtap='handleOpen1' data-item='{{item}}'>
+        <view class="weui-media-box__title"style='color:#1c2438;'>{{item.cozName}}</view>
+        <view class="weui-media-box__desc">老师:{{item.cozTea}}</view>
         <view class="weui-media-box__desc"style='color:#e67e22;margin-top:2px;' >点击可查看详情<i-icon type="enterinto" size='18' /></view>
       </view>
-      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB;border-radius:0px;margin-right:0px;width:80px;font-size:16px;height:60px;color:#2d3436;line-height:60px;' catchtap='handleOpen2'>
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB;border-radius:0px;margin-right:0px;width:80px;font-size:16px;height:60px;color:#2d3436;line-height:60px;' catchtap='handleOpen2' data-scid='{{item.cozId}}'>
        领取
       </view>
     </view>
@@ -29,16 +29,17 @@
     </view>
 </i-page>
 </view>
-<i-modal title="课程名" visible="{{ visible1 }}" bind:ok="handleClose1" ok-text='了解' show-cancel='{{showcancel}}'>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
-    <view>一些文本</view>
+<i-modal title="课程相关信息" visible="{{ visible1 }}" bind:ok="handleClose1" ok-text='了解' show-cancel='{{showcancel}}'>
+    <view>课程名：{{pond.cozName}}</view>
+    <view>课程老师：{{pond.cozTea}}</view>
+    <view class='modeltext'>课程人数：{{pond.cozSize}}</view>
+    <view wx:for='{{pond.schs}}' wx:for-item='pondsch' class='modeltext'>
+      <view>排课号：{{pondsch.schId}}</view>
+      <view>学期：{{pondsch.term}}</view>
+      <view>课时：{{pondsch.time}}</view>
+      <view>周数：{{pondsch.weekTime}}</view>
+      <view>{{pondsch.fort}}</view>
+    </view>
 </i-modal>
 
 <i-modal visible="{{ visible2 }}" bind:ok="handleCloseOk" bind:cancel="handleCloseCancel">

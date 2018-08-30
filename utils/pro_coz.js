@@ -51,6 +51,18 @@ class Table{
     }
     return fort1;
   }
+  doFortToString(fort){
+    let fort1 = '全周';
+    switch (fort) {
+      case 0: fort1 = '全周';
+        break;
+      case 1: fort1 = '单周';
+        break;
+      case 2: fort1 = '双周';
+        break;
+    }
+    return fort1;
+  }
   /**
    * 课程表根据course提取schedule
    */
@@ -128,8 +140,8 @@ class Table{
     let course;
     let i = courses.length;
     let cozs=[];
-    let coz={};
     while(i--){
+      let coz = {};
       try{
         course = courses[i]
         coz['cozId'] = course.scId;
@@ -243,6 +255,70 @@ class Table{
       //console.log('ifflag:'+ifflag)
       return ifflag
     })
+  }
+  /**
+   * 督导转接的处理函数
+   */
+  dotrans(array){
+    let translist=[];
+    let i = array.length;
+    while(i--){
+      let trans={};
+      let arr = array[i];
+      try{
+      trans['userId'] = arr.suId;
+      trans['schId'] = arr.ssId;
+      trans['week'] = arr.smtWeek;
+      trans['schname'] = arr.sisSchedule.sisCourse.scName;
+      trans['schsize'] = arr.sisSchedule.sisCourse.scMaxSize;
+      trans['username'] = arr.sisSchedule.sisCourse.sisUser.suName;
+      trans['weektime'] = arr.sisSchedule.ssStartWeek+'-'+arr.sisSchedule.ssEndWeek;
+      let day = this.doDaytoString(arr.sisSchedule.ssDayOfWeek);
+      trans['time'] = day+' '+arr.sisSchedule.ssStartTime+'-'+arr.sisSchedule.ssEndTime;
+      trans['fort'] = arr.sisSchedule.ssFortnight;
+      }catch(e){
+        console.log('生成督导转接列表出错')
+      }
+      translist.push(trans);
+    }
+    return translist;
+  }
+  /**
+   * 督导池塘列表处理函数
+   */
+  domonpond(array){
+    let that=this;
+    let pondlist=[];
+    let i = array.length;
+    while(i--){
+      let pond={};
+      let arr = array[i];
+      try{
+      pond['cozId'] = arr.scId;
+      pond['cozName'] = arr.scName;
+      pond['cozSize'] = arr.scMaxSize;
+      pond['cozTea'] = arr.sisJoinCourseList.filter(function (item, index, array) {
+          return item.joinCourseType === 1
+        }).map(function (item, index, array) {
+          return item.sisUser.suName;
+        }).join(' ')
+      pond['cozIfMon'] = arr.scNeedMonitor;
+      pond['schs']=arr.sisScheduleList.map(function(item,index,array){
+        let sch = {};
+        sch['schId']=item.scId;
+        sch['term']=item.ssYearEtTerm;
+        let day = that.doDaytoString(item.ssDayOfWeek);
+        sch['time'] = day+' '+item.ssStartTime+'-'+item.ssEndTime;
+        sch['weekTime'] = item.ssStartWeek+'-'+item.ssEndWeek;
+        sch['fort']=that.doFortToString(item.ssFortnight);
+        return sch;
+      })
+      }catch(e){
+        console.log('生成督导池的督导出错')
+      }
+      pondlist.push(pond);
+    }
+    return pondlist
   }
 }
 export default Table

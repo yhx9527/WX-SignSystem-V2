@@ -34,7 +34,6 @@ Page({
       user:user,
       ssId: ssId,
       week:week,
-      value1:100
     })
   },
 
@@ -70,7 +69,13 @@ Page({
             }
         })
         .catch(data=>{
-
+          if(data.statusCode == 403){
+            wx.showModal({
+              title: '提示',
+              content: "该周您无权督导",
+              showCancel: false
+            })
+          }
         })
     }else{
       wx.showToast({

@@ -35,6 +35,8 @@ Page({
     schedules:[],
     visible1: false,
     ismonitor:false,
+    newtrans:false,
+    newpond:false
   },
 
   /**
@@ -86,6 +88,9 @@ Page({
 //切换底部栏
   handleChange({ detail }) {
     var key = detail.key;
+    if(key == "monitor"){
+      this.aheadMon();
+    }
     this.setData({
       current: key
     });
@@ -233,6 +238,44 @@ Page({
     wx.navigateTo({
       url: '../courseMore/courseMore?schedule='+JSON.stringify(schedule),
     })
+  },
+//督导功能页链接进入
+entertrans:function(){
+  this.setData({
+    newtrans:false
+  })
+  wx.navigateTo({
+    url:'/pages/student/monitor/monitorTrans/monitorTrans',
+  })
+},
+
+  //督导信息预加载提示
+aheadMon:function(){
+    var that = this;
+    app.agriknow.getMonTrans('untreated')
+      .then(data=>{
+        if(data.success == true){
+          if(data.array.length>0){
+            that.setData({
+              newtrans:true
+            })
+          }
+        }
+      })
+      .catch(data=>{
+
+      })
+    app.agriknow.getStuCourse('monitor', { 'hasMonitor': false, 'needMonitor': true, 'page': 1 })
+      .then(data => {
+        if (data.success == true) {
+          that.setData({
+            newpond:true
+          })
+        }
+      })
+      .catch(data => {
+
+      })
   },
 
  
