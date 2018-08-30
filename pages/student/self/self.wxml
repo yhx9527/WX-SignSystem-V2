@@ -13,7 +13,7 @@
     </i-cell>
   </button>
 
-  <i-cell title="使用帮助" is-link i-class="funFont" isHover>
+  <i-cell title="使用帮助" is-link i-class="funFont" isHover url='/pages/common/help/help'>
      <i-icon type="feedback_fill" slot="icon" color="#25CCF7" size="20"/>
   </i-cell>
 </i-cell-group>

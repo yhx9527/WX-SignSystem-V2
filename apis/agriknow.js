@@ -92,7 +92,7 @@ class agriknow {
     return this._request.getRequest(this._baseUrl+'courses',data)
   }
   /**
-   * 正确的登录之后方可绑定微信的整合，先是正确获取课程，之后异步获取当前周及绑定微信
+   * 老师，学生，督导员正确的登录之后方可绑定微信的整合，先是正确获取课程，之后异步获取当前周及绑定微信
    */
   after_login(){
     var that = this;
@@ -164,7 +164,42 @@ class agriknow {
       })
     })
   }
+/**
+ * 管理员登录后处理函数
+ */
+admin_login(){
+  var that = this;
+    let ifBind = wx.getStorageSync('ifBind');
+    let suId = wx.getStorageSync('suId') || wx.getStorageSync('user').suId;
+    if (ifBind != true) {
+      that.putWX(suId)
+        .then(data => {
+          if (data.success == true) {
+            wx.setStorage({
+              key: 'ifBind',
+              data: true,
+            })
+            that.header({ 'Authorization': 'Bearer ' + data['access_token'] })
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '该账号已被他人绑定,请使用新账号',
+              showCancel: false,
+              success: function (res) {
+                if (res.confirm) {
+                  wx.reLaunch({
+                    url: '/pages/login/login',
+                  })
+                }
+              }
+            })
+          }
+        })
+        .catch(data => {
 
+        })
+    } 
+}
 /**
  * 修改督导
  */

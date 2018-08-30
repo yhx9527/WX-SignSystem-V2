@@ -3,6 +3,7 @@
     "pages/login/login",
     "pages/student/sign/sign",
     "pages/common/about/about",
+    "pages/common/help/help",
     "pages/student/monitor/work/work",
     "pages/student/monitor/monitorForm/monitorForm",
     "pages/student/leave/leave",
@@ -11,10 +12,12 @@
     "pages/student/monitor/monitorTrans/monitorTrans",
     "pages/student/monitor/monitorRec/monitorRec",
     "pages/teacher/index/index",
-    "pages/admin/index/index",
+   
     "pages/student/courseMore/courseMore",
     "pages/teacher/teaModules/teaModules",
-    "pages/teacher/teaSign/teaSign"
+    "pages/teacher/teaSign/teaSign",
+    "pages/admin/index/index",
+    "pages/admin/courses/courses"
 
   ],
   "window":{

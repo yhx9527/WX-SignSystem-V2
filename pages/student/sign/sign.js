@@ -68,14 +68,13 @@ Page({
         if(data.success){
           var coz = table.docoz(data.array,width);
           //console.log('coz'+JSON.stringify(coz,undefined,'\t'))
-          let week = wx.getStorageSync('week');
+          let week1 = wx.getStorageSync('week');
           let term = coz[0].schTerm;
           let termArray=term.split('-')
-          wx.setStorageSync('term',term )
-          week = week ? week : 1; 
+          wx.setStorageSync('term',term )  
           var schedules = table.doschs(coz,week,term)
           that.setData({
-            week:week,
+            week:week1 || 1,
             year:parseInt(termArray[0]),
             term:parseInt(termArray[2]),
             coz:coz,

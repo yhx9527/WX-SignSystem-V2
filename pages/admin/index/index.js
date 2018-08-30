@@ -6,19 +6,35 @@ Page({
    */
   data: {
     showSelf: false,
+    week:1,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.agriknow.after_login()
+    var that=this;
+    let user=wx.getStorage({
+      key: 'user',
+      success: function(res) {
+        that.setData({
+          user:res.data
+        })
+      },
+    })
+    app.agriknow.admin_login();
+    app.agriknow.getWeek()
       .then(data=>{
-
+        that.setData({
+          week:data.week
+        })
+        wx.setStorageSync('week', data.week)
       })
       .catch(data=>{
-        
+
       })
+    
   },
 
   //个人中心抽屉

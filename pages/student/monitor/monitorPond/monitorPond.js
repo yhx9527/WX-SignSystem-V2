@@ -24,7 +24,7 @@ Page({
         if(data.success == true){
           let pondlist = app.table.domonpond(data.data.list);
           that.setData({
-            total:data.data.total,
+            total:data.data.pageNum,
             pondlist:pondlist
           })
         }

@@ -1,6 +1,7 @@
 /**app.wxss**/
 @import "./style/weui.wxss";
 @import "./style/font_awesome.wxss";
+@import '/style/font.wxss';
 .container {
   height: 100%;
   display: flex;
