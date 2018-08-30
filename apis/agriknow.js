@@ -99,7 +99,7 @@ class agriknow {
     return new Promise((resolve,reject)=>{
       that.getStuCourse()
         .then(data => {
-        if(data.success==true){
+        if(data.success==true || data.message==="No courses"){
           that.getWeek()
             .then((data) => {
               wx.setStorageSync('week', data.week)
@@ -118,6 +118,19 @@ class agriknow {
                     data: true,
                   })
                   that.header({ 'Authorization': 'Bearer ' + data['access_token']})
+                }else{
+                  wx.showModal({
+                    title: '提示',
+                    content: '该账号已被他人绑定,请使用新账号',
+                    showCancel:false,
+                    success:function(res){
+                      if(res.confirm){
+                        wx.reLaunch({
+                          url: '/pages/login/login',
+                        })
+                      }
+                    }
+                  })
                 }
                 
 
