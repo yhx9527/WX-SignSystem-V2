@@ -1,0 +1,17 @@
+<view class="caption-wrap">
+    <view class="basefont caption-title">使用帮助</view>
+    <i-collapse name="{{name}}" accordion>
+      <block wx:for='{{helplist}}' wx:for-item='item'>
+        <i-collapse-item
+                name="{{item.name}}"
+                title="{{item.title}}"
+                i-class='collapse'
+                i-class-title="collapse-item-title"
+                i-class-content="collapse-item-content">
+            <view slot="content">
+                {{item.content}}
+            </view>
+        </i-collapse-item>
+      </block>
+    </i-collapse>
+</view>
