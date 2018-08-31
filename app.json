@@ -12,12 +12,12 @@
     "pages/student/monitor/monitorTrans/monitorTrans",
     "pages/student/monitor/monitorRec/monitorRec",
     "pages/teacher/index/index",
-   
     "pages/student/courseMore/courseMore",
     "pages/teacher/teaModules/teaModules",
     "pages/teacher/teaSign/teaSign",
     "pages/admin/index/index",
-    "pages/admin/courses/courses"
+    "pages/admin/courses/courses",
+    "pages/admin/courseDo/courseDo"
 
   ],
   "window":{

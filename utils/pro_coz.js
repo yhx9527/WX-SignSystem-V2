@@ -320,5 +320,46 @@ class Table{
     }
     return pondlist
   }
+  /**
+   * 管理员查看课程列表处理函数
+   */
+  doadmincourses(array){
+    let courses = [];
+    let i = array.length;
+    while(i--){
+      let course={};
+      let arr=array[i];
+      try{
+      course['cozid'] = arr.scId;
+      course['cozname'] = arr.scName;
+      course['cozsize'] = arr.scMaxSize;
+      course['ifmon'] = arr.scNeedMonitor;
+      course['monitor'] = arr.scNeedMonitor ? arr.monitor :{};
+      course['cozstop'] = arr.sisScheduleList;
+      course['students'] = arr.sisJoinCourseList.filter(item=>{
+        return item.joinCourseType == 0;
+      }).map(item=>{
+        return item.sisUser;
+      })
+      course['teachers'] = arr.sisJoinCourseList.filter(item => {
+        return item.joinCourseType == 1;
+      }).map(item => {
+        return item.sisUser;
+      })
+      if(course['teachers'].length >1){
+      course['coztea'] = course['teachers'].reduce((prev,next,index,array)=>{
+        return prev.suName+' '+next.suName;
+      })
+      }else{
+        course['coztea'] = course['teachers'][0].suName;
+      }
+      }catch(e){
+        console.log('生成管理员查看课程列表出错');
+      }
+      courses.push(course);
+
+    }
+    return courses;
+  }
 }
 export default Table

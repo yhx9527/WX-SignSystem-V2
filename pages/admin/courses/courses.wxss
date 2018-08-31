@@ -1,0 +1,5 @@
+@import '/pages/student/monitor/monitorForm/monitorForm.wxss';
+.add{
+  margin-bottom: 15px;
+  box-shadow: 0 0 10px rgba(123, 114, 233, 0.3);
+}

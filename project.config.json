@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 15,
+			"current": 16,
 			"list": [
 				{
 					"id": -1,
@@ -128,7 +128,13 @@
 				{
 					"id": -1,
 					"name": "help",
-					"pathName": "pages/common/help/help"
+					"pathName": "pages/common/help/help",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "courseDo",
+					"pathName": "pages/admin/courseDo/courseDo"
 				}
 			]
 		}

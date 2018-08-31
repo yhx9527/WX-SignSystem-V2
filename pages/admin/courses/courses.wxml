@@ -1,0 +1,25 @@
+<view class='courseTitle'>课程管理 /</view>
+<block wx:for='{{courses}}' wx:for-item='item' wx:for-index='index'>
+ <view class='item-view item-view1 column add' catchtap='coursemore' data-item='{{item}}'>
+    <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB'>
+        <view class="fa fa-balance-scale fa-2x"style='vertical-align:middle;color:#FFFFFF'></view>
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title"style='color:#1c2438;'>{{item.cozname}}</view>
+        <view class="weui-media-box__desc">老师：{{item.coztea}}</view>
+        <view class="weui-media-box__desc">点击查看详情</view>
+      </view>
+    </view>
+</view>
+</block>
+<i-page current="{{ page }}" total="{{ total }}" bind:change="pageChange">
+    <view slot="prev">
+        <i-icon type="return"></i-icon>
+        上一页
+    </view>
+    <view slot="next">
+        下一页
+        <i-icon type="enter"></i-icon>
+    </view>
+</i-page>

@@ -1,0 +1,9 @@
+<view>
+
+</view>
+<view class='button button-3d button-primary button-rounded' catchtap='monitorModel'><i class="fa fa-tv"></i>修改督导</view>
+<view class='button button-3d button-royal button-rounded' style='float:right;' catchtap='beginsign'><i class="fa fa-edit" ></i>发起签到</view>
+<i-modal title="修改督导" visible="{{ visible1 }}" bind:ok="putmonitor" bind:cancel="handleClose1">
+     <radio-group bindchange='monradio'><label><radio value="yesmon" color='#12b7f4'/>是否发起督导</label></radio-group>
+     <i-input value='{{monitorman}}' i-class='modal_input' type="number" right title="督导员" mode="wrapped" placeholder="请输入督导员学号" error='{{transerror1}}' bindblur='inputblur1'/>
+</i-modal>
