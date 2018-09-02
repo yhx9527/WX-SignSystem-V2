@@ -43,7 +43,22 @@ Page({
         }
       })
       .catch(data => {
-
+        if (data.message) {
+          wx.showModal({
+            title: '提示',
+            content: res.data.message,
+            showCancel: false,
+            success: function (res1) {
+              if (res1.confirm) {
+                if (res.statusCode >= 400 && res.statusCode <= 403) {
+                  wx.reLaunch({
+                    url: '/pages/login/login',
+                  })
+                }
+              }
+            }
+          })
+        }
       })
   },
   /**分页 */

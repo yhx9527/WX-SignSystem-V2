@@ -5,8 +5,8 @@
     <view class="weui-cell__hd">
       <view class="fa fa-user-circle fa-lg"style='color:{{iconBackColor[index%10]}}'></view>
     </view>
-    <view class="weui-cell__bd"style='margin-left:10px;'>{{item.userId}}</view>
-    <view class="weui-cell__ft">{{item.userName}}</view>
+    <view class="weui-cell__bd"style='margin-left:10px;'>{{item.suId}}</view>
+    <view class="weui-cell__ft">{{item.suName}}</view>
   </view>
   </block>
 </view>

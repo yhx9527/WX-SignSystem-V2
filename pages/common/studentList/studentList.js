@@ -5,14 +5,17 @@ Page({
    */
   data: {
     iconBackColor: ['#0099CC', '#33CC99', '#FF6666', '#FF9900', '#99CC33', '#99CCCC', '#FF9966', '#FF9999', '#CCCCFF', '#99CCCC'],
-    stuList: [{ userId: 2016220401001, userName: '卢' }, { userId: 2016220401002, userName: '沙' }]
+    stuList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    let stuList = JSON.parse(options.list);
+    this.setData({
+      stuList:stuList
+    })
   },
 
   /**

@@ -97,16 +97,17 @@ class agriknow {
   after_login(){
     var that = this;
     return new Promise((resolve,reject)=>{
+      that.getWeek()
+        .then((data) => {
+          wx.setStorageSync('week', data.week)
+        })
+        .catch((data) => {
+
+        })
       that.getStuCourse()
         .then(data => {
         if(data.success==true || data.message==="No courses"){
-          that.getWeek()
-            .then((data) => {
-              wx.setStorageSync('week', data.week)
-            })
-            .catch((data)=>{
-
-            })
+          
           let ifBind=wx.getStorageSync('ifBind');
           let suId = wx.getStorageSync('suId') || wx.getStorageSync('user').suId;
           if(ifBind != true){
@@ -170,8 +171,10 @@ class agriknow {
 admin_login(){
   var that = this;
     let ifBind = wx.getStorageSync('ifBind');
-    let suId = wx.getStorageSync('suId') || wx.getStorageSync('user').suId;
-    if (ifBind != true) {
+  let user = wx.getStorageSync('user');
+    let suId = wx.getStorageSync('suId') || user.suId;
+  let flag = user.suAuthoritiesStr.split(',').indexOf("ADMINISTRATOR");
+  if (ifBind != true && flag != -1) {
       that.putWX(suId)
         .then(data => {
           if (data.success == true) {
@@ -183,7 +186,7 @@ admin_login(){
           } else {
             wx.showModal({
               title: '提示',
-              content: '该账号已被他人绑定,请使用新账号',
+              content: '该账号已被他人绑定，请使用新账号登录!!!',
               showCancel: false,
               success: function (res) {
                 if (res.confirm) {
@@ -198,6 +201,19 @@ admin_login(){
         .catch(data => {
 
         })
+    }else{
+    wx.showModal({
+      title: '提示',
+      content: '无权访问!!!',
+      showCancel: false,
+      success: function (res) {
+        if (res.confirm) {
+          wx.reLaunch({
+            url: '/pages/login/login',
+          })
+        }
+      }
+    })
     } 
 }
 /**
