@@ -3,7 +3,8 @@
   "component": true,
   "usingComponents": {
     "i-page": "../../../dist/page/index",
-        "i-icon": "../../../dist/icon/index"
+        "i-icon": "../../../dist/icon/index",
+        "i-message": "../../../dist/message/index"
   }
   
 }

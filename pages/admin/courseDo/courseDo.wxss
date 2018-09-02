@@ -1,6 +1,39 @@
 @import '/style/BUTTONS.wxss';
+@import '../courses/courses.wxss';
 .modal_input{
   margin-bottom:5px !important;
 margin-top:5px !important;
 
+}
+.caption-wrap{
+  margin-bottom: 30px;
+}
+
+.caption-title{
+color:#636e72;
+margin-left:5px;
+font-size:18px;
+
+}
+
+.collapse-item-title{
+  font-size: 16px;
+  color: #2d3436;
+  font-weight: bold;
+}
+
+.collapse-item-content{
+  font-size: 14px;
+  color: #444444;
+}
+.collapse{
+  border-top-color: rgba(123, 114, 233, 0.3) !important;
+}
+.mingdan{
+  border-top:1px solid rgba(123, 114, 233, 0.3);
+  padding:3px 8px;
+
+}
+.mingdan_hover{
+  background-color: rgba(123, 114, 233, 0.3);
 }

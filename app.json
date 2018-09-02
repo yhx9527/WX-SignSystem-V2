@@ -4,6 +4,7 @@
     "pages/student/sign/sign",
     "pages/common/about/about",
     "pages/common/help/help",
+    "pages/common/studentList/studentList",
     "pages/student/monitor/work/work",
     "pages/student/monitor/monitorForm/monitorForm",
     "pages/student/leave/leave",

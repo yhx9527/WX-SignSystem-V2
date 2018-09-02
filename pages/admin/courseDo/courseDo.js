@@ -1,3 +1,4 @@
+const app=getApp();
 Page({
 
   /**
@@ -7,7 +8,8 @@ Page({
     course:{},
     visible1:false,
     transerror1:false,
-    monitorman:''
+    monitorman:'',
+    ifmon:false
   },
 
   /**
@@ -16,13 +18,44 @@ Page({
   onLoad: function (options) {
     let course=JSON.parse(options.course);
     this.setData({
-      course:course
+      course:course,
+      ifmon:course.ifmon
     })
   },
 
   //发起签到
   beginsign:function(e){
+    var that = this;
+    let schs = that.data.course.schs;
+    let schtimes = schs.map(item=>{
+      return item.sch;
+    })
+    wx.showActionSheet({
+      itemList: schtimes,
+      success: function (res) {
+        let ssId = schs[res.tapIndex].schid;
+        app.agriknow.postSign(ssId)
+          .then(data=>{
+            if(data.success){
+              wx.showToast({
+                title: '发起成功',
+              })
+            }else{
+              wx.showToast({
+                title: '发起过了',
+                icon:'none'
+              })
+            }
+          })
+          .catch(data=>{
 
+          })
+
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
   },
   //修改督导
   monitorModel:function(){
@@ -36,8 +69,66 @@ Page({
     })
   },
   putmonitor(){
+    var that = this;
+    let suId = this.data.monitorman;
+    if(suId != ''){
+      let scId = this.data.course.cozid;
+      let sisCourse={
+        scNeedMonitor: this.data.ifmon,
+        scId:scId,
+        monitor:{
+          suId: suId
+        }
+      }
+      this.setData({
+        visible1: false,
+      })
+      app.agriknow.putMon(scId,sisCourse)
+        .then(data=>{
+          if (data.success == true) {
+            let course = that.data.course;
+            course.ifmon = true;
+            wx.showToast({
+              title: '修改成功',
+            })
+            that.setData({
+              course:course
+            })
+          } else {
+            wx.showToast({
+              title: '修改失败',
+              icon:'none'
+            })
+          }
+        })
+        .catch(data=>{
+
+        })
+    
+    }else{
+      this.setData({
+        transerror1:true
+      })
+    }
+  
+  },
+  monswitch(event){
+    const detail = event.detail;
     this.setData({
-      visible1: true,
+      'ifmon': detail.value
+    })
+  },
+  inputblur1:function(e){
+    this.setData({
+      monitorman:e.detail.detail.value
+    })
+  },
+
+  //查看学生名单
+  studentlist:function(e){
+    let list = e.currentTarget.dataset.list;
+    wx.navigateTo({
+      url: '/pages/common/studentList/studentList?list='+JSON.stringify(list),
     })
   },
   /**

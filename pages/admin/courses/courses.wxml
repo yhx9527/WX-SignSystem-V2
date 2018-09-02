@@ -1,3 +1,4 @@
+<i-message id="message" />
 <view class='courseTitle'>课程管理 /</view>
 <block wx:for='{{courses}}' wx:for-item='item' wx:for-index='index'>
  <view class='item-view item-view1 column add' catchtap='coursemore' data-item='{{item}}'>

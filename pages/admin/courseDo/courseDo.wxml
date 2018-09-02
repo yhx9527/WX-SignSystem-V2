@@ -1,9 +1,75 @@
-<view>
-
+ <view class='item-view item-view1 column add' catchtap='coursemore' data-item='{{course}}' style='margin-top:10px;width:100%;border-radius:0;'>
+    <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active">
+      <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#c6c2fe'>
+        <view class="fa fa-balance-scale fa-2x"style='vertical-align:middle;color:#FFFFFF'></view>
+      </view>
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title"style='color:#1c2438;'>{{course.cozname}}</view>
+        <view class="weui-media-box__desc">老师：{{course.coztea}}</view>
+        <view class="weui-media-box__desc">课程ID：{{course.cozid}}</view>
+        <view class="weui-media-box__desc">课程人数：{{course.cozsize}}</view>
+        <view class="weui-media-box__desc">需要督导: {{course.ifmon}}</view>
+      </view>
+    </view>
 </view>
+
+<view class="caption-wrap">
+    <text class="caption-title">更多</text>
+    <view class='mingdan collapse-item-title'hover-class='mingdan_hover' catchtap='studentlist' data-list='{{course.students}}'>学生名单<i-icon type="enter" size='16' style='float:right;'/></view>
+    <i-collapse name="{{name}}">
+        <i-collapse-item title="老师信息" name="name1"  i-class='collapse' i-class-title="collapse-item-title"
+                i-class-content="collapse-item-content">
+            <view slot="content">
+                <block wx:for='{{course.teachers}}' wx:for-item='item'>
+                  <view>教师: {{item.suName}}</view>
+                  <view>ID: {{item.suId}}</view>
+                  <view>权限： {{item.suAuthoritiesStr}}</view>
+                </block>
+            </view>
+        </i-collapse-item>
+        <i-collapse-item title="排课信息" name="name2" i-class='collapse' i-class-title="collapse-item-title"
+                i-class-content="collapse-item-content">
+            <view slot="content" i-class-content="green-text">
+                <block wx:for='{{course.schs}}' wx:for-item='item'>
+                  <view>排课ID: {{item.schid}}</view>
+                  <view>上课时间: {{item.sch}}</view>
+                  <view>上课周数： {{item.weektime}}</view>
+                </block>
+            </view>
+        </i-collapse-item>
+         <i-collapse-item title="本课程督导员" name="name3" i-class='collapse' i-class-title="collapse-item-title"
+                i-class-content="collapse-item-content">
+            <view slot="content">
+                <view wx:if='{{course.monitor.length>0}}'>
+
+                </view>
+                <view wx:else>无督导员</view>
+            </view>
+        </i-collapse-item>
+       <i-collapse-item title="停课记录" name="name4" i-class='collapse' i-class-title="collapse-item-title"
+                i-class-content="collapse-item-content">
+            <view slot="content">
+                <view wx:if='{{course.suspends>0}}'>
+                  <block wx:for='{{course.suspends}}' wx:for-item='item'>
+                    <view>排课ID: item.schid</view>
+                    <view>停课周: item.suspend</view>
+                    <view>停课备注: item.suspendnote</view>
+                  </block>
+                </view>
+                <view wx:else>无</view>
+            </view>
+        </i-collapse-item>
+    </i-collapse>
+</view>
+
 <view class='button button-3d button-primary button-rounded' catchtap='monitorModel'><i class="fa fa-tv"></i>修改督导</view>
 <view class='button button-3d button-royal button-rounded' style='float:right;' catchtap='beginsign'><i class="fa fa-edit" ></i>发起签到</view>
 <i-modal title="修改督导" visible="{{ visible1 }}" bind:ok="putmonitor" bind:cancel="handleClose1">
-     <radio-group bindchange='monradio'><label><radio value="yesmon" color='#12b7f4'/>是否发起督导</label></radio-group>
+      <view>是否发起督导
+      <i-switch value="{{ifmon}}" bind:change="monswitch" slot="footer">
+            <i-icon type="right" slot="open"></i-icon>
+            <i-icon type="close" slot="close"></i-icon>
+        </i-switch>
+      </view>
      <i-input value='{{monitorman}}' i-class='modal_input' type="number" right title="督导员" mode="wrapped" placeholder="请输入督导员学号" error='{{transerror1}}' bindblur='inputblur1'/>
 </i-modal>

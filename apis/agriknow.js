@@ -204,7 +204,9 @@ admin_login(){
  * 修改督导
  */
 putMon(scId,sisCourse){
-  return this._request.putRequest(this._baseUrl + +'courses/'+scId+'/sc-need-monitor', { 'sisCourse': sisCourse })
+  let header = this._request.getHeader();
+  header['Content-Type'] = "application/json"
+  return this._request.putRequest(this._baseUrl  +'courses/'+scId+'/sc-need-monitor', sisCourse,header)
 }
   /**
    * 获得签到课程

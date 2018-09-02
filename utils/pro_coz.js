@@ -324,6 +324,7 @@ class Table{
    * 管理员查看课程列表处理函数
    */
   doadmincourses(array){
+    var that = this;
     let courses = [];
     let i = array.length;
     while(i--){
@@ -335,7 +336,19 @@ class Table{
       course['cozsize'] = arr.scMaxSize;
       course['ifmon'] = arr.scNeedMonitor;
       course['monitor'] = arr.scNeedMonitor ? arr.monitor :{};
-      course['cozstop'] = arr.sisScheduleList;
+      course['schs'] = arr.sisScheduleList.map(function(item,index,array){
+        item['schid'] = item.ssId;
+        item['sch'] = that.doDaytoString(item.ssDayOfWeek)+' '+item.ssStartTime+'-'+item.ssEndTime;
+        item['weektime'] = that.doFortToString(item.ssFortnight)+' '+item.ssStartWeek+'-'+item.ssEndWeek;
+        return item;
+      });
+      course['suspends'] = arr.sisScheduleList.map(function(item,index,array){
+        let suspend={};
+        suspend['schid']=item.ssId;
+        suspend['suspend']=item.ssSuspensionList.join(',');
+        suspend['suspendnote']=item.ssSuspension;
+        return suspend;
+      })
       course['students'] = arr.sisJoinCourseList.filter(item=>{
         return item.joinCourseType == 0;
       }).map(item=>{

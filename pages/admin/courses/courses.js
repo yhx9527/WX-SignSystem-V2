@@ -1,4 +1,5 @@
 const app=getApp();
+const { $Message } = require('../../../dist/base/index');
 Page({
 
   /**
@@ -24,16 +25,21 @@ Page({
     var that = this;
     app.agriknow.getStuCourse('administrator', { page: page })
       .then(data => {
+        wx.stopPullDownRefresh();
         if (data.success == true) {
           let courses = app.table.doadmincourses(data.data.list);
           that.setData({
             courses:courses
           })
+          $Message({
+            content: '加载成功',
+            type: 'success'
+          });
         } else {
-          wx.showToast({
-            title: '加载出错',
-            icon: 'none'
-          })
+          $Message({
+            content: '加载出错',
+            type: 'error'
+          });
         }
       })
       .catch(data => {
@@ -58,13 +64,6 @@ Page({
         courses: courses
       });
     }
-  },
-  //下拉刷新
-  onPullDownRefresh:function(){
-    var that=this;
-    let page = that.data.page;
-    that.loadCourse(page);
-    wx.stopPullDownRefresh();
   },
   //课程详情页
   coursemore:function(e){
@@ -105,7 +104,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    var that = this;
+    let page = that.data.page;
+    that.loadCourse(page);
+  
   },
 
   /**

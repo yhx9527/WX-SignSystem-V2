@@ -1,0 +1,12 @@
+<view class='effect'>学生名单</view>
+<view class="weui-cells weui-cells_after-title">
+  <block wx:for="{{stuList}}"wx:for-item='item'wx:for-index='index'>
+  <view class="weui-cell">
+    <view class="weui-cell__hd">
+      <view class="fa fa-user-circle fa-lg"style='color:{{iconBackColor[index%10]}}'></view>
+    </view>
+    <view class="weui-cell__bd"style='margin-left:10px;'>{{item.userId}}</view>
+    <view class="weui-cell__ft">{{item.userName}}</view>
+  </view>
+  </block>
+</view>

@@ -46,17 +46,17 @@
   
   <navigator class='paizi' url='../courses/courses'>
       <view class='paizi_title'>课程管理</view>
-      <view class='paizi_info'>功能简介</view> 
+      <view class='paizi_info'>跟课程有关的都在这里哦</view> 
   </navigator>
 
     <navigator class='paizi1' >
       <view class='paizi_title'>督导员管理</view>
-      <view class='paizi_info'>简介：哈哈哈哈或或或或或或或或或</view> 
+      <view class='paizi_info'>暂无</view> 
  </navigator>
 
     <navigator class='paizi2' >
       <view class='paizi_title'>更多功能</view>
-      <view class='paizi_info'>简介：哈哈哈哈或或或或或或或或或</view> 
+      <view class='paizi_info'>暂无</view> 
   </navigator> 
 
   <image src='../../images/admin.jpg' class='renwuImg'></image>

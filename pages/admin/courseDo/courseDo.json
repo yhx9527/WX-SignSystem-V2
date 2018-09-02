@@ -2,6 +2,10 @@
   "component": true,
   "usingComponents": {
     "i-modal": "../../../dist/modal/index",
-    "i-input": "../../../dist/input/index"
+    "i-input": "../../../dist/input/index",
+    "i-collapse": "../../../dist/collapse/index",
+    "i-collapse-item": "../../../dist/collapse-item/index",
+      "i-icon": "../../../dist/icon/index",
+      "i-switch": "../../../dist/switch/index"
   }
 }
