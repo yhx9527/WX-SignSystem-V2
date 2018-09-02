@@ -72,7 +72,7 @@ Page({
           let term = coz[0].schTerm;
           let termArray=term.split('-')
           wx.setStorageSync('term',term )  
-          var schedules = table.doschs(coz,week,term)
+          var schedules = table.doschs(coz,week1,term)
           that.setData({
             week:week1 || 1,
             year:parseInt(termArray[0]),

@@ -69,11 +69,12 @@ class Table{
   docoz(courses,width){
     var that = this;
     let schedules = [];
-    let schedule={};
+
     var course;
     let i = courses.length;
     while(i--){
       course=courses[i].sisCourse;
+      let schedule = {};
       try{
         schedule['cozId']= course.scId;
         schedule['cozName'] = course.scName;
