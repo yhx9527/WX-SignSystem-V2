@@ -18,22 +18,22 @@ Page({
       if (data.success == true) {
         app.agriknow.header({ 'Authorization': 'Bearer ' + data['access_token']})
         wx.setStorageSync('user',data['user'])
-        if(!wx.getStorageSync('ifBind')){
-          wx.setStorageSync('ifBind', true)
-        }
+        //if(!wx.getStorageSync('ifBind')){
+          //wx.setStorageSync('ifBind', true)
+        //}
         wx.showLoading({
           title: '登录中...',
           success: function () {
-            let auth = data['user'].suAuthoritiesStr.toLowerCase().split(',')[0];
-            if(auth == 'student'){
+            let auth = data['user'].suAuthoritiesStr.toLowerCase();
+            if(auth.indexOf('student')>-1){
             wx.redirectTo({
               url: '../student/sign/sign',
             })
-            } else if (auth == 'teacher') {
+            } else if (auth.indexOf('teacher') > -1) {
               wx.redirectTo({
                 url: '/pages/teacher/index/index',
               })
-            } else if (auth == 'administrator') {
+            } else if (auth.indexOf('administrator') > -1) {
               wx.redirectTo({
                 url: '/pages/admin/index/index',
               })
@@ -54,9 +54,9 @@ Page({
 
   //登录
   formSubmit: function (e) {
-    var that = this
-    var flag = wx.getStorageSync('person')
-    console.log("flag" + JSON.stringify(wx.getStorageSync('person')))
+    var that = this;
+    //var flag = wx.getStorageSync('person')
+    //console.log("flag" + JSON.stringify(wx.getStorageSync('person')))
     var value = e.detail.value;
     var ifBlank = util.formUtil.ifBlank(value,['suId','suPassword','suType']);
     //if(flag==[]){
@@ -77,7 +77,7 @@ Page({
             wx.showLoading({
               title: '登录中...',
               success: function () {
-                wx.setStorageSync('getType', e.detail.value.suType)
+                //wx.setStorageSync('getType', e.detail.value.suType)
                 //wx.setStorageSync('suId', e.detail.value.suId)
                   app.agriknow.login(e.detail.value)
                     .then(data => {
@@ -88,7 +88,10 @@ Page({
                         app.agriknow.header({
                           'Authorization': 'Bearer ' + data['access_token']
                         })
-                        wx.setStorageSync('user', data['user'])
+                        wx.setStorageSync('user', data['user']);
+
+                        app.agriknow.login_redict(e.detail.value.suType,data['user'].suAuthoritiesStr,data['user'].suId);
+                        /*
                         let auth = e.detail.value.suType.split(',')[0];
                         if(auth == 'student'){
                         wx.redirectTo({
@@ -103,6 +106,7 @@ Page({
                             url: '/pages/admin/index/index',
                           })
                         }
+                        */
                        
                       } else {
                         wx.showModal({

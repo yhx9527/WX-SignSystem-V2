@@ -81,6 +81,7 @@ class agriknow {
    * 获取课程
    */
   getStuCourse(gettype,data={}){
+    /*
     let getType;
     if(!gettype){
       let temp = wx.getStorageSync('getType') || wx.getStorageSync('user').suAuthoritiesStr.toLowerCase();
@@ -88,13 +89,81 @@ class agriknow {
     }else{
       getType = gettype;
     }
-    data['getType']=getType;
+    */
+    data['getType']=gettype;
     return this._request.getRequest(this._baseUrl+'courses',data)
+  }
+  /**
+   * 登录验证函数
+   */
+  checkAuth(rank,auths){
+    let flag = auths.toLowerCase().indexOf(rank);
+    return true ? flag>-1 : false;
+  }
+  /**
+   * 首次登录跳转函数,并绑定
+   */
+  login_redict(rank,auths,suId){
+    var that = this;
+    if(that.checkAuth(rank,auths) == true){
+      that.putWX(suId)
+        .then(data => {
+          if (data.success == true) {
+            that.header({ 'Authorization': 'Bearer ' + data['access_token'] })
+            switch (rank) {
+              case 'student':
+                wx.redirectTo({
+                  url: '/pages/student/sign/sign',
+                })
+                break;
+              case 'monitor':
+                wx.redirectTo({
+                  url: '/pages/student/sign/sign',
+                })
+                break;
+              case 'teacher':
+                wx.redirectTo({
+                  url: '/pages/teacher/index/index',
+                })
+                break;
+              case 'administrator':
+                wx.redirectTo({
+                  url: '/pages/admin/index/index',
+                })
+                break;
+            }
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '该账号已被他人绑定,请使用新账号',
+              showCancel: false,
+              success: function (res) {
+                if (res.confirm) {
+                  wx.reLaunch({
+                    url: '/pages/login/login',
+                  })
+                }
+              }
+            })
+          }
+
+
+        })
+        .catch(data => {
+
+        })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '角色选择有误，请重试',
+        showCancel:false
+      })
+    }
   }
   /**
    * 老师，学生，督导员正确的登录之后方可绑定微信的整合，先是正确获取课程，之后异步获取当前周及绑定微信
    */
-  after_login(){
+  after_login(gettype){
     var that = this;
     return new Promise((resolve,reject)=>{
       that.getWeek()
@@ -104,10 +173,10 @@ class agriknow {
         .catch((data) => {
 
         })
-      that.getStuCourse()
+      that.getStuCourse(gettype)
         .then(data => {
         if(data.success==true || data.message==="No courses"){
-          
+          /*
           let ifBind=wx.getStorageSync('ifBind');
           let suId = wx.getStorageSync('suId') || wx.getStorageSync('user').suId;
           if(ifBind != true){
@@ -140,6 +209,7 @@ class agriknow {
 
               })
           }
+          */
           
         resolve(data)
         }

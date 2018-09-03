@@ -23,7 +23,7 @@ Page({
         })
       },
     })
-    app.agriknow.admin_login();
+    //app.agriknow.admin_login();
     app.agriknow.getWeek()
       .then(data=>{
         that.setData({

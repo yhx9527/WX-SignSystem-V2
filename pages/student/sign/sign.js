@@ -52,7 +52,7 @@ Page({
       key: 'user',
       success: function(res) {
         let ismonitor=that.data.ismonitor;
-        if (res.data.suAuthoritiesStr.split(',')[1] && res.data.suAuthoritiesStr.split(',')[1].toLowerCase() === 'monitor'){
+        if (res.data.suAuthoritiesStr.toLowerCase().indexOf('monitor') > -1){
           ismonitor = true;
         }
         that.setData({
@@ -63,7 +63,7 @@ Page({
       },
     })
 
-    app.agriknow.after_login()
+    app.agriknow.after_login('student')
       .then(data=>{
         if(data.success){
           var coz = table.docoz(data.array,width);
