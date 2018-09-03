@@ -307,7 +307,13 @@ putMon(scId,sisCourse){
    * 签到
    */
   signIn(ssId){
-    return this._request.postRequest(this._baseUrl +'schedules/'+ssId + '/signIns/week/' + week)
+    return this._request.postRequest(this._baseUrl +'schedules/'+ssId + '/signIns/doSignIn')
+  }
+  /**
+   * 获得签到
+   */
+  getWeekSign(ssId,week){
+    return this._request.getRequest(this._baseUrl + 'schedules/' + ssId + '/signIns/week/'+week);
   }
   /**
    * 发起签到
@@ -318,9 +324,9 @@ putMon(scId,sisCourse){
   /**
    * 获取签到记录
    */
-  getSignRec(scId){
+  getSignRec(scId,data){
     
-    return this._request.getRequest(this._baseUrl + 'courses/' + scId + '/signIns')
+    return this._request.getRequest(this._baseUrl + 'courses/' + scId + '/signIns',data)
   }
   /**
    * 领取督导

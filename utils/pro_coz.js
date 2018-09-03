@@ -74,6 +74,9 @@ class Table{
     let i = courses.length;
     while(i--){
       course=courses[i].sisCourse;
+      let schs = course.sisScheduleList;
+      let j = schs.length;
+      while (j--) {
       let schedule = {};
       try{
         schedule['cozId']= course.scId;
@@ -84,11 +87,12 @@ class Table{
         }).map(function(item,index,array){
           return item.sisUser.suName;
         })
-  
-        schedule['cozIfMon'] = course.scNeedMonitor
-        let schs = course.sisScheduleList;
-        let j = schs.length;
-        while(j--){
+        schedule['teaStr'] = schedule['cozTea'].join(',');
+        schedule['cozIfMon'] = course.scNeedMonitor;
+        //let schstemp=[];
+        schedule['schs'] = course.sisScheduleList.map(item=>{
+          return { schId: item.ssId, schTime: that.doDaytoString(item.ssDayOfWeek) + ' ' + item.ssStartTime + '-' + item.ssEndTime}
+        })
           let sch = schs[j]
           //let day = that.doDay(sch.ssDayOfWeek);
           let time=sch.ssStartTime;
@@ -102,13 +106,16 @@ class Table{
           schedule['schFort'] = that.doFort(sch.ssFortnight);
           schedule['schStartWeek'] = sch.ssStartWeek;
           schedule['schEndWeek'] = sch.ssEndWeek;
-          schedule['ifClass'] = true; 
-        }
+          schedule['ifClass'] = true;
+          //schstemp.push({ schId: sch.ssId, schTime: that.doDaytoString(sch.ssDayOfWeek)+' '+sch.ssStartTime+'-'+sch.ssEndTime}); 
+        
+        //schedule['schs'] = schstemp;
       }
       catch(e){
         console.log('生成课表所需的schedule出错'+JSON.stringify(e))
       }
       schedules.push(schedule);
+      }
     }
     return schedules;
 

@@ -21,7 +21,7 @@ Page({
     console.log(schedule.cozName)
     let cozName=schedule.cozName;
     let scId=schedule.cozId
-    app.agriknow.getSignRec(scId)
+    app.agriknow.getSignRec(scId,{"queryType":"student"})
       .then(data=>{
         
       })
@@ -39,6 +39,45 @@ Page({
     this.setData({
       current: detail.key
     });
+  },
+  /**
+   * 排课选择及功能
+   */
+  tellsch:function(e){
+    var that = this;
+    let mark = e.currentTarget.dataset.mark;
+    let schs = that.data.schedule.schs;
+    let schtimes = schs.map(function (item, index, array) {
+      return item.schTime;
+    })
+    wx.showActionSheet({
+      itemList: schtimes,
+      success: function (res) {
+        let ssId = schs[res.tapIndex].schId; 
+        switch(mark){
+          case 'sign':
+            app.agriknow.signIn(ssId)
+              .then(data=>{
+
+              })
+              .catch(data=>{
+
+              })
+            break;
+          case 'leave':
+              wx.navigateTo({
+                url: '../leave/leave',
+              })
+            break;
+          case 'scan':
+
+            break;
+        }
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

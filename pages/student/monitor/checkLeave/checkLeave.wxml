@@ -26,7 +26,7 @@
     </view>
   </movable-view-->
   <movable-view wx:for="{{leaveCards}}" wx:for-item="item" wx:for-index="index" wx:key="id"direction="all" x="{{xArrays[item.id]}}" y="{{yArrays[item.id]}}" catch:touchend="tap" bindchange="onChange" out-of-bounds inertia data-item="{{item}}" disabled="{{disabled}}" style='z-index:{{zIndexs[item.id]}}'>
-    <view class='leave1'>
+    <view class='leave1' style='box-shadow: 0 10px 6px -6px #777;'>
     <view class='leavePaper' >
     <view class='leaveTitle middle column'>
 

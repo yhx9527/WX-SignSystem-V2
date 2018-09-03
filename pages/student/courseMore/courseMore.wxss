@@ -3,6 +3,10 @@
   color: #80848f;
   font-size:14px;
 }
+.add:hover{
+background-color:#eaeaed;
+border-radius:6px;
+}
 .courseTitle{
   background-color:#f8f8f9;
   font-size:16px;
