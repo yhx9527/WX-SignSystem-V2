@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    current: 'courseTable',
+    current: 'sign',
     systemInfo: app.globalData.systemInfo,
     //课表相关参数
     tableHead: ['', '周一', '周二', '周三', '周四', '周五', '周六', '周日'],
@@ -69,17 +69,20 @@ Page({
           var coz = table.docoz(data.array,width);
           //console.log('coz'+JSON.stringify(coz,undefined,'\t'))
           let week1 = wx.getStorageSync('week');
-          let term = coz[0].schTerm;
-          let termArray=term.split('-')
-          wx.setStorageSync('term',term )  
-          var schedules = table.doschs(coz,week1,term)
-          that.setData({
-            week:week1 || 1,
-            year:parseInt(termArray[0]),
-            term:parseInt(termArray[2]),
-            coz:coz,
-            schedules:schedules
-          })
+          that.othercourses(coz,week1);
+          setTimeout(function(){
+            let term = coz[0].schTerm;
+            let termArray = term.split('-')
+            var schedules = table.doschs(coz, week1, term)
+            that.setData({
+              week: week1 || 1,
+              year: parseInt(termArray[0]),
+              term: parseInt(termArray[2]),
+              schedules: schedules
+            })
+            wx.setStorageSync('term', term) 
+          },1000)
+          
         }
       })
     
@@ -90,10 +93,10 @@ Page({
     if(key == "monitor"){
       this.aheadMon();
     }
-    if(key == "sign"){
+    /*if (key == "courseTable"){
       let coz = this.data.coz;
       this.othercourses(coz);
-    }
+    }*/
     this.setData({
       current: key
     });
@@ -284,9 +287,10 @@ aheadMon:function(){
   /**
    * 课程另一种展示
    */
-  othercourses:function(coz){
-    let othercoz = app.table.othercourse(coz);
+  othercourses:function(coz,week){
+    let othercoz = app.table.othercourse(coz,week);
     this.setData({
+      week:week,
       othercoz: othercoz
     })
   },

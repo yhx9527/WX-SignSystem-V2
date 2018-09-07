@@ -7,18 +7,34 @@ Page({
   data: {
     showSelf:false,
     systemInfo: app.globalData.systemInfo,
-    teachList: [{ unique: "unique_1", selected: false, index: 1, title: "微积分" },
-    { unique: "unique_2", selected: false, index: 1, title: "高数" },
-    { unique: "unique_3", selected: false, index: 1, title: "数据库" }],
+    teachList: [],
+    week:1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    let week = wx.getStorageSync('week');
+    wx.getStorage({
+      key: 'user',
+      success: function (res) {
+        that.setData({
+          username: res.data.suName,
+          userid: res.data.suId
+        })
+      },
+    })
     app.agriknow.after_login('teacher')
       .then(data => {
-
+        if(data.success == true){
+          let teachList = app.table.doteacoz(data.array);
+          that.setData({
+            teachList:teachList,
+            week:week
+          })
+        }
       })
       .catch(data => {
 

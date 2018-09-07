@@ -411,8 +411,7 @@ class Table{
 /**
  * 停课课程提示
  */
-suspendtip(courses){
-  let week = wx.getStorageSync('week');
+suspendtip(courses,week){
   let tips = courses.map((item)=>{
     if(item.schSuspends.indexOf(parseInt(week)) > -1 ){
       let tip={};
@@ -422,6 +421,33 @@ suspendtip(courses){
     return tip;
   })
   return tips;
+}
+/**
+ * 老师课程处理
+ */
+doteacoz(courses){
+  var that = this;
+  let teacozs = courses.map((item)=>{
+    let teacoz = {};
+    try{
+    teacoz['cozId'] = item.scId;
+    teacoz['cozSize'] = item.sisCourse.scMaxSize;
+    teacoz['cozName'] = item.sisCourse.scName;
+    teacoz['ifMon'] = item.sisCourse.scNeedMonitor;
+    teacoz['stuList'] = item.sisCourse.sisJoinCourseList.filter(item1=>{
+      return item1.joinCourseType == 0;
+    });
+    teacoz['times'] = item.sisCourse.sisScheduleList.map(item2=>{
+      return that.doDaytoString(item2.ssDayOfWeek)+' '+item2.ssStartTime+'-'+item2.ssEndTime; 
+    });
+    teacoz['schedules'] = item.sisCourse.sisScheduleList;
+    }
+    catch(e){
+      console.log('生成老师课程出错');
+    }
+    return teacoz
+  })
+  return teacozs;
 }
 
 }
