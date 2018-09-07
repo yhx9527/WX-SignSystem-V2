@@ -91,7 +91,7 @@ class Table{
         schedule['cozIfMon'] = course.scNeedMonitor;
         //let schstemp=[];
         schedule['schs'] = course.sisScheduleList.map(item=>{
-          return { schId: item.ssId, schTime: that.doDaytoString(item.ssDayOfWeek) + ' ' + item.ssStartTime + '-' + item.ssEndTime}
+          return { schId: item.ssId, schTime: that.doDaytoString(item.ssDayOfWeek) + ' ' + item.ssStartTime + '-' + item.ssEndTime,schSuspends: item.ssSuspensionList,schSuspendnote:item.ssSuspension}
         })
           let sch = schs[j]
           //let day = that.doDay(sch.ssDayOfWeek);
@@ -106,6 +106,10 @@ class Table{
           schedule['schFort'] = that.doFort(sch.ssFortnight);
           schedule['schStartWeek'] = sch.ssStartWeek;
           schedule['schEndWeek'] = sch.ssEndWeek;
+          schedule['schStartTime'] = sch.ssStartTime;
+          schedule['schEndTime'] = sch.ssEndTime;
+          schedule['schSuspends'] = sch.ssSuspensionList;
+          schedule['schSuspendnote'] = sch.ssSuspension;
           schedule['ifClass'] = true;
           //schstemp.push({ schId: sch.ssId, schTime: that.doDaytoString(sch.ssDayOfWeek)+' '+sch.ssStartTime+'-'+sch.ssEndTime}); 
         
@@ -140,6 +144,28 @@ class Table{
       return item;
     })
     return result;
+  }
+/**
+  * 课程表另一种查看方式
+  */
+  othercourse(courses){
+    let cozName='';
+    let len = courses.length;
+    let cozs = [];
+    while(len--){
+      if(courses[len].cozName !== cozName){
+        /*if(courses[len].schs.length > 1){
+        courses[len]['times'] = courses[len].schs.reduce((item,next)=>{
+          return item.schTime+','+next.schTime;
+        })
+        }else{
+          courses[len]['times'] = courses[len].schs[0].schTime;
+        }*/
+        cozs.push(courses[len])
+      }
+      cozName = courses[len].cozName;
+    }
+    return cozs
   }
 /**
  * 处理督导课程展示列表
@@ -382,5 +408,21 @@ class Table{
     }
     return courses;
   }
+/**
+ * 停课课程提示
+ */
+suspendtip(courses){
+  let week = wx.getStorageSync('week');
+  let tips = courses.map((item)=>{
+    if(item.schSuspends.indexOf(parseInt(week)) > -1 ){
+      let tip={};
+      tip['cozName'] = item.cozName;
+      tip['cozTime'] = this.doDaytoString(item.schDay)+' '+item.schStartTime+'-'+item.schEndTime;
+    }
+    return tip;
+  })
+  return tips;
+}
+
 }
 export default Table

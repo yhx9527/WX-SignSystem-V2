@@ -106,5 +106,20 @@ font-size:18px;
 }
 .infoText2{
   padding-left: 1em;
+ border-left: 1px dotted #80848f;
+}
+.infoText3{
+   padding-left: 1em;
+ 
+}
+.schTime{
   border-left: 1px dotted #80848f;
+  font-size: 12px;
+}
+.stoptitle{
+  height:40%;
+font-size:18px;
+color:#5cadff;
+padding-top:1em;
+
 }

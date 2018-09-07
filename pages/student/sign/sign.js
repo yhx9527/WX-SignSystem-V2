@@ -10,9 +10,6 @@ Page({
   data: {
     current: 'courseTable',
     systemInfo: app.globalData.systemInfo,
-    signList: [{ unique: "unique_1", selected: false, index: 1, title: "微积分" }, 
-    { unique: "unique_2", selected: false, index: 1, title: "微积分" }, 
-    { unique: "unique_3", selected: false, index: 1, title: "微积分" }],
     //课表相关参数
     tableHead: ['', '周一', '周二', '周三', '周四', '周五', '周六', '周日'],
     tableContent: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -32,11 +29,14 @@ Page({
     isCW: false,//是否需要更改周
     isCY: false,//更改学年
     coz:[],
+    othercoz:[],
     schedules:[],
     visible1: false,
     ismonitor:false,
     newtrans:false,
-    newpond:false
+    newpond:false,
+    recordvisible:false,
+    show_cancel:false
   },
 
   /**
@@ -89,6 +89,10 @@ Page({
     var key = detail.key;
     if(key == "monitor"){
       this.aheadMon();
+    }
+    if(key == "sign"){
+      let coz = this.data.coz;
+      this.othercourses(coz);
     }
     this.setData({
       current: key
@@ -277,13 +281,83 @@ aheadMon:function(){
       })
   },
 
- 
+  /**
+   * 课程另一种展示
+   */
+  othercourses:function(coz){
+    let othercoz = app.table.othercourse(coz);
+    this.setData({
+      othercoz: othercoz
+    })
+  },
+  /**
+   * 签到
+   */
+  signs: function (e) {
+    var that = this;
+    let mark = e.currentTarget.dataset.type;
+    let schs = e.currentTarget.dataset.schs;
+    let schtimes = schs.map(function (item, index, array) {
+      return item.schTime;
+    })
+    wx.showActionSheet({
+      itemList: schtimes,
+      success: function (res) {
+        let ssId = schs[res.tapIndex].schId;
+        switch (mark) {
+          case 'fastsign':
+            app.agriknow.signIn(ssId)
+              .then(data => {
 
+              })
+              .catch(data => {
+
+              })
+            break;
+          case 'scansign':
+            
+            break;
+        }
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+
+  //停课记录查看
+  suspendrecord:function(e){
+    let temp = e.currentTarget.dataset.record;
+    let record = temp.map(item=>{
+      return {time:item.schTime,note:item.schSuspendnote,weeks:item.schSuspends.join(',')}
+    })
+    this.setData({
+      record:record,
+      recordvisible:true
+    })
+  },
+  recordClose(){
+    this.setData({
+      recordvisible:false,
+      tipvisible:false
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+    let coz = this.data.coz;
+    let tips=app.table.suspendtip(coz);
+    this.setData({
+      tips:tips
+    })
+  },
+  looktips:function(e){
+    let tips = e.currentTarget.dataset.tips;
+    this.setData({
+      tipvisible:true,
+      tips:tips
+    })
   },
 
   /**

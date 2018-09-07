@@ -1,6 +1,6 @@
 <!--底部栏-->
 <i-tab-bar current="{{ current }}" color="#55efc4" bindchange="handleChange" fixed="true">
-    <i-tab-bar-item key="sign" icon="brush" current-icon="brush_fill" title="签到课程"></i-tab-bar-item>
+    <i-tab-bar-item key="sign" icon="brush" current-icon="brush_fill" title="课程页"></i-tab-bar-item>
     <i-tab-bar-item key="courseTable" icon="activity" current-icon="activity_fill" title="课程表"></i-tab-bar-item>
     <i-tab-bar-item wx:if="{{ismonitor}}" key="monitor" icon="browse" current-icon="browse_fill" title="督导" ></i-tab-bar-item>
     <i-tab-bar-item key="self" icon="mine" current-icon="mine_fill" title="个人中心"></i-tab-bar-item>
@@ -23,11 +23,11 @@
 </scroll-view-->
 <view wx:if="{{current == 'sign'}}">
 
-<i-notice-bar icon="systemprompt" closable>
-    请注意，某节课本周停课
+<i-notice-bar wx:if='{{tips.length > 0}}' icon="systemprompt" closable catchtap='looktips' data-tips='{{tips}}'>
+    本周有课程停课,点击查看详情
 </i-notice-bar>
 <swiper current='{{signCurrent}}'indicator-dots="true" circular='true' previous-margin='{{systemInfo.width*0.1}}px' next-margin='{{systemInfo.width*0.1}}px' bindchange='changSign'  class='swiper-view_H'style="width: 100%;height:{{systemInfo.height*0.85}}px;">
-  <block wx:for="{{signList}}" wx:key="unique" wx:for-index="id" wx:for-item="item">
+  <block wx:for="{{othercoz}}" wx:key="unique" wx:for-index="id" wx:for-item="item">
     <swiper-item style="display:flex;justify-content:center;">
       <view class="swiper_item {{item.selected ? 'selected' : ''}}" data-index='{{item.index}}' bindtap='selectProItem'>
         <view class="middle" style='height:25%;'>
@@ -37,39 +37,44 @@
          第{{week}}周
         </view>
         <view class='signDetail'style="height:55%;">
-          <view class='panel_hd title'>{{item.title}}</view>
+          <view class='panel_hd title'>{{item.cozName}}</view>
           <view class='panel_bd'>
            <view style='margin-left:10px;height:60%;'>
             <view class='infoText row'>
              <view class='infoText1'>老师</view>
-             <view class='infoText2'>xxx</view>
+             <view class='infoText2'>{{item.teaStr}}</view>
             </view>
             <view class='infoText row'>
              <view class='infoText1'>时间</view>
-             <view class='infoText2'>xxx</view>
+             <view class='column schTime'>
+              <block wx:for='{{item.schs}}' wx:for-item='itemsch'>
+                <view class='infoText3'>{{itemsch.schTime}}</view>
+              </block>
+             </view>
+             
             </view>
             <view class='infoText row'>
              <view class='infoText1'>地点</view>
              <view class='infoText2'>xxx</view>
             </view>
            </view>
-           <view class='title'style="height:40%;">通知 :</view>
+           <view class='stoptitle'style="height:40%;" catchtap='suspendrecord' data-record='{{item.schs}}'><i class="fa fa-stop-circle" style='margin-right:5px;'></i>停课记录</view>
           </view>
           <view class='panel_ft'>
-            <navigator class='moreDetail' url="../detail/detail?id={{item.id}}">
+            <view class='moreDetail'catchtap='enterCozMore' data-schedule='{{item}}'>
               <view class="weui-cell__bd">查看更多</view>
               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </navigator>
+            </view>
           </view>
         </view>
           <i-row i-class="row-class">
-            <i-col span="12">
+            <i-col span="12" catchtap='signs' data-schs='{{item.schs}}' data-type='scansign'>
               <view class='middle'>
                 <i-icon type="camera" size="30" color="#80848f"/>
               </view>
               <view class='text-middle'>扫码补签</view>
             </i-col>
-            <i-col span="12" i-class="">
+            <i-col span="12" i-class="" catchtap='signs' data-schs='{{item.schs}}' data-type='fastsign'>
               <view class='middle'>
                 <i-icon type="brush" size="30" color="#80848f"/>
               </view>
@@ -94,4 +99,21 @@
 <view wx:if="{{current == 'courseTable'}}" style='margin-bottom:50px;'>
   <include src="../courseTable/courseTable.wxml"/>
 </view>
+
+<i-modal title="停课记录" visible="{{ recordvisible }}" bind:ok="recordClose" show-cancel='{{show_cancel}}' ok-text='知道了'>
+    <view wx:if='{{record !== [] }}'>
+    <block wx:for='{{record}}' wx:for-item='item'>
+      <i-panel title="{{item.schTime}}">
+        <view>停课周: {{item.weeks}}</view>
+        <view>停课备注: {{item.note}}</view>
+      </i-panel>
+    </block>
+    </view>
+    <view wx:else>无</view>
+</i-modal>
+<i-modal title="停课提醒" visible="{{ tipvisible }}" bind:ok="recordClose" show-cancel='{{show_cancel}}' ok-text='知道了'>
+    <block wx:for='{{tips}}' wx:for-item='tip'>
+      <view>{{tip.cozName}}: {{tip.cozTime}}</view> 
+    </block>
+</i-modal>
 
