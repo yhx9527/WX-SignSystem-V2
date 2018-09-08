@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 17,
+			"current": 19,
 			"list": [
 				{
 					"id": -1,
@@ -140,7 +140,19 @@
 				{
 					"id": -1,
 					"name": "stulist",
-					"pathName": "pages/common/studentList/studentList"
+					"pathName": "pages/common/studentList/studentList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tmo",
+					"pathName": "pages/teacher/teaModules/teaModules",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tmo",
+					"pathName": "pages/teacher/teaModules/teaModules"
 				}
 			]
 		}

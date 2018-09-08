@@ -55,7 +55,7 @@
             </view>
             <view class='infoText row'>
              <view class='infoText1'>地点</view>
-             <view class='infoText2'>xxx</view>
+             <view class='infoText2' catchtap='lookplace' data-schs='{{item.schs}}'>点击查看<i class="fa fa-hand-o-left" style='margin-left:5px;'></i></view>
             </view>
            </view>
            <view class='stoptitle'style="height:40%;" catchtap='suspendrecord' data-record='{{item.schs}}'><i class="fa fa-stop-circle" style='margin-right:5px;'></i>停课记录</view>

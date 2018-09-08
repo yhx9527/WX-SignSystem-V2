@@ -12,10 +12,12 @@ class agriknow {
    */
   errorHander(message,res) {
     console.error(message)
+    /*
     wx.showToast({
       title: '连接出错',
       icon:'loading'
     })
+    */
   }
 
   /**
@@ -306,8 +308,10 @@ putMon(scId,sisCourse){
   /**
    * 签到
    */
-  signIn(ssId){
-    return this._request.postRequest(this._baseUrl +'schedules/'+ssId + '/signIns/doSignIn')
+  signIn(ssId,token){
+    let header = this._request.getHeader();
+    header['Access-token'] = token;
+    return this._request.postRequest(this._baseUrl +'schedules/'+ssId + '/signIns/doSignIn',{},header)
   }
   /**
    * 获得签到
@@ -370,6 +374,43 @@ putMon(scId,sisCourse){
     header['Content-Type'] = "application/json"
     return this._request.getRequest(this._baseUrl + 'schedules/monitor-trans', { 'smtStatus': smtStatus },header)
   }
+  /**
+   * 获取某个位置的信息
+   */
+  getLoc(slId){
+    return this._request.getRequest(this._baseUrl + 'locations/'+slId)
+  }
+  /**
+   * 获取所有位置
+   */
+  getLocs(page,pageSize){
+    return this._request.getRequest(this._baseUrl + 'locations',{page:page,pageSize:pageSize})
+  }
+  /**
+   * 新建一个位置
+   */
+  createLoc(sisLocation){
+    return this._request.postRequest(this._baseUrl + 'locations',sisLocation)
+  }
+  /**
+   * 修改某个位置的信息
+   */
+  putLoc(slId,sisLocation){
+    return this._request.putRequest(this._baseUrl + 'locations/'+slId, sisLocation)
+  }
+  /**
+   * 删除某个位置
+   */
+  deleteLoc(slId){
+    return this._request.deleteRequest(this._baseUrl + 'locations/' + slId)
+  }
+  /**
+   * 修改某个课程的位置
+   */
+  putSchLoc(ssId,slId){
+    return this._request.putRequest(this._baseUrl + 'schedules/' + ssId+'/locations/'+slId)
+  }
+
 }
 
 

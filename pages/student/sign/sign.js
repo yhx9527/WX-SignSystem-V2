@@ -1,7 +1,7 @@
 const app = getApp();
-const network = require("../../../utils/network.js");
-
-
+const util = require("../../../utils/util.js");
+const aboutcode = require("../../../utils/aboutcode.js");
+const Base64 = require("../../../utils/base64.js");
 Page({
 
   /**
@@ -308,20 +308,69 @@ aheadMon:function(){
       itemList: schtimes,
       success: function (res) {
         let ssId = schs[res.tapIndex].schId;
-        switch (mark) {
-          case 'fastsign':
-            app.agriknow.signIn(ssId)
-              .then(data => {
+        wx.authorize({
+          scope: 'scope.userLocation',
+          success(){
+            wx.getLocation({
+              success: function (res) {
+                let locString = JSON.stringify({loc_lat:res.latitude,loc_long:res.longitude});
+                let token = aboutcode.encrypt(locString);
+                //console.log('jiema '+ aboutcode.decrypt(Base64.decode(token)))
 
-              })
-              .catch(data => {
+                switch (mark) {
+                  case 'fastsign':
 
-              })
-            break;
-          case 'scansign':
-            
-            break;
-        }
+                    app.agriknow.signIn(ssId,token)
+                      .then(data => {
+                          if(data.success == true){
+                            wx.showToast({
+                              title: '签到成功',
+                            })
+                          }else{
+                            wx.showToast({
+                              title: '签到失败',
+                              icon:'none'
+                            })
+                          }
+                      })
+                      .catch(data => {
+                        if(data.statusCode == 400){
+                          wx.showModal({
+                            title: '提示',
+                            content: '无需签到',
+                            showCancel:false
+                          })
+                        }
+                      })
+                      
+                    break;
+                  case 'scansign':
+                     wx.showToast({
+                       title: '开发中...',
+                       icon:'none'
+                     })
+                    break;
+                }
+              },
+            })
+          },
+          fail(){
+            wx.showModal({
+              title: '提示',
+              content: '请检查是否进行位置授权',
+              showCancel:false,
+              success:function(res){
+                if(res.confirm){
+                  wx.openSetting({
+
+                  })
+                }
+              }
+            })
+          }
+        })
+      
+     
       },
       fail: function (res) {
         console.log(res.errMsg)
@@ -364,6 +413,32 @@ aheadMon:function(){
     })
   },
 
+  //查看上课地点
+  lookplace:function(e){
+    let schs = e.currentTarget.dataset.schs;
+    let schtimes = schs.map(function (item, index, array) {
+      return item.schTime;
+    })
+    wx.showActionSheet({
+      itemList: schtimes,
+      success: function (res) {
+        let slId = schs[res.tapIndex].slId;
+        app.agriknow.getLoc(slId)
+          .then(data=>{
+            if(data.success== true){
+              wx.showModal({
+                title: '上课地点',
+                content: data.sisLocation.slName,
+                showCancel:false
+              })
+            }
+          })
+          .catch(data=>{
+
+          })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

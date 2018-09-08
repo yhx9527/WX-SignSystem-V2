@@ -91,7 +91,7 @@ class Table{
         schedule['cozIfMon'] = course.scNeedMonitor;
         //let schstemp=[];
         schedule['schs'] = course.sisScheduleList.map(item=>{
-          return { schId: item.ssId, schTime: that.doDaytoString(item.ssDayOfWeek) + ' ' + item.ssStartTime + '-' + item.ssEndTime,schSuspends: item.ssSuspensionList,schSuspendnote:item.ssSuspension}
+          return { schId: item.ssId, schTime: that.doDaytoString(item.ssDayOfWeek) + ' ' + item.ssStartTime + '-' + item.ssEndTime,schSuspends: item.ssSuspensionList,schSuspendnote:item.ssSuspension,slId: item.slId}
         })
           let sch = schs[j]
           //let day = that.doDay(sch.ssDayOfWeek);
@@ -374,6 +374,7 @@ class Table{
         item['schid'] = item.ssId;
         item['sch'] = that.doDaytoString(item.ssDayOfWeek)+' '+item.ssStartTime+'-'+item.ssEndTime;
         item['weektime'] = that.doFortToString(item.ssFortnight)+' '+item.ssStartWeek+'-'+item.ssEndWeek;
+        item['slid'] = item.slId;
         return item;
       });
       course['suspends'] = arr.sisScheduleList.map(function(item,index,array){
@@ -437,9 +438,9 @@ doteacoz(courses){
     teacoz['stuList'] = item.sisCourse.sisJoinCourseList.filter(item1=>{
       return item1.joinCourseType == 0;
     });
-    teacoz['times'] = item.sisCourse.sisScheduleList.map(item2=>{
-      return that.doDaytoString(item2.ssDayOfWeek)+' '+item2.ssStartTime+'-'+item2.ssEndTime; 
-    });
+    teacoz['schs'] = item.sisCourse.sisScheduleList.map(item2 => {
+      return { schId: item2.ssId, schTime: that.doDaytoString(item2.ssDayOfWeek) + ' ' + item2.ssStartTime + '-' + item2.ssEndTime, slId: item2.slId }
+    })  
     teacoz['schedules'] = item.sisCourse.sisScheduleList;
     }
     catch(e){
