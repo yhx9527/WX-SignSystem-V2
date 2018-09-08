@@ -92,6 +92,40 @@ Page({
       url: '/pages/login/login',
     })
   },
+
+  //查看上课地点
+  lookplace: function (e) {
+    let schs = e.currentTarget.dataset.schs;
+    let schtimes = schs.map(function (item, index, array) {
+      return item.schTime;
+    })
+    wx.showActionSheet({
+      itemList: schtimes,
+      success: function (res) {
+        let slId = schs[res.tapIndex].slId;
+        app.agriknow.getLoc(slId)
+          .then(data => {
+            if (data.success == true) {
+              wx.showModal({
+                title: '上课地点',
+                content: data.sisLocation.slName,
+                showCancel: false
+              })
+            }
+          })
+          .catch(data => {
+
+          })
+      }
+    })
+  },
+  //更多操作
+  more:function(e){
+    wx.setStorageSync('coz', e.currentTarget.dataset.item);
+    wx.navigateTo({
+      url: '../teaModules/teaModules',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

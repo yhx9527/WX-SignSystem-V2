@@ -1,1 +1,91 @@
-@import '../../student/monitor/index/index.wxss';
+
+.body {
+    font-size: 11px;
+    font-family: 'Open Sans', sans-serif;
+    color: #4A4A4A ;
+    text-align: center;
+}
+
+.wrap {  
+    background: #dad3cb;  
+    margin: 20px auto;
+    display: block;
+    width: 300px;
+    min-height: 110px;
+    padding:20px;
+    
+    
+} 
+
+.img {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.p{ 
+    margin-top: 15px;
+    text-align: justify;
+}
+
+.a{
+    text-decoration: none;
+    color: #4A4A4A !important;
+}
+
+.a:hover{
+    text-decoration: underline;
+    color: #6B6B6B !important ;
+}
+  
+.h1 {  
+    background: #a8c4c0;
+    background: -moz-linear-gradient(top,  #a8c4c0 0%, #7aa5a2 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8c4c0), color-stop(100%,#7aa5a2));
+    background: -webkit-linear-gradient(top,  #a8c4c0 0%,#7aa5a2 100%);
+    background: -o-linear-gradient(top,  #a8c4c0 0%,#7aa5a2 100%);
+    background: -ms-linear-gradient(top,  #a8c4c0 0%,#7aa5a2 100%);
+    background: linear-gradient(top,  #a8c4c0 0%,#7aa5a2 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8c4c0', endColorstr='#7aa5a2',GradientType=0 );
+    
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    padding: 0 20px;  
+    line-height: 50px;
+    height: 50px;
+    margin-top: 5px; 
+    margin-left: -35px;   
+    position: relative;  
+    width: 300px;  
+    
+    box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.3);
+  
+    color: #3b3a3b;  
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);  
+}  
+  
+.h1:after {  
+    position: absolute;
+    content: '';
+    width: 0; height: 0;  
+    line-height: 0;  
+    border-left: 15px solid transparent;  
+    border-top: 10px solid #729c9a;  
+    bottom: -10px;  
+    left: 0;  
+    position: absolute;  
+    z-index: -1;
+}  
+
+.h1:before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    height: 39px;
+    border-top: 1px solid rgba(255,255,255,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    width: 100%;
+    left: 0;
+}

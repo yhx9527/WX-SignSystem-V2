@@ -58,14 +58,14 @@
             <view class='infoText row'>
              <view class='infoText1'>时间</view>
               <view class='column schTime'>
-              <block wx:for='{{item.times}}' wx:for-item='itemsch'>
-                <view class='infoText3'>{{itemsch}}</view>
+              <block wx:for='{{item.schs}}' wx:for-item='itemsch'>
+                <view class='infoText3'>{{itemsch.schTime}}</view>
               </block>
              </view>
             </view>
             <view class='infoText row'>
              <view class='infoText1'>地点</view>
-             <view class='infoText2'>xxx</view>
+             <view class='infoText2' catchtap='lookplace' data-schs='{{item.schs}}'>点击查看<i class="fa fa-hand-o-left" style='margin-left:5px;'></i></view>
             </view>
             <view class='infoText row'>
              <view class='infoText1'>人数</view>
@@ -75,10 +75,10 @@
            <view class='title'style="height:40%;"></view>
           </view>
           <view class='panel_ft'>
-            <navigator class='moreDetail' url="../detail/detail?id={{item.id}}">
+            <view class='moreDetail' catchtap='more' data-item='item'>
               <view class="weui-cell__bd">更多操作</view>
               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </navigator>
+            </view>
           </view>
         </view>
           <!--i-row i-class="row-class">

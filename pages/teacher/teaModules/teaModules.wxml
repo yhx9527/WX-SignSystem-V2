@@ -1,26 +1,26 @@
-<view class='column middle ' style='margin-top:15%;'>
-  <view class="recCard row" hover-class='active'>
-    <image src="../../images/1.jpg" class='peitu'></image>
-    <view class='column cardContent'>
-      <view class="cardTitle">基本情况</view>
-      <view class='cardMes' style='flex:1;'>查看该课程的基本情况,如学生人数，出勤率等</view>
-      <view class="cardMes warn">有事件待处理</view>
-    </view>
-  </view>
-  <view class="recCard row"  hover-class='active'>
-    <image src="../../images/1.jpg"  class='peitu'></image>
-    <view class='column cardContent'>
-      <view class="cardTitle">发起签到</view>
-      <view class='cardMes'style='flex:1;'>可对该课程发起自动签到，手动签到，以及处理学生补签</view>
-      <view class="cardMes warn">有事件待处理</view>
-    </view>
-  </view>
-  <view class="recCard row"  hover-class='active'>
-    <image src="../../images/1.jpg"  class='peitu'></image>
-    <view class='column cardContent'>
-      <view class="cardTitle">督导记录</view>
-      <view class='cardMes'style='flex:1;'>查看该课程下督导员记录的课堂情况</view>
-      <view class="cardMes warn">有事件待处理</view>
-    </view>
-  </view>
+<view class='body'>
+<view class="wrap">
+    <navigator class='h1'>课程信息<i class="fa fa-hand-o-right" style='margin-right:5px;'></i></navigator>
+        <view class='p'>
+         该模块中拥有可查看课程的基本情况如学生列表，出勤率等等
+       </view> 
+</view>
+<view class="wrap">
+    <navigator class='h1'>签到设置<i class="fa fa-hand-o-right" style='margin-right:5px;'></i></navigator>
+        <view class='p'>
+         该模块可进行与签到有关的操作
+       </view> 
+</view>
+<view class="wrap">
+      <navigator class='h1'>签到记录<i class="fa fa-hand-o-right" style='margin-right:5px;'></i></navigator>
+        <view class='p'>
+         该模块可查看课程的历史签到记录
+       </view> 
+</view>
+<view class="wrap">
+    <navigator class='h1'>督导记录<i class="fa fa-hand-o-right" style='margin-right:5px;'></i></navigator>
+        <view class='p'>
+         该模块可查看该课程下督导员记录的课堂情况
+       </view> 
+</view>
 </view>
