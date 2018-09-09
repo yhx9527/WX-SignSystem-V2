@@ -35,7 +35,6 @@
     vertical-align: baseline;
 }
 
-
 .paper:focus {
     outline: none;
 }

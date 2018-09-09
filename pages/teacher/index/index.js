@@ -126,6 +126,54 @@ Page({
       url: '../teaModules/teaModules',
     })
   },
+/**
+ * 签到相关
+ */
+  signabout(e){
+    var that = this;
+    let mark = e.currentTarget.dataset.type;
+    let schs = e.currentTarget.dataset.schs;
+    let schtimes = schs.map(function (item, index, array) {
+      return item.schTime;
+    })
+    wx.showActionSheet({
+      itemList: schtimes,
+      success: function (res) {
+        let ssId = schs[res.tapIndex].schId;
+        switch (mark) {
+          case 'qrcode':
+            wx.navigateTo({
+              url: '../qrcode/qrcode?sch='+JSON.stringify(schs[res.tapIndex]),
+            })
+            break;
+          case 'sign':
+            app.agriknow.postSign(ssId)
+             .then(data=>{
+               if (data.success) {
+                 wx.showToast({
+                   title: '发起成功',
+                 })
+               } else {
+                 wx.showToast({
+                   title: '发起过了',
+                   icon: 'none'
+                 })
+               }
+             })
+             .catch(data=>{
+
+             })
+            break;
+        }
+
+
+
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

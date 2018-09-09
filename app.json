@@ -7,6 +7,7 @@
     "pages/common/about/about",
     "pages/common/help/help",
     "pages/common/studentList/studentList",
+    "pages/web/web",
 
     "pages/student/monitor/work/work",
     "pages/student/monitor/monitorForm/monitorForm",
@@ -20,9 +21,10 @@
     "pages/teacher/teaSign/teaSign",
     "pages/teacher/cozAbout/cozAbout",
     "pages/teacher/monRecord/monRecord",
-    "pages/teacher/setSign/setSign",
+    "pages/teacher/qrcode/qrcode",
     "pages/teacher/signRecord/signRecord",
-    
+    "pages/teacher/setLoc/setLoc",
+
     "pages/admin/index/index",
     "pages/admin/courses/courses",
     "pages/admin/courseDo/courseDo"

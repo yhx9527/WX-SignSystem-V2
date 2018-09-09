@@ -81,20 +81,22 @@
             </view>
           </view>
         </view>
-          <!--i-row i-class="row-class">
-            <i-col span="12">
+          <i-row i-class="row-class">
+            <i-col span="12" catchtap='signabout' data-item='{{item.schs}}' data-type='qrcode'>
               <view class='middle'>
-                <i-icon type="camera" size="30" color="#80848f"/>
+                <i class="fa fa-qrcode" style='font-size:30px;color:#80848f;'></i>
+                <!--i-icon type="camera" size="30" color="#80848f"/-->
               </view>
-              <view class='text-middle'>功能1</view>
+              <view class='text-middle'>生成二维码</view>
             </i-col>
-            <i-col span="12" i-class="">
+            <i-col span="12" i-class="" catchtap='signabout' data-item='{{item.schs}}' data-type='sign'>
               <view class='middle'>
-                <i-icon type="brush" size="30" color="#80848f"/>
+                <i class="fa fa-sign-language" style='font-size:30px;color:#80848f;'></i>
+                <!--i-icon type="brush" size="30" color="#80848f"/-->
               </view>
-              <view class='text-middle'>功能2</view>
+              <view class='text-middle'>发起签到</view>
             </i-col>
-          </i-row-->
+          </i-row>
         
       </view>  
     </swiper-item>

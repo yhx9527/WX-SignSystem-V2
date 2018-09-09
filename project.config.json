@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 22,
+			"current": 26,
 			"list": [
 				{
 					"id": -1,
@@ -170,7 +170,31 @@
 				{
 					"id": -1,
 					"name": "monitorRec",
-					"pathName": "pages/teacher/monRecord/monRecord"
+					"pathName": "pages/teacher/monRecord/monRecord",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "setLoc",
+					"pathName": "pages/teacher/setLoc/setLoc",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "qrcode",
+					"pathName": "pages/teacher/qrcode/qrcode",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "teacozabout",
+					"pathName": "pages/teacher/cozAbout/cozAbout",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "setLoc",
+					"pathName": "pages/teacher/setLoc/setLoc"
 				}
 			]
 		}
