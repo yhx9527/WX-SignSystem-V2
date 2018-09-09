@@ -306,6 +306,12 @@ putMon(scId,sisCourse){
     }
   }
   /**
+   * 获得搜索的签到记录
+   */
+  getSchSignRec(ssId,week){
+    return this._request.getRequest(this._baseUrl + 'schedules/' + ssId + '/signIns/week/' + week)
+  }
+  /**
    * 签到
    */
   signIn(ssId,token){

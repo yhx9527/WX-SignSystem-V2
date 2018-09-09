@@ -2,20 +2,27 @@
   "pages":[
     "pages/login/login",
     "pages/student/sign/sign",
+    "pages/student/courseMore/courseMore",
+    "pages/student/leave/leave",
     "pages/common/about/about",
     "pages/common/help/help",
     "pages/common/studentList/studentList",
+
     "pages/student/monitor/work/work",
     "pages/student/monitor/monitorForm/monitorForm",
-    "pages/student/leave/leave",
     "pages/student/monitor/checkLeave/checkLeave",
     "pages/student/monitor/monitorPond/monitorPond",
     "pages/student/monitor/monitorTrans/monitorTrans",
     "pages/student/monitor/monitorRec/monitorRec",
+
     "pages/teacher/index/index",
-    "pages/student/courseMore/courseMore",
     "pages/teacher/teaModules/teaModules",
     "pages/teacher/teaSign/teaSign",
+    "pages/teacher/cozAbout/cozAbout",
+    "pages/teacher/monRecord/monRecord",
+    "pages/teacher/setSign/setSign",
+    "pages/teacher/signRecord/signRecord",
+    
     "pages/admin/index/index",
     "pages/admin/courses/courses",
     "pages/admin/courseDo/courseDo"

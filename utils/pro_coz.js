@@ -198,6 +198,7 @@ class Table{
           let sch = {};
           let schedule = schedules[j];
           sch['schid'] = schedule['ssId'];
+          sch['slid'] = schedule['slId'];
           let day = this.doDaytoString(schedule.ssDayOfWeek);
           sch['schtime'] = day+' '+schedule['ssStartTime']+'-'+schedule['ssEndTime'];
           schs.push(sch);
@@ -449,6 +450,15 @@ doteacoz(courses){
     return teacoz
   })
   return teacozs;
+}
+/**
+ * 学生签到记录处理
+ */
+dostusign(schlist){
+  let week = wx.getStorageSync('week');
+  let signlists = schlist.map(item=>{
+    let sign={};
+  })
 }
 
 }

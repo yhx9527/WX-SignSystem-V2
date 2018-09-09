@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 22,
 			"list": [
 				{
 					"id": -1,
@@ -152,7 +152,25 @@
 				{
 					"id": -1,
 					"name": "tmo",
-					"pathName": "pages/teacher/teaModules/teaModules"
+					"pathName": "pages/teacher/teaModules/teaModules",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "signRec",
+					"pathName": "pages/teacher/signRecord/signRecord",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "monitorRec",
+					"pathName": "pages/student/monitor/monitorRec/monitorRec",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "monitorRec",
+					"pathName": "pages/teacher/monRecord/monRecord"
 				}
 			]
 		}

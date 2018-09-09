@@ -1,24 +1,24 @@
 <view class='body'>
 <view class="wrap">
-    <navigator class='h1'>课程信息<i class="fa fa-hand-o-right" style='margin-right:5px;'></i></navigator>
+    <navigator class='h1' url='../cozAbout/cozAbout'>课程信息<i class="fa fa-hand-o-right" style='margin-left:5px;'></i></navigator>
         <view class='p'>
          该模块中拥有可查看课程的基本情况如学生列表，出勤率等等
        </view> 
 </view>
 <view class="wrap">
-    <navigator class='h1'>签到设置<i class="fa fa-hand-o-right" style='margin-right:5px;'></i></navigator>
+    <navigator class='h1' url='../setSign/setSign'>签到设置<i class="fa fa-hand-o-right" style='margin-left:5px;'></i></navigator>
         <view class='p'>
          该模块可进行与签到有关的操作
        </view> 
 </view>
 <view class="wrap">
-      <navigator class='h1'>签到记录<i class="fa fa-hand-o-right" style='margin-right:5px;'></i></navigator>
+      <navigator class='h1' url='../signRecord/signRecord'>签到记录<i class="fa fa-hand-o-right" style='margin-left:5px;'></i></navigator>
         <view class='p'>
          该模块可查看课程的历史签到记录
        </view> 
 </view>
 <view class="wrap">
-    <navigator class='h1'>督导记录<i class="fa fa-hand-o-right" style='margin-right:5px;'></i></navigator>
+    <navigator class='h1' url='../monRecord/monRecord'>督导记录<i class="fa fa-hand-o-right" style='margin-left:5px;'></i></navigator>
         <view class='p'>
          该模块可查看该课程下督导员记录的课堂情况
        </view> 
