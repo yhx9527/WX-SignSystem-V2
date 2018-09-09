@@ -13,11 +13,14 @@
     <view class='text-middle'>扫码签到</view>
   </view>
 </view-->
+<i-notice-bar icon="systemprompt" color='#55efc4' background-color='#d2fbf0' wx:if='{{ifnotice}}'>
+    该课程正在签到O
+</i-notice-bar>
 <view class='courseTitle row'> <navigator  hover-class="link_hover" open-type='navigateBack' delta='1' class='link'>我的课程表</navigator><view style='color:#495060;margin-left:3px;margin-right:5px;'>/</view>{{cozName}}</view>
 <i-tabs current="{{ current }}" bindchange="handleChange" color="#25CCF7">
     <i-tab key="tab1" title="历史签到" ></i-tab>
     <i-tab key="tab2" title="历史请假"></i-tab>
-    <i-tab key="tab3" title="历史缺勤" dot="true"></i-tab>
+    <i-tab key="tab3" title="情况分析"></i-tab>
 </i-tabs>
 
 <scroll-view style="height:100%;"scroll-y="true"  wx:if="{{current == 'tab1' }}"> 
@@ -47,7 +50,7 @@
       </view>
 </scroll-view>
 <scroll-view style="height:100%;"scroll-y="true"  wx:if="{{current == 'tab3' }}"> 
-      <view class="weui-form-preview" wx:for="{{absDataList}}"  wx:for-item="item"id="{{item.siId}}">
+      <!--view class="weui-form-preview" wx:for="{{absDataList}}"  wx:for-item="item"id="{{item.siId}}">
         <view class="weui-form-preview__hd"style="padding:0px;">
           <view class="weui-form-preview__item">
             <view class="weui-form-preview__label"style="margin-right:0;">
@@ -57,7 +60,7 @@
             <view class="weui-form-preview__value_in-hd result"style='color:#ed3f14;'>缺勤</view>
           </view>
         </view>
-      </view>
+      </view-->
 </scroll-view>
 
 <!--movable-area class="floatBox">

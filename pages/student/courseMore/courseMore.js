@@ -13,7 +13,8 @@ Page({
     leaveDataList: [{ siId: 1, leaveWeek: '2', leaveDay: '三' },{ siId: 2, leaveWeek: '3', leaveDay: '四' },{ siId: 3, leaveWeek: '4', leaveDay: '三' }],
     absDataList: [{ siId: 1, absWeek: '2', absDay: '三' }, { siId: 2, absWeek: '3', absDay: '三' }, { siId: 3, absWeek: '2', absDay: '五' }],
     schedule:{},
-    cozName:''
+    cozName:'',
+    ifnotice:false
   },
 
   /**
@@ -23,10 +24,13 @@ Page({
     let schedule =  JSON.parse(options.schedule);
     console.log(schedule.cozName)
     let cozName=schedule.cozName;
-    let scId=schedule.cozId
+    let scId=schedule.cozId;
+   
     app.agriknow.getSignRec(scId,{"queryType":"student"})
       .then(data=>{
-        
+        if(data.success == true){
+
+        }
       })
       .catch(data=>{
 
@@ -37,6 +41,7 @@ Page({
     })
   },
 
+  //
   //标签页改变
   handleChange({ detail }) {
     this.setData({
@@ -64,18 +69,23 @@ Page({
               success: function (res) {
                 let locString = JSON.stringify({ loc_lat: res.latitude, loc_long: res.longitude });
                 let token = aboutcode.encrypt(locString);
-                //console.log('jiema '+ aboutcode.decrypt(Base64.decode(token)))
-                header = { 'Access-Token': token }
-
+                //console.log('jiema '+ aboutcode.decrypt(Base64.decode(token))
                 switch (mark) {
-                  case 'fastsign':
-                    app.agriknow.header(header);
-                    app.agriknow.signIn(ssId)
+                  case 'sign':
+                    app.agriknow.signIn(ssId, token)
                       .then(data => {
-                        if (data.success == true) {
-                          wx.showToast({
-                            title: '签到成功',
-                          })
+                        if (data.success) {
+                          if (data.success.success == true) {
+                            wx.showToast({
+                              title: '签到成功',
+                            })
+                          }
+                          else {
+                            wx.showToast({
+                              title: '签到失败',
+                              icon: 'none'
+                            })
+                          }
                         } else {
                           wx.showToast({
                             title: '签到失败',
@@ -94,7 +104,7 @@ Page({
                       })
 
                     break;
-                  case 'scansign':
+                  case 'scan':
                     wx.showToast({
                       title: '开发中...',
                       icon: 'none'
