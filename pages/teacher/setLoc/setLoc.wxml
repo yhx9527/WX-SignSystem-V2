@@ -1,0 +1,24 @@
+ <button class="button button-glow button-circle button-action button-jumbo btn" catchtap='createNew'><i class="fa fa-plus"></i></button>
+<view class="i-index-demo">
+    <i-index height="100%" bind:change="onChange">
+      <block   wx:for="{{ places }}" 
+            wx:for-index="index" 
+            wx:key="{{index}}" 
+            wx:for-item="item" >
+            <view wx:if='{{item.list.length>0}}'>
+        <i-index-item 
+          name="{{item.key}}">
+            <view 
+                class="i-index-demo-item" 
+                wx:for="{{item.list}}" 
+                wx:for-index="in" 
+                wx:key="{{in}}" 
+                wx:for-item="it"
+                catchtap='setloc' data-loc='{{it.name}}'>
+                {{it.name}}
+            </view>
+        </i-index-item>
+        </view>
+      </block>
+    </i-index>
+</view>
