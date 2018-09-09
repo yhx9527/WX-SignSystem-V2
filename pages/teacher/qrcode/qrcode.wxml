@@ -1,0 +1,20 @@
+<view>
+  <view class="main">
+    <view class="qrcode item">
+      <canvas style="width: 200px; height: 200px;" canvas-id="myQrcode"></canvas>
+      <view class="tips">{{text}}分钟有效</view>
+    </view>
+    <view class="input-container item">
+      <input bindinput="bindKeyInput" placeholder="输入有效时长(默认5分钟)" type='number'/>
+      <button type="default" size="{{defaultSize}}" bindtap="changeText">提交</button>
+    </view>
+    <view class="round left"></view>
+    <view class="round right"></view>
+    <view class="intro item">
+      <view class="title">说明：</view>
+      <view>课程名：{{sch.schName}}</view>
+      <view>排课：{{sch.schTime}}</view>
+      <view>上课地点：{{coursePlace}}</view>
+    </view>
+  </view>
+</view>
