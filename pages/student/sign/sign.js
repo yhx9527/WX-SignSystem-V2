@@ -36,7 +36,8 @@ Page({
     newtrans:false,
     newpond:false,
     recordvisible:false,
-    show_cancel:false
+    show_cancel:false,
+    ifspin:false
   },
 
   /**
@@ -48,6 +49,9 @@ Page({
     let schedules = [];
     let table=app.table;
     let width = that.data.systemInfo.width;
+    that.setData({
+      ifspin:true
+    })
     wx.getStorage({
       key: 'user',
       success: function(res) {
@@ -78,7 +82,8 @@ Page({
               week: week1 || 1,
               year: parseInt(termArray[0]),
               term: parseInt(termArray[2]),
-              schedules: schedules
+              schedules: schedules,
+              ifspin:false
             })
             wx.setStorageSync('term', term) 
           },1000)
@@ -322,10 +327,18 @@ aheadMon:function(){
 
                     app.agriknow.signIn(ssId,token)
                       .then(data => {
-                          if(data.success == true){
-                            wx.showToast({
-                              title: '签到成功',
-                            })
+                          if(data.success){
+                            if(data.success.success==true){
+                              wx.showToast({
+                                title: '签到成功',
+                              })
+                            }
+                            else {
+                              wx.showToast({
+                                title: '签到失败',
+                                icon: 'none'
+                              })
+                            }
                           }else{
                             wx.showToast({
                               title: '签到失败',
@@ -425,11 +438,11 @@ aheadMon:function(){
         let slId = schs[res.tapIndex].slId;
         app.agriknow.getLoc(slId)
           .then(data=>{
-            if(data.success== true){
+            if (data.success == true) {
               wx.showModal({
                 title: '上课地点',
                 content: data.sisLocation.slName,
-                showCancel:false
+                showCancel: false
               })
             }
           })

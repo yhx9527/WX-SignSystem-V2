@@ -22,7 +22,9 @@
   </block>
 </scroll-view-->
 <view wx:if="{{current == 'sign'}}">
-
+<view class='container1'wx:if='{{ifspin}}'>
+  <i-spin fix size='large'></i-spin>
+</view>
 <i-notice-bar wx:if='{{tips.length > 0}}' icon="systemprompt" closable catchtap='looktips' data-tips='{{tips}}'>
     本周有课程停课,点击查看详情
 </i-notice-bar>
