@@ -1,0 +1,15 @@
+
+<view class='body'>
+<block wx:for='{{monRecs}}' wx:for-item='item'>
+<view class="paper">
+  <view class='h1'>督导记录1</view>
+    <view class='p'>排课:</view>
+    <view class='p'>课程人数: </view>
+    <view class='p'>实际人数: </view>
+    <view class='p'>玩手机人数:</view>
+    <view class='p'>睡觉人数:</view>
+    <view class='p'>备注:</view> 
+    <view class='a'>督导员:</view>
+</view>
+</block>
+</view>
