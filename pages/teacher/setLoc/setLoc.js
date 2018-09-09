@@ -64,7 +64,7 @@ Page({
 
   //设置位置
   setloc(e){
-    let loc = e.currentTarget.dataset.loc
+    let loc = e.currentTarget.dataset.loc;
     console.log(loc);
   },
   //新建地点
