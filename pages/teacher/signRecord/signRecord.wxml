@@ -1,0 +1,36 @@
+
+<!--签到历史-->
+  <form bindsubmit='formSubmit' >
+    <view class='row'style='margin-top:3vh;background-color:#f8f8f9;padding-top:1vh;align-items:center;'>
+      <view class='xuanBox row'style=''>课时</view>
+        <input class='xuan' style="width:37vw" hover-class='hover-menu' catchtap='click_show1' value='{{schedules[id].schTime}}' disabled name='ssid'><view class="{{ height1 >0 ? 'roate1' : 'roate2'}}" style='width:14px;float:right;'><i-icon type="unfold"style='flex:1;text-align:right;'/></view>
+        </input>
+      <view class='xuanBox row' style='margin-left:4vw;'>周次</view>
+        <input class='xuan' hover-class='hover-menu' catchtap='click_show2' value='{{Weeks[id1]}}' disabled name='week'><view class="{{ height2 >0 ? 'roate1' : 'roate2'}}"><i-icon type="unfold" style='flex:1;text-align:right;'/></view></input>
+      <button class="btn1" formType='submit'><i-icon type="search" /></button>
+    </view>
+
+    <view class='xialaMenu add'  style='height:{{height1}}vh;z-index:100;' bindtap='changeSchedule'>
+      <block wx:for="{{schedules}}" wx:for-item='item' wx:for-index='index'>
+        <view class='xialaItem' hover-class='hover-menu' data-id='{{index}}'>
+        {{item.schTime}}
+        </view>
+      </block>
+    </view>
+
+    <view class="xialaMenu weekMenu" style='height:{{height2}}vh;z-index:100;' bindtap='changeWeek'>
+      <block wx:for="{{Weeks}}" wx:for-item='item' wx:for-index='index'>
+        <view class='xialaItem' hover-class='hover-menu'style='padding-left:1vw;'data-id='{{index}}'>
+        {{item}}
+        </view>
+      </block>
+    </view>
+  </form>
+
+  <i-panel class="cell-panel-demo" title="签到记录">
+    <i-cell-group>
+      <block wx:for='{{signlists}}' wx:for-item='item'>
+        <i-cell title="单行列表" label="附加描述" value="详细信息"></i-cell>
+      </block>
+    </i-cell-group>
+</i-panel>
