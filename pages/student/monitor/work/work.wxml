@@ -4,7 +4,10 @@
 </i-tabs-->
 <view class='courseTitle'>督导列表/</view>
 <!--督导课程tab-->
-<view >
+<view class='container1'wx:if='{{ifspin}}'>
+  <i-spin fix size='large'></i-spin>
+</view>
+<view>
   <block wx:for="{{monitorlist}}"wx:key="unique" wx:for-index="id" wx:for-item="item">
    <view class='item-view column shadow1'>
     <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active" catchtap='insertMonitor' data-schs='{{item.schs}}' data-item='{{item}}'>

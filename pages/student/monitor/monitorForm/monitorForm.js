@@ -16,7 +16,8 @@ Page({
     time: "12:12:12",
     validMin:1,
     ssId:0,
-    week:0
+    week:0,
+    slId:0
   },
 
   /**
@@ -27,6 +28,7 @@ Page({
     let week = wx.getStorageSync('week')
     let item=JSON.parse(options.item);
     let ssId = parseInt(options.ssId);
+    let slId = parseInt(options.slId);
     let schtime=options.schtime;
     this.setData({
       schtime:schtime,
@@ -34,6 +36,7 @@ Page({
       user:user,
       ssId: ssId,
       week:week,
+      slId:slId
     })
   },
 
@@ -99,7 +102,19 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+    let slId = this.data.slId;
+    var that = this;
+    app.agriknow.getLoc(slId)
+    .then(data=>{
+      if (data.success == true) {
+        that.setData({
+          coursePlace: data.sisLocation.slName
+        })
+      }
+    })
+    .catch(data=>{
+
+    })
   },
 
   /**

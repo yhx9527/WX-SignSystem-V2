@@ -15,7 +15,8 @@ Page({
     transweek:'',
     transman:'',
     transerror1:false,
-    transerror2:false
+    transerror2:false,
+    ifspin:false
   },
    
 
@@ -25,11 +26,15 @@ Page({
   onLoad: function (options) {
     let monitorlist=[];
     var that = this;
+    that.setData({
+      ifspin:true
+    })
     app.agriknow.getStuCourse('monitor')
       .then(data=>{
         monitorlist=app.table.mancoz(data.array);
         that.setData({
-          monitorlist:monitorlist
+          monitorlist:monitorlist,
+          ifspin:false
         })
       })
       .catch(data=>{
@@ -108,7 +113,7 @@ Page({
       success: function (res) {
         console.log('actinschs'+schs);
         wx.navigateTo({
-          url: '../monitorForm/monitorForm?ssId=' + schs[res.tapIndex].schid + '&item=' + JSON.stringify(item) + '&schtime=' + schs[res.tapIndex].schtime,
+          url: '../monitorForm/monitorForm?ssId=' + schs[res.tapIndex].schid + '&item=' + JSON.stringify(item) + '&schtime=' + schs[res.tapIndex].schtime+'&slId='+schs[res.tapIndex].slid,
         })
         console.log(res.tapIndex)
       },

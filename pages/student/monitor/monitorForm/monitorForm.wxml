@@ -8,7 +8,7 @@
         <view class="weui-media-box__title"style='color:#1c2438;'>{{item.cozName}}</view>
         <view class="weui-media-box__desc">老师：{{item.cozTea}}</view>
         <view class="weui-media-box__desc">时间：{{schtime}}</view>
-        <view class="weui-media-box__desc">地点：{{monitorClass.coursePlace}}</view>
+        <view class="weui-media-box__desc">地点：{{coursePlace}}</view>
       </view>
     </view>
 </view>
@@ -21,7 +21,7 @@
     <form bindsubmit="formSubmit" bindreset="formReset">
       <i-input  title="督导人" placeholder='{{user.suName}} {{user.suId}}' disabled/>
       <i-input  title="应到人数"  placeholder="{{item.cozSize}}" disabled/>
-      <i-input  value="{{value1}}" type="number" title="实到人数" placeholder="清点人数后输入" autofocus name='ssvActualNum'/>
+      <i-input  value="110" type="number" title="实到人数" placeholder="清点人数后输入" autofocus name='ssvActualNum'/>
       <i-input   value="{{value2}}" type="number" title="玩手机人数" placeholder="玩手机的人数(默认0)" name='ssvMobileNum'/>
       <i-input   value="{{value3}}" type="number" title="睡觉人数" placeholder="睡觉的人数(默认0)" name='ssvSleepNum'/>
       <i-input   value="{{value4}}" type="textarea" title="备注" placeholder="更多反馈请输入(最多50字，默认无)" maxlength="50" name='ssvRecInfo'/>
