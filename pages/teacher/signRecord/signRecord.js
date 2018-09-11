@@ -12,7 +12,8 @@ Page({
     height1: 0,
     height2: 0,
     signlists:[1,2,3],
-    cozName:''
+    cozName:'',
+    coz:{}
   },
 
   /**
@@ -24,7 +25,8 @@ Page({
     this.setData({
       schedules:coz.schs,
       cozName:coz.cozName,
-      'id1':week-1
+      'id1':week-1,
+      coz :coz
     })
   },
 
@@ -72,6 +74,8 @@ Page({
             title: data.message,
             icon:'none'
           })
+          }else{
+            
           }
         }
       })

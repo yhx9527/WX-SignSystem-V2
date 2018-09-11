@@ -103,15 +103,11 @@
 </view>
 
 <i-modal title="停课记录" visible="{{ recordvisible }}" bind:ok="recordClose" show-cancel='{{show_cancel}}' ok-text='知道了'>
-    <view wx:if='{{record !== [] }}'>
     <block wx:for='{{record}}' wx:for-item='item'>
-      <i-panel title="{{item.schTime}}">
-        <view>停课周: {{item.weeks}}</view>
-        <view>停课备注: {{item.note}}</view>
-      </i-panel>
+      <view class='tipclass' style='color:#0984e3'>{{item.time}}</view>
+        <view class='tipclass'>停课周: {{item.weeks}}</view>
+        <view class='tipclass'>停课备注: {{item.note}}</view>
     </block>
-    </view>
-    <view wx:else>无</view>
 </i-modal>
 <i-modal title="停课提醒" visible="{{ tipvisible }}" bind:ok="recordClose" show-cancel='{{show_cancel}}' ok-text='知道了'>
     <block wx:for='{{tips}}' wx:for-item='tip'>

@@ -1,1 +1,7 @@
-{}
+{
+  "enablePullDownRefresh": true,
+  "component": true,
+  "usingComponents": {
+    "i-message": "../../../dist/message/index"
+  }
+}

@@ -4,16 +4,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    schs:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    let schs = wx.getStorageSync('coz').schs;
+    this.setData({
+      schs:schs
+    })
   },
-
+  //进入位置选择
+  enterLoc(){
+    let schs = this.data.schs;
+    let schtimes = schs.map(function (item, index, array) {
+      return item.schTime;
+    })
+    wx.showActionSheet({
+      itemList: schtimes,
+      success: function (res) {
+        let ssId = schs[res.tapIndex].schId;
+        wx.navigateTo({
+          url: '../setLoc/setLoc?sch='+JSON.stringify(schs[res.tapIndex]),
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -130,6 +130,11 @@ Page({
  * 签到相关
  */
   signabout(e){
+    wx.showToast({
+      title: '暂不支持',
+      icon:'none'
+    })
+    /*
     var that = this;
     let mark = e.currentTarget.dataset.type;
     let schs = e.currentTarget.dataset.schs;
@@ -174,6 +179,7 @@ Page({
         console.log(res.errMsg)
       }
     })
+    */
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

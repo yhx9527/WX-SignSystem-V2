@@ -3,5 +3,6 @@
   <view class='column about'>
     <view class='cutline'></view>
     <view class='font'>一路工作室出品</view>
+    <view class='row web'>网页端地址: <navigator url="/pages/web/web" class="weui-footer__link">www.xsix103.cn</navigator></view>
   </view>
 </view>

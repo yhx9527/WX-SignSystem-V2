@@ -123,3 +123,7 @@ color:#5cadff;
 padding-top:1em;
 
 }
+.tipclass{
+  font-size: 14px;
+  color: #b2bec3;
+}

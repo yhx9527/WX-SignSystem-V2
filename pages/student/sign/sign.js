@@ -83,7 +83,8 @@ Page({
               year: parseInt(termArray[0]),
               term: parseInt(termArray[2]),
               schedules: schedules,
-              ifspin:false
+              ifspin:false,
+              coz:coz
             })
             wx.setStorageSync('term', term) 
           },1000)
@@ -342,12 +343,18 @@ aheadMon:function(){
           break;
           case 'scansign':
             // 只允许从相机扫码
+            wx.showToast({
+              title: '暂不支持',
+              icon:"none"
+            })
+            /*
             wx.scanCode({
               onlyFromCamera: true,
               success: (res) => {
                 console.log(res)
               }
             })
+            */
           break;
         }
     
@@ -400,8 +407,10 @@ aheadMon:function(){
   //停课记录查看
   suspendrecord:function(e){
     let temp = e.currentTarget.dataset.record;
-    let record = temp.map(item=>{
+    let record = [];
+    record = temp.map(item=>{
       return {time:item.schTime,note:item.schSuspendnote,weeks:item.schSuspends.join(',')}
+
     })
     this.setData({
       record:record,

@@ -6,7 +6,7 @@
        </view> 
 </view>
 <view class="wrap">
-    <navigator class='h1' url='../setLoc/setLoc'>课程位置<i class="fa fa-hand-o-right" style='margin-left:5px;'></i></navigator>
+    <view class='h1' catchtap='enterLoc'>课程位置<i class="fa fa-hand-o-right" style='margin-left:5px;'></i></view>
         <view class='p'>
          该模块可修改上课所在位置,可适用于当上课位置发生改变而有需要进行签到时，此时只需修改所在位置，即可进行签到
        </view> 
