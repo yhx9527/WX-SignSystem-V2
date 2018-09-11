@@ -49,3 +49,6 @@ width:11vw;
   color:#2d8cf0;
   border-bottom: 1rpx solid #2d8cf0;
 }
+.card{
+  height: 100px;
+}

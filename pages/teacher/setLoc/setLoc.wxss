@@ -9,7 +9,7 @@
     font-size:14px;
 }
 .btn{
-position:absolute;
+position:fixed;
 z-index:10;
 right:5px;
 top:30px;

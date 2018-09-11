@@ -154,9 +154,10 @@ Page({
                    title: '发起成功',
                  })
                } else {
-                 wx.showToast({
-                   title: '发起过了',
-                   icon: 'none'
+                 wx.showModal({
+                   title: '提示',
+                   content: data.message,
+                   showCancel:false
                  })
                }
              })

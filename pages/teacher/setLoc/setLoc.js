@@ -13,21 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(pinyin.isSupported()){
-      /*app.agriknow.getLocs(1, 250)
-        .then(data => {
-          if(data.success == true){
-
-          }
-        })
-        .catch(data => {
-
-        })*/
-        let temps = this.data.places.map(item=>{
-          return {name: item, pinyin: pinyin.convertToPinyin(item)}
-        })
-        this.indexlist(temps);
-    }
+    this.fresh();
   },
   onChange(event) {
     console.log(event.detail, 'click right menu callback data')
@@ -73,6 +59,27 @@ Page({
       title: '纠结中',
       content: '新建地点有需要吗？？？',
     })
+  },
+  //刷新地点
+  fresh(){
+    if (pinyin.isSupported()) {
+      app.agriknow.getLocs(1, 250)
+        .then(data => {
+          if (data.success == true) {
+
+          }
+        })
+        .catch(data => {
+
+        })
+        /*
+      let temps = this.data.places.map(item => {
+        return { name: item, pinyin: pinyin.convertToPinyin(item) }
+      })
+      this.indexlist(temps);
+      */
+    }
+
   },
   /**
    * 生命周期函数--监听页面显示

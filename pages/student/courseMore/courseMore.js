@@ -2,6 +2,7 @@ const app=getApp();
 const util = require("../../../utils/util.js");
 const aboutcode = require("../../../utils/aboutcode.js");
 const Base64 = require("../../../utils/base64.js");
+const { $Message } = require('../../../dist/base/index');
 Page({
 
   /**
@@ -14,7 +15,8 @@ Page({
     absDataList: [{ siId: 1, absWeek: '2', absDay: '三' }, { siId: 2, absWeek: '3', absDay: '三' }, { siId: 3, absWeek: '2', absDay: '五' }],
     schedule:{},
     cozName:'',
-    ifnotice:false
+    ifnotice:false,
+    scId:''
   },
 
   /**
@@ -25,22 +27,34 @@ Page({
     console.log(schedule.cozName)
     let cozName=schedule.cozName;
     let scId=schedule.cozId;
+    this.fresh(scId);
    
-    app.agriknow.getSignRec(scId,{"queryType":"student"})
-      .then(data=>{
-        if(data.success == true){
-
-        }
-      })
-      .catch(data=>{
-
-      })
     this.setData({
       schedule:schedule,
-      cozName:cozName
+      cozName:cozName,
+      scId:scId
     })
   },
-
+  //更新签到记录列表函数
+  fresh(scId){
+    app.agriknow.getSignRec(scId, { "queryType": "student" })
+      .then(data => {
+        if (data.success == true) {
+          wx.stopPullDownRefresh();
+          $Message({
+            content: '加载成功',
+            type: 'success'
+          });
+        }
+      })
+      .catch(data => {
+        wx.stopPullDownRefresh();
+        $Message({
+          content: '加载失败',
+          type: 'error'
+        });
+      })
+  },
   //
   //标签页改变
   handleChange({ detail }) {
@@ -90,7 +104,9 @@ Page({
             })
           break;
           case 'leave':
-
+            wx.showToast({
+              title: '暂不支持',
+            })
           break;
           case 'scan':
             // 只允许从相机扫码
@@ -180,7 +196,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    let scId = this.data.scId;
+    this.fresh(scId);
   },
 
   /**

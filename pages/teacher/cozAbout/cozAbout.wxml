@@ -4,12 +4,10 @@
         <view class="fa fa-balance-scale fa-2x"style='vertical-align:middle;color:#FFFFFF'></view>
       </view>
       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-        <view class="weui-media-box__title"style='color:#1c2438;'>{{course.cozname}}</view>
-        <view class="weui-media-box__desc">老师：{{course.coztea}}</view>
-        <view class="weui-media-box__desc">课程ID：{{course.cozid}}</view>
-        <view class="weui-media-box__desc">课程人数：{{course.cozsize}}</view>
-        <view class="weui-media-box__desc">需要督导: {{course.ifmon}}</view>
-        <view class="weui-media-box__desc">缺勤率: </view>
+        <view class="weui-media-box__title"style='color:#1c2438;'>{{course.cozName}}</view>
+        <view class="weui-media-box__desc">课程ID：{{course.cozId}}</view>
+        <view class="weui-media-box__desc">课程人数：{{course.cozSize}}</view>
+        <view class="weui-media-box__desc">需要督导: {{course.ifMon}}</view>
       </view>
     </view>
 </view>
@@ -21,48 +19,49 @@
                 i-class-content="collapse-item-content">
             <view slot="content" i-class-content="green-text">
                 <block wx:for='{{course.schs}}' wx:for-item='item'>
-                  <view>排课ID: {{item.schid}}</view>
-                  <view>上课时间: {{item.sch}}</view>
-                  <view>上课周数： {{item.weektime}}</view>
+                  <view>排课ID: {{item.schId}}</view>
+                  <view>上课时间: {{item.schTime}}</view>
+                  <view>上课周数： {{item.schweek}}</view>
+                  <view>{{item.schfort}}</view>
                 </block>
             </view>
         </i-collapse-item>
          <i-collapse-item title="本课程督导员" name="name3" i-class='collapse' i-class-title="collapse-item-title"
                 i-class-content="collapse-item-content">
             <view slot="content">
-                <block wx:if='{{course.monitor}}'>
+                <view wx:if='{{course.monitor.length>0}}'>
                 <view>
                   督导员: {{course.monitor.suName}}
                 </view>
                 <view>学号: {{course.monitor.suId}}</view>
-                </block>
+                </view>
                 <view wx:else>无督导员</view>
             </view>
         </i-collapse-item>
        <i-collapse-item title="停课记录" name="name4" i-class='collapse' i-class-title="collapse-item-title"
                 i-class-content="collapse-item-content">
             <view slot="content">
-                <view wx:if='{{course.suspends>0}}'>
-                  <block wx:for='{{course.suspends}}' wx:for-item='item'>
-                    <view>排课ID: item.schid</view>
-                    <view>停课周: item.suspend</view>
-                    <view>停课备注: item.suspendnote</view>
+                  <block wx:for='{{course.schs}}' wx:for-item='item'>
+                  <view wx:if='{{item.suspends.weeks}}'>
+                    <view style='color:#0984e3;'>排课ID: item.schTime</view>
+                    <view>停课周: item.suspends.weeks</view>
+                    <view>停课备注: item.suspends.note</view>
+                  </view>
                   </block>
-                </view>
-                <view wx:else>无</view>
             </view>
         </i-collapse-item>
          <i-collapse-item title="学生名单" name="name1" i-class='collapse' i-class-title="collapse-item-title"
                 i-class-content="collapse-item-content">
             <view slot="content">
-                <view wx:if='{{course.students>0}}'>
-                  <block wx:for='{{course.students}}' wx:for-item='item' wx:for-index='index'>
+                <view wx:if='{{course.stuList.length>0}}'>
+                  <block wx:for='{{course.stuList}}' wx:for-item='item' wx:for-index='index'>
                      <view class="weui-cell">
                       <view class="weui-cell__hd">
                         <view class="fa fa-user-circle fa-lg"style='color:{{iconBackColor[index%10]}}'></view>
                       </view>
-                      <view class="weui-cell__bd"style='margin-left:10px;'>{{item.suId}}</view>
-                      <view class="weui-cell__ft">{{item.suName}}</view>
+                      <view class="weui-cell__bd"style='margin-left:10px;'>{{item.sisUser.suId}}</view>
+                      <view class="weui-cell__ft" style='margin-right:30px;'>{{item.sisUser.suName}}</view>
+                      <view class="weui-cell__ft">{{item.sisUser.suiCozLackNum}}缺勤</view>
                     </view>
                   </block>
                 </view>

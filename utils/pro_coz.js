@@ -440,10 +440,13 @@ doteacoz(courses){
       return item1.joinCourseType == 0;
     });
     teacoz['schs'] = item.sisCourse.sisScheduleList.map(item2 => {
-      return { schId: item2.ssId, schName:item.sisCourse.scName,schTime: that.doDaytoString(item2.ssDayOfWeek) + ' ' + item2.ssStartTime + '-' + item2.ssEndTime, slId: item2.slId }
+      return { schId: item2.ssId, schName:item.sisCourse.scName,schTime: that.doDaytoString(item2.ssDayOfWeek) + ' ' + item2.ssStartTime + '-' + item2.ssEndTime, slId: item2.slId,
+      schweek:item2.ssStartWeek+'-'+item2.ssEndWeek,schfort:that.doFortToString(item2.ssFortnight),suspends:{weeks:item2.ssSuspensionList.join(','),note:item2.ssSuspension} }
     })  
     teacoz['schedules'] = item.sisCourse.sisScheduleList;
+      teacoz['monitor'] = item.scNeedMonitor ? item.monitor : {};
     }
+    
     catch(e){
       console.log('生成老师课程出错');
     }
