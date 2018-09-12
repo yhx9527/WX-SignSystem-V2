@@ -103,7 +103,7 @@ class Table{
           schedule['schLeft'] = width * (0.07 + 0.1324 * (sch.ssDayOfWeek - 1));
           schedule['schTop'] = 35 + 45 + 45 * (time - 1);
           schedule['schLong'] = long;
-          schedule['schFort'] = that.doFort(sch.ssFortnight);
+          schedule['schFort'] = sch.ssFortnight;
           schedule['schStartWeek'] = sch.ssStartWeek;
           schedule['schEndWeek'] = sch.ssEndWeek;
           schedule['schStartTime'] = sch.ssStartTime;
