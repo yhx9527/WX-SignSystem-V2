@@ -29,7 +29,8 @@
          <i-collapse-item title="本课程督导员" name="name3" i-class='collapse' i-class-title="collapse-item-title"
                 i-class-content="collapse-item-content">
             <view slot="content">
-                <view>学号:{{course.monSuId}}</view>
+                <view wx:if='{{course.monSuId}}'>学号:{{course.monSuId}}</view>
+                <view wx:else>无</view>
                 <!--view wx:if='{{course.monitor.length>0}}'>
                 <view>
                   督导员: {{course.monitor.suName}}

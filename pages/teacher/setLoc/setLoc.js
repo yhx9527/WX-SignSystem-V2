@@ -77,12 +77,18 @@ Page({
       content: sch.schTime+'上课地点:'+schLoc.slName+'-->'+loc.name,
       success:function(res){
         if(res.confirm){
-          app.agriknow.putSchLoc(sch.slId,loc.slId)
+          app.agriknow.putSchLoc(sch.schId,loc.slId)
           .then(data=>{
             if(data.success){
               wx.showToast({
                 title: '修改成功',
               })
+              setTimeout(function(){
+                wx.reLaunch({
+                  url: '/pages/teacher/index/index',
+                })
+              },1000)
+          
             }else{
               wx.showToast({
                 title: '修改失败',
