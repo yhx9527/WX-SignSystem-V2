@@ -1,0 +1,15 @@
+<view class='body'>
+<view class="box6" style='min-height:300px;'>
+       <view class='h1'>联系方式</view>   
+       <image class='img' src="https://static.dongtu.com/netpic/20161217123827LGGFJGN09QK7831V.gif"></image>
+        <view class='p'>
+         QQ：540230904
+       </view>
+        <view class='p' style='margin-top:0px;margin-left:25px;'>
+             2541175183
+       </view>
+       <navigator url="/pages/web/web" class="a">www.xsix103.cn</navigator>
+       <view class="box6_corner_lf"></view>
+       <view class="box6_corner_rt"></view>
+</view>
+</view>
