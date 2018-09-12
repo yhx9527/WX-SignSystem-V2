@@ -17,7 +17,7 @@
 <i-notice-bar icon="systemprompt" color='#55efc4' background-color='#d2fbf0' wx:if='{{ifnotice}}'>
     该课程正在签到O
 </i-notice-bar>
-<view class='courseTitle row'> <navigator  hover-class="link_hover" open-type='navigateBack' delta='1' class='link'>我的课程表</navigator><view style='color:#495060;margin-left:3px;margin-right:5px;'>/</view>{{cozName}}</view>
+<view class='courseTitle row' style='text-overflow:ellipsis;overflow:hidden;'> <navigator  hover-class="link_hover" open-type='navigateBack' delta='1' class='link'>我的课程表</navigator><view style='color:#495060;margin-left:3px;margin-right:5px;'>/</view>{{cozName}}</view>
 <!--i-tabs current="{{ current }}" bindchange="handleChange" color="#25CCF7">
     <i-tab key="tab1" title="历史签到" ></i-tab>
     <i-tab key="tab2" title="历史请假"></i-tab>
@@ -28,16 +28,19 @@
 </i-card>
 
 <scroll-view style="height:100%;"scroll-y="true" > 
-      <view class="weui-form-preview" wx:for="{{signDataList}}"  wx:for-item="item"id="{{item.siId}}">
+      <view class="weui-form-preview" wx:for="{{signDataList}}"  wx:for-item="item">
+        <block wx:for='{{item.more}}' wx:for-item='item1'>
         <view class="weui-form-preview__hd"style="padding:0px;">
           <view class="weui-form-preview__item">
             <view class="weui-form-preview__label"style="margin-right:0;">
               <view class="fa fa-smile-o fa-2x"style='vertical-align:middle;padding-left:3vw;font-size:1.5em;'></view>
             </view>
-            <view class="weui-form-preview__label"style="margin-right:0;font-size:16px;">第{{item.siWeek}}周{{item.time}}</view>
-            <view class="weui-form-preview__value_in-hd result">已到</view>
+            <view class="weui-form-preview__label"style="margin-right:0;font-size:16px;">第{{item.signWeek}}周</view>
+            <view wx:if='{{item1.ssidStatus == true}}'class="weui-form-preview__value_in-hd result">已到</view>
+            <view wx:else class="weui-form-preview__value_in-hd result">缺勤</view>
           </view>
         </view>
+        </block>
       </view>
 </scroll-view>
 <!--scroll-view style="height:100%;"scroll-y="true"  wx:if="{{current == 'tab2' }}"> 
@@ -95,8 +98,8 @@
     <view class='text-middle'>课程请假</view>
   </view>
   <view class='column' data-mark='scan' catchtap='tellsch'>
-    <i-icon type="camera" size='30'color="#495060" style='text-align:center;'/>
-    <view class='text-middle'>扫码签到</view>
+    <i-icon type="offline" size='30'color="#495060" style='text-align:center;'/>
+    <view class='text-middle'>暂不可用</view>
   </view>
 </movable-view>
   </movable-area>

@@ -306,11 +306,13 @@ class Table{
       trans['week'] = arr.smtWeek;
       trans['schname'] = arr.sisSchedule.sisCourse.scName;
       trans['schsize'] = arr.sisSchedule.sisCourse.scMaxSize;
+      trans['slId'] = arr.sisSchedule.slId;
       trans['username'] = arr.sisSchedule.sisCourse.sisUser.suName;
       trans['weektime'] = arr.sisSchedule.ssStartWeek+'-'+arr.sisSchedule.ssEndWeek;
       let day = this.doDaytoString(arr.sisSchedule.ssDayOfWeek);
       trans['time'] = day+' '+arr.sisSchedule.ssStartTime+'-'+arr.sisSchedule.ssEndTime;
       trans['fort'] = arr.sisSchedule.ssFortnight;
+    
       }catch(e){
         console.log('生成督导转接列表出错')
       }
@@ -341,6 +343,7 @@ class Table{
       pond['schs']=arr.sisScheduleList.map(function(item,index,array){
         let sch = {};
         sch['schId']=item.scId;
+        sch['slId'] = item.slId;
         sch['term']=item.ssYearEtTerm;
         let day = that.doDaytoString(item.ssDayOfWeek);
         sch['time'] = day+' '+item.ssStartTime+'-'+item.ssEndTime;
@@ -445,6 +448,7 @@ doteacoz(courses){
     })  
     teacoz['schedules'] = item.sisCourse.sisScheduleList;
       teacoz['monitor'] = item.scNeedMonitor ? item.monitor : {};
+      teacoz['monSuId'] = item.sisCourse.suId;
     }
     
     catch(e){
@@ -457,11 +461,26 @@ doteacoz(courses){
 /**
  * 学生签到记录处理
  */
-dostusign(schlist){
-  let week = wx.getStorageSync('week');
-  let signlists = schlist.map(item=>{
-    let sign={};
+dostusign(schlist,suId){
+  let signlists = [];
+  schlist.forEach((item)=>{
+    signlists = signlists.concat(item.sisSignInList)
   })
+  let signData=signlists.map(item=>{
+    let sign = {};
+    try{
+    sign['signWeek'] = item.ssiWeek;
+    sign['attRate'] = item.ssiAttRate;
+    sign['more'] = item.sisSignInDetailList.filter(item1=>{
+      return item1.suId==suId;
+    })
+    }catch(e){
+      console.log('生成签到记录出错');
+    }
+    return sign; 
+  })
+
+  return signData;
 }
 
 }

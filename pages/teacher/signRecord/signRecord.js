@@ -11,7 +11,7 @@ Page({
     schedules: [],
     height1: 0,
     height2: 0,
-    signlists:[1,2,3],
+    signlists:[],
     cozName:'',
     coz:{}
   },
@@ -59,6 +59,7 @@ Page({
     })
   },
   formSubmit:function(e){
+    var that = this;
     let form = e.detail.value;
     let schs = this.data.schedules;
     try{
@@ -69,14 +70,14 @@ Page({
       app.agriknow.getSchSignRec(ssId,week)
       .then(data=>{
         if(data.success == true){
-          if(data.message){
-          wx.showToast({
-            title: data.message,
-            icon:'none'
-          })
-          }else{
-            
+          let signlists = [];
+          if(data.record){
+          signlists = data.record.sisSignInDetailList;
           }
+          that.setData({
+            signlists:signlists
+          })
+
         }
       })
       .catch(data=>{

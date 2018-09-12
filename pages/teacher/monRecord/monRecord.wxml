@@ -10,7 +10,7 @@
     <view class='p'>玩手机人数: {{item.note.ssvMobileNum}}</view>
     <view class='p'>睡觉人数: {{item.note.ssvSleepNum}}</view>
     <view class='p'>备注: {{item.note.ssvRecInfo}}</view> 
-    <view class='a'>督导员: </view>
+    <view class='a'>督导员: {{monSuId}}</view>
 </view>
 </block>
 <block wx:if='{{monRecs.length == 0}}'>

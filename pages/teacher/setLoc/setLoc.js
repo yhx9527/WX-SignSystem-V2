@@ -1,6 +1,4 @@
-const pinyin = require('../../../utils/pinyin.js');
 const app = getApp();
-const js_pinyin = require('js-pinyin');
 const pinyin1 = require('../../../utils/pinyin_js.js');
 Page({
 

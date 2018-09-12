@@ -1,5 +1,6 @@
 var winWidth = 414;
 var winHeight = 736;
+const js_pinyin = require('js-pinyin');
 Page({
   data: {
     x: winWidth,
@@ -9,6 +10,8 @@ Page({
     content: [{ "value": '' }, { "value": '' }, { "value": '' }, { "value": '' }]
   },
   onLoad: function () {
+    console.log(js_pinyin.getFullChars('管理员'));
+    console.log(js_pinyin.getCamelChars('管理员'));
     var that = this;
     var res = wx.getSystemInfoSync();
     winWidth = res.windowWidth;

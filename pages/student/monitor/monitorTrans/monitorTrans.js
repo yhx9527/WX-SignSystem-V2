@@ -81,6 +81,7 @@ Page({
   //转接的课程详情显示
   handleOpen1: function (e) {
     let trans = e.currentTarget.dataset.item;
+    this.getLoc(trans.slId);
     this.setData({
       visible1: true,
       trans:trans
@@ -102,7 +103,7 @@ Page({
     }
     app.agriknow.doMonTrans(trans.schId,sisMonitorTrans)
       .then(data=>{
-        if (data.success == 2) {
+        if (data.success == 1) {
           let detail = { key: 'disagree' };
           that.handleChange({ detail });
         } else {
@@ -150,9 +151,28 @@ Page({
       cozSize: trans.schsize
     }
     wx.navigateTo({
-      url: '../monitorForm/monitorForm?ssId=' + trans.schId + '&item=' + JSON.stringify(item) + '&schtime=' + trans.time
+      url: '../monitorForm/monitorForm?ssId=' + trans.schId + '&item=' + JSON.stringify(item) + '&schtime=' + trans.time + '&slId=' +trans.slId
     })
 
+  },
+  //地点查询展示
+  getLoc(slId){
+    var that = this;
+    let tranplace=''
+    app.agriknow.getLoc(slId)
+      .then(data => {
+        if (data.success == true) {
+          tranplace = data.sisLocation.slName
+          that.setData({
+            tranplace: tranplace
+          })
+        }
+      })
+      .catch(data => {
+        that.setData({
+          tranplace: tranplace
+        })
+      })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

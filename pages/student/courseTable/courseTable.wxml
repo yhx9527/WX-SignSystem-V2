@@ -35,7 +35,7 @@
             <view class="fontBlock">{{schedule.cozName}}({{schedule.teaStr}})</view>
           </view>
           <view wx:else class="course"style="left:{{schedule.schLeft+2}}px;top:{{schedule.schTop+2}}px;height:{{schedule.schLong*44}}px;background-color:#dfe6e9;"catchtap='enterCozMore' data-schedule="{{schedule}}">
-            <view class="fontBlock">{{schedule.cozName}}(无课)</view>
+            <view class="fontBlock">{{schedule.cozName}}</view>
           </view>
         </view>
         <view  wx:else>

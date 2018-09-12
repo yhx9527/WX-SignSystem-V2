@@ -18,11 +18,10 @@
         <view class="weui-media-box__title"style='color:#1c2438;'>{{item.cozName}}</view>
         <view class="weui-media-box__desc">老师：{{item.cozTea}}</view>
         <view class="weui-media-box__desc">时间：{{item.cozTime}}</view>
-        <view class="weui-media-box__desc">地点：{{item.coursePlace}}</view>
       </view>
     </view>
     <view class='row addition1'>
-      <i-tag 
+      <!--i-tag 
     class="i-tags" 
     name="标签一" 
     color="green">
@@ -33,7 +32,7 @@
     name="标签一" 
     color="red">
     停课
-    </i-tag>
+    </i-tag-->
     <view class='more'>
        <view  bindtap='clickmore' data-scid='{{item.cozId}}' data-schs='{{item.schs}}' data-cozname='{{item.cozName}}' data-item='{{item}}'>
         more

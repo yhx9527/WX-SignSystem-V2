@@ -77,11 +77,13 @@ Page({
   },
   //课程详情显示
   handleOpen1:function(e) {
-    let pond=e.currentTarget.dataset.item
+    let pond=e.currentTarget.dataset.item;
     this.setData({
       visible1: true,
       pond:pond
     });
+    this.getLoc(pond.schs);
+
   },
   handleClose1() {
     this.setData({
@@ -122,6 +124,33 @@ Page({
     this.setData({
       visible2: false
     })
+  },
+  //地点查询展示
+  getLoc(schs) {
+    var that = this;
+    let pondplace = [];
+    new Promise((reslove,reject)=>{
+      schs.forEach(item => {
+        app.agriknow.getLoc(item.slId)
+          .then(data => {
+            if (data.success == true) {
+              pondplace.push(data.sisLocation.slName);
+              reslove(pondplace);
+            }
+          })
+          .catch(data => {
+
+          })
+      })
+
+    })
+   .then(data=>{
+     that.setData({
+       pondplace: data
+     })
+   })
+ 
+  
   },
 
 

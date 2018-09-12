@@ -59,8 +59,10 @@ Page({
             if(data.success == true){
               wx.showToast({
                 title: '提交成功',
-                success:function(){
-                  that.formReset();
+                success:function(res){
+                  wx.navigateBack({
+                    
+                  })
                 }
               })
             }else{

@@ -373,20 +373,11 @@ aheadMon:function(){
     //console.log('jiema '+ aboutcode.decrypt(Base64.decode(token)))
     app.agriknow.signIn(ssId, token)
       .then(data => {
-        if (data.success) {
-          if (data.success.success == true) {
+        if (data.success==true) {
             wx.showToast({
               title: '签到成功',
             })
-          }
-          else {
-            wx.showModal({
-              title: '提示',
-              content: data.success.message,
-              showCancel:false
-            })
-          }
-        } else {
+        } else{
           wx.showToast({
             title: '签到失败',
             icon: 'none'
@@ -397,7 +388,14 @@ aheadMon:function(){
         if (data.statusCode == 400) {
           wx.showModal({
             title: '提示',
-            content: '无需签到',
+            content: '无需签到或签到已过',
+            showCancel: false
+          })
+        }
+        if (data.statusCode == 403) {
+          wx.showModal({
+            title: '提示',
+            content: data.message,
             showCancel: false
           })
         }

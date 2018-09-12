@@ -39,7 +39,7 @@
          第{{week}}周
         </view>
         <view class='signDetail'style="height:55%;">
-          <view class='panel_hd title'>{{item.cozName}}</view>
+          <view class='panel_hd title' style='text-overflow:ellipsis;overflow:hidden;'>{{item.cozName}}</view>
           <view class='panel_bd'>
            <view style='margin-left:10px;height:60%;'>
             <view class='infoText row'>
@@ -72,9 +72,9 @@
           <i-row i-class="row-class">
             <i-col span="12" catchtap='signs' data-schs='{{item.schs}}' data-type='scansign'>
               <view class='middle'>
-                <i-icon type="camera" size="30" color="#80848f"/>
+                <i-icon type="offline" size="30" color="#80848f"/>
               </view>
-              <view class='text-middle'>扫码补签</view>
+              <view class='text-middle'>暂不可用</view>
             </i-col>
             <i-col span="12" i-class="" catchtap='signs' data-schs='{{item.schs}}' data-type='fastsign'>
               <view class='middle'>

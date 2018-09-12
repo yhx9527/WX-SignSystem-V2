@@ -6,8 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    monRecs:[1,2,3],
-    coz:{}
+    monRecs:[],
+    coz:{},
+    monSuId:''
   },
 
   /**
@@ -16,7 +17,8 @@ Page({
   onLoad: function (options) {
     let coz = wx.getStorageSync('coz');
     this.setData({
-      coz:coz
+      coz:coz,
+      monSuId:coz.monSuId
     })
     this.fresh();
   },

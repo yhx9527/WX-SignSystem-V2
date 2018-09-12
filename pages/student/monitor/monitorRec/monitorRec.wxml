@@ -36,7 +36,7 @@
       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#9AECDB'>
         <view class="fa fa-balance-scale fa-2x"style='vertical-align:middle;color:#FFFFFF'></view>
       </view>
-      <view class="weui-media-box__bd ">
+      <view class="weui-media-box__bd " style='width:55vw;'>
         <view class="weui-media-box__title"style='color:#1c2438;'>{{cozname}}</view>
         <view class="weui-media-box__desc">时间：{{item.schtime}}</view>
         <view class="weui-media-box__desc">周次：{{item.week}}</view>

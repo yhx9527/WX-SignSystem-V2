@@ -52,7 +52,7 @@
          第{{week}}周
         </view>
         <view class='signDetail'style="height:55%;">
-          <view class='panel_hd title'>{{item.cozName}}</view>
+          <view class='panel_hd title' style='text-overflow:ellipsis;overflow:hidden;'>{{item.cozName}}</view>
           <view class='panel_bd'>
            <view style='margin-left:10px;height:60%;'>
             <view class='infoText row'>
@@ -84,10 +84,10 @@
           <i-row i-class="row-class">
             <i-col span="12" catchtap='signabout' data-schs='{{item.schs}}' data-type='qrcode'>
               <view class='middle'>
-                <i class="fa fa-qrcode" style='font-size:30px;color:#80848f;'></i>
+                <i class="fa fa-bluetooth-b" style='font-size:30px;color:#80848f;'></i>
                 <!--i-icon type="camera" size="30" color="#80848f"/-->
               </view>
-              <view class='text-middle'>生成二维码</view>
+              <view class='text-middle'>暂不可用</view>
             </i-col>
             <i-col span="12" i-class="" catchtap='signabout' data-schs='{{item.schs}}' data-type='sign'>
               <view class='middle'>

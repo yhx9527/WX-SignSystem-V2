@@ -130,11 +130,6 @@ Page({
  * 签到相关
  */
   signabout(e){
-    wx.showToast({
-      title: '暂不支持',
-      icon:'none'
-    })
-    /*
     var that = this;
     let mark = e.currentTarget.dataset.type;
     let schs = e.currentTarget.dataset.schs;
@@ -147,9 +142,15 @@ Page({
         let ssId = schs[res.tapIndex].schId;
         switch (mark) {
           case 'qrcode':
+            wx.showToast({
+              title: '暂不支持',
+              icon: 'none'
+            })
+            /*
             wx.navigateTo({
               url: '../qrcode/qrcode?sch='+JSON.stringify(schs[res.tapIndex]),
             })
+            */
             break;
           case 'sign':
             app.agriknow.postSign(ssId)
@@ -179,7 +180,7 @@ Page({
         console.log(res.errMsg)
       }
     })
-    */
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

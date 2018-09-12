@@ -30,7 +30,7 @@
   <i-panel class="cell-panel-demo" title="签到记录">
     <i-cell-group>
       <block wx:for='{{signlists}}' wx:for-item='item'>
-        <i-cell title="单行列表" label="附加描述" value="详细信息"></i-cell>
+        <i-cell title="{{item.sisUser.suName}} | {{item.sisUser.suId}}" label="总共{{item.sisUser.suiCozLackNum}}次缺勤" value="{{item.ssidStatus == true ? '本节课已签到' :'本节课缺勤未签到'}}"></i-cell>
       </block>
     </i-cell-group>
 </i-panel>

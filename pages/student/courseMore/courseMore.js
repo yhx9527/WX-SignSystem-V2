@@ -10,7 +10,7 @@ Page({
    */
   data: {
     current: 'tab1',
-    signDataList: [{ siId: 1, siWeek: '1', time: '2018-8-4 12:12:12' }, { siId: 2, siWeek: '2', time: '2018-8-5 12:12:12' }, { siId: 3, siWeek: '3', time: '2018-8-6 12:12:12' }],
+    signDataList: [],
     leaveDataList: [{ siId: 1, leaveWeek: '2', leaveDay: '三' },{ siId: 2, leaveWeek: '3', leaveDay: '四' },{ siId: 3, leaveWeek: '4', leaveDay: '三' }],
     absDataList: [{ siId: 1, absWeek: '2', absDay: '三' }, { siId: 2, absWeek: '3', absDay: '三' }, { siId: 3, absWeek: '2', absDay: '五' }],
     schedule:{},
@@ -27,20 +27,27 @@ Page({
     console.log(schedule.cozName)
     let cozName=schedule.cozName;
     let scId=schedule.cozId;
-    this.fresh(scId);
-   
     this.setData({
-      schedule:schedule,
-      cozName:cozName,
-      scId:scId
+      schedule: schedule,
+      cozName: cozName,
+      scId: scId
     })
+    this.fresh();
+
   },
   //更新签到记录列表函数
-  fresh(scId){
+  fresh(){
+    var that = this;
+    let scId = that.data.scId;
+    let user = wx.getStorageSync('user')
     app.agriknow.getSignRec(scId, { "queryType": "student" })
       .then(data => {
         if (data.success == true) {
+          let signDataList = app.table.dostusign(data.course.sisScheduleList,user.suId);
           wx.stopPullDownRefresh();
+          that.setData({
+            signDataList:signDataList
+          })
           $Message({
             content: '加载成功',
             type: 'success'
@@ -106,16 +113,23 @@ Page({
           case 'leave':
             wx.showToast({
               title: '暂不支持',
+              icon:'none'
             })
           break;
           case 'scan':
             // 只允许从相机扫码
+            
+            wx.showToast({
+              title: '暂不支持',
+              icon:'none'
+            })
+            /*
             wx.scanCode({
               onlyFromCamera: true,
               success: (res) => {
                 console.log(res)
               }
-            })
+            })*/
           break;
         }
    
@@ -196,8 +210,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    let scId = this.data.scId;
-    this.fresh(scId);
+    this.fresh();
   },
 
   /**

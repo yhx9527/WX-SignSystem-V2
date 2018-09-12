@@ -33,8 +33,10 @@
     <view>课程名：{{pond.cozName}}</view>
     <view>课程老师：{{pond.cozTea}}</view>
     <view class='modeltext'>课程人数：{{pond.cozSize}}</view>
-    <view wx:for='{{pond.schs}}' wx:for-item='pondsch' class='modeltext'>
+
+    <view wx:for='{{pond.schs}}' wx:for-item='pondsch' class='modeltext' wx:for-index='index'>
       <view>排课号：{{pondsch.schId}}</view>
+          <view>地点:{{pondplace[index]}}</view>
       <view>学期：{{pondsch.term}}</view>
       <view>课时：{{pondsch.time}}</view>
       <view>周数：{{pondsch.weekTime}}</view>
