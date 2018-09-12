@@ -205,9 +205,9 @@ class Table{
         }
         coz['schs']=schs;
         if(coz['cozTeaAbout'].length>1){
-          coz['cozTea'] = coz['cozTeaAbout'].reduce(function (prev, cur, index, array) {
-            return prev.suName + ',' + cur.suName;
-          })
+          coz['cozTea'] = coz['cozTeaAbout'].map(item=> {
+            return item.suName
+          }).join(',')
         }else{
           coz['cozTea']=coz['cozTeaAbout'][0].suName;
         }

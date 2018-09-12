@@ -34,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 26,
+			"current": 27,
 			"list": [
 				{
 					"id": -1,
@@ -195,7 +195,13 @@
 				{
 					"id": -1,
 					"name": "setLoc",
-					"pathName": "pages/teacher/setLoc/setLoc"
+					"pathName": "pages/teacher/setLoc/setLoc",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "contact",
+					"pathName": "pages/common/contact/contact"
 				}
 			]
 		}
