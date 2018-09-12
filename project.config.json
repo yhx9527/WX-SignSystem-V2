@@ -8,10 +8,11 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.4",
+	"libVersion": "2.2.5",
 	"appid": "wx5899a00bc0df64a8",
 	"projectname": "signIn_V2_1.0",
 	"isGameTourist": false,

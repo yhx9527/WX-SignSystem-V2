@@ -1,5 +1,7 @@
 const pinyin = require('../../../utils/pinyin.js');
-const app = getApp()
+const app = getApp();
+const js_pinyin = require('js-pinyin');
+const pinyin1 = require('../../../utils/pinyin_js.js');
 Page({
 
   /**
@@ -107,13 +109,13 @@ Page({
   },
   //刷新地点
   fresh(){
-    console.log(pinyin.isSupported(true));
+    let py = new pinyin1();
     //if (pinyin.isSupported(true)) {
       app.agriknow.getLocs(1, 250)
         .then(data => {
           if (data.success == true) {
             let temps = data.data.list.map(item => {
-              return { name: item.slName, pinyin: pinyin.convertToPinyin(item.slName),slId:item.slId }
+              return { name: item.slName, pinyin: py.getFullChars(item.slName),slId:item.slId }
             })
             this.indexlist(temps);
           }
