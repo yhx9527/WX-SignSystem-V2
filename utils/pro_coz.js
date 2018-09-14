@@ -399,9 +399,9 @@ class Table{
         return item.sisUser;
       })
       if(course['teachers'].length >1){
-      course['coztea'] = course['teachers'].reduce((prev,next,index,array)=>{
-        return prev.suName+' '+next.suName;
-      })
+      course['coztea'] = course['teachers'].map(item=>{
+        return item.suName;
+      }).join(',')
       }else{
         course['coztea'] = course['teachers'][0].suName;
       }
@@ -464,13 +464,19 @@ doteacoz(courses){
 dostusign(schlist,suId){
   let signlists = [];
   schlist.forEach((item)=>{
-    signlists = signlists.concat(item.sisSignInList)
+    let temp = item.sisSignInList.map((item1)=>{
+      item1['time'] = this.doDaytoString(item.ssDayOfWeek)+' '+item.ssStartTime+'-'+item.ssEndTime;
+      return item1;
+    })
+    signlists = signlists.concat(temp)
   })
   let signData=signlists.map(item=>{
     let sign = {};
     try{
+    sign['ssiId'] = item.ssiId;
     sign['signWeek'] = item.ssiWeek;
     sign['attRate'] = item.ssiAttRate;
+    sign['time'] = item.time;
     sign['more'] = item.sisSignInDetailList.filter(item1=>{
       return item1.suId==suId;
     })

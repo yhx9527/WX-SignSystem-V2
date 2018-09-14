@@ -82,6 +82,22 @@ function byteToString(arr) {
   }
   return str;
 }
+//属性降序
+function desc(property) {
+  return function (obj1, obj2) {
+    var value1 = obj1[property];
+    var value2 = obj2[property];
+    return value2 - value1;  
+  }
+}
+//属性升序
+function asce(property) {
+  return function (obj1, obj2) {
+    var value1 = obj1[property];
+    var value2 = obj2[property];
+    return value1 - value2;   
+  }
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -89,4 +105,6 @@ module.exports = {
   formUtil:formUtil,
   stringToByte: stringToByte,
   byteToString: byteToString,
+  desc: desc,
+  asce:asce
 }

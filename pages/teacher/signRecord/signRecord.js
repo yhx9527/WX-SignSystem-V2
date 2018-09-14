@@ -71,7 +71,8 @@ Page({
     })[0].schId;
     let week = form.week;
       that.setData({
-        ifspin: true
+        ifspin: true,
+        signlists:[]
       })
       app.agriknow.getSchSignRec(ssId,week)
       .then(data=>{

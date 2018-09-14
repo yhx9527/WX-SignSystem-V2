@@ -44,6 +44,7 @@ Page({
       .then(data => {
         if (data.success == true) {
           let signDataList = app.table.dostusign(data.course.sisScheduleList,user.suId);
+          signDataList.sort(util.desc('ssiId'));
           wx.stopPullDownRefresh();
           that.setData({
             signDataList:signDataList

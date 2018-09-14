@@ -9,7 +9,6 @@
     "pages/common/contact/contact",
     "pages/common/studentList/studentList",
     "pages/web/web",
-    "pages/student/bluetooth/bluetooth",
 
     "pages/student/monitor/work/work",
     "pages/student/monitor/monitorForm/monitorForm",
@@ -26,7 +25,6 @@
     "pages/teacher/qrcode/qrcode",
     "pages/teacher/signRecord/signRecord",
     "pages/teacher/setLoc/setLoc",
-    "pages/teacher/bluetooth/bluetooth",
 
     "pages/admin/index/index",
     "pages/admin/courses/courses",

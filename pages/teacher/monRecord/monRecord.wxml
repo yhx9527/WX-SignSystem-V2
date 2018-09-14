@@ -1,4 +1,26 @@
 <i-message id="message" />
+<i-tag 
+    class="i-tags" 
+    name="排课号" 
+    checkable="{{true}}"
+        type="border"
+          checked="{{ssIdchecked}}" 
+    color="green"
+       bindchange="changessId" style='margin-left:30px;'>
+    排课号<i wx:if='{{ssIdchecked}}' class="fa fa-arrow-up"></i><i wx:else class="fa fa-arrow-down"></i>
+</i-tag>
+<i-tag 
+    class="i-tags" 
+    name="周次" 
+    checkable="{{true}}"
+        type="border"
+          checked="{{weekchecked}}" 
+    color="blue"
+       bindchange="changeWeek"
+       style='margin-left:20px;'>
+    周次<i wx:if='{{weekchecked}}' class="fa fa-arrow-up"></i><i wx:else class="fa fa-arrow-down"></i>
+</i-tag>
+
 <view class='body'>
 <block wx:for='{{monRecs}}' wx:for-item='item'>
 <view class="paper">

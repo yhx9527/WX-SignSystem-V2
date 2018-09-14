@@ -1,5 +1,6 @@
 const app = getApp();
 const { $Message } = require('../../../dist/base/index');
+const util = require('../../../utils/util.js');
 Page({
 
   /**
@@ -8,7 +9,12 @@ Page({
   data: {
     monRecs:[],
     coz:{},
-    monSuId:''
+    monSuId:'',
+    test: [{ ssId: 1, week: 1 }, { ssId: 2, week: 1 }, { ssId: 1, week: 3 }],
+    settle_week:'1',
+    settle_ssId:'0',
+    ssIdchecked:false,
+    weekchecked:true
   },
 
   /**
@@ -29,9 +35,9 @@ Page({
     .then(data=>{
       if(data.success){
         let monRecs = app.table.domonrec(data.array);
-        this.setData({
-          monRecs: monRecs
-        })
+        that.settle_sort(monRecs);
+        //monRecs.sort(util.desc('week')).sort(util.asce('ssId'))
+        
         wx.stopPullDownRefresh();
         $Message({
           content: '加载成功',
@@ -45,6 +51,42 @@ Page({
         type: 'error'
       });
     })
+  },
+  //安排升序降序
+  settle_sort(pendlist){
+    let temp  = this.data.settle_week+this.data.settle_ssId;
+    switch(temp){
+      case '10': pendlist.sort(util.desc('week')).sort(util.asce('ssId'))
+        break;
+      case '11': pendlist.sort(util.desc('week')).sort(util.desc('ssId'))
+        break;
+      case '01': pendlist.sort(util.asce('week')).sort(util.desc('ssId'))
+        break;
+      case '00': pendlist.sort(util.asce('week')).sort(util.asce('ssId'))
+        break;
+    }
+    this.setData({
+      monRecs: pendlist
+    })
+
+  },
+  changessId(e){
+    let checked = e.detail.checked;
+    this.setData({
+      ssIdchecked:checked,
+      settle_ssId:checked ? '1' :'0'
+    })
+    let monRecs = this.data.monRecs;
+    this.settle_sort(monRecs);
+  },
+  changeWeek(e){
+    let checked = e.detail.checked;
+    this.setData({
+      weekchecked: checked,
+      settle_week: checked ? '1' : '0'
+    })
+    let monRecs = this.data.monRecs;
+    this.settle_sort(monRecs);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

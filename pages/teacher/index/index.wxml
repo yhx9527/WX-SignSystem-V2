@@ -87,7 +87,7 @@
           <i-row i-class="row-class">
             <i-col span="12" catchtap='signabout' data-schs='{{item.schs}}' data-type='qrcode'>
               <view class='middle'>
-                <i class="fa fa-bluetooth-b" style='font-size:30px;color:#80848f;'></i>
+                <i class="fa fa-ban" style='font-size:30px;color:#80848f;'></i>
                 <!--i-icon type="camera" size="30" color="#80848f"/-->
               </view>
               <view class='text-middle'>暂不可用</view>
