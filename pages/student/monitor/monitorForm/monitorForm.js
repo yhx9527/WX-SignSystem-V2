@@ -60,9 +60,11 @@ Page({
               wx.showToast({
                 title: '提交成功',
                 success:function(res){
-                  wx.navigateBack({
-                    
-                  })
+                  setTimeout(function(){
+                    wx.navigateBack({
+
+                    })
+                  },1000)
                 }
               })
             }else{

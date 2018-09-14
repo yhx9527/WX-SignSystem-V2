@@ -1,4 +1,5 @@
 const app = getApp();
+const { $Message } = require('../../../dist/base/index');
 Page({
 
   /**
@@ -13,7 +14,8 @@ Page({
     height2: 0,
     signlists:[],
     cozName:'',
-    coz:{}
+    coz:{},
+    ifspin:false
   },
 
   /**
@@ -62,11 +64,15 @@ Page({
     var that = this;
     let form = e.detail.value;
     let schs = this.data.schedules;
+   
     try{
     let ssId = schs.filter(item=>{
       return item.schTime == form.ssid;
     })[0].schId;
     let week = form.week;
+      that.setData({
+        ifspin: true
+      })
       app.agriknow.getSchSignRec(ssId,week)
       .then(data=>{
         if(data.success == true){
@@ -75,13 +81,24 @@ Page({
           signlists = data.record.sisSignInDetailList;
           }
           that.setData({
-            signlists:signlists
+            signlists:signlists,
+            ifspin:false
           })
+          $Message({
+            content: '加载成功',
+            type: 'success'
+          });
 
         }
       })
       .catch(data=>{
-
+        that.setData({
+          ifspin: false
+        })
+        $Message({
+          content: '加载失败',
+          type: 'error'
+        });
       })
     }catch(e){
       wx.showToast({

@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -34,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 27,
+			"current": 29,
 			"list": [
 				{
 					"id": -1,
@@ -201,7 +201,19 @@
 				{
 					"id": -1,
 					"name": "contact",
-					"pathName": "pages/common/contact/contact"
+					"pathName": "pages/common/contact/contact",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "bluetooth",
+					"pathName": "pages/teacher/bluetooth/bluetooth",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "stuble",
+					"pathName": "pages/student/bluetooth/bluetooth"
 				}
 			]
 		}

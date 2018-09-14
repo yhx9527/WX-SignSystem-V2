@@ -41,6 +41,9 @@
 </i-modal>
   <i-icon type="other" size="40" color="#80848f" bindtap='toggleSelf' style='margin-left:1vw;'/>
 
+<view class="container1" wx:if='{{ifspin}}'>
+    <i-spin fix></i-spin>
+</view>
 <swiper current='{{signCurrent}}'indicator-dots="true" circular='true' previous-margin='{{systemInfo.width*0.1}}px' next-margin='{{systemInfo.width*0.1}}px' bindchange='changSign'  class='swiper-view_H'style="width: 100%;height:{{systemInfo.height*0.85}}px;top:55%;">
   <block wx:for="{{teachList}}"  wx:for-index="id" wx:for-item="item">
     <swiper-item style="display:flex;justify-content:center;">

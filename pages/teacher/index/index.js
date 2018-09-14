@@ -8,7 +8,8 @@ Page({
     showSelf:false,
     systemInfo: app.globalData.systemInfo,
     teachList: [],
-    week:1
+    week:1,
+    ifspin:false
   },
 
   /**
@@ -16,6 +17,9 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    that.setData({
+      ifspin:true
+    })
     let week = wx.getStorageSync('week');
     wx.getStorage({
       key: 'user',
@@ -32,12 +36,15 @@ Page({
           let teachList = app.table.doteacoz(data.array);
           that.setData({
             teachList:teachList,
-            week:week
+            week:week,
+            ifspin:false
           })
         }
       })
       .catch(data => {
-
+        that.setData({
+          ifspin:false
+        })
       })
   },
 

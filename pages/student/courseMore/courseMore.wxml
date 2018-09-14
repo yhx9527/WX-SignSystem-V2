@@ -33,11 +33,12 @@
         <view class="weui-form-preview__hd"style="padding:0px;">
           <view class="weui-form-preview__item">
             <view class="weui-form-preview__label"style="margin-right:0;">
-              <view class="fa fa-smile-o fa-2x"style='vertical-align:middle;padding-left:3vw;font-size:1.5em;'></view>
+              <view wx:if='{{item1.ssidStatus == true}}'class="fa fa-smile-o fa-2x"style='vertical-align:middle;padding-left:3vw;font-size:1.5em;'></view>
+                <view wx:else class="fa fa-frown-o fa-2x"style='vertical-align:middle;padding-left:3vw;font-size:1.5em;'></view>
             </view>
             <view class="weui-form-preview__label"style="margin-right:0;font-size:16px;">第{{item.signWeek}}周</view>
             <view wx:if='{{item1.ssidStatus == true}}'class="weui-form-preview__value_in-hd result">已到</view>
-            <view wx:else class="weui-form-preview__value_in-hd result">缺勤</view>
+            <view wx:else class="weui-form-preview__value_in-hd result" style='color:#ff7675;'>缺勤</view>
           </view>
         </view>
         </block>
