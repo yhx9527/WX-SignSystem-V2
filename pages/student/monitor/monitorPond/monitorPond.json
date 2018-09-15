@@ -1,9 +1,11 @@
 {
+  "enablePullDownRefresh": true,
   "component": true,
   "usingComponents": {
     "i-icon": "../../../../dist/icon/index",
     "i-page": "../../../../dist/page/index",
     "i-notice-bar": "../../../../dist/notice-bar/index",
-    "i-modal": "../../../../dist/modal/index"
+    "i-modal": "../../../../dist/modal/index",
+    "i-message": "../../../../dist/message/index"
   }
 }

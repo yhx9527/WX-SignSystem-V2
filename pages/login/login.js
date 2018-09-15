@@ -113,8 +113,22 @@ Page({
                           content: data.message,
                           showCancel: false
                         })
-                      
+          
                       }
+                    })
+                    .catch(data=>{
+                      wx.showModal({
+                        title: '提示',
+                        content: '连接失败请重试',
+                        showCancel: false,
+                        success: function (res) {
+                          if (res.confirm) {
+                            wx.reLaunch({
+                              url: '/pages/login/login',
+                            })
+                          }
+                        }
+                      })
                     })
                 
                 

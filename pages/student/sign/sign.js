@@ -325,6 +325,9 @@ aheadMon:function(){
               success() {
                 wx.getLocation({
                   success: function (res) {
+                    wx.showLoading({
+                      title: '签到中...',
+                    })
                     that.self_sign(ssId,res.latitude,res.longitude)
                   },
                 })
@@ -374,9 +377,11 @@ aheadMon:function(){
   self_sign(ssId,lat,long){
     let locString = JSON.stringify({ loc_lat: lat, loc_long: long });
     let token = aboutcode.encrypt(locString);
+    
     //console.log('jiema '+ aboutcode.decrypt(Base64.decode(token)))
     app.agriknow.signIn(ssId, token)
       .then(data => {
+        wx.hideLoading();
         if (data.success==true) {
             wx.showToast({
               title: '签到成功',
@@ -389,6 +394,7 @@ aheadMon:function(){
         }
       })
       .catch(data => {
+        wx.hideLoading();
         if (data.statusCode == 400) {
           wx.showModal({
             title: '提示',

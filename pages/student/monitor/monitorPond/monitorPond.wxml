@@ -1,3 +1,4 @@
+  <i-message id="message" />
   <i-notice-bar icon="prompt" closable color='#ff7675' background-color='#d63031'>
     课程督导一经领取将持续一学期
 </i-notice-bar>
@@ -21,10 +22,10 @@
 <i-page current="{{ page }}" total="{{total}}" bind:change="pageChange">
     <view slot="prev">
         <i-icon type="return"></i-icon>
-        上一步
+        上一页
     </view>
     <view slot="next">
-        下一步
+        下一页
         <i-icon type="enter"></i-icon>
     </view>
 </i-page>

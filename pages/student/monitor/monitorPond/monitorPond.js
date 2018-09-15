@@ -1,4 +1,5 @@
 const app=getApp();
+const { $Message } = require('../../../../dist/base/index');
 Page({
 
   /**
@@ -19,18 +20,32 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    app.agriknow.getStuCourse('monitor',{'hasMonitor':false,'needMonitor':true,'page':1})
-      .then(data=>{
-        if(data.success == true){
+    that.fresh(that.data.page);
+  },
+  //刷新一页的内容
+  fresh(page){
+    var that = this;
+    app.agriknow.getStuCourse('monitor', { 'hasMonitor': false, 'needMonitor': true, 'page': page })
+      .then(data => {
+        wx.stopPullDownRefresh();
+        if (data.success == true) {
           let pondlist = app.table.domonpond(data.data.list);
           that.setData({
-            total:data.data.pageNum,
-            pondlist:pondlist
+            total: data.data.pages,
+            pondlist: pondlist
           })
         }
+        $Message({
+          content: '加载成功',
+          type: 'success'
+        });
       })
-      .catch(data=>{
-
+      .catch(data => {
+        wx.stopPullDownRefresh();
+        $Message({
+          content: '加载失败',
+          type: 'error'
+        });
       })
   },
   //分页
@@ -38,38 +53,14 @@ Page({
     const type = detail.type;
     if (type === 'next') {
       let page = this.data.page + 1;
-      app.agriknow.getStuCourse('monitor', { 'hasMonitor': false, 'needMonitor': true, 'page': page })
-        .then(data => {
-          if (data.success == true) {
-            let pondlist = app.table.domonpond(data.data.list);
-            that.setData({
-              total: data.data.total,
-              pondlist: pondlist
-            })
-          }
-        })
-        .catch(data => {
-
-        })
+      this.fresh(page);
       this.setData({
         page: page
       });
 
     } else if (type === 'prev') {
       let page = this.data.page - 1;
-      app.agriknow.getStuCourse('monitor', { 'hasMonitor': false, 'needMonitor': true, 'page': page })
-        .then(data => {
-          if (data.success == true) {
-            let pondlist = app.table.domonpond(data.data.list);
-            that.setData({
-              total: data.data.total,
-              pondlist: pondlist
-            })
-          }
-        })
-        .catch(data => {
-
-        })
+      this.fresh(page);
       this.setData({
         page: page
       });
@@ -104,25 +95,51 @@ Page({
     })
   },
   handleCloseOk() {
+    var that = this;
     let scId=this.data.scId;
     app.agriknow.getMonPond(scId)
       .then(data=>{
         if(data.success==true){
-          wx.redirectTo({
-            url: '/pages/student/monitor/work/work',
-          })
-        }else{
           wx.showToast({
-            title: '领取失败',
-            icon:'none'
+            title: '领取成功',
+          })
+          setTimeout(function(){
+            that.fresh(that.data.page);
+            /*wx.redirectTo({
+              url: '/pages/student/monitor/work/work',
+            })*/
+          },1500)
+        }else{
+          wx.showModal({
+            title: '提示',
+            content: data.message,
+            showCancel:false,
+            success:function(res){
+              if(res.confirm){
+                that.fresh(that.data.page);
+              }
+            }
           })
         }
       })
       .catch(data=>{
-        wx.showToast({
-          title: '连接失败',
-          icon: 'none'
-        })
+        if(data.statusCode == 403){
+          wx.showModal({
+            title: '提示',
+            content: '未抢到该课程',
+            showCancel:false,
+            success:function(res){
+              if(res.confirm){
+                that.fresh(that.data.page);
+              }
+            }
+          })
+        }else{
+          wx.showToast({
+            title: '连接失败',
+            icon: 'none'
+          })
+        }
       })
     this.setData({
       visible2: false
@@ -189,7 +206,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    this.fresh(this.data.page);
   },
 
   /**

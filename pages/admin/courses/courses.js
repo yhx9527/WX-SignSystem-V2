@@ -29,7 +29,8 @@ Page({
         if (data.success == true) {
           let courses = app.table.doadmincourses(data.data.list);
           that.setData({
-            courses:courses
+            courses:courses,
+            total: data.data.pages,
           })
           $Message({
             content: '加载成功',
