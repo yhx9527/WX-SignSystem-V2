@@ -81,7 +81,7 @@ class Table{
       try{
         schedule['cozId']= course.scId;
         schedule['cozName'] = course.scName;
-        schedule['cozMaxSize'] = course.scMaxSize;
+        schedule['cozMaxSize'] = course.scActSize;
         schedule['cozTea'] = course.sisJoinCourseList.filter(function (item, index, array){
           return item.joinCourseType=== 1
         }).map(function(item,index,array){
@@ -179,7 +179,7 @@ class Table{
       try{
         course = courses[i]
         coz['cozId'] = course.scId;
-        coz['cozSize'] = course.scMaxSize;
+        coz['cozSize'] = course.scActSize;
         coz['cozName'] = course.scName;
         coz['cozTeaAbout'] = course.sisJoinCourseList.filter(function (item, index, array) {
           return item.joinCourseType === 1
@@ -305,7 +305,7 @@ class Table{
       trans['schId'] = arr.ssId;
       trans['week'] = arr.smtWeek;
       trans['schname'] = arr.sisSchedule.sisCourse.scName;
-      trans['schsize'] = arr.sisSchedule.sisCourse.scMaxSize;
+      trans['schsize'] = arr.sisSchedule.sisCourse.scActSize;
       trans['slId'] = arr.sisSchedule.slId;
       trans['username'] = arr.sisSchedule.sisCourse.sisUser.suName;
       trans['weektime'] = arr.sisSchedule.ssStartWeek+'-'+arr.sisSchedule.ssEndWeek;
@@ -333,7 +333,7 @@ class Table{
       try{
       pond['cozId'] = arr.scId;
       pond['cozName'] = arr.scName;
-      pond['cozSize'] = arr.scMaxSize;
+      pond['cozSize'] = arr.scActSize;
       pond['cozTea'] = arr.sisJoinCourseList.filter(function (item, index, array) {
           return item.joinCourseType === 1
         }).map(function (item, index, array) {
@@ -371,7 +371,7 @@ class Table{
       try{
       course['cozid'] = arr.scId;
       course['cozname'] = arr.scName;
-      course['cozsize'] = arr.scMaxSize;
+      course['cozsize'] = arr.scActSize;
       course['ifmon'] = arr.scNeedMonitor;
       course['monitor'] = arr.scNeedMonitor ? arr.monitor :{};
       course['schs'] = arr.sisScheduleList.map(function(item,index,array){
@@ -436,7 +436,7 @@ doteacoz(courses){
     let teacoz = {};
     try{
     teacoz['cozId'] = item.scId;
-    teacoz['cozSize'] = item.sisCourse.scMaxSize;
+    teacoz['cozSize'] = item.sisCourse.scActSize;
     teacoz['cozName'] = item.sisCourse.scName;
     teacoz['ifMon'] = item.sisCourse.scNeedMonitor;
     teacoz['stuList'] = item.sisCourse.sisJoinCourseList.filter(item1=>{

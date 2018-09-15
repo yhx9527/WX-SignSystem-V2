@@ -283,6 +283,10 @@ aheadMon:function(){
           that.setData({
             newpond:true
           })
+        }else{
+          that.setData({
+            newpond: false
+          })
         }
       })
       .catch(data => {

@@ -108,7 +108,7 @@ Page({
     app.agriknow.getMonPond(scId)
       .then(data=>{
         if(data.success==true){
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/student/monitor/work/work',
           })
         }else{
@@ -119,7 +119,10 @@ Page({
         }
       })
       .catch(data=>{
-
+        wx.showToast({
+          title: '连接失败',
+          icon: 'none'
+        })
       })
     this.setData({
       visible2: false

@@ -53,10 +53,14 @@ Page({
         "ssvSleepNum": form.ssvSleepNum || 0,
         "ssvWeek": this.data.week
       }
-
+      wx.showLoading({
+        title: '提交中',
+      })
       app.agriknow.insertMonRec(this.data.ssId,sisSupervision)
         .then(data=>{
+          wx.hideLoading();
             if(data.success == true){
+             
               wx.showToast({
                 title: '提交成功',
                 success:function(res){
@@ -76,11 +80,17 @@ Page({
             }
         })
         .catch(data=>{
+          wx.hideLoading();
           if(data.statusCode == 403){
             wx.showModal({
               title: '提示',
-              content: "该周您无权督导",
+              content: "该周您无权督导或督导已完成",
               showCancel: false
+            })
+          }else{
+            wx.showToast({
+              title: '连接失败',
+              icon:'none'
             })
           }
         })
