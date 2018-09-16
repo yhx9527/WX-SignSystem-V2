@@ -74,5 +74,5 @@
             <i-icon type="close" slot="close"></i-icon>
         </i-switch>
       </view>
-     <i-input value='{{monitorman}}' i-class='modal_input' type="number" right title="督导员" mode="wrapped" placeholder="请输入督导员学号" error='{{transerror1}}' bindblur='inputblur1'/>
+     <!--i-input value='{{monitorman}}' i-class='modal_input' type="number" right title="督导员" mode="wrapped" placeholder="请输入督导员学号(选填)" error='{{transerror1}}' bindblur='inputblur1'/-->
 </i-modal>

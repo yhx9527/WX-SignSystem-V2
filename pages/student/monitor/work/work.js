@@ -151,6 +151,9 @@ Page({
       this.setData({
         transmodel: false
       })
+      wx.showLoading({
+        title: '发送中...',
+      })
       let sisMonitorTrans = {
         "smtStatus": 0,
         "smtWeek": parseInt(this.data.transweek),
@@ -159,6 +162,7 @@ Page({
       }
       app.agriknow.applyMonTrans(ssId,sisMonitorTrans)
         .then(data=>{
+          wx.hideLoading();
           if(data.success == true){
             wx.showToast({
               title: '已发送',
@@ -170,6 +174,7 @@ Page({
           }
         })
         .catch(data=>{
+          wx.hideLoading();
           if(data.statusCode == 403){
             this.setData({
               transmodel:false,

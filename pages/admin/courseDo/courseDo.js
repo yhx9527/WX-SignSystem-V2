@@ -71,14 +71,12 @@ Page({
   putmonitor(){
     var that = this;
     let suId = this.data.monitorman;
-    if(suId != ''){
+    //if(suId != ''){
       let scId = this.data.course.cozid;
       let sisCourse={
         scNeedMonitor: this.data.ifmon,
         scId:scId,
-        monitor:{
-          suId: suId
-        }
+      
       }
       this.setData({
         visible1: false,
@@ -87,7 +85,7 @@ Page({
         .then(data=>{
           if (data.success == true) {
             let course = that.data.course;
-            course.ifmon = true;
+            course.ifmon = data.sisCourse.scNeedMonitor;
             wx.showToast({
               title: '修改成功',
             })
@@ -105,11 +103,12 @@ Page({
 
         })
     
-    }else{
+    //}
+    /*else{
       this.setData({
         transerror1:true
       })
-    }
+    }*/
   
   },
   monswitch(event){

@@ -32,7 +32,8 @@ Page({
           let pondlist = app.table.domonpond(data.data.list);
           that.setData({
             total: data.data.pages,
-            pondlist: pondlist
+            pondlist: pondlist,
+            page:page
           })
         }
         $Message({
@@ -54,16 +55,20 @@ Page({
     if (type === 'next') {
       let page = this.data.page + 1;
       this.fresh(page);
+      /*
       this.setData({
         page: page
       });
+      */
 
     } else if (type === 'prev') {
       let page = this.data.page - 1;
       this.fresh(page);
+      /*
       this.setData({
         page: page
       });
+      */
     }
   },
   //课程详情显示

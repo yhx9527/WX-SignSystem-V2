@@ -1,4 +1,4 @@
-const app=getApp();
+ const app=getApp();
 Page({
 
   /**
@@ -94,6 +94,10 @@ Page({
   },
   //处理转接
   rejectTrans:function(e){
+    var that = this;
+    wx.showLoading({
+      title: '处理中...',
+    })
     let trans = e.currentTarget.dataset.item;
     let sisMonitorTrans={
       "smtStatus": 2,
@@ -103,6 +107,7 @@ Page({
     }
     app.agriknow.doMonTrans(trans.schId,sisMonitorTrans)
       .then(data=>{
+        wx.hideLoading();
         if (data.success == 1) {
           let detail = { key: 'disagree' };
           that.handleChange({ detail });
@@ -114,10 +119,13 @@ Page({
         }
       })
       .catch(data=>{
-
+        wx.hideLoading();
       })
   },
   agreeTrans:function(e){
+    wx.showLoading({
+      title: '处理中...',
+    })
     let trans = e.currentTarget.dataset.item;
     let sisMonitorTrans = {
       "smtStatus": 1,
@@ -128,6 +136,7 @@ Page({
     var that = this;
     app.agriknow.doMonTrans(trans.schId, sisMonitorTrans)
       .then(data => {
+        wx.hideLoading();
         if(data.success==1){
           let detail = { key: 'agree' };
           that.handleChange({ detail });
@@ -139,7 +148,7 @@ Page({
         }
       })
       .catch(data => {
-        
+        wx.hideLoading();
       })
   },
 

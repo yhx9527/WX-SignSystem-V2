@@ -45,18 +45,18 @@
   <view class='zhuzi'></view>
   
   <navigator class='paizi' url='../courses/courses'>
-      <view class='paizi_title'>课程管理</view>
-      <view class='paizi_info'>跟课程有关的都在这里哦</view> 
+      <view class='paizi_title'>课程微管理</view>
+      <view class='paizi_info'>课程管理的一部分功能在这里哦</view> 
   </navigator>
 
-    <navigator class='paizi1' >
-      <view class='paizi_title'>督导员管理</view>
-      <view class='paizi_info'>暂无</view> 
+    <navigator class='paizi1' url='/pages/web/web'>
+      <view class='paizi_title'>更多可点击以下网址访问</view>
+      <view class='paizi_info'>www.xsix103.cn</view> 
  </navigator>
 
     <navigator class='paizi2' >
-      <view class='paizi_title'>更多功能</view>
-      <view class='paizi_info'>暂无</view> 
+      <view class='paizi_title'></view>
+      <view class='paizi_info'></view> 
   </navigator> 
 
   <image src='../../images/admin.jpg' class='renwuImg'></image>

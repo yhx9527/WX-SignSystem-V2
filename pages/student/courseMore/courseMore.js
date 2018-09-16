@@ -89,10 +89,16 @@ Page({
             wx.authorize({
               scope: 'scope.userLocation',
               success() {
+                wx.showLoading({
+                  title: '签到中...',
+                })
                 wx.getLocation({
                   success: function (res) {
                     that.self_sign(ssId,res.latitude,res.longitude);
                   },
+                  fail: function (res) {
+                    wx.hideLoading();
+                  }
                 })
               },
               fail() {
@@ -149,6 +155,7 @@ Page({
     //console.log('jiema '+ aboutcode.decrypt(Base64.decode(token))
     app.agriknow.signIn(ssId, token)
       .then(data => {
+        wx.hideLoading();
         if (data.success) {
           if (data.success.success == true) {
             wx.showToast({
@@ -170,10 +177,11 @@ Page({
         }
       })
       .catch(data => {
+        wx.hideLoading();
         if (data.statusCode == 400) {
           wx.showModal({
             title: '提示',
-            content: '无需签到',
+            content: '无需签到或签到已过',
             showCancel: false
           })
         }

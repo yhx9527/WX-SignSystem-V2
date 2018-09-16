@@ -323,13 +323,16 @@ aheadMon:function(){
             wx.authorize({
               scope: 'scope.userLocation',
               success() {
+                wx.showLoading({
+                  title: '签到中...',
+                })
                 wx.getLocation({
                   success: function (res) {
-                    wx.showLoading({
-                      title: '签到中...',
-                    })
                     that.self_sign(ssId,res.latitude,res.longitude)
                   },
+                  fail:function(res){
+                    wx.hideLoading();
+                  }
                 })
               },
               fail() {
