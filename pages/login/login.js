@@ -15,15 +15,17 @@ Page({
   onLoad: function (options) {
     app.agriknow.getBind().then(data=>{
       if (data.success == true) {
-        app.agriknow.header({ 'Authorization': 'Bearer ' + data['access_token']})
-        wx.setStorageSync('user',data['user'])
+        let authorization = 'Bearer ' + data.data['accessToken'];
+        app.agriknow.header({ 'Authorization': authorization})
+        let user = data.data['sisUser'];
+        wx.setStorageSync('user',user)
         //if(!wx.getStorageSync('ifBind')){
           //wx.setStorageSync('ifBind', true)
         //}
         wx.showLoading({
           title: '登录中...',
           success: function () {
-            let auth = data['user'].suAuthoritiesStr.toLowerCase();
+            let auth = user.suAuthoritiesStr.toLowerCase();
             if(auth.indexOf('student')>-1){
             wx.redirectTo({
               url: '../student/sign/sign',
@@ -42,11 +44,7 @@ Page({
         })
 
       } else {
-        wx.showModal({
-          title: '提示',
-          content: '您的账号尚未绑定请登录绑定',
-          showCancel: false
-        })
+        app.feedback.showModal('您的账号尚未绑定请登录绑定')
       }
     })
   },
@@ -60,11 +58,7 @@ Page({
     var ifBlank = util.formUtil.ifBlank(value,['suId','suPassword','suType']);
     //if(flag==[]){
     if (ifBlank) {
-      wx.showModal({
-        title: '提示',
-        content: '均不能为空，请慎重选择角色',
-        showCancel:false
-      })
+      app.feedback.showModal('均不能为空，请慎重选择角色')
     } else {
       wx.showModal({
         title: '注意',
@@ -82,53 +76,26 @@ Page({
                     .then(data => {
                       wx.hideLoading();
                       if (data.success == true) {
-                        let authorization = 'Bearer ' + data['access_token'];
-                        app.globalData.header = { 'Authorization': 'Bearer ' + data['access_token'] };
+                        let authorization = 'Bearer ' + data.data['accessToken'];
+                        app.globalData.header = { 'Authorization': authorization };
                         app.agriknow.header({
-                          'Authorization': 'Bearer ' + data['access_token']
+                          'Authorization': authorization
                         })
-                        wx.setStorageSync('user', data['user']);
-
-                        app.agriknow.login_redict(e.detail.value.suType,data['user'].suAuthoritiesStr,data['user'].suId);
-                        /*
-                        let auth = e.detail.value.suType.split(',')[0];
-                        if(auth == 'student'){
-                        wx.redirectTo({
-                          url: '../student/sign/sign',
-                        })
-                        }else if(auth=='teacher'){
-                          wx.redirectTo({
-                            url: '/pages/teacher/index/index',
-                          })
-                        }else if(auth=='administrator'){
-                          wx.redirectTo({
-                            url: '/pages/admin/index/index',
-                          })
-                        }
-                        */
+                        let sisUser = data.data['sisUser'];
+                        wx.setStorageSync('user', sisUser);
+                        app.agriknow.login_redict(e.detail.value.suType,sisUser.suAuthoritiesStr,sisUser.suId);
                        
                       } else {
-                        wx.showModal({
-                          title: '提示',
-                          content: data.message,
-                          showCancel: false
-                        })
-          
+                        app.feedback.showModal(data.message);
                       }
                     })
                     .catch(data=>{
-                      wx.showModal({
-                        title: '提示',
-                        content: '连接失败请重试',
-                        showCancel: false,
-                        success: function (res) {
-                          if (res.confirm) {
-                            wx.reLaunch({
-                              url: '/pages/login/login',
-                            })
-                          }
-                        }
-                      })
+                      wx.hideLoading();
+                      app.feedback.showModal('连接失败请重试',function(){
+                        wx.reLaunch({
+                          url: '/pages/login/login',
+                        })
+                      });
                     })
                 
                 

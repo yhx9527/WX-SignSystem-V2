@@ -33,8 +33,7 @@ Page({
     var that = this;
     app.agriknow.getMonRec(coz.cozId)
     .then(data=>{
-      if(data.success){
-        let monRecs = app.table.domonrec(data.array);
+        let monRecs = app.table.domonrec(data);
         that.settle_sort(monRecs);
         //monRecs.sort(util.desc('week')).sort(util.asce('ssId'))
         
@@ -43,7 +42,7 @@ Page({
           content: '加载成功',
           type: 'success'
         });
-      }
+      
     })
     .catch(data=>{
       $Message({

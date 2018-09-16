@@ -41,10 +41,7 @@ Page({
                 title: '发起成功',
               })
             }else{
-              wx.showToast({
-                title: '发起过了',
-                icon:'none'
-              })
+              app.feedback.showModal(data.message);
             }
           })
           .catch(data=>{

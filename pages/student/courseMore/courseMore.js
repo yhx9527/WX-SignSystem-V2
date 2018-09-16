@@ -11,6 +11,7 @@ Page({
   data: {
     current: 'tab1',
     signDataList: [],
+    processing:[],
     leaveDataList: [{ siId: 1, leaveWeek: '2', leaveDay: '三' },{ siId: 2, leaveWeek: '3', leaveDay: '四' },{ siId: 3, leaveWeek: '4', leaveDay: '三' }],
     absDataList: [{ siId: 1, absWeek: '2', absDay: '三' }, { siId: 2, absWeek: '3', absDay: '三' }, { siId: 3, absWeek: '2', absDay: '五' }],
     schedule:{},
@@ -42,18 +43,18 @@ Page({
     let user = wx.getStorageSync('user')
     app.agriknow.getSignRec(scId, { "queryType": "student" })
       .then(data => {
-        if (data.success == true) {
-          let signDataList = app.table.dostusign(data.course.sisScheduleList,user.suId);
-          signDataList.sort(util.desc('ssiId'));
+          let signData = app.table.dostusign(data.sisScheduleList,user.suId);
+          signData.signData.sort(util.desc('ssiId'));
           wx.stopPullDownRefresh();
           that.setData({
-            signDataList:signDataList
+            signDataList:signData.signData,
+            processing: signData.processing
           })
           $Message({
             content: '加载成功',
             type: 'success'
           });
-        }
+        
       })
       .catch(data => {
         wx.stopPullDownRefresh();
@@ -156,24 +157,12 @@ Page({
     app.agriknow.signIn(ssId, token)
       .then(data => {
         wx.hideLoading();
-        if (data.success) {
-          if (data.success.success == true) {
-            wx.showToast({
-              title: '签到成功',
-            })
-          }
-          else {
-            wx.showModal({
-              title: '提示',
-              content: data.success.message,
-              showCancel: false
-            })
-          }
-        } else {
+        if (data.success == true) {
           wx.showToast({
-            title: '签到失败',
-            icon: 'none'
+            title: '签到成功',
           })
+        } else {
+          app.feedback.showModal('签到失败\n'+data.message);
         }
       })
       .catch(data => {

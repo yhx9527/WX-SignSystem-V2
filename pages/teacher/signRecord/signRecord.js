@@ -76,21 +76,22 @@ Page({
       })
       app.agriknow.getSchSignRec(ssId,week)
       .then(data=>{
+        let signlists = [];
         if(data.success == true){
-          let signlists = [];
-          if(data.record){
-          signlists = data.record.sisSignInDetailList;
+          if(data.data){
+          signlists = data.data.sisSignInDetailList;
           }
-          that.setData({
-            signlists:signlists,
-            ifspin:false
-          })
+        }
+        that.setData({
+          signlists: signlists,
+          ifspin: false
+        })
           $Message({
             content: '加载成功',
             type: 'success'
           });
 
-        }
+        
       })
       .catch(data=>{
         that.setData({

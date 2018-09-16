@@ -26,22 +26,16 @@ Page({
     app.agriknow.getStuCourse('administrator', { page: page })
       .then(data => {
         wx.stopPullDownRefresh();
-        if (data.success == true) {
-          let courses = app.table.doadmincourses(data.data.list);
+          let courses = app.table.doadmincourses(data.list);
           that.setData({
             courses:courses,
-            total: data.data.pages,
+            total: data.pages,
           })
           $Message({
             content: '加载成功',
             type: 'success'
           });
-        } else {
-          $Message({
-            content: '加载出错',
-            type: 'error'
-          });
-        }
+   
       })
       .catch(data => {
         if (data.message) {
@@ -65,6 +59,9 @@ Page({
   /**分页 */
   pageChange({ detail }) {
     const type = detail.type;
+    this.setData({
+      courses:[]
+    })
     if (type === 'next') {
       let page = this.data.page+1;
       let courses=this.loadCourse(page);

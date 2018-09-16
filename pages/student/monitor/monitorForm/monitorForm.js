@@ -122,7 +122,7 @@ Page({
     .then(data=>{
       if (data.success == true) {
         that.setData({
-          coursePlace: data.sisLocation.slName
+          coursePlace: data.data.slName
         })
       }
     })

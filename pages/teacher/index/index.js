@@ -32,14 +32,13 @@ Page({
     })
     app.agriknow.after_login('teacher')
       .then(data => {
-        if(data.success == true){
-          let teachList = app.table.doteacoz(data.array);
+          let teachList = app.table.doteacoz(data.list);
           that.setData({
             teachList:teachList,
             week:week,
             ifspin:false
           })
-        }
+        
       })
       .catch(data => {
         that.setData({
@@ -115,7 +114,7 @@ Page({
             if (data.success == true) {
               wx.showModal({
                 title: '上课地点',
-                content: data.sisLocation.slName,
+                content: data.data.slName,
                 showCancel: false
               })
             }

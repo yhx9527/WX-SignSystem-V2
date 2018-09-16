@@ -24,7 +24,7 @@
     <i-tab key="tab3" title="情况分析"></i-tab>
 </i-tabs-->
 <i-card title="历史签到" extra="如若课程正在签到，则该次签到的记录需等签到结束方可查询到" thumb="https://static.dongtu.com/netpic/201804191438528I03JGR0YCN1FNWK.gif" full>
-    <view slot="content">记录如下<i class="fa fa-hand-o-down"></i></view>
+    <view slot="content">记录如下<i class="fa fa-hand-o-down" style='margin-right:10px;'></i><block wx:if='{{processing.length > 0}}'>签到处理中：</block><block wx:for='{{processing}}' wx:for-item='item'><text style='font-size:12px;color:#00b894;'>{{item.time}}</text></block></view>
 </i-card>
 
 <scroll-view style="height:100%;"scroll-y="true" > 

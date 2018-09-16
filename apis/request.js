@@ -66,14 +66,14 @@ class request {
             //其它错误，提示用户错误信息
             if (this._errorHandler != null) {
               //如果有统一的异常处理，就先调用统一异常处理函数对异常进行处理
-              this._errorHandler('Request was unsuccessful:'+res.statusCode,res)
+              this._errorHandler('client request was unsuccessful:'+res.statusCode,res)
             }
             reject(res)
           }
         }),
         fail: (res => {
           if (this._errorHandler != null) {
-            this._errorHandler(res)
+            this._errorHandler('other fails:' + res.statusCode,res)
           }
           reject(res)
         })

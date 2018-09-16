@@ -307,7 +307,7 @@ class Table{
       trans['schname'] = arr.sisSchedule.sisCourse.scName;
       trans['schsize'] = arr.sisSchedule.sisCourse.scActSize;
       trans['slId'] = arr.sisSchedule.slId;
-      trans['username'] = arr.sisSchedule.sisCourse.sisUser.suName;
+      trans['username'] = arr.sisSchedule.sisCourse.monitor.suName;
       trans['weektime'] = arr.sisSchedule.ssStartWeek+'-'+arr.sisSchedule.ssEndWeek;
       let day = this.doDaytoString(arr.sisSchedule.ssDayOfWeek);
       trans['time'] = day+' '+arr.sisSchedule.ssStartTime+'-'+arr.sisSchedule.ssEndTime;
@@ -463,12 +463,18 @@ doteacoz(courses){
  */
 dostusign(schlist,suId){
   let signlists = [];
+  let processing = [];
   schlist.forEach((item)=>{
     let temp = item.sisSignInList.map((item1)=>{
       item1['time'] = this.doDaytoString(item.ssDayOfWeek)+' '+item.ssStartTime+'-'+item.ssEndTime;
       return item1;
     })
-    signlists = signlists.concat(temp)
+    let temp1 = item.sisProcessingList.map((item2) => {
+      item2['time'] = this.doDaytoString(item.ssDayOfWeek) + ' ' + item.ssStartTime + '-' + item.ssEndTime;
+      return item2;
+    })
+    signlists = signlists.concat(temp);
+    processing = processing.concat(temp1);
   })
   let signData=signlists.map(item=>{
     let sign = {};
@@ -486,7 +492,7 @@ dostusign(schlist,suId){
     return sign; 
   })
 
-  return signData;
+  return {signData:signData,processing:processing};
 }
 
 }

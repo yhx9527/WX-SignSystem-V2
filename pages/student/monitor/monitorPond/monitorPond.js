@@ -28,14 +28,14 @@ Page({
     app.agriknow.getStuCourse('monitor', { 'hasMonitor': false, 'needMonitor': true, 'page': page })
       .then(data => {
         wx.stopPullDownRefresh();
-        if (data.success == true) {
-          let pondlist = app.table.domonpond(data.data.list);
+          let pondlist = app.table.domonpond(data.list);
           that.setData({
-            total: data.data.pages,
+            total: data.pages,
             pondlist: pondlist,
             page:page
           })
-        }
+          
+        
         $Message({
           content: '加载成功',
           type: 'success'
@@ -159,7 +159,7 @@ Page({
         app.agriknow.getLoc(item.slId)
           .then(data => {
             if (data.success == true) {
-              pondplace.push(data.sisLocation.slName);
+              pondplace.push(data.data.slName);
               reslove(pondplace);
             }
           })

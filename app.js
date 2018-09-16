@@ -1,6 +1,7 @@
 //app.js
 import Agriknow from './apis/agriknow.js';
 import Table from './utils/pro_coz.js' ;
+import Feedback from './apis/feedback.js';
 App({
   onLaunch: function () {
     var that = this;
@@ -23,6 +24,8 @@ App({
   agriknow:new Agriknow(),
 
   table:new Table(),
+
+  feedback:new Feedback(),
 
   globalData: {
     systemInfo:{},

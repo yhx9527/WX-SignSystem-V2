@@ -69,8 +69,7 @@ Page({
 
     app.agriknow.after_login('student')
       .then(data=>{
-        if(data.success){
-          var coz = table.docoz(data.array,width);
+          var coz = table.docoz(data.list,width);
           //console.log('coz'+JSON.stringify(coz,undefined,'\t'))
           let week1 = wx.getStorageSync('week');
           that.othercourses(coz,week1);
@@ -89,7 +88,7 @@ Page({
             wx.setStorageSync('term', term) 
           },1000)
           
-        }
+        
       })
     
   },
@@ -266,20 +265,19 @@ aheadMon:function(){
     var that = this;
     app.agriknow.getMonTrans('untreated')
       .then(data=>{
-        if(data.success == true){
-          if(data.array.length>0){
+          if(data.length>0){
             that.setData({
               newtrans:true
             })
           }
-        }
+        
       })
       .catch(data=>{
 
       })
     app.agriknow.getStuCourse('monitor', { 'hasMonitor': false, 'needMonitor': true, 'page': 1 })
       .then(data => {
-        if (data.success == true) {
+        if (data.list.length > 0) {
           that.setData({
             newpond:true
           })
@@ -390,10 +388,7 @@ aheadMon:function(){
               title: '签到成功',
             })
         } else{
-          wx.showToast({
-            title: '签到失败',
-            icon: 'none'
-          })
+          app.feedback.showModal('签到失败\n'+data.message);
         }
       })
       .catch(data => {
@@ -467,7 +462,7 @@ aheadMon:function(){
             if (data.success == true) {
               wx.showModal({
                 title: '上课地点',
-                content: data.sisLocation.slName,
+                content: data.data.slName,
                 showCancel: false
               })
             }

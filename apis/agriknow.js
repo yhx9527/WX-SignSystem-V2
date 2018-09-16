@@ -1,17 +1,36 @@
-import request from './request.js'
+import request from './request.js';
+import Feedback from './feedback.js';
 class agriknow {
   constructor() {
-    this._baseUrl = 'https://api.xsix103.cn/sign_in_system/v3/'
+    this._baseUrl = 'http://118.126.111.189:8088/'
     this._defaultHeader = { 'Content-Type': 'application/json' }
     this._request = new request()
     this._request.setErrorHandler(this.errorHander)
+    
   }
 
   /**
    * 统一的异常处理方法
    */
   errorHander(message,res) {
-    console.error(message)
+    console.error(message);
+    let feedback = new Feedback();
+    switch(res.statusCode){
+      case 401:
+        feedback.showModal('401\n'+res.data.message);
+        break;
+      case 403:
+        feedback.showModal('403\n' + res.data.message);
+        break;
+      case 404:
+        feedback.showModal('404\n' + res.data.message);
+        break;
+      case 500:
+        feedback.showModal('500\n' + res.data.message);
+        break;
+
+    }
+
     /*
     wx.showToast({
       title: '连接出错',
@@ -63,7 +82,6 @@ class agriknow {
         }
       })
     })
-   
   }
   /**
    * 获得当前周
@@ -111,7 +129,7 @@ class agriknow {
       that.putWX(suId)
         .then(data => {
           if (data.success == true) {
-            that.header({ 'Authorization': 'Bearer ' + data['access_token'] })
+            that.header({ 'Authorization': 'Bearer ' + data['data'] })
             switch (rank) {
               case 'student':
                 wx.redirectTo({
@@ -177,44 +195,9 @@ class agriknow {
         })
       that.getStuCourse(gettype)
         .then(data => {
-        if(data.success==true || data.message==="No courses"){
-          /*
-          let ifBind=wx.getStorageSync('ifBind');
-          let suId = wx.getStorageSync('suId') || wx.getStorageSync('user').suId;
-          if(ifBind != true){
-            that.putWX(suId)
-              .then(data=>{
-                if(data.success == true){
-                  wx.setStorage({
-                    key: 'ifBind',
-                    data: true,
-                  })
-                  that.header({ 'Authorization': 'Bearer ' + data['access_token']})
-                }else{
-                  wx.showModal({
-                    title: '提示',
-                    content: '该账号已被他人绑定,请使用新账号',
-                    showCancel:false,
-                    success:function(res){
-                      if(res.confirm){
-                        wx.reLaunch({
-                          url: '/pages/login/login',
-                        })
-                      }
-                    }
-                  })
-                }
-                
-
-              })
-              .catch(data=>{
-
-              })
-          }
-          */
           
         resolve(data)
-        }
+        
       })
         .catch(res => {
         if (res.data.message) {
@@ -254,7 +237,7 @@ admin_login(){
               key: 'ifBind',
               data: true,
             })
-            that.header({ 'Authorization': 'Bearer ' + data['access_token'] })
+            that.header({ 'Authorization': 'Bearer ' + data['data'] })
           } else {
             wx.showModal({
               title: '提示',

@@ -31,7 +31,7 @@ Page({
     })
     app.agriknow.getStuCourse('monitor')
       .then(data=>{
-        monitorlist=app.table.mancoz(data.array);
+        monitorlist=app.table.mancoz(data.list);
         that.setData({
           monitorlist:monitorlist,
           ifspin:false

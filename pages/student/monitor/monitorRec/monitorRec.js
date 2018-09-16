@@ -42,13 +42,12 @@ Page({
     })
     app.agriknow.getMonRec(scId)
       .then(data=>{
-        if(data.success==true){
-          records=app.table.domonrec(data.array);
+          records=app.table.domonrec(data);
           this.setData({
             records:records,
             searchs:records
           })
-        }
+        
       })
       .catch(data=>{
         

@@ -34,7 +34,7 @@ Page({
       .then(data=>{
         if(data.success == true){
           that.setData({
-            schLoc:data.sisLocation
+            schLoc:data.data
           })
         }
       })
@@ -113,16 +113,17 @@ Page({
   },
   //刷新地点
   fresh(){
+    var that = this;
     let py = new pinyin1();
     //if (pinyin.isSupported(true)) {
       app.agriknow.getLocs(1, 250)
         .then(data => {
-          if (data.success == true) {
-            let temps = data.data.list.map(item => {
+     
+            let temps = data.list.map(item => {
               return { name: item.slName, pinyin: py.getFullChars(item.slName),slId:item.slId }
             })
-            this.indexlist(temps);
-          }
+            that.indexlist(temps);
+          
         })
         .catch(data => {
 

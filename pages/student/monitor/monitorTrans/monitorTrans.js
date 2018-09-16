@@ -33,12 +33,8 @@ Page({
       });
       app.agriknow.getMonTrans(detail.key)
         .then(data=>{
-          if (data.success == true) {
-            let translists = app.table.dotrans(data.array);
+            let translists = app.table.dotrans(data);
             resolve({status:detail.key,translists:translists});
-          } else {
-            reject(data);
-          }
         })
         .catch(data=>{
           reject(data)
@@ -171,7 +167,7 @@ Page({
     app.agriknow.getLoc(slId)
       .then(data => {
         if (data.success == true) {
-          tranplace = data.sisLocation.slName
+          tranplace = data.data.slName
           that.setData({
             tranplace: tranplace
           })
