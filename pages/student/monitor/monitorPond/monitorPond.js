@@ -158,10 +158,9 @@ Page({
       schs.forEach(item => {
         app.agriknow.getLoc(item.slId)
           .then(data => {
-            if (data.success == true) {
-              pondplace.push(data.data.slName);
+              pondplace.push(data.slName);
               reslove(pondplace);
-            }
+            
           })
           .catch(data => {
 

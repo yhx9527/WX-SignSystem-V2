@@ -32,11 +32,10 @@ Page({
     var that = this;
     app.agriknow.getLoc(sch.slId)
       .then(data=>{
-        if(data.success == true){
           that.setData({
-            schLoc:data.data
+            schLoc:data
           })
-        }
+        
       })
       .catch(data=>{
         console.log('获取这节课的地点出错')

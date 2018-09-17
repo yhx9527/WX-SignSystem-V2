@@ -459,13 +459,13 @@ aheadMon:function(){
         let slId = schs[res.tapIndex].slId;
         app.agriknow.getLoc(slId)
           .then(data=>{
-            if (data.success == true) {
+            
               wx.showModal({
                 title: '上课地点',
-                content: data.data.slName,
+                content: data.slName,
                 showCancel: false
               })
-            }
+            
           })
           .catch(data=>{
 

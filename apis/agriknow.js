@@ -2,7 +2,7 @@ import request from './request.js';
 import Feedback from './feedback.js';
 class agriknow {
   constructor() {
-    this._baseUrl = 'http://118.126.111.189:8088/'
+    this._baseUrl = 'https://api.xsix103.cn/sign_in_system/v3/'
     this._defaultHeader = { 'Content-Type': 'application/json' }
     this._request = new request()
     this._request.setErrorHandler(this.errorHander)

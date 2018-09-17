@@ -166,12 +166,10 @@ Page({
     let tranplace=''
     app.agriknow.getLoc(slId)
       .then(data => {
-        if (data.success == true) {
-          tranplace = data.data.slName
+          tranplace = data.slName
           that.setData({
             tranplace: tranplace
           })
-        }
       })
       .catch(data => {
         that.setData({

@@ -120,11 +120,10 @@ Page({
     var that = this;
     app.agriknow.getLoc(slId)
     .then(data=>{
-      if (data.success == true) {
         that.setData({
-          coursePlace: data.data.slName
+          coursePlace: data.slName
         })
-      }
+      
     })
     .catch(data=>{
 
