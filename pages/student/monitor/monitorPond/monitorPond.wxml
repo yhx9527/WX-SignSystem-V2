@@ -43,7 +43,7 @@
       <view>学期：{{pondsch.term}}</view>
       <view>课时：{{pondsch.time}}</view>
       <view>周数：{{pondsch.weekTime}}</view>
-      <view>{{pondsch.fort}}</view>
+      <view>{{pondsch.fort}}上课</view>
     </view>
 </i-modal>
 

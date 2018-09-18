@@ -25,9 +25,6 @@ Page({
   //刷新一页的内容
   fresh(page){
     var that = this;
-    that.setData({
-      pondlist:[]
-    })
     app.agriknow.getStuCourse('monitor', { 'hasMonitor': false, 'needMonitor': true, 'page': page })
       .then(data => {
         wx.stopPullDownRefresh();
