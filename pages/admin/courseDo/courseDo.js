@@ -82,7 +82,7 @@ Page({
         .then(data=>{
           if (data.success == true) {
             let course = that.data.course;
-            course.ifmon = data.sisCourse.scNeedMonitor;
+            course.ifmon = that.data.ifmon;
             wx.showToast({
               title: '修改成功',
             })
@@ -111,7 +111,7 @@ Page({
   monswitch(event){
     const detail = event.detail;
     this.setData({
-      'ifmon': detail.value
+      ifmon: detail.value
     })
   },
   inputblur1:function(e){

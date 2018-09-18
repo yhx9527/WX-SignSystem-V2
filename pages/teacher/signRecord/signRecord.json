@@ -6,6 +6,8 @@
     "i-icon": "../../../../dist/icon/index",
     "i-panel": "../../../../dist/panel/index",
     "i-spin": "../../../../dist/spin/index",
-    "i-message": "../../../../dist/message/index"
+    "i-message": "../../../../dist/message/index",
+      "i-alert": "../../../../dist/alert/index"
+
   }
 }

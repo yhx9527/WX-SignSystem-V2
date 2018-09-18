@@ -31,6 +31,9 @@
     <view class="container1" style='height:80vh;'wx:if='{{ifspin}}'>
       <i-spin fix></i-spin>
     </view>
+      <i-alert wx:if='{{signlists.length>0}}' closable >
+    已签到:{{signer}}人   |    未签到：{{unsigner}}人
+    </i-alert>
     <i-cell-group>
       <block wx:for='{{signlists}}' wx:for-item='item'>
         <i-cell title="{{item.sisUser.suName}} | {{item.sisUser.suId}}" label="总共{{item.sisUser.suiCozLackNum}}次缺勤" value="{{item.ssidStatus == true ? '本节课已签到' :'本节课缺勤未签到'}}"></i-cell>

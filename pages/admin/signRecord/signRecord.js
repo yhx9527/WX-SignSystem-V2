@@ -82,8 +82,13 @@ Page({
           signlists = data.data.sisSignInDetailList;
           }
         }
+        let signer = signlists.filter(itemx=>{
+          return itemx.ssidStatus == true;
+        }).length;
         that.setData({
           signlists: signlists,
+          signer:signer,
+          unsigner:signlists.length-signer,
           ifspin: false
         })
           $Message({

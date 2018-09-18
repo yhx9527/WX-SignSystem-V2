@@ -82,9 +82,15 @@ Page({
           signlists = data.data.sisSignInDetailList;
           }
         }
+        let signer = signlists.filter(itemx => {
+          return itemx.ssidStatus == true;
+        }).length;
+
         that.setData({
           signlists: signlists,
-          ifspin: false
+          ifspin: false,
+          signer: signer,
+          unsigner: signlists.length - signer,
         })
           $Message({
             content: '加载成功',
