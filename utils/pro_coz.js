@@ -373,6 +373,7 @@ class Table{
       course['cozname'] = arr.scName;
       course['cozsize'] = arr.scActSize;
       course['ifmon'] = arr.scNeedMonitor;
+      course['suId'] = arr.suId;
       course['monitor'] = arr.scNeedMonitor ? arr.monitor :{};
       course['schs'] = arr.sisScheduleList.map(function(item,index,array){
         item['schid'] = item.ssId;

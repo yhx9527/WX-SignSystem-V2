@@ -34,7 +34,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "课时签到系统",
+    "navigationBarTitleText": "课时督导系统",
     "navigationBarTextStyle":"black"
   }
 }

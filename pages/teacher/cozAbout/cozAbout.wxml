@@ -55,8 +55,8 @@
          <i-collapse-item title="学生名单" name="name1" i-class='collapse' i-class-title="collapse-item-title"
                 i-class-content="collapse-item-content">
             <view slot="content">
-                <view wx:if='{{course.stuList.length>0}}'>
-                  <block wx:for='{{course.stuList}}' wx:for-item='item' wx:for-index='index'>
+                <view wx:if='{{stuList.length>0}}'>
+                  <block wx:for='{{stuList}}' wx:for-item='item' wx:for-index='index'>
                      <view class="weui-cell">
                       <view class="weui-cell__hd">
                         <view class="fa fa-user-circle fa-lg"style='color:{{iconBackColor[index%10]}}'></view>

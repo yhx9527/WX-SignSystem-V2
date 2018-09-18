@@ -44,10 +44,10 @@
   </view>
   <view class='zhuzi'></view>
   
-  <navigator class='paizi' url='../courses/courses'>
+  <view class='paizi'  catchtap='queryCoz'>
       <view class='paizi_title'>课程微管理</view>
       <view class='paizi_info'>课程管理的一部分功能在这里哦</view> 
-  </navigator>
+  </view>
 
     <navigator class='paizi1' url='/pages/web/web'>
       <view class='paizi_title'>更多可点击以下网址访问</view>

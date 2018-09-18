@@ -1,12 +1,20 @@
 <view class='effect'>学生名单</view>
 <view class="weui-cells weui-cells_after-title">
   <block wx:for="{{stuList}}"wx:for-item='item'wx:for-index='index'>
-  <view class="weui-cell">
+  <view class="weui-cell" catchtap='stuMore' data-item='{{item.sisUser}}'>
     <view class="weui-cell__hd">
       <view class="fa fa-user-circle fa-lg"style='color:{{iconBackColor[index%10]}}'></view>
     </view>
     <view class="weui-cell__bd"style='margin-left:10px;'>{{item.suId}}</view>
-    <view class="weui-cell__ft">{{item.suName}}</view>
+    <view class="weui-cell__ft">{{item.sisUser.suName}}</view>
   </view>
   </block>
 </view>
+<i-modal title="学生详情" visible="{{ visible1 }}" bind:ok="handleClose1" show-cancel='{{false}}'>
+    <view>姓名:{{stumore.suName}}</view>
+    <view>学号:{{stumore.suId}}</view>
+    <view>权限:{{stumore.suAuthoritiesStr}}</view>
+    <view wx:if='{{stumore.suOpenid}}'>已绑定微信</view>
+    <view wx:else>未绑定微信</view>
+    <view>缺勤次数:{{stumore.suiCozLackNum}}</view>
+</i-modal>

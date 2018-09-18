@@ -8,22 +8,51 @@ Page({
   data: {
     page:1,
     total:1,
-    courses:[]
+    courses:[],
+    hasMonitor:false,
+    needMonitor:false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.loadCourse(1);
+    let kind = options.kind;
+    var that = this;
+    switch(kind){
+      case '1':
+        that.loadCourse(1);
+        break;
+      case '2':
+        that.setData({
+          needMonitor:true,
+          hasMonitor:false
+        })
+        that.loadCourse(1);
+        break;
+      case '3':
+        that.setData({
+          needMonitor: true,
+          hasMonitor: true
+        })
+        that.loadCourse(1);
+        break;
+    }
+ 
   },
 
   /**
    * 加载课程列表
    */
-  loadCourse:function(page){
+  loadCourse:function(page,flag){
     var that = this;
-    app.agriknow.getStuCourse('administrator', { page: page })
+      let data = {
+        page: page,
+        needMonitor: that.data.needMonitor,
+        hasMonitor: that.data.hasMonitor
+      }
+    
+    app.agriknow.getStuCourse('administrator', data)
       .then(data => {
         wx.stopPullDownRefresh();
           let courses = app.table.doadmincourses(data.list);

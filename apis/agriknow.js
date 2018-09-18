@@ -400,7 +400,21 @@ putMon(scId,sisCourse){
     return this._request.putRequest(this._baseUrl + 'schedules/' + ssId+'/locations/'+slId)
   }
 
-}
+  /**
+   * 获取课程学生
+   */
+  getCozStudents(scId){
+    return this._request.getRequest(this._baseUrl + 'courses/' + scId + '/joinCourses')
+  }
 
+  /**
+   * 联系我们
+   */
+  contact(sisContact){
+  
+    return this._request.postRequest(this._baseUrl + 'contacts', sisContact)
+
+}
+}
 
 export default agriknow

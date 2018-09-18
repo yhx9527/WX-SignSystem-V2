@@ -15,7 +15,7 @@
 
 <view class="caption-wrap">
     <text class="caption-title">更多</text>
-    <view class='mingdan collapse-item-title'hover-class='mingdan_hover' catchtap='studentlist' data-list='{{course.students}}'>学生名单<i-icon type="enter" size='16' style='float:right;'/></view>
+    <view class='mingdan collapse-item-title'hover-class='mingdan_hover' catchtap='studentlist' data-cozid='{{course.cozid}}'>学生名单<i-icon type="enter" size='16' style='float:right;'/></view>
     <i-collapse name="{{name}}">
         <i-collapse-item title="老师信息" name="name1"  i-class='collapse' i-class-title="collapse-item-title"
                 i-class-content="collapse-item-content">
@@ -40,12 +40,14 @@
          <i-collapse-item title="本课程督导员" name="name3" i-class='collapse' i-class-title="collapse-item-title"
                 i-class-content="collapse-item-content">
             <view slot="content">
-                <block wx:if='{{course.monitor}}'>
+                <!--block wx:if='{{course.monitor}}'>
                 <view>
                   督导员: {{course.monitor.suName}}
                 </view>
                 <view>学号: {{course.monitor.suId}}</view>
                 </block>
+                <view wx:else>无督导员</view-->
+                <view wx:if='{{course.suId}}'>督导员学号: {{course.suId}}</view>
                 <view wx:else>无督导员</view>
             </view>
         </i-collapse-item>

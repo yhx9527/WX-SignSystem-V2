@@ -122,9 +122,9 @@ Page({
 
   //查看学生名单
   studentlist:function(e){
-    let list = e.currentTarget.dataset.list;
+    let cozid = e.currentTarget.dataset.cozid;
     wx.navigateTo({
-      url: '/pages/common/studentList/studentList?list='+JSON.stringify(list),
+      url: '/pages/common/studentList/studentList?cozid='+cozid,
     })
   },
   /**

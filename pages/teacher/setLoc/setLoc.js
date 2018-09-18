@@ -89,10 +89,7 @@ Page({
               },1000)
           
             }else{
-              wx.showToast({
-                title: '修改失败',
-                icon:'none'
-              })
+              app.feedback.showModal(data.message);
             }
           })
           .catch(data=>{

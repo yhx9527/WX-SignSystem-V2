@@ -94,6 +94,7 @@ Page({
                   title: '签到中...',
                 })
                 wx.getLocation({
+                  type: 'gcj02',
                   success: function (res) {
                     that.self_sign(ssId,res.latitude,res.longitude);
                   },

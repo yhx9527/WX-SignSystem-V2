@@ -15,10 +15,10 @@ function encrypt(plaintText) {
     mode: CryptoJS.mode.ECB,
     padding: CryptoJS.pad.Pkcs7
   };
-  console.log('keyb'+CRYPTOJSKEY);
+  //console.log('keyb'+CRYPTOJSKEY);
   var key = CryptoJS.enc.Base64.parse(CRYPTOJSKEY);
   //var key = 'JWmPJIqFj+Lxu4GbO/RP7w==';
-  console.log('keya'+key);
+  //console.log('keya'+key);
   var encryptedData = CryptoJS.AES.encrypt(plaintText, key, options);
   var encryptedBase64Str = encryptedData.toString();
   return encryptedBase64Str;

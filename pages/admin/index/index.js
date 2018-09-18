@@ -7,7 +7,7 @@ Page({
   data: {
     showSelf: false,
     week:1,
-
+    kinds:[{kind:1,content:'管理未督导课程'},{kind:2,content:'管理未有督导员的督导课程'},{kind:3,content:'管理已有督导员的督导课程'}]
   },
 
   /**
@@ -35,6 +35,22 @@ Page({
 
       })
     
+  },
+  queryCoz(){
+    var that = this;
+    let kinds = that.data.kinds;
+    wx.showActionSheet({
+      itemList: kinds.map(item=>{
+        return item.content
+      }),
+      success:function(res){
+        let kind = kinds[res.tapIndex].kind;
+        wx.navigateTo({
+          url: '../courses/courses?kind='+kind,
+        }) 
+      }
+      
+    })
   },
 
   //个人中心抽屉

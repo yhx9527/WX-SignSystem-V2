@@ -57,5 +57,5 @@
   <view class="weui-footer__links">
     <navigator url="../web/web" class="weui-footer__link">www.xsix103.cn</navigator>
   </view>
-  <view class="weui-footer__text">Copyright © 2018 SignInSystem</view>
+  <view class="weui-footer__text">Copyright © 2018 System By 一路工作室</view>
 </view>

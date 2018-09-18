@@ -13,13 +13,13 @@ Page({
     //课表相关参数
     tableHead: ['', '周一', '周二', '周三', '周四', '周五', '周六', '周日'],
     tableContent: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    year: 2017,
-    yearTemp: 2017,
+    year: 2018,
+    yearTemp: 2018,
     termTemp: true,
     term:1,
     week: 1,
     weekTemp: 1,
-    Temp: 1,
+    Temp: 0,
     Temp1: 1,
     iconBackColor: ['#FFFFCC', '#CCFFFF', '#FFCCCC', '#CCCCFF', '#FFCC99', '#CCFF99', '#CCFFCC', '#66cccc'],
     end: '#cccccc',//结课的颜色
@@ -325,7 +325,9 @@ aheadMon:function(){
                   title: '签到中...',
                 })
                 wx.getLocation({
+                  type:'gcj02',
                   success: function (res) {
+                    console.log(res);
                     that.self_sign(ssId,res.latitude,res.longitude)
                   },
                   fail:function(res){
