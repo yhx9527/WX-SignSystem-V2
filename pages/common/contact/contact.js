@@ -1,10 +1,12 @@
+const app = getApp();
+const util = require('../../../utils/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+
   },
 
   /**
@@ -13,7 +15,46 @@ Page({
   onLoad: function (options) {
     
   },
-
+  //联系我们
+  formSubmit(e){
+    console.log(e.detail.value);
+    var that = this;
+    let form = e.detail.value;
+    if (util.formUtil.ifBlank(form,['sctName','sctContact','sctContent']) == false){
+      wx.showLoading({
+        title: '发送中...',
+        success:function(){
+          let sisContact = {
+            "sctContact": form.sctContact,
+            "sctContent": form.sctContent,
+            "sctName": form.sctName
+          }
+          app.agriknow.contact(sisContact)
+            .then(data => {
+              wx.hideLoading();
+              if (data.success == true) {
+                wx.showToast({
+                  title: '提交成功',
+                })
+                that.setData({
+                  value1: '',
+                  value2: '',
+                  value3: ''
+                })
+              } else {
+                app.feedback.showModal(data.message);
+              }
+            })
+            .catch(data => {
+              wx.hideLoading();
+            })
+        }
+      })
+ 
+    }else{
+      app.feedback.showModal('表单均不能为空')
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

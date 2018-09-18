@@ -1,15 +1,26 @@
 <view class='body'>
-<view class="box6" style='min-height:300px;'>
-       <view class='h1'>联系方式</view>   
+<view class="box6" style='min-height:470px;'>
+       <view class='h1'>反馈及联系</view>   
        <image class='img' src="https://static.dongtu.com/netpic/20161217123827LGGFJGN09QK7831V.gif"></image>
+       <form bindsubmit="formSubmit">
+
+      <i-input value="{{ value1 }}" title="称呼" autofocus  mode='wrapped' name='sctName' placeholder="怎么称呼您呢？"/>
+      <i-input value="{{ value2 }}"  title="联系方式" mode='wrapped'  name = 'sctContact' placeholder="您的联系方式是？"/>
+      <i-input value="{{ value3 }}" type="textarea" title="内容" placeholder="请输入要反馈的内容(最多200个字)" maxlength="200" mode='wrapped' name='sctContent'/>
+
+        <view class="button-wrap" style='float:right;margin-top:5px;margin-right:20px;'>
+        <button class="button button-circle" formType="submit">
+           <i class="fa fa-paper-plane"></i>
+        </button>
+       
+      </view>
+       </form>
         <view class='p'>
-         QQ：540230904
-       </view>
-        <view class='p' style='margin-top:0px;margin-left:25px;'>
-             2541175183
+         QQ：540230904  |  2541175183
        </view>
        <navigator url="/pages/web/web" class="a">www.xsix103.cn</navigator>
        <view class="box6_corner_lf"></view>
        <view class="box6_corner_rt"></view>
 </view>
 </view>
+

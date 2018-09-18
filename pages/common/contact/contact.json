@@ -1,1 +1,8 @@
-{}
+{
+    "component": true,
+    "usingComponents": {
+      "i-modal": "../../../dist/modal/index",
+        "i-input": "../../../dist/input/index",
+        "i-panel": "../../../dist/panel/index"
+    }
+}
