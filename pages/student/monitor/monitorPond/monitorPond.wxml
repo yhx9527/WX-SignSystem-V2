@@ -35,9 +35,11 @@
     <view>课程老师：{{pond.cozTea}}</view>
     <view class='modeltext'>课程人数：{{pond.cozSize}}</view>
 
-    <view wx:for='{{pond.schs}}' wx:for-item='pondsch' class='modeltext' wx:for-index='index'>
+    <view wx:for='{{pond.schs}}' wx:for-item='pondsch' class='modeltext' wx:for-index='idx'>
       <view>排课号：{{pondsch.schId}}</view>
-          <view>地点:{{pondplace[index]}}</view>
+      <block wx:for='{{pondplace}}' wx:for-item='item1'>
+        <view wx:if='{{item1.slId == pondsch.slId}}'>地点:{{item1.slName}}</view>
+      </block>
       <view>学期：{{pondsch.term}}</view>
       <view>课时：{{pondsch.time}}</view>
       <view>周数：{{pondsch.weekTime}}</view>

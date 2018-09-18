@@ -25,6 +25,9 @@ Page({
   //刷新一页的内容
   fresh(page){
     var that = this;
+    that.setData({
+      pondlist:[]
+    })
     app.agriknow.getStuCourse('monitor', { 'hasMonitor': false, 'needMonitor': true, 'page': page })
       .then(data => {
         wx.stopPullDownRefresh();
@@ -34,8 +37,6 @@ Page({
             pondlist: pondlist,
             page:page
           })
-          
-        
         $Message({
           content: '加载成功',
           type: 'success'
@@ -154,18 +155,25 @@ Page({
   getLoc(schs) {
     var that = this;
     let pondplace = [];
+    let only = Array.from(new Set(schs.map(item=>{
+      return item.slId;
+    })))
+    console.log(only);
     new Promise((reslove,reject)=>{
-      schs.forEach(item => {
-        app.agriknow.getLoc(item.slId)
+      only.forEach((item,index,array) => {
+        app.agriknow.getLoc(item)
           .then(data => {
-              pondplace.push(data.slName);
-              reslove(pondplace);
-            
+            console.log(pondplace);
+              pondplace.push({slId:data.slId,slName:data.slName});
+              if(pondplace.length == array.length){
+                reslove(pondplace);
+              }
           })
           .catch(data => {
 
           })
       })
+
 
     })
    .then(data=>{
