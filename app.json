@@ -28,7 +28,8 @@
 
     "pages/admin/index/index",
     "pages/admin/courses/courses",
-    "pages/admin/courseDo/courseDo"
+    "pages/admin/courseDo/courseDo",
+        "pages/admin/signRecord/signRecord"
 
   ],
   "window":{

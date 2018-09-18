@@ -16,6 +16,7 @@
 <view class="caption-wrap">
     <text class="caption-title">更多</text>
     <view class='mingdan collapse-item-title'hover-class='mingdan_hover' catchtap='studentlist' data-cozid='{{course.cozid}}'>学生名单<i-icon type="enter" size='16' style='float:right;'/></view>
+    <navigator class='mingdan collapse-item-title'hover-class='mingdan_hover' url='../signRecord/signRecord'>签到记录<i-icon type="enter" size='16' style='float:right;'/></navigator>
     <i-collapse name="{{name}}">
         <i-collapse-item title="老师信息" name="name1"  i-class='collapse' i-class-title="collapse-item-title"
                 i-class-content="collapse-item-content">

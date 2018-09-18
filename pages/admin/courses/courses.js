@@ -110,6 +110,7 @@ Page({
   //课程详情页
   coursemore:function(e){
     let item = e.currentTarget.dataset.item;
+    wx.setStorageSync('coz', item);
     wx.navigateTo({
       url: '../courseDo/courseDo?course='+JSON.stringify(item),
     })
