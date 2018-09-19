@@ -68,7 +68,9 @@ opacity:0.9;
   padding-top:2px;
 font-size:11px;
 padding-left:1px;
-
+height:inherit;
+overflow:hidden;
+text-overflow: ellipsis;
 }
 
 /*更改周数模态框*/
