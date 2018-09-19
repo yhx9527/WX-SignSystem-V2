@@ -113,7 +113,7 @@ Page({
       success: function (res) {
         console.log('actinschs'+schs);
         wx.navigateTo({
-          url: '../monitorForm/monitorForm?ssId=' + schs[res.tapIndex].schid + '&item=' + JSON.stringify(item) + '&schtime=' + schs[res.tapIndex].schtime+'&slId='+schs[res.tapIndex].slid,
+          url: '../monitorForm/monitorForm?ssId=' + schs[res.tapIndex].schid + '&item=' + JSON.stringify(item) + '&schtime=' + schs[res.tapIndex].schtime+'&slId='+schs[res.tapIndex].slid+'&coursePlace='+schs[res.tapIndex].schRoom,
         })
         console.log(res.tapIndex)
       },

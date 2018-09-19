@@ -18,6 +18,9 @@
         <view class="weui-media-box__title"style='color:#1c2438;'>{{item.cozName}}</view>
         <view class="weui-media-box__desc">老师：{{item.cozTea}}</view>
         <view class="weui-media-box__desc">时间：{{item.cozTime}}</view>
+        <view class="weui-media-box__desc">地点：<block wx:for='{{item.schs}}' wx:for-item='room'>
+          {{room.schRoom}}
+        </block></view>
       </view>
     </view>
     <view class='row addition1'>
@@ -35,6 +38,7 @@
     </i-tag-->
     <view class='more'>
        <view  bindtap='clickmore' data-scid='{{item.cozId}}' data-schs='{{item.schs}}' data-cozname='{{item.cozName}}' data-item='{{item}}'>
+       <i class="fa fa-hand-o-right" style='color:#00b894;'></i>
         more
         <i-icon type="more" size='22'/>
     </view>

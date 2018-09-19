@@ -76,7 +76,7 @@ Page({
       visible1: true,
       pond:pond
     });
-    this.getLoc(pond.schs);
+    //this.getLoc(pond.schs);
 
   },
   handleClose1() {

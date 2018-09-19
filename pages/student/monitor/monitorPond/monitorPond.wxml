@@ -37,9 +37,10 @@
 
     <view wx:for='{{pond.schs}}' wx:for-item='pondsch' class='modeltext' wx:for-index='idx'>
       <view>排课号：{{pondsch.schId}}</view>
-      <block wx:for='{{pondplace}}' wx:for-item='item1'>
+      <view>地点:{{pondsch.schRoom}}</view>
+      <!--block wx:for='{{pondplace}}' wx:for-item='item1'>
         <view wx:if='{{item1.slId == pondsch.slId}}'>地点:{{item1.slName}}</view>
-      </block>
+      </block-->
       <view>学期：{{pondsch.term}}</view>
       <view>课时：{{pondsch.time}}</view>
       <view>周数：{{pondsch.weekTime}}</view>

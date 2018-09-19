@@ -69,11 +69,12 @@
   <i-modal title="转接课程信息" visible="{{ visible1 }}" bind:ok="handleClose1" ok-text='了解' show-cancel='{{showcancel}}'>
     <view>来自{{trans.username}}</view>
     <view>课程名:{{trans.schname}}</view>
-    <view>地点:{{tranplace}}</view>
+    <view>地点:{{trans.schRoom}}</view>
     <view>周次:{{trans.week}}</view>
     <view>时间:{{trans.time}}</view>
     <view>课程人数:{{trans.schsize}}</view>
     <view>课程周数:{{trans.weektime}}</view>
-    <view wx:if='{{trans.fort==1}}'>单周</view>
-    <view wx:if='{{trans.fort==2}}'>双周</view>
+      <view wx:if='{{trans.fort==0}}'>全周上课</view>
+    <view wx:if='{{trans.fort==1}}'>单周上课</view>
+    <view wx:if='{{trans.fort==2}}'>双周上课</view>
 </i-modal>

@@ -21,6 +21,7 @@
                 <block wx:for='{{course.schs}}' wx:for-item='item'>
                   <view>排课ID: {{item.schId}}</view>
                   <view>上课时间: {{item.schTime}}</view>
+                  <view>上课地点: {{item.schRoom}}</view>
                   <view>上课周数： {{item.schweek}}</view>
                   <view>{{item.schfort}}</view>
                 </block>

@@ -17,7 +17,7 @@ border-top:1px solid #e9eaec;
   flex:1;
 margin-right:5px;
 color:#80848f;
-font-size:13px;
+font-size:14px;
 display:flex;
 align-items:center;
 justify-content:flex-end;

@@ -82,12 +82,13 @@ Page({
               wx.showToast({
                 title: '修改成功',
               })
+              /*
               setTimeout(function(){
                 wx.reLaunch({
                   url: '/pages/teacher/index/index',
                 })
               },1000)
-          
+          */
             }else{
               app.feedback.showModal(data.message);
             }

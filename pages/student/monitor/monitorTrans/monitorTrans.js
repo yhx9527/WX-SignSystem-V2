@@ -77,7 +77,7 @@ Page({
   //转接的课程详情显示
   handleOpen1: function (e) {
     let trans = e.currentTarget.dataset.item;
-    this.getLoc(trans.slId);
+    //this.getLoc(trans.slId);
     this.setData({
       visible1: true,
       trans:trans

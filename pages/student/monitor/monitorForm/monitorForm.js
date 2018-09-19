@@ -36,7 +36,8 @@ Page({
       user:user,
       ssId: ssId,
       week:week,
-      slId:slId
+      slId:slId,
+      coursePlace:options.coursePlace
     })
   },
 
@@ -116,6 +117,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    /*
     let slId = this.data.slId;
     var that = this;
     app.agriknow.getLoc(slId)
@@ -128,6 +130,7 @@ Page({
     .catch(data=>{
 
     })
+    */
   },
 
   /**

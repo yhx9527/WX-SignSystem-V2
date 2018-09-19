@@ -91,7 +91,7 @@ class Table{
         schedule['cozIfMon'] = course.scNeedMonitor;
         //let schstemp=[];
         schedule['schs'] = course.sisScheduleList.map(item=>{
-          return { schId: item.ssId, schTime: that.doDaytoString(item.ssDayOfWeek) + ' ' + item.ssStartTime + '-' + item.ssEndTime,schSuspends: item.ssSuspensionList,schSuspendnote:item.ssSuspension,slId: item.slId}
+          return { schId: item.ssId, schTime: that.doDaytoString(item.ssDayOfWeek) + ' ' + item.ssStartTime + '-' + item.ssEndTime,schSuspends: item.ssSuspensionList,schSuspendnote:item.ssSuspension,slId: item.slId,schRoom:item.ssRoom}
         })
           let sch = schs[j]
           //let day = that.doDay(sch.ssDayOfWeek);
@@ -110,6 +110,7 @@ class Table{
           schedule['schEndTime'] = sch.ssEndTime;
           schedule['schSuspends'] = sch.ssSuspensionList;
           schedule['schSuspendnote'] = sch.ssSuspension;
+          schedule['schRoom'] = sch.ssRoom;
           schedule['ifClass'] = true;
           //schstemp.push({ schId: sch.ssId, schTime: that.doDaytoString(sch.ssDayOfWeek)+' '+sch.ssStartTime+'-'+sch.ssEndTime}); 
         
@@ -199,6 +200,7 @@ class Table{
           let schedule = schedules[j];
           sch['schid'] = schedule['ssId'];
           sch['slid'] = schedule['slId'];
+          sch['schRoom'] = schedule['ssRoom'];
           let day = this.doDaytoString(schedule.ssDayOfWeek);
           sch['schtime'] = day+' '+schedule['ssStartTime']+'-'+schedule['ssEndTime'];
           schs.push(sch);
@@ -246,6 +248,7 @@ class Table{
         let temp = temps[i];
         record['note'] = temp;
         record['week'] = temp.ssvWeek;
+        
         records.push(record);
       }
       }catch(e){
@@ -307,6 +310,7 @@ class Table{
       trans['schname'] = arr.sisSchedule.sisCourse.scName;
       trans['schsize'] = arr.sisSchedule.sisCourse.scActSize;
       trans['slId'] = arr.sisSchedule.slId;
+      trans['schRoom'] = arr.sisSchedule.ssRoom;
       trans['username'] = arr.sisSchedule.sisCourse.monitor.suName;
       trans['weektime'] = arr.sisSchedule.ssStartWeek+'-'+arr.sisSchedule.ssEndWeek;
       let day = this.doDaytoString(arr.sisSchedule.ssDayOfWeek);
@@ -344,6 +348,7 @@ class Table{
         let sch = {};
         sch['schId']=item.scId;
         sch['slId'] = item.slId;
+        sch['schRoom'] = item.ssRoom;
         sch['term']=item.ssYearEtTerm;
         let day = that.doDaytoString(item.ssDayOfWeek);
         sch['time'] = day+' '+item.ssStartTime+'-'+item.ssEndTime;
@@ -380,6 +385,7 @@ class Table{
         item['sch'] = that.doDaytoString(item.ssDayOfWeek)+' '+item.ssStartTime+'-'+item.ssEndTime;
         item['weektime'] = that.doFortToString(item.ssFortnight)+' '+item.ssStartWeek+'-'+item.ssEndWeek;
         item['slid'] = item.slId;
+        item['schRoom'] = item.ssRoom;
         return item;
       });
       course['suspends'] = arr.sisScheduleList.map(function(item,index,array){
@@ -445,7 +451,7 @@ doteacoz(courses){
     });
     teacoz['schs'] = item.sisCourse.sisScheduleList.map(item2 => {
       return { schId: item2.ssId, schName:item.sisCourse.scName,schTime: that.doDaytoString(item2.ssDayOfWeek) + ' ' + item2.ssStartTime + '-' + item2.ssEndTime, slId: item2.slId,
-      schweek:item2.ssStartWeek+'-'+item2.ssEndWeek,schfort:that.doFortToString(item2.ssFortnight),suspends:{weeks:item2.ssSuspensionList.join(','),note:item2.ssSuspension} }
+      schRoom:item2.ssRoom,schweek:item2.ssStartWeek+'-'+item2.ssEndWeek,schfort:that.doFortToString(item2.ssFortnight),suspends:{weeks:item2.ssSuspensionList.join(','),note:item2.ssSuspension} }
     })  
     teacoz['schedules'] = item.sisCourse.sisScheduleList;
       teacoz['monitor'] = item.scNeedMonitor ? item.monitor : {};
