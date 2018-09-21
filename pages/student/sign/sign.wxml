@@ -66,7 +66,7 @@
              <view class='infoText2' catchtap='lookplace' data-schs='{{item.schs}}'>点击查看<i class="fa fa-hand-o-left" style='margin-left:5px;'></i></view>
             </view-->
            </view>
-           <view class='stoptitle'style="height:35%;" catchtap='suspendrecord' data-record='{{item.schs}}'><i class="fa fa-stop-circle" style='margin-right:5px;'></i>停课记录</view>
+           <view class='stoptitle'style="height:35%;" ><i class="fa fa-stop-circle" style='margin-right:5px;'></i><text catchtap='suspendrecord' data-record='{{item.schs}}'>停课记录</text></view>
           </view>
           <view class='panel_ft'>
             <view class='moreDetail'catchtap='enterCozMore' data-schedule='{{item}}'>
@@ -94,6 +94,15 @@
     </swiper-item>
   </block>
 </swiper>
+  <view class="button-wrap freshbtn" wx:if='{{urgencyFresh}}'>
+    <button class="button button-circle button-raised button-primary freshbtn1" bindtap='fresh'>
+      <view class='column'>
+      <i class="fa fa-bolt" style='font-size:25px;margin-top:15px;'></i>
+      <text>刷新</text>
+      </view>
+    </button>
+  </view>
+ 
 </view>
 <!--个人中心-->
 <view wx:if="{{current == 'self'}}">

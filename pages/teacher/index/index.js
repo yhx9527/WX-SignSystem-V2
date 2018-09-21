@@ -9,7 +9,8 @@ Page({
     systemInfo: app.globalData.systemInfo,
     teachList: [],
     week:1,
-    ifspin:false
+    ifspin:false,
+    urgencyFresh: false
   },
 
   /**
@@ -17,36 +18,63 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    that.setData({
-      ifspin:true
-    })
+ 
     let week = wx.getStorageSync('week');
     wx.getStorage({
       key: 'user',
       success: function (res) {
         that.setData({
           username: res.data.suName,
-          userid: res.data.suId
+          userid: res.data.suId,
+          week:week
         })
       },
     })
-    app.agriknow.after_login('teacher')
-      .then(data => {
+    that.fresh();
+  },
+//刷新
+fresh(){
+  var that = this;
+  that.setData({
+    ifspin: true,
+    urgencyFresh: false,
+  })
+  app.agriknow.getStuCourse('teacher')
+    .then(data => {
+      if(data.list.length>0){
+      app.agriknow.getWeek()
+        .then((data1) => {
+          wx.setStorageSync('week', data1.week);
           let teachList = app.table.doteacoz(data.list);
           that.setData({
-            teachList:teachList,
-            week:week,
-            ifspin:false
+            teachList: teachList,
+            ifspin: false,
+            urgencyFresh: false,
           })
-        
-      })
-      .catch(data => {
-        that.setData({
-          ifspin:false
         })
-      })
-  },
+        .catch((data) => {
+          console.log('xhy')
+          that.setData({
+            ifspin: false,
+            urgencyFresh: true
+          })
+        })
+    }else{
+        that.setData({
+          ifspin: false,
+          urgencyFresh: true,
+        })
+    }
+ 
 
+    })
+    .catch(data => {
+      that.setData({
+        ifspin: false,
+        urgencyFresh: true,
+      })
+    })
+},
 //个人中心抽屉
   toggleSelf:function(){
     this.setData({
@@ -138,7 +166,7 @@ Page({
     let mark = e.currentTarget.dataset.type;
     let schs = e.currentTarget.dataset.schs;
     let schtimes = schs.map(function (item, index, array) {
-      return item.schTime;
+      return '选择 '+item.schTime;
     })
     wx.showActionSheet({
       itemList: schtimes,
@@ -218,7 +246,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    this.fresh();
   },
 
   /**

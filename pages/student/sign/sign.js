@@ -37,7 +37,8 @@ Page({
     newpond:false,
     recordvisible:false,
     show_cancel:false,
-    ifspin:false
+    ifspin:false,
+    urgencyFresh:false
   },
 
   /**
@@ -46,12 +47,7 @@ Page({
   onLoad: function (options) {
     
     var that = this;
-    let schedules = [];
-    let table=app.table;
-    let width = that.data.systemInfo.width;
-    that.setData({
-      ifspin:true
-    })
+
     wx.getStorage({
       key: 'user',
       success: function(res) {
@@ -66,42 +62,77 @@ Page({
         })
       },
     })
-
-    app.agriknow.after_login('student')
-      .then(data=>{
-          var coz = table.docoz(data.list,width);
-          //console.log('coz'+JSON.stringify(coz,undefined,'\t'))
-          let week1 = wx.getStorageSync('week');
-          that.othercourses(coz,week1);
-          setTimeout(function(){
-            let term = coz[0].schTerm;
-            let termArray = term.split('-')
-            var schedules = table.doschs(coz, week1, term)
-            that.setData({
-              week: week1 || 1,
-              year: parseInt(termArray[0]),
-              term: parseInt(termArray[2]),
-              schedules: schedules,
-              ifspin:false,
-              coz:coz
-            })
-            wx.setStorageSync('term', term) 
-          },1000)
-          
-        
-      })
+   that.fresh();
     
   },
+  //课程刷新
+  fresh(){
+    var that = this;
+    let table = app.table;
+    let width = that.data.systemInfo.width;
+    that.setData({
+      urgencyFresh:false,
+      ifspin: true
+    })
+    app.agriknow.getStuCourse('student')
+      .then(data => {
+        if(data.list.length>0){
+        app.agriknow.getWeek()
+          .then((data1) => {
+            wx.setStorageSync('week', data1.week);
+            var coz = table.docoz(data.list, width);
+            //console.log('coz'+JSON.stringify(coz,undefined,'\t'))
+            let week1 = data1.week;
+            that.othercourses(coz, week1);
+            setTimeout(function () {
+              let term = coz[0].schTerm;
+              let termArray = term.split('-')
+              var schedules = table.doschs(coz, week1, term)
+              that.setData({
+                week: week1 || 1,
+                year: parseInt(termArray[0]),
+                term: parseInt(termArray[2]),
+                schedules: schedules,
+                ifspin: false,
+                coz: coz,
+                urgencyFresh:false
+              })
+              wx.setStorageSync('term', term)
+            }, 1000)
+          })
+          .catch((data) => {
+            console.log('xhy')
+            that.setData({
+              ifspin:false,
+              urgencyFresh: true
+            })
+          })
+      }else{
+          that.setData({
+            ifspin: false,
+            urgencyFresh: true
+          })
+      }
+      })
+      .catch(data => {
+        that.setData({
+          ifspin: false,
+          urgencyFresh: true
+        })
+
+        console.log('yhx')
+      })
+  },
+
 //切换底部栏
   handleChange({ detail }) {
     var key = detail.key;
     if(key == "monitor"){
       this.aheadMon();
     }
-    /*if (key == "courseTable"){
-      let coz = this.data.coz;
-      this.othercourses(coz);
-    }*/
+    if (key == "courseTable"){
+      
+    }
     this.setData({
       current: key
     });
@@ -310,7 +341,7 @@ aheadMon:function(){
     let mark = e.currentTarget.dataset.type;
     let schs = e.currentTarget.dataset.schs;
     let schtimes = schs.map(function (item, index, array) {
-      return item.schTime;
+      return '选择 '+item.schTime;
     })
     wx.showActionSheet({
       itemList: schtimes,
@@ -435,6 +466,7 @@ aheadMon:function(){
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
     let coz = this.data.coz;
     let tips=app.table.suspendtip(coz);
     this.setData({

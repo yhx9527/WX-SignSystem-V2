@@ -2,6 +2,8 @@ import request from './request.js';
 import Feedback from './feedback.js';
 class agriknow {
   constructor() {
+    //test='http://118.126.111.189:8088/'
+    //pro='https://api.xsix103.cn/sign_in_system/v3/'
     this._baseUrl = 'https://api.xsix103.cn/sign_in_system/v3/'
     this._defaultHeader = { 'Content-Type': 'application/json' }
     this._request = new request()
@@ -55,13 +57,29 @@ class agriknow {
    * 检查是否绑定微信
    */
   getBind(){
-    var that=this
+    var that=this;
     return new Promise((resolve,reject)=>{
       wx.login({
       success: function (res) {
         if (res.code) {
           resolve(that._request.getRequest(that._baseUrl + 'tokens/' + res.code))
-        }     
+        }    
+    },
+    fail:function(res){
+      wx.hideLoading();
+        wx.showModal({
+          title: '提示',
+          content: '无网络,请检查网络之后,重启小程序',
+          showCancel: false,
+          confirmText: '确定',
+          success: function (res) {
+            if (res.confirm) {
+              wx.reLaunch({
+                url: '/pages/login/login',
+              })
+            }
+          }
+        })
     }  
   })
     })
@@ -155,7 +173,7 @@ class agriknow {
           } else {
             wx.showModal({
               title: '提示',
-              content: '该账号已被他人绑定,请使用新账号',
+              content: data.message,
               showCancel: false,
               success: function (res) {
                 if (res.confirm) {
@@ -170,7 +188,7 @@ class agriknow {
 
         })
         .catch(data => {
-
+          reject(data);
         })
     }else{
       wx.showModal({
@@ -186,13 +204,6 @@ class agriknow {
   after_login(gettype){
     var that = this;
     return new Promise((resolve,reject)=>{
-      that.getWeek()
-        .then((data) => {
-          wx.setStorageSync('week', data.week)
-        })
-        .catch((data) => {
-
-        })
       that.getStuCourse(gettype)
         .then(data => {
           
@@ -200,6 +211,7 @@ class agriknow {
         
       })
         .catch(res => {
+          /*
         if (res.data.message) {
           wx.showModal({
             title: '提示',
@@ -216,8 +228,10 @@ class agriknow {
             }
           })
         }
+        */
 
       })
+  
     })
   }
 /**

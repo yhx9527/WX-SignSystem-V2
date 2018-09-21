@@ -1,6 +1,7 @@
 @import "../self/self.wxss";
 @import "../monitor/index/index.wxss";
 @import "../courseTable/courseTable.wxss";
+@import '/style/BUTTONS.wxss';
 .swiper-view_H{
   white-space: nowrap;
   position:absolute;
@@ -124,4 +125,23 @@ padding-top:1em;
 .tipclass{
   font-size: 14px;
   color: #b2bec3;
+}
+.freshbtn{
+  z-index:999;
+position:absolute;
+top:30%;
+left:50%;
+transform:translate(-50%);
+width:100px;
+height:100px;
+
+}
+.freshbtn1{
+  width:80px;
+height:80px;
+position:absolute;
+top:50%;
+left:50%;
+transform:  translateX(-50%) translateY(-50%)
+
 }

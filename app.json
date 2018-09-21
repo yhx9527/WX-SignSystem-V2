@@ -37,5 +37,9 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "课时督导系统",
     "navigationBarTextStyle":"black"
+  },
+  "networkTimeout":{
+    "request":15000
   }
+
 }

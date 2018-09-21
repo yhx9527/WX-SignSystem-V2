@@ -20,7 +20,7 @@ Page({
   enterLoc(){
     let schs = this.data.schs;
     let schtimes = schs.map(function (item, index, array) {
-      return item.schTime;
+      return '选择 '+item.schTime;
     })
     wx.showActionSheet({
       itemList: schtimes,

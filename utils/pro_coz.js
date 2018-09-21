@@ -73,7 +73,7 @@ class Table{
     var course;
     let i = courses.length;
     while(i--){
-      course=courses[i].sisCourse;
+      course=courses[i];
       let schs = course.sisScheduleList;
       let j = schs.length;
       while (j--) {
@@ -443,19 +443,19 @@ doteacoz(courses){
     let teacoz = {};
     try{
     teacoz['cozId'] = item.scId;
-    teacoz['cozSize'] = item.sisCourse.scActSize;
-    teacoz['cozName'] = item.sisCourse.scName;
-    teacoz['ifMon'] = item.sisCourse.scNeedMonitor;
-    teacoz['stuList'] = item.sisCourse.sisJoinCourseList.filter(item1=>{
+    teacoz['cozSize'] = item.scActSize;
+    teacoz['cozName'] = item.scName;
+    teacoz['ifMon'] = item.scNeedMonitor;
+    teacoz['stuList'] = item.sisJoinCourseList.filter(item1=>{
       return item1.joinCourseType == 0;
     });
-    teacoz['schs'] = item.sisCourse.sisScheduleList.map(item2 => {
-      return { schId: item2.ssId, schName:item.sisCourse.scName,schTime: that.doDaytoString(item2.ssDayOfWeek) + ' ' + item2.ssStartTime + '-' + item2.ssEndTime, slId: item2.slId,
+    teacoz['schs'] = item.sisScheduleList.map(item2 => {
+      return { schId: item2.ssId, schName:item.scName,schTime: that.doDaytoString(item2.ssDayOfWeek) + ' ' + item2.ssStartTime + '-' + item2.ssEndTime, slId: item2.slId,
       schRoom:item2.ssRoom,schweek:item2.ssStartWeek+'-'+item2.ssEndWeek,schfort:that.doFortToString(item2.ssFortnight),suspends:{weeks:item2.ssSuspensionList.join(','),note:item2.ssSuspension} }
     })  
-    teacoz['schedules'] = item.sisCourse.sisScheduleList;
+    teacoz['schedules'] = item.sisScheduleList;
       teacoz['monitor'] = item.scNeedMonitor ? item.monitor : {};
-      teacoz['monSuId'] = item.sisCourse.suId;
+      teacoz['monSuId'] = item.suId;
     }
     
     catch(e){

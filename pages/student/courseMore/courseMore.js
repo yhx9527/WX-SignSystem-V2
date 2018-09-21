@@ -79,7 +79,7 @@ Page({
     let mark = e.currentTarget.dataset.mark;
     let schs = that.data.schedule.schs;
     let schtimes = schs.map(function (item, index, array) {
-      return item.schTime;
+      return '选择 '+item.schTime;
     })
     wx.showActionSheet({
       itemList: schtimes,

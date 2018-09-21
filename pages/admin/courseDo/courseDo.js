@@ -28,7 +28,7 @@ Page({
     var that = this;
     let schs = that.data.course.schs;
     let schtimes = schs.map(item=>{
-      return item.sch;
+      return '选择 '+item.sch;
     })
     wx.showActionSheet({
       itemList: schtimes,

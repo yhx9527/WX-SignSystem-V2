@@ -105,7 +105,7 @@ Page({
   insertMonitor:function(e){
     let schs=e.currentTarget.dataset.schs;
     let schtimes=schs.map(function(item,index,array){
-      return item.schtime;
+      return '选择 '+item.schtime;
     })
     let item=e.currentTarget.dataset.item;
     wx.showActionSheet({

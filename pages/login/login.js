@@ -13,23 +13,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.agriknow.getBind().then(data=>{
-      if (data.success == true) {
-        let authorization = 'Bearer ' + data.data['accessToken'];
-        app.agriknow.header({ 'Authorization': authorization})
-        let user = data.data['sisUser'];
-        wx.setStorageSync('user',user)
-        //if(!wx.getStorageSync('ifBind')){
-          //wx.setStorageSync('ifBind', true)
-        //}
-        wx.showLoading({
-          title: '登录中...',
-          success: function () {
+    wx.showLoading({
+      title: '登录中...',
+      mask: true,
+      success: function () {
+        app.agriknow.getBind().then(data => {
+          wx.hideLoading();
+          if (data.success == true) {
+            let authorization = 'Bearer ' + data.data['accessToken'];
+            app.agriknow.header({ 'Authorization': authorization })
+            let user = data.data['sisUser'];
+            wx.setStorageSync('user', user)
+            //if(!wx.getStorageSync('ifBind')){
+            //wx.setStorageSync('ifBind', true)
+            //}
+
             let auth = user.suAuthoritiesStr.toLowerCase();
-            if(auth.indexOf('student')>-1){
-            wx.redirectTo({
-              url: '../student/sign/sign',
-            })
+            if (auth.indexOf('student') > -1) {
+              wx.redirectTo({
+                url: '../student/sign/sign',
+              })
             } else if (auth.indexOf('teacher') > -1) {
               wx.redirectTo({
                 url: '/pages/teacher/index/index',
@@ -39,17 +42,21 @@ Page({
                 url: '/pages/admin/index/index',
               })
             }
-            wx.hideLoading();
+
+
+          } else {
+            app.feedback.showModal('您的账号尚未绑定请登录绑定')
           }
         })
+          .catch(data => {
+            wx.hideLoading();
+          })
 
-      } else {
-        app.feedback.showModal('您的账号尚未绑定请登录绑定')
       }
     })
   },
 
-  //登录
+  //表单登录
   formSubmit: function (e) {
     var that = this;
     //var flag = wx.getStorageSync('person')
@@ -91,7 +98,7 @@ Page({
                     })
                     .catch(data=>{
                       wx.hideLoading();
-                      app.feedback.showModal('连接失败请重试',function(){
+                      app.feedback.showModal(JSON.stringify(data),function(){
                         wx.reLaunch({
                           url: '/pages/login/login',
                         })

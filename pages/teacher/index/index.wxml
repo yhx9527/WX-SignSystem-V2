@@ -110,6 +110,14 @@
     </swiper-item>
   </block>
 </swiper>
+ <view class="button-wrap freshbtn" wx:if='{{urgencyFresh}}'>
+    <button class="button button-circle button-raised button-primary freshbtn1" bindtap='fresh'>
+      <view class='column'>
+      <i class="fa fa-bolt" style='font-size:25px;margin-top:15px;'></i>
+      <text>刷新</text>
+      </view>
+    </button>
+  </view>
   
 
 
