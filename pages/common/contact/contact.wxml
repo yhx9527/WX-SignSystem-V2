@@ -6,7 +6,7 @@
 
       <i-input value="{{ value1 }}" title="称呼" autofocus  mode='wrapped' name='sctName' placeholder="怎么称呼您呢？"/>
       <i-input value="{{ value2 }}"  title="联系方式" mode='wrapped'  name = 'sctContact' placeholder="您的联系方式是？"/>
-      <i-input value="{{ value3 }}" type="textarea" title="内容" placeholder="请输入要反馈的内容(最多200个字)" maxlength="200" mode='wrapped' name='sctContent'/>
+      <i-input value="{{ value3 }}" type="textarea" title="内容" placeholder="请输入要反馈的内容" maxlength="200" mode='wrapped' name='sctContent'/>
 
         <view class="button-wrap" style='float:right;margin-top:5px;margin-right:20px;'>
         <button class="button button-circle" formType="submit">

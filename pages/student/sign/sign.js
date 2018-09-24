@@ -84,7 +84,7 @@ Page({
             //console.log('coz'+JSON.stringify(coz,undefined,'\t'))
             let week1 = data1.week;
             that.othercourses(coz, week1);
-            setTimeout(function () {
+            //setTimeout(function () {
               let term = coz[0].schTerm;
               let termArray = term.split('-')
               var schedules = table.doschs(coz, week1, term)
@@ -98,7 +98,7 @@ Page({
                 urgencyFresh:false
               })
               wx.setStorageSync('term', term)
-            }, 1000)
+            //}, 1000)
           })
           .catch((data) => {
             console.log('xhy')
