@@ -48,6 +48,7 @@
   </block>
 <view wx:if="{{ifmore}}" class='column more-group' style='top:{{moretop}}px;left:65vw;' >
   <view class='more-one' catchtap='insertMonitor' data-schs='{{schs}}' data-item='{{item}}'>进行督导</view>
+  <form bindsubmit="sponsorSign" data-schs='{{schs}}' data-item='{{item}}' report-submit='{{ true }}'><button class='more-one' formType="submit" >发起签到</button></form>
   <view class='more-one'  data-schs='{{schs}}' data-scid='{{scId}}' catchtap='monitorRec' data-cozname='{{cozName}}' data-cozsize='{{cozSize}}'>督导记录</view> 
   <view class='more-one' style='border-bottom:0px;' catchtap='transMonitor' data-schs='{{schs}}'>申请转接</view>
 </view>

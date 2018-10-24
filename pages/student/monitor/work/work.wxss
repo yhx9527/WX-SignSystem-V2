@@ -72,3 +72,14 @@ margin-top:1px;
 margin-top:5px !important;
 
 }
+
+/**移除button样式**/
+button::after {
+  border: none;
+}
+button {
+  background-color:inherit;
+line-height:inherit;
+font-size:inherit;
+padding:inherit;
+}

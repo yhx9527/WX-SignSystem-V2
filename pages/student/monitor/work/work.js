@@ -122,12 +122,60 @@ Page({
       }
     })
   },
+  // 发起签到
+  sponsorSign: function(e) {
+    var that = this;
+    let schs = e.currentTarget.dataset.schs;
+    let formId = e.detail.formId
+    console.log(schs, formId)
+    let schtimes = schs.map(function (item, index, array) {
+      return '选择 ' + item.schtime;
+    })
+    wx.showActionSheet({
+      itemList: schtimes,
+      success: function (res) {
+        wx.showLoading({
+          title: '发起中...',
+        })
+        let ssId = schs[res.tapIndex].schid;
+        app.agriknow.postSign(ssId)
+          .then(data => {
+            wx.hideLoading();
+            if (data.success) {
+              wx.showToast({
+                title: '发起成功',
+              })
+              app.agriknow.message(formId)
+                .then(data=>{})
+                .catch(data=>{})
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: data.message,
+              })
+            }
+          })
+          .catch(data=> {
+            wx.hideLoading();
+            wx.showToast({
+              title: '发起失败',
+              icon: 'none'
+            })
+          })
+            
+        console.log(res.tapIndex)
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
   //督导转接
   transMonitor:function(e){
     var that = this;
     let schs = e.currentTarget.dataset.schs;
     let schtimes = schs.map(function (item, index, array) {
-      return item.schtime;
+      return '选择 ' + item.schtime;
     })
     wx.showActionSheet({
       itemList: schtimes,
