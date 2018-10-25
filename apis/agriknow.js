@@ -19,7 +19,11 @@ class agriknow {
     let feedback = new Feedback();
     switch(res.statusCode){
       case 401:
-        feedback.showModal('401\n'+res.data.message);
+        feedback.showModal('您的状态已过期,请重新登录',function(){
+          wx.redirectTo({
+            url: '/pages/login/login',
+          })
+        });
         break;
       case 403:
         feedback.showModal('403\n' + res.data.message);
@@ -251,7 +255,8 @@ admin_login(){
               key: 'ifBind',
               data: true,
             })
-            that.header({ 'Authorization': 'Bearer ' + data['data'] })
+            // that.header({ 'Authorization': 'Bearer ' + data['data'] })
+            wx.setStorageSync('Authorization', 'Bearer ' + data['data'])
           } else {
             wx.showModal({
               title: '提示',
@@ -424,11 +429,17 @@ putMon(scId,sisCourse){
   /**
    * 联系我们
    */
-  contact(sisContact){
+  contact(sisContact, formId){
   
     return this._request.postRequest(this._baseUrl + 'contacts', sisContact)
 
 }
+  /**
+   * 
+   */
+  message(formId) {
+    return this._request.getRequest(this._baseUrl + 'formIds?formIdStr='+formId)
+  }
 }
 
 export default agriknow

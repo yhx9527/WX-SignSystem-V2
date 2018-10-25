@@ -21,8 +21,9 @@ Page({
           wx.hideLoading();
           if (data.success == true) {
             let authorization = 'Bearer ' + data.data['accessToken'];
-            app.agriknow.header({ 'Authorization': authorization })
+            // app.agriknow.header({ 'Authorization': authorization })
             let user = data.data['sisUser'];
+            wx.setStorageSync('Authorization', authorization)
             wx.setStorageSync('user', user)
             //if(!wx.getStorageSync('ifBind')){
             //wx.setStorageSync('ifBind', true)
@@ -84,11 +85,12 @@ Page({
                       wx.hideLoading();
                       if (data.success == true) {
                         let authorization = 'Bearer ' + data.data['accessToken'];
-                        app.globalData.header = { 'Authorization': authorization };
+                       /* app.globalData.header = { 'Authorization': authorization };
                         app.agriknow.header({
                           'Authorization': authorization
-                        })
+                        }) */
                         let sisUser = data.data['sisUser'];
+                        wx.setStorageSync('Authorization', authorization)
                         wx.setStorageSync('user', sisUser);
                         app.agriknow.login_redict(e.detail.value.suType,sisUser.suAuthoritiesStr,sisUser.suId);
                        

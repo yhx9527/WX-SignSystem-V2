@@ -85,6 +85,7 @@ Page({
       itemList: schtimes,
       success: function (res) {
         let ssId = schs[res.tapIndex].schId;
+        let slId = schs[res.tapIndex].slId
         switch(mark){
           case 'sign':
             wx.authorize({
@@ -94,9 +95,9 @@ Page({
                   title: '签到中...',
                 })
                 wx.getLocation({
-                  type: 'gcj02',
+                  type: 'wgs84',
                   success: function (res) {
-                    that.self_sign(ssId,res.latitude,res.longitude);
+                    that.self_sign(ssId,res.latitude,res.longitude,slId);
                   },
                   fail: function (res) {
                     wx.hideLoading();
@@ -151,7 +152,7 @@ Page({
     })
   },
   //签到函数
-  self_sign(ssId,lat,long){
+  self_sign(ssId,lat,long,slId){
     let locString = JSON.stringify({ loc_lat: lat, loc_long: long });
     let token = aboutcode.encrypt(locString);
     //console.log('jiema '+ aboutcode.decrypt(Base64.decode(token))
@@ -163,16 +164,22 @@ Page({
             title: '签到成功',
           })
         } else {
-          app.feedback.showModal('签到失败\n'+data.message);
+          wx.navigateTo({
+            url: '../../common/map/map?lat=' + lat + '&lon=' + long + '&slId=' + slId,
+          })
+          // app.feedback.showModal('签到失败\n'+data.message);
         }
       })
       .catch(data => {
         wx.hideLoading();
         if (data.statusCode == 400) {
-          wx.showModal({
+          /*wx.showModal({
             title: '提示',
             content: '无需签到或签到已过',
             showCancel: false
+          })*/
+          wx.navigateTo({
+            url: '../../common/map/map?lat=' + lat + '&lon=' + long + '&slId=' + slId,
           })
         }
       })

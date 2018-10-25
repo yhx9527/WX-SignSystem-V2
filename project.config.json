@@ -34,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 46,
+			"current": 50,
 			"list": [
 				{
 					"id": -1,
@@ -315,7 +315,33 @@
 				{
 					"id": -1,
 					"name": "普通",
-					"pathName": "pages/login/login"
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "adminIndex",
+					"pathName": "pages/admin/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "sign",
+					"pathName": "pages/student/sign/sign",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "dafada",
+					"pathName": "pages/student/sign/sign",
+					"query": "",
+					"scene": "1073"
+				},
+				{
+					"id": -1,
+					"name": "teaIndex",
+					"pathName": "pages/teacher/index/index",
+					"scene": "1073"
 				}
 			]
 		}

@@ -1,8 +1,7 @@
 class request {
-  constructor() {
+  constructor() { 
     this._header = {
-      'Content-Type': 'application/json',
-      'Authorization': null 
+      'Content-Type': 'application/json'
     }
 
   }
@@ -54,11 +53,16 @@ class request {
    */
   requestAll(url, data, header, method) {
     var that = this;
+    let auth = wx.getStorageSync('Authorization')
+    let _header = {'Authorization': auth}
     return new Promise((resolve, reject) => {
       wx.request({
         url: url,
         data: data,
-        header: header,
+        header: {
+          ...header,
+          ..._header
+          },
         method: method,
         success: (res => {
           if ((res.statusCode >= 200 && res.statusCode < 300) || res.statusCode == 304) {

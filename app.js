@@ -6,8 +6,25 @@ import Feedback from './apis/feedback.js';
 App({
   onLaunch: function () {
     var that = this;
-
-
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          wx.request({
+            url: 'https://api.xsix103.cn/sign_in_system/v3/tokens/' + res.code,
+            method: 'GET',
+            success: function (res1) {
+              if (res1.data.success) {
+                let authorization = 'Bearer ' + res1.data.data['accessToken'];
+                wx.setStorageSync('Authorization', authorization)
+                if (that.storageCallback) {
+                  that.storageCallback(res1.data);
+                }
+              }
+            }
+          })
+        }
+      }
+    })
     wx.getSystemInfo({
       success: function(res) {
         var sysInfo = {};
@@ -16,7 +33,7 @@ App({
         that.globalData.systemInfo = sysInfo;
       },
     })
-  
+
   },
   agriknow:new Agriknow(),
 
@@ -27,5 +44,6 @@ App({
   globalData: {
     systemInfo:{},
     header: {},
+    start: false
   }
 })

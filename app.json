@@ -8,6 +8,7 @@
     "pages/common/help/help",
     "pages/common/contact/contact",
     "pages/common/studentList/studentList",
+    "pages/common/map/map",
     "pages/web/web",
 
     "pages/student/monitor/work/work",

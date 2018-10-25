@@ -3,6 +3,8 @@ const util = require("../../../utils/util.js");
 const aboutcode = require("../../../utils/aboutcode.js");
 const Base64 = require("../../../utils/base64.js");
 const updateManager = wx.getUpdateManager();
+const gcoord = require('gcoord');
+
 Page({
 
   /**
@@ -39,16 +41,15 @@ Page({
     recordvisible:false,
     show_cancel:false,
     ifspin:false,
-    urgencyFresh:false
+    urgencyFresh:false,
+    cozId:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
     var that = this;
-
     wx.getStorage({
       key: 'user',
       success: function(res) {
@@ -59,11 +60,25 @@ Page({
         that.setData({
           ismonitor:ismonitor,
           username:res.data.suName,
-          userid:res.data.suId
+          userid:res.data.suId,
+          cozId: options.scId || ''
         })
       },
     })
-   that.fresh();
+    // 服务消息进入启动页
+    if (options.scId && app.globalData.start) {
+      that.fresh()
+    }
+    // 小程序从login页进入签到页
+    if(!options.scId){
+      that.fresh()
+      app.globalData.start = true
+    }
+    // 小程序启动直接进入签到页
+    app.storageCallback = data => {
+      that.fresh()
+      app.globalData.start = true
+    }
     
   },
   //课程刷新
@@ -348,6 +363,7 @@ aheadMon:function(){
       itemList: schtimes,
       success: function (res) {
         let ssId = schs[res.tapIndex].schId;
+        let slId = schs[res.tapIndex].slId;
         switch(mark){
           case 'fastsign':
             wx.authorize({
@@ -355,12 +371,14 @@ aheadMon:function(){
               success() {
                 wx.showLoading({
                   title: '签到中...',
+                  mask: true
                 })
                 wx.getLocation({
-                  type:'gcj02',
+                  type:'wgs84',
+                  altitude: 'true',
                   success: function (res) {
                     console.log(res);
-                    that.self_sign(ssId,res.latitude,res.longitude)
+                    that.self_sign(ssId,res.latitude,res.longitude,slId)
                   },
                   fail:function(res){
                     wx.hideLoading();
@@ -409,10 +427,10 @@ aheadMon:function(){
     })
   },
   //签到处理
-  self_sign(ssId,lat,long){
+  self_sign(ssId,lat,long,slId){
     let locString = JSON.stringify({ loc_lat: lat, loc_long: long });
     let token = aboutcode.encrypt(locString);
-    
+    var that = this
     //console.log('jiema '+ aboutcode.decrypt(Base64.decode(token)))
     app.agriknow.signIn(ssId, token)
       .then(data => {
@@ -422,17 +440,27 @@ aheadMon:function(){
               title: '签到成功',
             })
         } else{
-          app.feedback.showModal('签到失败\n'+data.message);
+          // that.showMap(lat,long,slId)
+          wx.navigateTo({
+            url: '../../common/map/map?lat='+lat+'&lon='+long+'&slId='+slId,
+          })
+          // app.feedback.showModal('签到失败\n'+data.message);
         }
       })
       .catch(data => {
         wx.hideLoading();
         if (data.statusCode == 400) {
+          /*
           wx.showModal({
             title: '提示',
             content: '无需签到或签到已过',
             showCancel: false
           })
+          */
+          wx.navigateTo({
+            url: '../../common/map/map?lat=' + lat + '&lon=' + long + '&slId=' + slId,
+          })
+          // that.showMap(lat, long, slId)
         }
         if (data.statusCode == 403) {
           wx.showModal({
@@ -467,12 +495,12 @@ aheadMon:function(){
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-    let coz = this.data.coz;
-    let tips=app.table.suspendtip(coz);
-    this.setData({
-      tips:tips
-    })
+    
+    //let coz = this.data.coz;
+    //let tips=app.table.suspendtip(coz);
+    //this.setData({
+      //tips:tips
+    //})
   },
   looktips:function(e){
     let tips = e.currentTarget.dataset.tips;
@@ -537,14 +565,71 @@ aheadMon:function(){
         icon: 'none'
       })
     })
-   
- 
+  },
+  //签到失败回调函数，显示地图
+  showMap(lat,lon,slId) {
+    var that = this
+    app.agriknow.getLoc(slId)
+      .then(data=>{
+        let popupComponent = that.selectComponent('.J_Popup');
+        popupComponent && popupComponent.show();
+        that.setData({
+          longitude: data.slLong,
+          latitude: data.slLat,
+          markers: [{ id: 0, latitude: data.slLat, longitude: data.slLong, title: data.slName, callout: { content: data.slName } }, { id: 1, latitude: lat, longitude: lon, title: '我的位置', callout: { content: '我的位置' }}],
+          circles: [{ latitude: data.slLat, longitude: data.slLong, radius: 100, fillColor: "#FFFFFFAA", color: "#74b9ffAA"}],
+          includePoints: [{latitude: data.slLat, longitude: data.slLong }, { latitude: lat, longitude: lon }]
+        })
+      })
+      .catch(data=>{
+        console.log('获取位置出错');
+        app.feedback.showNoToast('签到失败');
+      })
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+   /* var result = gcoord.transform(
+      [116.403988, 39.914266],    // 经纬度坐标
+      gcoord.WGS84,               // 当前坐标系
+      gcoord.GCJ02                // 目标坐标系
+    );*/
+    this.hideTask();
+  },
+  // 获取地理位置后台任务
+  hideTask() {
+    let timesRun = 0
+    wx.getLocation({
+      type: 'wgs84',
+      altitude: 'true',
+      success: function(res) {
+        var interval = setInterval(function(){
+          timesRun += 1
+          wx.getLocation({
+            type: 'wgs84',
+            altitude: 'true'
+          })
+          if(timesRun === 30) {
+            clearInterval(interval)
+          }
+        }, 1500)
+      },
+      fail: function(res) {
+        wx.showModal({
+          title: '提示',
+          content: '请检查是否进行位置授权',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              wx.openSetting({
+
+              })
+            }
+          }
+        })
+      }
+    })
   },
 
   /**

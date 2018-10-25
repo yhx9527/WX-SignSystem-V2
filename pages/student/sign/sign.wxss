@@ -145,3 +145,22 @@ left:50%;
 transform:  translateX(-50%) translateY(-50%)
 
 }
+
+  .popup__content {
+    width: 100%;
+    height: 200rpx;
+    line-height: 200rpx;
+    text-align: center;
+    background: #FFFFFF;
+  }
+  .mapPop{
+    width:100%;
+background-color:white;
+
+  }
+  .mapTitle{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #ff7675;
+  }

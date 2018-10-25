@@ -25,12 +25,12 @@
 <view class='container1'wx:if='{{ifspin}}'>
   <i-spin fix size='large'></i-spin>
 </view>
-<i-notice-bar wx:if='{{tips.length > 0}}' icon="systemprompt" closable catchtap='looktips' data-tips='{{tips}}'>
+<!--i-notice-bar wx:if='{{tips.length > 0}}' icon="systemprompt" closable catchtap='looktips' data-tips='{{tips}}'>
     本周有课程停课,点击查看详情
-</i-notice-bar>
-<swiper current='{{signCurrent}}'indicator-dots="true" circular='true' previous-margin='{{systemInfo.width*0.1}}px' next-margin='{{systemInfo.width*0.1}}px' bindchange='changSign'  class='swiper-view_H'style="width: 100%;height:{{systemInfo.height*0.85}}px;">
-  <block wx:for="{{othercoz}}" wx:key="unique" wx:for-index="id" wx:for-item="item">
-    <swiper-item style="display:flex;justify-content:center;">
+</i-notice-bar-->
+<swiper current='{{signCurrent}}'indicator-dots="true" circular='true' previous-margin='{{systemInfo.width*0.1}}px' next-margin='{{systemInfo.width*0.1}}px' bindchange='changSign'  class='swiper-view_H'style="width: 100%;height:{{systemInfo.height*0.85}}px;" current-item-id="{{cozId}}">
+  <block wx:for="{{othercoz}}" wx:key="cozId" wx:for-index="id" wx:for-item="item">
+    <swiper-item style="display:flex;justify-content:center;" item-id="{{item.cozId}}">
       <view class="swiper_item {{item.selected ? 'selected' : ''}}" data-index='{{item.index}}' bindtap='selectProItem'>
         <view class="middle" style='height:25%;'>
           <image src="../../images/1.jpg" class='signImage'></image>
@@ -103,7 +103,26 @@
     </button>
   </view>
  
+ <!--地图显示pop层-->
+  <!--button bindtap="showPopup">居上，有动画</button-->
+  <!--wxc-popup class="J_Popup" animation-mode="top" align="top">
+  <view class="column" class="mapPop">
+   <view class="mapTitle">签到失败,请检查GPS是否开启后重试</view>
+    <map
+      id="myMap"
+      style="width: 100%; height: 300px;"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      markers="{{markers}}"
+      polyline='{{polyline}}'
+      circles='{{circles}}'
+      include-points='{{includePoints}}'
+      show-location
+    ></map>
+  </view>
+  </wxc-popup-->
 </view>
+
 <!--个人中心-->
 <view wx:if="{{current == 'self'}}">
   <include src="../self/self.wxml"/>
