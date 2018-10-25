@@ -450,16 +450,16 @@ aheadMon:function(){
       .catch(data => {
         wx.hideLoading();
         if (data.statusCode == 400) {
-          /*
+          
           wx.showModal({
             title: '提示',
             content: '无需签到或签到已过',
             showCancel: false
           })
-          */
-          wx.navigateTo({
+          
+          /*wx.navigateTo({
             url: '../../common/map/map?lat=' + lat + '&lon=' + long + '&slId=' + slId,
-          })
+          })*/
           // that.showMap(lat, long, slId)
         }
         if (data.statusCode == 403) {

@@ -34,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 50,
+			"current": 51,
 			"list": [
 				{
 					"id": -1,
@@ -341,6 +341,13 @@
 					"id": -1,
 					"name": "teaIndex",
 					"pathName": "pages/teacher/index/index",
+					"query": "",
+					"scene": "1073"
+				},
+				{
+					"id": -1,
+					"name": "adminCourse",
+					"pathName": "pages/admin/courseDo/courseDo",
 					"scene": "1073"
 				}
 			]
