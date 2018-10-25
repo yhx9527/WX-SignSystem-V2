@@ -70,7 +70,9 @@
 </view>
 
 <view class='button button-3d button-primary button-rounded' catchtap='monitorModel'><i class="fa fa-tv"></i>修改督导</view>
-<view class='button button-3d button-royal button-rounded' style='float:right;' catchtap='beginsign'><i class="fa fa-edit" ></i>发起签到</view>
+<form bindsubmit="beginsign" report-submit='{{ true }}'>
+  <button class='button button-3d button-royal button-rounded' style='float:right;' form-type='submit'><i class="fa fa-edit" ></i>发起签到</button>
+</form>
 <i-modal title="修改督导" visible="{{ visible1 }}" bind:ok="putmonitor" bind:cancel="handleClose1">
       <view>是否发起督导
       <i-switch value="{{ifmon}}" bind:change="monswitch" slot="footer">

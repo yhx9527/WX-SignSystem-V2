@@ -27,6 +27,8 @@ Page({
   beginsign:function(e){
     var that = this;
     let schs = that.data.course.schs;
+    let formId = e.detail.formId
+    console.log(schs, formId)
     let schtimes = schs.map(item=>{
       return '选择 '+item.sch;
     })
@@ -40,6 +42,9 @@ Page({
               wx.showToast({
                 title: '发起成功',
               })
+              app.agriknow.message(formId)
+                .then(data => { })
+                .catch(data => { })
             }else{
               app.feedback.showModal(data.message);
             }

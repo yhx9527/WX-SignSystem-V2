@@ -37,7 +37,7 @@ Page({
       })
     
   },
-  queryCoz(){
+  /*queryCoz(e){
     var that = this;
     let kinds = that.data.kinds;
     wx.showActionSheet({
@@ -50,7 +50,15 @@ Page({
           url: '../courses/courses?kind='+kind,
         }) 
       }
-      
+    })
+  },*/
+  queryCoz(e) {
+    var that = this;
+    let kinds = that.data.kinds;
+    let index= e.currentTarget.dataset.index
+    let kind = kinds[index].kind;
+    wx.navigateTo({
+      url: '../courses/courses?kind=' + kind,
     })
   },
 

@@ -45,7 +45,8 @@
   <i-icon type="other" size="40" color="#80848f" bindtap='toggleSelf' style='margin-left:1vw;'/>
   <view class='liti effect01' style='width:75vw;text-align:center;'>第{{week}}周</view>
   </view>
-  <view class='zhuzi'></view>
+
+  <!--view class='zhuzi'></view>
   
   <view class='paizi'  catchtap='queryCoz'>
       <view class='paizi_title'>课程微管理</view>
@@ -62,7 +63,12 @@
       <view class='paizi_info'></view> 
   </navigator> 
 
-  <image src='../../images/admin.jpg' class='renwuImg'></image>
+  <image src='../../images/admin.jpg' class='renwuImg'></image-->
   
+  <view class='modal-container'>
+    <view class='modalblock' data-index='0' catchtap='queryCoz'><i class="fa fa-book blockicon"></i><text class='blockdesc'>所有课程</text></view>
+    <view class='modalblock' data-index='1' catchtap='queryCoz'><i class="fa fa-exclamation-circle blockicon"></i><text class='blockdesc'>未领督导</text></view>
+    <view class='modalblock' data-index='2' catchtap='queryCoz'><i class="fa fa-get-pocket blockicon"></i><text class='blockdesc'>已领督导</text></view>
+  </view>
 
 

@@ -11,6 +11,7 @@ Page({
     courses:[],
     hasMonitor:false,
     needMonitor:false,
+    title:'所有课程管理'
   },
 
   /**
@@ -22,18 +23,23 @@ Page({
     switch(kind){
       case '1':
         that.loadCourse(1);
+        that.setData({
+          title: '所有课程管理'
+        })
         break;
       case '2':
         that.setData({
           needMonitor:true,
-          hasMonitor:false
+          hasMonitor:false,
+          title: '未领取督导的课程'
         })
         that.loadCourse(1);
         break;
       case '3':
         that.setData({
           needMonitor: true,
-          hasMonitor: true
+          hasMonitor: true,
+          title: '已领取督导的课程'
         })
         that.loadCourse(1);
         break;

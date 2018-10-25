@@ -1,5 +1,5 @@
 <i-message id="message" />
-<view class='courseTitle'>课程管理 /</view>
+<view class='courseTitle'>{{title}} /</view>
 <block wx:for='{{courses}}' wx:for-item='item' wx:for-index='index'>
  <view class='item-view item-view1 column add' catchtap='coursemore' data-item='{{item}}'>
     <view class="weui-media-box weui-media-box_appmsg"style='padding:6px;'hover-class="weui-cell_active">
