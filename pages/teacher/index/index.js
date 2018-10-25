@@ -8,7 +8,7 @@ Page({
   data: {
     showSelf:false,
     systemInfo: app.globalData.systemInfo,
-    teachList: [1,2,3],
+    teachList: [1,2],
     week:1,
     ifspin:false,
     urgencyFresh: false

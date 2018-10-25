@@ -101,7 +101,7 @@
               <view class='text-middle'>暂不可用</view>
             </i-col>
             <form  bindsubmit="signabout" data-schs='{{item.schs}}' data-type='sign' report-submit='{{ true }}'>
-            <button form-type='submit'>
+            <button form-type='submit' class='signBtn'>
               <view class='middle'>
                 <i class="fa fa-sign-language" style='font-size:30px;color:#80848f;'></i>
                 <!--i-icon type="brush" size="30" color="#80848f"/-->
