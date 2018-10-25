@@ -100,13 +100,15 @@
               </view>
               <view class='text-middle'>暂不可用</view>
             </i-col>
-            <i-col span="12" i-class="" catchtap='signabout' data-schs='{{item.schs}}' data-type='sign'>
+            <form  bindsubmit="signabout" data-schs='{{item.schs}}' data-type='sign' report-submit='{{ true }}'>
+            <button form-type='submit'>
               <view class='middle'>
                 <i class="fa fa-sign-language" style='font-size:30px;color:#80848f;'></i>
                 <!--i-icon type="brush" size="30" color="#80848f"/-->
               </view>
               <view class='text-middle'>发起签到</view>
-            </i-col>
+            </button>
+            </form>
           </i-row>
         
       </view>  

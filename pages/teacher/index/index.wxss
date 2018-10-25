@@ -25,3 +25,16 @@ left:50%;
 transform:  translateX(-50%) translateY(-50%)
 
 }
+/**移除button样式**/
+button::after {
+  border: none;
+}
+button {
+  background-color:inherit;
+line-height:inherit;
+font-size:inherit;
+padding:inherit;
+float:left;
+box-sizing:border-box;
+width: 50%;
+}

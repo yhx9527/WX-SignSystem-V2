@@ -8,7 +8,7 @@ Page({
   data: {
     showSelf:false,
     systemInfo: app.globalData.systemInfo,
-    teachList: [],
+    teachList: [1,2,3],
     week:1,
     ifspin:false,
     urgencyFresh: false
@@ -166,6 +166,8 @@ fresh(){
     var that = this;
     let mark = e.currentTarget.dataset.type;
     let schs = e.currentTarget.dataset.schs;
+    let formId = e.detail.formId
+    console.log(schs, formId)
     let schtimes = schs.map(function (item, index, array) {
       return '选择 '+item.schTime;
     })
@@ -192,6 +194,9 @@ fresh(){
                  wx.showToast({
                    title: '发起成功',
                  })
+                 app.agriknow.message(formId)
+                   .then(data => { })
+                   .catch(data => { })
                } else {
                  wx.showModal({
                    title: '提示',
