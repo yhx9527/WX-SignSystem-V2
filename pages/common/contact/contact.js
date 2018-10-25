@@ -29,7 +29,7 @@ Page({
             "sctContent": form.sctContent,
             "sctName": form.sctName
           }
-          app.agriknow.contact(sisContact)
+          app.agriknow.contact(sisContact, formId)
             .then(data => {
               wx.hideLoading();
               if (data.success == true) {

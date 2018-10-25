@@ -1,3 +1,4 @@
+const app = getApp()
 Page({
 
   /**
@@ -12,6 +13,17 @@ Page({
    */
   onLoad: function (options) {
     
+  },
+  formSubmit(e) {
+    let formId = e.detail.formId
+    console.log(formId)
+    app.agriknow.test(formId)
+      .then(data=>{
+        console.log(data)
+      })
+      .catch(data=>{
+        console.log(data)
+      })
   },
 
   /**

@@ -6,3 +6,6 @@
     <view class='row web'>网页端地址: <navigator url="/pages/web/web" class="weui-footer__link">www.xsix103.cn</navigator></view>
   </view>
 </view>
+<!--form bindsubmit='formSubmit' report-submit='{{ true }}'>
+    <button formType="submit">Submit</button>
+</form-->

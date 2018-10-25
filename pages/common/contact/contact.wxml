@@ -2,7 +2,7 @@
 <view class="box6" style='min-height:470px;'>
        <view class='h1'>反馈及联系</view>   
        <image class='img' src="https://static.dongtu.com/netpic/20161217123827LGGFJGN09QK7831V.gif"></image>
-       <form bindsubmit="formSubmit">
+       <form bindsubmit="formSubmit" report-submit='{{ true }}'>
 
       <i-input value="{{ value1 }}" title="称呼" autofocus  mode='wrapped' name='sctName' placeholder="怎么称呼您呢？"/>
       <i-input value="{{ value2 }}"  title="联系方式" mode='wrapped'  name = 'sctContact' placeholder="您的联系方式是？"/>
