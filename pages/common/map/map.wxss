@@ -1,0 +1,11 @@
+ .mapPop{
+    width:100%;
+background-color:white;
+
+  }
+  .mapTitle{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #ff7675;
+  }
