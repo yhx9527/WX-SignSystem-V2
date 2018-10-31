@@ -29,3 +29,19 @@ page{
   background-color:#f8f8f9;
 
 }
+  button::after {
+  border: none;
+}
+.form-btn{
+  position: inherit;
+  padding: inherit;
+  box-sizing: inherit;
+  font-size: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  line-height: inherit;
+  border-radius: inherit;
+  overflow: inherit;
+  color: inherit;
+  background-color: inherit;
+}

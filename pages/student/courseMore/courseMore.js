@@ -81,6 +81,8 @@ Page({
     let schtimes = schs.map(function (item, index, array) {
       return '选择 '+item.schTime;
     })
+    let formId = e.detail.formId
+    console.log('生成formId', formId)
     wx.showActionSheet({
       itemList: schtimes,
       success: function (res) {
@@ -119,6 +121,9 @@ Page({
                 })
               }
             })
+            app.agriknow.message(formId)
+              .then(data => { })
+              .catch(data => { })
           break;
           case 'leave':
             wx.showToast({

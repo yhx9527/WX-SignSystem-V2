@@ -64,6 +64,8 @@ Page({
     //console.log("flag" + JSON.stringify(wx.getStorageSync('person')))
     var value = e.detail.value;
     var ifBlank = util.formUtil.ifBlank(value,['suId','suPassword','suType']);
+    let formId = e.detail.formId
+    console.log('生成formId', formId)
     //if(flag==[]){
     if (ifBlank) {
       app.feedback.showModal('均不能为空，请慎重选择角色')
@@ -110,6 +112,9 @@ Page({
                 
               }
             })
+            app.agriknow.message(formId)
+              .then(data => { })
+              .catch(data => { })
           }
 
         },

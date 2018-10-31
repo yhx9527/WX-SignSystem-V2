@@ -82,12 +82,21 @@
               </view>
               <view class='text-middle'>暂不可用</view>
             </i-col>
-            <i-col span="12" i-class="" catchtap='signs' data-schs='{{item.schs}}' data-type='fastsign'>
+            <!--i-col span="12" i-class="" catchtap='signs' data-schs='{{item.schs}}' data-type='fastsign'>
               <view class='middle'>
                 <i-icon type="brush" size="30" color="#80848f"/>
               </view>
               <view class='text-middle'>一键签到</view>
-            </i-col>
+            </i-col-->
+            <form  bindsubmit="signs" data-schs='{{item.schs}}' data-type='fastsign' report-submit='{{ true }}'>
+            <button form-type='submit' class='signBtn'>
+              <view class='middle'>
+                <!--i class="fa fa-sign-language" style='font-size:30px;color:#80848f;'></i-->
+                <i-icon type="brush" size="30" color="#80848f"/>
+              </view>
+              <view class='text-middle'>一键签到</view>
+            </button>
+            </form>
           </i-row>
         
       </view>  

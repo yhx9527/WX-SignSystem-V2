@@ -16,7 +16,7 @@ Page({
   },
   formSubmit(e) {
     let formId = e.detail.formId
-    console.log(formId)
+    console.log('生成formId', formId)
     app.agriknow.test(formId)
       .then(data=>{
         console.log(data)

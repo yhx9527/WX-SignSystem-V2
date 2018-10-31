@@ -20,6 +20,8 @@ Page({
     console.log(e.detail.value);
     var that = this;
     let form = e.detail.value;
+    let formId = e.detail.formId
+    console.log('生成formId', formId)
     if (util.formUtil.ifBlank(form,['sctName','sctContact','sctContent']) == false){
       wx.showLoading({
         title: '发送中...',
@@ -54,6 +56,9 @@ Page({
     }else{
       app.feedback.showModal('表单均不能为空')
     }
+    app.agriknow.message(formId)
+      .then(data => { })
+      .catch(data => { })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

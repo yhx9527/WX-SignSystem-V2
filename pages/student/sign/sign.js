@@ -181,7 +181,7 @@ Page({
     console.log('客服')
   },
   //清除缓存并退出
-  handleOpen1:function(){
+  handleOpen1:function(e){
     this.setData({
       visible1: true
     });
@@ -359,6 +359,8 @@ aheadMon:function(){
     let schtimes = schs.map(function (item, index, array) {
       return '选择 '+item.schTime;
     })
+    let formId = e.detail.formId
+    console.log('生成formId', formId)
     wx.showActionSheet({
       itemList: schtimes,
       success: function (res) {
@@ -400,6 +402,9 @@ aheadMon:function(){
                 })
               }
             })
+            app.agriknow.message(formId)
+              .then(data => { })
+              .catch(data => { })
           break;
           case 'scansign':
             // 只允许从相机扫码
@@ -538,7 +543,12 @@ aheadMon:function(){
   },
 
   //检查小程序是否有新版本
-  checkupdate(){
+  checkupdate(e){
+    let formId = e.detail.formId
+    console.log('生成formId', formId)
+    app.agriknow.message(formId)
+      .then(data => { })
+      .catch(data => { })
     new Promise((resolve,reject)=>{
       updateManager.onUpdateReady(function () {
         resolve(1);
@@ -657,13 +667,6 @@ aheadMon:function(){
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
     
   }
 })

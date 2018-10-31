@@ -61,6 +61,11 @@ Page({
       url: '../courses/courses?kind=' + kind,
     })
   },
+  enterWeb() {
+    wx.navigateTo({
+      url: '/pages/web/web',
+    })
+  },
 
   //个人中心抽屉
   toggleSelf: function () {

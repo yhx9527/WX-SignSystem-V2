@@ -7,16 +7,18 @@
 </view>
 
 <i-cell-group i-class="bt_border">
- <i-cell title="检查更新" is-link i-class="funFont" isHover catchtap='checkupdate'>
-     <i-icon type="refresh" slot="icon" color="#25CCF7" size="20"/>
-  </i-cell>
-
+    <form  bindsubmit="checkupdate" report-submit='{{ true }}'>
+    <button form-type='submit' class='form-btn'>
+      <i-cell title="检查更新" is-link i-class="funFont" isHover>
+        <i-icon type="refresh" slot="icon" color="#25CCF7" size="20"/>
+      </i-cell>
+    </button>
+    </form>
   <button open-type='openSetting' style='text-align:left;padding:0;border-radius:0;display:inline;'>
     <i-cell title="授权信息" is-link i-class="funFont" isHover>   
       <i-icon type="setup_fill" slot="icon"  color="#FD7272" size="20"/>
     </i-cell>
   </button>
-
   <i-cell title="使用帮助" is-link i-class="funFont" isHover url='/pages/common/help/help'>
      <i-icon type="feedback_fill" slot="icon" color="#25CCF7" size="20"/>
   </i-cell>
@@ -33,9 +35,9 @@
 </i-cell-group>
 
 <i-cell-group i-class="bt_border">
-  <i-cell title="清除缓存并重开" is-link isHover catchtap='handleOpen1'>
+    <i-cell title="清除缓存并重开" is-link isHover catchtap="handleOpen1">
      <i-icon type="flashlight_fill" slot="icon"  color="#fdcb6e" size="20"/>
-  </i-cell>
+    </i-cell>
 </i-cell-group>
 
 <i-modal title="注意" visible="{{ visible1 }}" bind:ok="clear_cache" bind:cancel="handleClose1">

@@ -17,7 +17,7 @@
       <open-data type="userNickName" class="userinfo-nickname"></open-data>
     </block>
   </view>
-  <form class="form" bindsubmit='formSubmit'bindreset="formReset">
+  <form class="form" bindsubmit='formSubmit'bindreset="formReset"  report-submit='{{ true }}'>
   <!--账号-->
   <view class="kuang">
     <view class="yuanLeft"></view>

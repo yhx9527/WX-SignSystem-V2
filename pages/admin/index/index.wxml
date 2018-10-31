@@ -69,6 +69,7 @@
     <view class='modalblock' data-index='0' catchtap='queryCoz'><i class="fa fa-book blockicon"></i><text class='blockdesc'>所有课程</text></view>
     <view class='modalblock' data-index='1' catchtap='queryCoz'><i class="fa fa-exclamation-circle blockicon"></i><text class='blockdesc'>未领督导</text></view>
     <view class='modalblock' data-index='2' catchtap='queryCoz'><i class="fa fa-get-pocket blockicon"></i><text class='blockdesc'>已领督导</text></view>
+    <!--view class='modalblock' data-index='2' catchtap='enterWeb'><i class="fa fa-edge blockicon"></i><text class='blockdesc'>进入网站</text></view-->
   </view>
 
 
