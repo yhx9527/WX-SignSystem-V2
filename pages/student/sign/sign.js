@@ -384,6 +384,10 @@ aheadMon:function(){
                   },
                   fail:function(res){
                     wx.hideLoading();
+                    wx.showToast({
+                      title: '位置请求太频繁了，请稍后再试',
+                      icon: 'none'
+                    })
                   }
                 })
               },
@@ -626,6 +630,12 @@ aheadMon:function(){
         }, 1500)
       },
       fail: function(res) {
+        console.log('获取位置的api失败')
+        /*
+        wx.showToast({
+          title: '位置请求太频繁了，请稍后再试',
+          icon: 'none'
+        })
         wx.showModal({
           title: '提示',
           content: '请检查是否进行位置授权',
@@ -638,6 +648,7 @@ aheadMon:function(){
             }
           }
         })
+        */
       }
     })
   },
