@@ -5,22 +5,6 @@
     <i-tab-bar-item wx:if="{{ismonitor}}" key="monitor" icon="browse" current-icon="browse_fill" title="督导" ></i-tab-bar-item>
     <i-tab-bar-item key="self" icon="mine" current-icon="mine_fill" title="个人中心"></i-tab-bar-item>
 </i-tab-bar>
-
-<!--scroll-view class="scroll-view_H"  scroll-with-animation style="width: 100%;height:{{systemInfo.height*0.8}}px;"bindscroll="getSelectItem" scroll-x>
-  <block wx:for="{{signList}}" wx:key="unique" wx:for-index="id" wx:for-item="item">
-    <view class="scroll_item {{item.selected ? 'selected' : ''}}" data-index='{{item.index}}' bindtap='selectProItem'>
-    <view class='infoImg'><image src="" class="slide-image" mode="widthFix"/></view>
-    <view class='signDetail'>
-      <view class='infoText'>{{item.title}}</view>
-      <navigator class='moreDetail' url="../detail/detail?id={{item.id}}">查看详情 ></navigator>
-    </view>
-    <view class='signIcon'>
-      <i-icon type="camera" size="28" color="#80848f"/>
-      <i-icon type="brush" size="28" color="#80848f"/>
-    </view>
-    </view>
-  </block>
-</scroll-view-->
 <view wx:if="{{current == 'sign'}}">
 <view class='container1'wx:if='{{ifspin}}'>
   <i-spin fix size='large'></i-spin>
@@ -36,7 +20,7 @@
           <image src="../../images/1.jpg" class='signImage'></image>
         </view>
         <view style='height:5%;color:#586c94;font-size:14px;width:90%;margin:auto;'>
-         第{{week}}周
+         第{{curweek}}周
         </view>
         <view class='signDetail'style="height:55%;">
           <view class='panel_hd title' style='text-overflow:ellipsis;overflow:hidden;'>{{item.cozName}}</view>
@@ -49,22 +33,13 @@
             <view class='infoText row'>
              <view class='infoText1'>课时</view>
              <view class='column schTime'>
-              <block wx:for='{{item.schs}}' wx:for-item='itemsch'>
+              <block wx:for='{{item.schs}}' wx:for-item='itemsch' wx:key="schId">
                 <view class='infoText3'>{{itemsch.schTime}}</view>
                 <view class='infoText3' style='margin-bottom:5px;'>{{itemsch.schRoom}}</view>
               </block>
              </view>
              
             </view>
-            <!--view class='infoText row'>
-             <view class='infoText1'>地点</view>
-             <view class='column schTime'>
-              <block wx:for='{{item.schs}}' wx:for-item='itemsch'>
-                <view class='infoText3'>{{itemsch.schRoom}}</view>
-              </block>
-             </view>
-             <view class='infoText2' catchtap='lookplace' data-schs='{{item.schs}}'>点击查看<i class="fa fa-hand-o-left" style='margin-left:5px;'></i></view>
-            </view-->
            </view>
            <view class='stoptitle'style="height:35%;" ><i class="fa fa-stop-circle" style='margin-right:5px;'></i><text catchtap='suspendrecord' data-record='{{item.schs}}'>停课记录</text></view>
           </view>
@@ -78,9 +53,9 @@
           <i-row i-class="row-class">
             <i-col span="12" catchtap='signs' data-schs='{{item.schs}}' data-type='scansign'>
               <view class='middle'>
-                <i-icon type="offline" size="30" color="#80848f"/>
+                <i-icon type="camera" size="30" color="#80848f"/>
               </view>
-              <view class='text-middle'>暂不可用</view>
+              <view class='text-middle'>拍照签到</view>
             </i-col>
             <!--i-col span="12" i-class="" catchtap='signs' data-schs='{{item.schs}}' data-type='fastsign'>
               <view class='middle'>
@@ -111,25 +86,6 @@
       </view>
     </button>
   </view>
- 
- <!--地图显示pop层-->
-  <!--button bindtap="showPopup">居上，有动画</button-->
-  <!--wxc-popup class="J_Popup" animation-mode="top" align="top">
-  <view class="column" class="mapPop">
-   <view class="mapTitle">签到失败,请检查GPS是否开启后重试</view>
-    <map
-      id="myMap"
-      style="width: 100%; height: 300px;"
-      latitude="{{latitude}}"
-      longitude="{{longitude}}"
-      markers="{{markers}}"
-      polyline='{{polyline}}'
-      circles='{{circles}}'
-      include-points='{{includePoints}}'
-      show-location
-    ></map>
-  </view>
-  </wxc-popup-->
 </view>
 
 <!--个人中心-->
@@ -152,9 +108,9 @@
         <view class='tipclass'>停课备注: {{item.note}}</view>
     </block>
 </i-modal>
-<i-modal title="停课提醒" visible="{{ tipvisible }}" bind:ok="recordClose" show-cancel='{{show_cancel}}' ok-text='知道了'>
+<!--i-modal title="停课提醒" visible="{{ tipvisible }}" bind:ok="recordClose" show-cancel='{{show_cancel}}' ok-text='知道了'>
     <block wx:for='{{tips}}' wx:for-item='tip'>
       <view>{{tip.cozName}}: {{tip.cozTime}}</view> 
     </block>
-</i-modal>
+</i-modal-->
 

@@ -22,6 +22,7 @@ Page({
     term:1,
     week: 1,
     weekTemp: 1,
+    curweek: 1,
     Temp: 0,
     Temp1: 1,
     iconBackColor: ['#FFFFCC', '#CCFFFF', '#FFCCCC', '#CCCCFF', '#FFCC99', '#CCFF99', '#CCFFCC', '#66cccc'],
@@ -50,20 +51,16 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    wx.getStorage({
-      key: 'user',
-      success: function(res) {
-        let ismonitor=that.data.ismonitor;
-        if (res.data.suAuthoritiesStr.toLowerCase().indexOf('monitor') > -1){
-          ismonitor = true;
-        }
-        that.setData({
-          ismonitor:ismonitor,
-          username:res.data.suName,
-          userid:res.data.suId,
-          cozId: options.scId || ''
-        })
-      },
+    let user = wx.getStorageSync('user')
+    let ismonitor = false
+    if (user.suAuthoritiesStr.toLowerCase().indexOf('monitor') > -1) {
+      ismonitor = true;
+    }
+    that.setData({
+      ismonitor: ismonitor,
+      username: user.suName,
+      userid: user.suId,
+      cozId: options.scId || ''
     })
     // 服务消息进入启动页
     if (options.scId && app.globalData.start) {
@@ -105,7 +102,7 @@ Page({
               let termArray = term.split('-')
               var schedules = table.doschs(coz, week1, term)
               that.setData({
-                week: week1 || 1,
+                curweek: week1 || 1,
                 year: parseInt(termArray[0]),
                 term: parseInt(termArray[2]),
                 schedules: schedules,
@@ -135,8 +132,6 @@ Page({
           ifspin: false,
           urgencyFresh: true
         })
-
-        console.log('yhx')
       })
   },
 
@@ -368,13 +363,13 @@ aheadMon:function(){
         let slId = schs[res.tapIndex].slId;
         switch(mark){
           case 'fastsign':
+            wx.showLoading({
+              title: '签到中...',
+              mask: true
+            })
             wx.authorize({
               scope: 'scope.userLocation',
               success() {
-                wx.showLoading({
-                  title: '签到中...',
-                  mask: true
-                })
                 wx.getLocation({
                   type:'wgs84',
                   altitude: 'true',
@@ -385,13 +380,14 @@ aheadMon:function(){
                   fail:function(res){
                     wx.hideLoading();
                     wx.showToast({
-                      title: '位置请求太频繁了，请稍后再试',
+                      title: '位置请求失败了，请稍后再试',
                       icon: 'none'
                     })
                   }
                 })
               },
               fail() {
+                wx.hideLoading();
                 wx.showModal({
                   title: '提示',
                   content: '请检查是否进行位置授权',
@@ -411,10 +407,9 @@ aheadMon:function(){
               .catch(data => { })
           break;
           case 'scansign':
-            // 只允许从相机扫码
-            wx.showToast({
-              title: '暂不支持',
-              icon:"none"
+            // 只允许从相机拍照
+            wx.navigateTo({
+              url: '../camera/camera?ssId=' + ssId,
             })
             /*
             wx.scanCode({
@@ -449,10 +444,28 @@ aheadMon:function(){
               title: '签到成功',
             })
         } else{
+          switch(data.code) {
+            case 1: 
+              wx.showToast({
+                title: '已签到',
+                icon: 'none'
+              })
+              break;
+            case 2:
+              wx.navigateTo({
+                url: '../../common/map/map?lat=' + lat + '&lon=' + long + '&slId=' + slId,
+              })
+              break;
+            case 3:
+              wx.showToast({
+                title: '签到时间错误',
+                icon: 'none'
+              })
+              break;
+            
+          }
           // that.showMap(lat,long,slId)
-          wx.navigateTo({
-            url: '../../common/map/map?lat='+lat+'&lon='+long+'&slId='+slId,
-          })
+          
           // app.feedback.showModal('签到失败\n'+data.message);
         }
       })
@@ -504,12 +517,6 @@ aheadMon:function(){
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
-    //let coz = this.data.coz;
-    //let tips=app.table.suspendtip(coz);
-    //this.setData({
-      //tips:tips
-    //})
   },
   looktips:function(e){
     let tips = e.currentTarget.dataset.tips;
@@ -614,28 +621,40 @@ aheadMon:function(){
   // 获取地理位置后台任务
   hideTask() {
     let timesRun = 0
-    wx.getLocation({
-      type: 'wgs84',
-      altitude: 'true',
-      success: function(res) {
-        var interval = setInterval(function(){
-          timesRun += 1
-          wx.getLocation({
-            type: 'wgs84',
-            altitude: 'true'
-          })
-          if(timesRun === 30) {
-            clearInterval(interval)
+    wx.authorize({
+      scope: 'scope.userLocation',
+      success() {
+        wx.getLocation({
+          type: 'wgs84',
+          altitude: 'true',
+          success: function (res) {
+            var interval = setInterval(function () {
+              timesRun += 1
+              wx.getLocation({
+                type: 'wgs84',
+                altitude: 'true',
+                success: function() {
+                  if (timesRun === 15) {
+                    clearInterval(interval)
+                  }
+                },
+                fail: function(res) {
+                  console.log('getlocation接口炸了', res)
+                  clearInterval(interval)
+                }
+              })   
+            }, 1500)
+          },
+          fail: function (res) {
+            console.log('获取位置的api失败')
+            wx.showToast({
+              title: '位置请求失败了，请稍后再试',
+              icon: 'none'
+            })
           }
-        }, 1500)
-      },
-      fail: function(res) {
-        console.log('获取位置的api失败')
-        /*
-        wx.showToast({
-          title: '位置请求太频繁了，请稍后再试',
-          icon: 'none'
         })
+      },
+      fail() {
         wx.showModal({
           title: '提示',
           content: '请检查是否进行位置授权',
@@ -648,7 +667,6 @@ aheadMon:function(){
             }
           }
         })
-        */
       }
     })
   },

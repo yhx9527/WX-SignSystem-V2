@@ -3,7 +3,7 @@
     课程督导一经领取将持续一学期
 </i-notice-bar>
  <view class='courseTitle'>督导池塘/</view>
- <block wx:for="{{pondlist}}" wx:for-index='index' wx:for-item='item' >
+ <block wx:for="{{pondlist}}" wx:for-index='index' wx:for-item='item' wx:key="cozId">
  <view class="weui-media-box_appmsg"style="border-bottom:1px solid #e9eaec;height:60px;border-top:{{index==0 ? '1px solid #e9eaec' : '0px'}};">
       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg"style='background-color:#0984e3;height:50px;width:50px;line-height:50px;margin-left:5px;'>
         <view class="fa fa-bookmark fa-lg"style='vertical-align:middle;color:#FFFFFF'></view>

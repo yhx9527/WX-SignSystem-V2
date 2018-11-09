@@ -23,7 +23,7 @@
     <i-tab key="tab2" title="历史请假"></i-tab>
     <i-tab key="tab3" title="情况分析"></i-tab>
 </i-tabs-->
-<i-card title="历史签到" extra="如若课程正在签到，则该次签到的记录需等签到结束方可查询到" thumb="https://static.dongtu.com/netpic/201804191438528I03JGR0YCN1FNWK.gif" full>
+<i-card title="历史签到" extra="签到时长十分钟!如若课程正在签到，则该次签到的记录需等签到结束方可查询到!" thumb="https://static.dongtu.com/netpic/201804191438528I03JGR0YCN1FNWK.gif" full>
     <view slot="content">记录如下<i class="fa fa-hand-o-down" style='margin-right:10px;'></i><block wx:if='{{processing.length > 0}}'>签到处理中：</block><block wx:for='{{processing}}' wx:for-item='item'><text style='font-size:12px;color:#00b894;'>{{item.time}}</text></block></view>
 </i-card>
 
@@ -90,17 +90,19 @@
 
  <movable-area class='floatBox'>
     <movable-view class='column floatBtns'direction='vertical'inertia animation>
-    <form  bindsubmit="tellsch"  data-mark='sign' report-submit='{{ true }}'>
-      <button class='column add form-btn' form-type='submit'>
+      <!--button class='column add form-btn'  catchsubmit="tellsch"  data-mark='sign'>
         <i-icon type="brush" size='30'color="#495060" style='text-align:center;'/>
         <view class='text-middle'>一键签到</view>
-      </button>
-    </form>
-  <view class='column' data-mark='leave' catchtap='tellsch'>
-    <i-icon type="mail" size='30'color="#495060" style='text-align:center;'/>
-    <view class='text-middle'>暂不可用</view>
+      </button-->
+    <view class='column add' data-mark='sign' catchtap='tellsch'>
+    <i-icon type="brush" size='30'color="#495060" style='text-align:center;'/>
+        <view class='text-middle'>一键签到</view>
   </view>
-  <view class='column' data-mark='scan' catchtap='tellsch'>
+  <view class='column add' data-mark='scan' catchtap='tellsch'>
+    <i-icon type="camera" size='30'color="#495060" style='text-align:center;'/>
+    <view class='text-middle'>拍照签到</view>
+  </view>
+  <view class='column add' data-mark='leave' catchtap='tellsch'>
     <i-icon type="offline" size='30'color="#495060" style='text-align:center;'/>
     <view class='text-middle'>暂不可用</view>
   </view>

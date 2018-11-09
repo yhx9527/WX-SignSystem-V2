@@ -81,8 +81,8 @@ Page({
     let schtimes = schs.map(function (item, index, array) {
       return '选择 '+item.schTime;
     })
-    let formId = e.detail.formId
-    console.log('生成formId', formId)
+   // let formId = e.detail.formId
+   // console.log('生成formId', formId)
     wx.showActionSheet({
       itemList: schtimes,
       success: function (res) {
@@ -90,12 +90,12 @@ Page({
         let slId = schs[res.tapIndex].slId
         switch(mark){
           case 'sign':
+            wx.showLoading({
+              title: '签到中...',
+            })
             wx.authorize({
               scope: 'scope.userLocation',
               success() {
-                wx.showLoading({
-                  title: '签到中...',
-                })
                 wx.getLocation({
                   type: 'wgs84',
                   success: function (res) {
@@ -103,10 +103,15 @@ Page({
                   },
                   fail: function (res) {
                     wx.hideLoading();
+                    wx.showToast({
+                      title: '位置请求失败了，请稍后再试',
+                      icon: 'none'
+                    })
                   }
                 })
               },
               fail() {
+                wx.hideLoading();
                 wx.showModal({
                   title: '提示',
                   content: '请检查是否进行位置授权',
@@ -121,9 +126,9 @@ Page({
                 })
               }
             })
-            app.agriknow.message(formId)
-              .then(data => { })
-              .catch(data => { })
+            //app.agriknow.message(formId)
+             // .then(data => { })
+              //.catch(data => { })
           break;
           case 'leave':
             wx.showToast({
@@ -132,11 +137,9 @@ Page({
             })
           break;
           case 'scan':
-            // 只允许从相机扫码
-            
-            wx.showToast({
-              title: '暂不支持',
-              icon:'none'
+            // 只允许从相机拍照
+            wx.navigateTo({
+              url: '../camera/camera?ssId='+ssId,
             })
             /*
             wx.scanCode({
@@ -169,10 +172,26 @@ Page({
             title: '签到成功',
           })
         } else {
-          wx.navigateTo({
-            url: '../../common/map/map?lat=' + lat + '&lon=' + long + '&slId=' + slId,
-          })
+          switch (data.code) {
+            case 1:
+              wx.showToast({
+                title: '已签到',
+                icon: 'none'
+              })
+              break;
+            case 2:
+              wx.navigateTo({
+                url: '../../common/map/map?lat=' + lat + '&lon=' + long + '&slId=' + slId,
+              })
+              break;
+            case 3:
+              wx.showToast({
+                title: '签到时间错误',
+                icon: 'none'
+              })
+              break;
           // app.feedback.showModal('签到失败\n'+data.message);
+        }
         }
       })
       .catch(data => {

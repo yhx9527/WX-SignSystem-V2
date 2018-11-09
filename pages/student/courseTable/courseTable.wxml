@@ -15,7 +15,7 @@
   </view>
   <view class=''>
   <view class="weui-grids table_row"style='border-top:1rpx solid #d9d9d9;'>
-    <block wx:for="{{tableHead}}" wx:for-index="index1"wx:for-item="item1">
+    <block wx:for="{{tableHead}}" wx:for-index="index1"wx:for-item="item1" wx:key="schId">
       <view class="weui-grid {{index1%8==0 ? 'table_column' : 'head'}}" >
         <view class="weui-grid__label headtext">{{item1}}</view>
       </view>

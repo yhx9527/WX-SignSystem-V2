@@ -4,6 +4,8 @@
     "pages/student/sign/sign",
     "pages/student/courseMore/courseMore",
     "pages/student/leave/leave",
+    "pages/student/camera/camera",
+
     "pages/common/about/about",
     "pages/common/help/help",
     "pages/common/contact/contact",

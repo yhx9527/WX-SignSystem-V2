@@ -1,0 +1,64 @@
+@import '/style/BUTTONS.wxss';
+
+.camera-btn{
+  height:65px;
+line-height:65px;
+width:65px !important;
+color: #c9c9c9;
+}
+.camera-icon{
+  font-size: 50px;
+  color: white;
+  margin-top:7px;
+}
+.my-camera{
+  width: 100%; height: 100vh;
+  text-align: center;
+}
+.info{
+  color: white;
+  font-weight: 700;
+  margin-bottom:20px;
+
+}
+.camera-group{
+position:absolute;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+
+}
+.show-image{
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+height: 100vh;
+}
+.bar{
+  text-align: center;
+  color:white;
+
+}
+.group{
+  display:flex;
+align-items:flex-end;
+justify-content:space-around;
+margin-bottom:30px;
+
+}
+
+.image-front{
+  height:30px;
+width:30px;
+float:right;
+margin-right:10px;
+margin-top:10px;
+
+}
+.backImg{
+width:100vw;
+height:100vh;
+z-index:-10;
+position:absolute;
+
+}

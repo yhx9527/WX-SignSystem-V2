@@ -1,0 +1,30 @@
+<camera device-position="{{shot}}" flash="off" binderror="error" style="" class='my-camera' wx:if="{{ifshoot}}">
+    <cover-view>
+    <!--button class="button button-large button-plain button-borderless" style="float:right" bindtap="revise">
+    <i class="fa fa-refresh"></i>
+    </button-->
+    <cover-image src='/images/front.png' class='image-front' bindtap="revise"></cover-image>
+  </cover-view>
+  <cover-view class="camera-group">
+    <cover-view class="info">请拍摄一张包含老师的教室照片</cover-view>
+    <cover-view>
+      <!--button bindtap="takePhoto" class="button button-circle button-jumbo camera-btn">
+        <cover-view><i class="fa fa-circle camera-icon"></i></cover-view>
+      </button-->
+      <cover-image src='/images/camera.png' style='height:80px;width:80px;margin:auto;' bindtap="takePhoto"></cover-image>
+    </cover-view>
+  </cover-view>
+</camera>
+<view wx:else>
+<image src="{{src}}" class="backImg"></image>
+<view class='show-image'>
+<view style="visibility: {{!ifBar ? 'hidden' : 'visible'}} ">
+  <i-progress percent="{{ percent }}" status="{{ status }}" i-class="bar"></i-progress>
+  <!--button class='button button-caution button-rounded button-small' style='float:right;margin-right:10px;margin-top:5px;' bindtap="cancel">取消</button-->
+</view>
+  <view class="group">
+    <button class="button button-giant button-plain button-border button-circle" bindtap='back'><i class="fa fa-reply"></i></button>
+    <button class="button button-giant button-primary button-circle" bindtap='send' disabled='{{ifBar}}'><i class="fa fa-check"></i></button>
+  </view>
+</view>
+</view>
