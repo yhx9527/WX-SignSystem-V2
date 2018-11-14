@@ -168,6 +168,9 @@ fresh(){
     let schs = e.currentTarget.dataset.schs;
     let formId = e.detail.formId
     console.log(schs, formId)
+    app.agriknow.message(formId)
+      .then(data => { })
+      .catch(data => { })
     let schtimes = schs.map(function (item, index, array) {
       return '选择 '+item.schTime;
     })
@@ -188,6 +191,10 @@ fresh(){
             */
             break;
           case 'sign':
+            wx.navigateTo({
+              url: '/pages/common/signCamera/signCamera?ssId=' + ssId
+            })
+            /*
             app.agriknow.postSign(ssId)
              .then(data=>{
                if (data.success) {
@@ -208,6 +215,7 @@ fresh(){
              .catch(data=>{
 
              })
+             */
             break;
         }
 

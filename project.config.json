@@ -34,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 52,
+			"current": 53,
 			"list": [
 				{
 					"id": -1,
@@ -356,6 +356,11 @@
 					"name": "camera",
 					"pathName": "pages/student/camera/camera",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "map",
+					"pathName": "pages/common/map/map"
 				}
 			]
 		}

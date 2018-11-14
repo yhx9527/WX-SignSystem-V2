@@ -12,4 +12,5 @@
       show-location = '{{true}}'
       scale = '{{ 16 }}'
     ></map>
+    <button class='button button-block button-raised button-primary' bindtap="back" style='margin-top:30px;'>返回重试</button>
   </view>

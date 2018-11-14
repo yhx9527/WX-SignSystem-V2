@@ -1,4 +1,3 @@
-const app = getApp()
 Page({
 
   /**
@@ -13,8 +12,7 @@ Page({
     status: 'active',
     ifBar: false,
     uploadTask: {},
-    token: '',
-    canzhao: ''
+    token: ''
   },
 
   /**
@@ -26,16 +24,7 @@ Page({
       ssId: options.ssId,
       token: token
     })
-    let that = this
     this.ctx = wx.createCameraContext()
-    app.agriknow.getSign(options.ssId)
-      .then(data=>{
-        if (data.success) {
-          that.setData({
-            canzhao: 'https://www.xsix103.cn/' + data.data.ssiPicture
-        })
-        }
-      })
   },
   takePhoto() {
     this.ctx.takePhoto({
@@ -53,17 +42,17 @@ Page({
   },
   revise() {
     let temp = this.data.shot === 'back' ? 'front' : 'back'
-    console.log('转换摄像头',temp)
+    console.log('转换摄像头', temp)
     this.setData({
       shot: temp
     })
   },
-  back(){
+  back() {
     this.setData({
       ifshoot: true
     })
   },
-  send(){
+  send() {
     console.log('发送')
     let that = this
     this.setData({
@@ -72,25 +61,21 @@ Page({
     let ssId = this.data.ssId
     let token = this.data.token
     let src = this.data.src
-    wx.showLoading({
-      title: '发送中...',
-    })
     const uploadTask = wx.uploadFile({
-      url: 'https://api.xsix103.cn/sign_in_system/v3/schedules/' + ssId + '/signIns/doBackSignIn',
+      url: 'https://api.xsix103.cn/sign_in_system/v3/schedules/' + ssId + '/signIns',
       filePath: src,
       name: 'picture',
       header: {
         'Authorization': token,
         'Content-Type': 'multipart/form-data'
       },
-      success: function(res) {
-        wx.hideLoading()
+      success: function (res) {
         let data = JSON.parse(res.data)
-        switch(res.statusCode){
+        switch (res.statusCode) {
           case 200:
             if (data.success) {
               wx.showToast({
-                title: '照片已发送',
+                title: '发起成功',
               })
               setTimeout(function () {
                 wx.navigateBack({
@@ -99,17 +84,10 @@ Page({
               }, 1500)
             } else {
               wx.showToast({
-                title: '发送失败',
+                title: data.message,
                 icon: 'none'
               })
             }
-          break;
-          case 400:
-            wx.showToast({
-              title: '无需签到或签到已过',
-              icon: 'none',
-              duration: 2000
-            })
             break;
           case 401:
             wx.showToast({
@@ -123,7 +101,7 @@ Page({
               icon: 'none'
             })
             break;
-            default:
+          default:
             wx.showModal({
               title: '提示',
               content: data.message,
@@ -136,8 +114,7 @@ Page({
           status: 'active'
         })
       },
-      fail: function(err) {
-        wx.hideLoading()
+      fail: function (err) {
         that.setData({
           ifBar: false,
           status: 'wrong'
@@ -148,7 +125,7 @@ Page({
     this.setData({
       uploadTask: uploadTask
     })
-    uploadTask.onProgressUpdate((res)=>{
+    uploadTask.onProgressUpdate((res) => {
       this.setData({
         percent: res.progress,
         status: res.progress === 100 ? 'success' : 'active',
@@ -157,9 +134,9 @@ Page({
       console.log('上传进度', res.progress)
     })
   },
-  cancel(){
+  cancel() {
     console.log('取消上传')
-    try{
+    try {
       console.log(this.uploadTask)
       this.uploadTask.abort()
       this.setData({
@@ -167,48 +144,36 @@ Page({
         percent: 0,
         status: 'active'
       })
-    }catch(e){
-      console.log('取消失败',e)
-    }
-  },
-
-  //查看参照物
-  canzhao(){
-    let that = this
-    try{
-    wx.previewImage({
-      urls: [that.data.canzhao],
-    })
-    }catch(e){
-      console.log('查看参照物失败')
+    } catch (e) {
+      console.log('取消失败', e)
     }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
 })

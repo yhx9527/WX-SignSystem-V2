@@ -29,6 +29,9 @@ Page({
     let schs = that.data.course.schs;
     let formId = e.detail.formId
     console.log(schs, formId)
+    app.agriknow.message(formId)
+      .then(data => { })
+      .catch(data => { })
     let schtimes = schs.map(item=>{
       return '选择 '+item.sch;
     })
@@ -36,6 +39,10 @@ Page({
       itemList: schtimes,
       success: function (res) {
         let ssId = schs[res.tapIndex].schid;
+        wx.navigateTo({
+          url: '/pages/common/signCamera/signCamera?ssId=' + ssId
+        })
+        /*
         app.agriknow.postSign(ssId)
           .then(data=>{
             if(data.success){
@@ -52,6 +59,7 @@ Page({
           .catch(data=>{
 
           })
+          */
 
       },
       fail: function (res) {

@@ -128,12 +128,19 @@ Page({
     let schs = e.currentTarget.dataset.schs;
     let formId = e.detail.formId
     console.log(schs, formId)
+    app.agriknow.message(formId)
+      .then(data => { })
+      .catch(data => { })
     let schtimes = schs.map(function (item, index, array) {
       return '选择 ' + item.schtime;
     })
     wx.showActionSheet({
       itemList: schtimes,
       success: function (res) {
+        wx.navigateTo({
+          url: '/pages/common/signCamera/signCamera?ssId=' + schs[res.tapIndex].schid,
+        })
+        /*
         wx.showLoading({
           title: '发起中...',
         })
@@ -164,6 +171,7 @@ Page({
           })
             
         console.log(res.tapIndex)
+        */
       },
       fail: function (res) {
         console.log(res.errMsg)

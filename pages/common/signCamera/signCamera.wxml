@@ -3,15 +3,10 @@
     <!--button class="button button-large button-plain button-borderless" style="float:right" bindtap="revise">
     <i class="fa fa-refresh"></i>
     </button-->
-    <cover-view class='column canzhao'>
-         <cover-image src='{{canzhao}}' class='image-canzhao' bindtap="canzhao"></cover-image>
-         <cover-view style='color:white;font-weight:700;margin-top:5px;'>参照物</cover-view>
-    </cover-view>
     <cover-image src='/images/front.png' class='image-front' bindtap="revise"></cover-image>
   </cover-view>
   <cover-view class="camera-group">
-    <!--cover-view  bindtap="canzhao"><button class="button button-pill button-tiny">查看参照物</button></cover-view-->
-    <cover-view class="info">请根据参照物进行相应拍摄</cover-view>
+    <cover-view class="info">请拍摄一张学生签到所依据的参照物</cover-view>
     <cover-view>
       <!--button bindtap="takePhoto" class="button button-circle button-jumbo camera-btn">
         <cover-view><i class="fa fa-circle camera-icon"></i></cover-view>

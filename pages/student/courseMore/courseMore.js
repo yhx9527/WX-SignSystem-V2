@@ -138,8 +138,12 @@ Page({
           break;
           case 'scan':
             // 只允许从相机拍照
-            wx.navigateTo({
+            /*wx.navigateTo({
               url: '../camera/camera?ssId='+ssId,
+            })*/
+            wx.showToast({
+              title: '暂不可用',
+              icon: 'none'
             })
             /*
             wx.scanCode({
@@ -208,6 +212,20 @@ Page({
         }
       })
   },
+  //签到失败地图返回显示拍照签到提示
+  showCamera(ssId) {
+    wx.showModal({
+      title: '提示',
+      content: '签到失败了吗？是否尝试一下拍照签到',
+      success: function (res) {
+        if (res.confirm) {
+          wx.navigateTo({
+            url: '../camera/camera?ssId=' + ssId,
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -249,11 +267,4 @@ Page({
   onReachBottom: function () {
     
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
-  }
 })

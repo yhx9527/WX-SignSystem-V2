@@ -408,8 +408,15 @@ aheadMon:function(){
           break;
           case 'scansign':
             // 只允许从相机拍照
+            /*
             wx.navigateTo({
               url: '../camera/camera?ssId=' + ssId,
+            })
+            */
+            
+            wx.showToast({
+              title: '暂不可用',
+              icon: 'none'
             })
             /*
             wx.scanCode({
@@ -453,12 +460,12 @@ aheadMon:function(){
               break;
             case 2:
               wx.navigateTo({
-                url: '../../common/map/map?lat=' + lat + '&lon=' + long + '&slId=' + slId,
+                url: '../../common/map/map?lat=' + lat + '&lon=' + long + '&slId=' + slId + '&ssId=' + ssId,
               })
               break;
             case 3:
               wx.showToast({
-                title: '签到时间错误',
+                title: '签到时间已过',
                 icon: 'none'
               })
               break;
@@ -670,7 +677,20 @@ aheadMon:function(){
       }
     })
   },
-
+  //签到失败地图返回显示拍照签到提示
+  showCamera(ssId){
+    wx.showModal({
+      title: '提示',
+      content: '签到失败了吗？是否尝试一下拍照签到',
+      success: function(res){
+        if(res.confirm) {
+          wx.navigateTo({
+            url: '../camera/camera?ssId=' + ssId,
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

@@ -10,7 +10,8 @@ Page({
     latitude: '',
     markers: [],
     circles: [],
-    includePoints: []
+    includePoints: [],
+    ssId: ''
   },
 
   /**
@@ -18,8 +19,24 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    this.setData({
+      ssId: options.ssId
+    })
     this.mapCtx = wx.createMapContext('myMap')
     console.log(options)
+
+    wx.showModal({
+      title: '提示',
+      content: '签到失败了吗？是否尝试一下拍照签到',
+      success: function (res) {
+        if (res.confirm) {
+          wx.redirectTo({
+            url: '/pages/student/camera/camera?ssId=' + options.ssId,
+          })
+        }
+      }
+    })
+
     let cur = gcoord.transform(
       [options['lon'], options['lat']],    // 经纬度坐标
       gcoord.WGS84,               // 当前坐标系
@@ -53,7 +70,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
   },
 
   /**
@@ -68,5 +84,18 @@ Page({
    */
   onHide: function () {
     
+  },
+  onUnload: function(){
+    //var pages = getCurrentPages()
+    //var pre = pages[pages.length-2]
+    // let ssId = this.data.ssId
+    //if(pre.showCamera){
+      //pre.showCamera(this.data.ssId)
+    //}
+  },
+  back: function() {
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

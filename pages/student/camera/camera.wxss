@@ -55,6 +55,19 @@ margin-right:10px;
 margin-top:10px;
 
 }
+.canzhao{
+float:left;
+height:120px;
+width:60px;
+margin-left:10px;
+margin-top:10px;
+
+}
+.image-canzhao{
+  height:100px;
+width:100%;
+
+}
 .backImg{
 width:100vw;
 height:100vh;

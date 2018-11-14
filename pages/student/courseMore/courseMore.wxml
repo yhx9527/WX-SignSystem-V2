@@ -99,8 +99,8 @@
         <view class='text-middle'>一键签到</view>
   </view>
   <view class='column add' data-mark='scan' catchtap='tellsch'>
-    <i-icon type="camera" size='30'color="#495060" style='text-align:center;'/>
-    <view class='text-middle'>拍照签到</view>
+    <i-icon type="offline" size='30'color="#495060" style='text-align:center;'/>
+    <view class='text-middle'>暂不可用</view>
   </view>
   <view class='column add' data-mark='leave' catchtap='tellsch'>
     <i-icon type="offline" size='30'color="#495060" style='text-align:center;'/>
